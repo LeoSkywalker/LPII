@@ -15,53 +15,58 @@
         <h1>Manter Produto</h1>
         <form>
             <label> ID: </label>
-            <input type="number" value="idProduto">
-            <br>
-            <label> Fornecedor: </label>
-            <input type="number" value="idFornecedor">
-            <br>
-            <label> Categoria: </label>
-            <input type="number" value="idCategoria">
+            <input type="number" id="idProduto">
             <br>
             <label> Nome: </label>
-            <input type="text" value="nomeProduto">
+            <input type="text" id="nomeProduto">
             <br>
-            <label> Código Interno: </label
-            <input type="number" value="codigoInterno">
+            <label> Fornecedor: </label>
+            <input type="text" id="idFornecedor">
             <br>
-            <label> Código de Barra: </label
-            <input type="text" value="codigoBarra">
+            <label> Categoria: </label>
+            <select name="categoria" id="categoria">
+                <option id="hidraulico">Hidráulico</option>
+                <option id="eletrico">Elétrico</option>
+                <option id="ferramentaria">Ferramentaria</option>
+            </select>
             <br>
-            <label> Unidade de Medida: </label
-            <input type="text" value="unidadeMedida">
+            <label> Código Interno: </label>
+            <input type="number" id="codigoInterno">
             <br>
-            <label> Preço de Compra </label
-            <input type="number" value="precoCompra">
+            <label> Código de Barra: </label>
+            <input type="number" id="codigoBarra">
             <br>
-            <label> Peso: </label
-            <input type="number" value="peso">
+            <label> Unidade de Medida: </label>
+            <input type="text" id="unidadeMedida">
             <br>
-            <label> Altura: </label
-            <input type="number" value="altura">
+            <label> Preço de Compra </label>
+            <input type="number" id="precoCompra">
             <br>
-            <label> Largura: </label
-            <input type="number" value="largura">
+            <label> Peso(kg): </label>
+            <input type="number" id="peso">
             <br>
-            <label> Comprimento: </label
-            <input type="number" value="comprimento">
+            <label> Altura(m): </label>
+            <input type="number" id="altura">
             <br>
-            <label> Validade(meses): </label
-            <input type="number" value="codigoInterno">
+            <label> Largura(m): </label>
+            <input type="number" id="largura">
             <br>
-            <label> Quantidade Mínima: </label
-            <input type="number" value="qtdMinima">
+            <label> Comprimento(m): </label>
+            <input type="number" id="comprimento">
             <br>
-            <label> Quantidade Atual: </label
-            <input type="number" value="qtdAtual">
+            <label> Validade(meses): </label>
+            <input type="number" id="codigoInterno">
+            <br>
+            <label> Quantidade Mínima: </label>
+            <input type="number" id="qtdMinima">
+            <br>
+            <label> Quantidade Atual: </label>
+            <input type="number" id="qtdAtual">
             <br>
             <label> Quantidade Máxima: </label>
-            <input type="number" value="qtdMaxima">
+            <input type="number" id="qtdMaxima">
             <br>
+            <input type="reset" value="Cancelar">
             <input type="submit" value="Enviar">
             <br>
         </form>

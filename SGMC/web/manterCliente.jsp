@@ -15,61 +15,62 @@
         <h1>Manter Cliente</h1>
         <form>
             <label> ID: </label>
-            <input type="number" value="idCliente">
+            <input type="number" id="idCliente">
             <br>
             <label> Nome: </label>
-            <input type="text" value="nomeCliente">
+            <input type="text" id="nomeCliente">
             <br>
             <label> E-mail: </label>
-            <input type="email" value="emailCliente">
+            <input type="email" id="emailCliente">
             <br>
             <label> CPF: </label>
-            <input type="number" value="cpfCliente">
+            <input type="number" id="cpfCliente">
             <br>
             <label> RG: </label>
-            <input type="text" value="rgCliente">
+            <input type="text" id="rgCliente">
             <br>
             <label> Data Nascimento: </label>
-            <input type="date" value="nascCliente">
+            <input type="date" id="nascCliente">
             <br>
             <label> Telefone: </label>
-            <input type="number" value="telefoneCliente">
+            <input type="tel" id="telefoneCliente">
             <br>
             <label> Celular: </label>
-            <input type="number" value="celCliente">
+            <input type="tel" id="celCliente">
             <br>
             <label> Estado Civil: </label>
-            <select name="estadoCivil" value="estCivilCliente">
-                <option value="solteiro">Solteiro</option>
-                <option value="casado">Casado</option>
-                <option value="viuvo">Viúvo</option>
+            <select name="estadoCivil" id="estCivilCliente">
+                <option id="solteiro">Solteiro</option>
+                <option id="casado">Casado</option>
+                <option id="viuvo">Viúvo</option>
             </select>
             <br>
             <label> Sexo: </label>
-            <select name="sexo" value="estCivilCliente">
-                <option value="masculino">Masculino</option>
-                <option value="feminino">Feminino</option>
-                <option value="outro">Outro</option>
+            <select name="sexo" id="estCivilCliente">
+                <option id="masculino">Masculino</option>
+                <option id="feminino">Feminino</option>
+                <option id="outro">Outro</option>
             </select>
             <br>
             <label> CEP: </label>
-            <input type="number" value="cepCliente">
+            <input type="number" id="cepCliente">
             <br>
             <label> UF: </label>
-            <input type="text" value="ufCliente">
+            <input type="text" id="ufCliente">
             <br>
             <label> Cidade: </label>
-            <input type="text" value="cidadeCliente">
+            <input type="text" id="cidadeCliente">
             <br>
             <label> Logadouro: </label>
-            <input type="text" value="logradouroCliente">
+            <input type="text" id="logradouroCliente">
             <br>
             <label> Numero: </label>
-            <input type="number" value="numCliente">
+            <input type="number" id="numCliente">
             <br>
             <label> Complemento: </label>
-            <input type="text" value="compCliente">
+            <input type="text" id="compCliente">
             <br>
+            <input type="reset" value="Cancelar">
             <input type="submit" value="Enviar">
         </form>
     </body>

@@ -15,41 +15,42 @@
         <h1>Manter Fornecedor</h1>
         <form>
             <label> ID: </label>
-            <input type="number" value="idFornecedor">
+            <input type="number" id="idFornecedor">
             <br>
             <label> Nome Fantasia: </label>
-            <input type="text" value="nomeFantasia">
+            <input type="text" id="nomeFantasia">
             <br>
             <label> CNPJ: </label>
-            <input type="number" value="cnpj">
+            <input type="number" id="cnpj">
             <br>
             <label> Nome Representante: </label>
-            <input type="text" value="nomeRepresentante">
+            <input type="text" id="nomeRepresentante">
             <br>
             <label> E-mail: </label>
-            <input type="email" value="emailFornecedor">
+            <input type="email" id="emailFornecedor">
             <br>
             <label> Telefone: </label>
-            <input type="number" value="telefoneFornecedor">
+            <input type="tel" id="telefoneFornecedor">
             <br>
             <label> CEP: </label>
-            <input type="number" value="cepFornecedor">
+            <input type="number" id="cepFornecedor">
             <br>
             <label> UF: </label>
-            <input type="text" value="ufFornecedor">
+            <input type="text" id="ufFornecedor">
             <br>
             <label> Cidade: </label>
-            <input type="text" value="cidadeFornecedor">
+            <input type="text" id="cidadeFornecedor">
             <br>
             <label> Logadouro: </label>
-            <input type="text" value="logradouroFornecedor">
+            <input type="text" id="logradouroFornecedor">
             <br>
             <label> Numero: </label>
-            <input type="number" value="numFornecedor">
+            <input type="number" id="numFornecedor">
             <br>
             <label> Complemento: </label>
-            <input type="text" value="compFornecedor">
+            <input type="text" id="compFornecedor">
             <br>
+            <input type="reset" value="Cancelar">
             <input type="submit" value="Enviar">
         </form>
     </body>
