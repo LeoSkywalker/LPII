@@ -14,61 +14,63 @@
     <body>
         <h1>Manter Produto</h1>
         <form>
-            <label> ID: </label>
-            <input type="number" id="idProduto">
-            <br>
-            <label> Nome: </label>
-            <input type="text" id="nomeProduto">
-            <br>
-            <label> Fornecedor: </label>
-            <input type="text" id="idFornecedor">
-            <br>
-            <label> Categoria: </label>
-            <select name="categoria" id="categoria">
-                <option id="hidraulico">Hidráulico</option>
-                <option id="eletrico">Elétrico</option>
-                <option id="ferramentaria">Ferramentaria</option>
-            </select>
-            <br>
-            <label> Código Interno: </label>
-            <input type="number" id="codigoInterno">
-            <br>
-            <label> Código de Barra: </label>
-            <input type="number" id="codigoBarra">
-            <br>
-            <label> Unidade de Medida: </label>
-            <input type="text" id="unidadeMedida">
-            <br>
-            <label> Preço de Compra </label>
-            <input type="number" id="precoCompra">
-            <br>
-            <label> Peso(kg): </label>
-            <input type="number" id="peso">
-            <br>
-            <label> Altura(m): </label>
-            <input type="number" id="altura">
-            <br>
-            <label> Largura(m): </label>
-            <input type="number" id="largura">
-            <br>
-            <label> Comprimento(m): </label>
-            <input type="number" id="comprimento">
-            <br>
-            <label> Validade(meses): </label>
-            <input type="number" id="codigoInterno">
-            <br>
-            <label> Quantidade Mínima: </label>
-            <input type="number" id="qtdMinima">
-            <br>
-            <label> Quantidade Atual: </label>
-            <input type="number" id="qtdAtual">
-            <br>
-            <label> Quantidade Máxima: </label>
-            <input type="number" id="qtdMaxima">
-            <br>
-            <input type="reset" value="Cancelar">
-            <input type="submit" value="Enviar">
-            <br>
+            <table>
+                <tr>
+                    <td><label> ID: </label>
+                        <input type="number" id="idProduto"></td>
+                </tr>
+                <tr><td></td></tr>
+                <tr>
+                    <td><label> Nome: </label>
+                        <input type="text" id="nomeProduto"></td>
+                    <td><label> Fornecedor: </label>
+                        <input type="text" id="idFornecedor"></td>
+                    <td><label> Categoria: </label>
+                        <select name="categoria" id="categoria">
+                            <option id="hidraulico">Hidráulico</option>
+                            <option id="eletrico">Elétrico</option>
+                            <option id="ferramentaria">Ferramentaria</option>
+                        </select></td>
+                </tr>
+                <tr><td></td></tr>
+                <tr>
+                    <td><label> Código Interno: </label>
+                        <input type="number" id="codigoInterno"></td>
+                    <td><label> Código de Barra: </label>
+                        <input type="number" id="codigoBarra"></td>
+                    <td><label> Unidade de Medida: </label>
+                        <input type="text" id="unidadeMedida"></td>
+                    <td><label> Preço de Compra: </label>
+                        <input type="number" id="precoCompra"></td>
+                </tr>
+                <tr><td></td></tr>
+                <tr>
+                    <td><label> Peso(kg): </label>
+                        <input type="number" id="peso"></td>
+                    <td><label> Altura(m): </label>
+                        <input type="number" id="altura"></td>
+                    <td><label> Largura(m): </label>
+                        <input type="number" id="largura"></td>
+                    <td><label> Comprimento(m): </label>
+                        <input type="number" id="comprimento"></td>
+                </tr>
+                <tr><td></td></tr>
+                <tr>
+                 <td><label> Validade(meses): </label>
+                        <input type="number" id="codigoInterno"></td>
+                 <td><label> Quantidade Mínima: </label>
+                     <input type="number" id="qtdMinima"></td>
+                 <td><label> Quantidade Atual: </label>
+                     <input type="number" id="qtdAtual"></td>
+                 <td><label> Quantidade Máxima: </label>
+                     <input type="number" id="qtdMaxima"></td>
+                </tr>
+                <tr><td></td></tr>
+                <tr>
+                    <td><input type="reset" value="Cancelar">
+                        <input type="submit" value="Enviar"></td>
+                </tr>
+            </table>
         </form>
     </body>
 </html>

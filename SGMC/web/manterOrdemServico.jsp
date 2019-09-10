@@ -14,29 +14,36 @@
     <body>
         <h1>Manter Ordem de Serviço</h1>
         <form>
-            <label> ID: </label>
-            <input type="number" id="idOrdemServico">
-            <br>
-            <label> Fornecedor: </label>
-            <input type="text" id="idFornecedor">
-            <br>
-            <label> Produto: </label>
-            <input type="text" id="idProduto">
-            <br>
-            <label> Quantidade: </label>
-            <input type="number" id="qtdProduto">
-            <br>
-            <label> Data Pedido: </label>
-            <input type="date" id="dataPedido">
-            <br>
-            <label> Situação: </label>
-            <select name="situacao" id="situacaoOrdemServico">
-                <option id="emAberto">Em Aberto</option>
-                <option id="recebida">Recebida</option>
-            </select>
-            <br>
-            <input type="reset" value="Cancelar">
-            <input type="submit" value="Enviar">
+            <table>
+                <tr>
+                    <td><label> ID: </label>
+                        <input type="number" id="idOrdemServico"></td>
+                </tr>
+                <tr><td></td></tr> 
+                <tr>
+                    <td><label> Fornecedor: </label>
+                        <input type="text" id="idFornecedor"></td>
+                    <td><label> Produto: </label>
+                        <input type="text" id="idProduto"></td>
+                    <td><label> Quantidade: </label>
+                        <input type="number" id="qtdProduto"></td>
+                </tr>
+                <tr><td></td></tr> 
+                <tr>
+                    <td><label> Data Pedido: </label>
+                        <input type="date" id="dataPedido"></td>
+                    <td><label> Situação: </label>
+                        <select name="situacao" id="situacaoOrdemServico">
+                            <option id="emAberto">Em Aberto</option>
+                            <option id="recebida">Recebida</option>
+                        </select></td>
+                </tr>
+                <tr><td></td></tr> 
+                <tr>
+                    <td><input type="reset" value="Cancelar">
+                        <input type="submit" value="Enviar"></td>
+                </tr>
+            </table>
         </form>
     </body>
 </html>
