@@ -32,7 +32,7 @@ public class EnderecoDAO {
             ResultSet rs = comando.executeQuery("select * from endereco");
             
             while (rs.next()){
-                cliente = instaciarAdmin(rs);
+                cliente = instaciarEndereco(rs);
                 enderecos.add(cliente);
             }
             }finally{
@@ -43,7 +43,15 @@ public class EnderecoDAO {
     
 }
 
-    private static Endereco instaciarAdmin(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static Endereco instaciarEndereco(ResultSet rs) throws SQLException {
+        Endereco endereco = new Endereco(rs.getInt("idEndereco"),
+        rs.getString("logradouro"),
+        rs.getInt("numero"),
+        rs.getString("complemento"),
+        rs.getString("cidade"),
+        rs.getString("bairro"),
+        rs.getString("uf"),
+        rs.getString("cep"));
+        return endereco;
     }
 }

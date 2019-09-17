@@ -11,49 +11,44 @@ package model;
  */
 public class Venda {
     
-    private int id;
-    private Colaborador idColaborador;
-    private Cliente idCliente;
-    private Produto idProduto;
+    private int idVenda;
     private String dataVenda;
     private int qtd;
     private float precoUnitario;
     private float subTotal;
     private String codBarra;
     private float valorDesconto;
-    private FormaPagamento idFormaPagamento;
     private String situacao;
+    private Usuario usuario;
+    private FormaPagamento formaPagamento;
+    private Cliente cliente;
+    private Produto produto;
+    private int idUsuario;
+    private int idFormaPgto;
+    private int idCliente;
+    private int idProduto;
 
-    public int getId() {
-        return id;
+    public Venda(int idVenda, String dataVenda, int qtd, float precoUnitario, float subTotal, String codBarra, float valorDesconto, String situacao, Usuario usuario, FormaPagamento formaPagamento, Cliente cliente, Produto produto) {
+        this.idVenda = idVenda;
+        this.dataVenda = dataVenda;
+        this.qtd = qtd;
+        this.precoUnitario = precoUnitario;
+        this.subTotal = subTotal;
+        this.codBarra = codBarra;
+        this.valorDesconto = valorDesconto;
+        this.situacao = situacao;
+        this.usuario = usuario;
+        this.formaPagamento = formaPagamento;
+        this.cliente = cliente;
+        this.produto = produto;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdVenda() {
+        return idVenda;
     }
 
-    public Colaborador getIdColaborador() {
-        return idColaborador;
-    }
-
-    public void setIdColaborador(Colaborador idColaborador) {
-        this.idColaborador = idColaborador;
-    }
-
-    public Cliente getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(Cliente idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public Produto getIdProduto() {
-        return idProduto;
-    }
-
-    public void setIdProduto(Produto idProduto) {
-        this.idProduto = idProduto;
+    public void setIdVenda(int idVenda) {
+        this.idVenda = idVenda;
     }
 
     public String getDataVenda() {
@@ -104,14 +99,6 @@ public class Venda {
         this.valorDesconto = valorDesconto;
     }
 
-    public FormaPagamento getIdFormaPagamento() {
-        return idFormaPagamento;
-    }
-
-    public void setIdFormaPagamento(FormaPagamento idFormaPagamento) {
-        this.idFormaPagamento = idFormaPagamento;
-    }
-
     public String getSituacao() {
         return situacao;
     }
@@ -119,16 +106,70 @@ public class Venda {
     public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public FormaPagamento getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(FormaPagamento formaPagamento) {
+        this.formaPagamento = formaPagamento;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public int getIdFormaPgto() {
+        return idFormaPgto;
+    }
+
+    public void setIdFormaPgto(int idFormaPgto) {
+        this.idFormaPgto = idFormaPgto;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public int getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
+    }
+
     
-    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
 }

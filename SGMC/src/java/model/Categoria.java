@@ -11,15 +11,20 @@ package model;
  */
 public class Categoria {
     
-    private int id;
+    private int idCategoria;
     private String descricao;
 
-    public int getId() {
-        return id;
+    public Categoria(int idCategoria, String descricao) {
+        this.idCategoria = idCategoria;
+        this.descricao = descricao;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
     public String getDescricao() {

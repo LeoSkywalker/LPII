@@ -10,15 +10,22 @@ package model;
  * @author Lucas Gama
  */
 public class Admin extends Usuario{
-    private int id;
+    
+    private int idAdmin;
     private String nome;
 
-    public int getId() {
-        return id;
+    public Admin(int idAdmin, String nome, int id, String email, String Senha) {
+        super(id, email, Senha);
+        this.idAdmin = idAdmin;
+        this.nome = nome;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdAdmin() {
+        return idAdmin;
+    }
+
+    public void setIdAdmin(int idAdmin) {
+        this.idAdmin = idAdmin;
     }
 
     public String getNome() {

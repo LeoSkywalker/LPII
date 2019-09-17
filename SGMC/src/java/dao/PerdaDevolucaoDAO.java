@@ -40,7 +40,13 @@ public class PerdaDevolucaoDAO {
         return perdas;
     }
 
-    private static PerdaDevolucao instanciarPerdaDevolucao(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static PerdaDevolucao instanciarPerdaDevolucao(ResultSet rs) throws SQLException {
+        PerdaDevolucao perdaDevolucao = new PerdaDevolucao(rs.getInt("idPerdaDevolucao"),
+        rs.getString("tipo"),
+        null,
+        null);
+        perdaDevolucao.setIdProduto(rs.getInt("idProduto"));
+        perdaDevolucao.setIdVenda(rs.getInt("idVenda"));
+        return perdaDevolucao;
     }
 }

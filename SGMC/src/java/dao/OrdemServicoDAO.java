@@ -40,7 +40,15 @@ public class OrdemServicoDAO {
         return ordemServicos;
     }
 
-    private static OrdemServico instanciarOrdemServico(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static OrdemServico instanciarOrdemServico(ResultSet rs) throws SQLException {
+        OrdemServico ordemServico = new OrdemServico(rs.getInt("idOrdemSrv"),
+        rs.getInt("qtd"),
+        rs.getString("dataPedido"),
+        rs.getString("situacao"),
+        null,
+        null);
+        ordemServico.setIdFornecedor(rs.getInt("idFornecedor"));
+        ordemServico.setIdProduto(rs.getInt("idProduto"));
+        return ordemServico;
     }
 }

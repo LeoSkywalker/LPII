@@ -43,7 +43,18 @@ public class FormaPagamentoDAO {
     
 }
 
-    private static FormaPagamento instaciarFormaPagamento(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static FormaPagamento instaciarFormaPagamento(ResultSet rs) throws SQLException {
+        FormaPagamento pagamento = new FormaPagamento(rs.getInt("idFormaPgto"),
+        rs.getInt("conta"),
+        rs.getInt("agencia"),
+        rs.getString("nomeBanco"),
+        rs.getString("tipoConta"),
+        rs.getInt("numMaxParcelas"),
+        rs.getInt("intervaloParcelas"),
+        rs.getDouble("taxaBanco"),
+        rs.getDouble("taxaOperadora"),
+        rs.getDouble("multaAtraso"),
+        rs.getString("situacaoConfirmacao"));
+        return pagamento;
     }
 }

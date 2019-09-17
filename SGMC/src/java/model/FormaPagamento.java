@@ -10,10 +10,10 @@ package model;
  * @author Lucas Gama
  */
 public class FormaPagamento {
-    private int id;
-    private int contaRecebedora;
-    private int agenciaRecebedora;
-    private String banco;
+    private int idFormaPgto;
+    private int conta;
+    private int agencia;
+    private String nomeBanco;
     private String tipoConta;
     private int numMaxParcelas;
     private int intervaloParcelas;
@@ -22,36 +22,50 @@ public class FormaPagamento {
     private double multaAtraso;
     private String situacaoConfirmacao;
 
-    public int getId() {
-        return id;
+    public FormaPagamento(int idFormaPgto, int conta, int agencia, String nomeBanco, String tipoConta, int numMaxParcelas, int intervaloParcelas, double taxaBanco, double taxaOperadora, double multaAtraso, String situacaoConfirmacao) {
+        this.idFormaPgto = idFormaPgto;
+        this.conta = conta;
+        this.agencia = agencia;
+        this.nomeBanco = nomeBanco;
+        this.tipoConta = tipoConta;
+        this.numMaxParcelas = numMaxParcelas;
+        this.intervaloParcelas = intervaloParcelas;
+        this.taxaBanco = taxaBanco;
+        this.taxaOperadora = taxaOperadora;
+        this.multaAtraso = multaAtraso;
+        this.situacaoConfirmacao = situacaoConfirmacao;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdFormaPgto() {
+        return idFormaPgto;
     }
 
-    public int getContaRecebedora() {
-        return contaRecebedora;
+    public void setIdFormaPgto(int idFormaPgto) {
+        this.idFormaPgto = idFormaPgto;
     }
 
-    public void setContaRecebedora(int contaRecebedora) {
-        this.contaRecebedora = contaRecebedora;
+    public int getConta() {
+        return conta;
     }
 
-    public int getAgenciaRecebedora() {
-        return agenciaRecebedora;
+    public void setConta(int conta) {
+        this.conta = conta;
     }
 
-    public void setAgenciaRecebedora(int agenciaRecebedora) {
-        this.agenciaRecebedora = agenciaRecebedora;
+    public int getAgencia() {
+        return agencia;
     }
 
-    public String getBanco() {
-        return banco;
+    public void setAgencia(int agencia) {
+        this.agencia = agencia;
     }
 
-    public void setBanco(String banco) {
-        this.banco = banco;
+    public String getNomeBanco() {
+        return nomeBanco;
+    }
+
+    public void setNomeBanco(String nomeBanco) {
+        this.nomeBanco = nomeBanco;
     }
 
     public String getTipoConta() {
@@ -109,6 +123,9 @@ public class FormaPagamento {
     public void setSituacaoConfirmacao(String situacaoConfirmacao) {
         this.situacaoConfirmacao = situacaoConfirmacao;
     }
+
+    
+    
     
     
     

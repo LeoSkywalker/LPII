@@ -10,33 +10,50 @@ package model;
  * @author Lucas Gama
  */
 public class Cliente {
-    
-    private int id;
-   private String cpf;
-   private String rg;
-   private String dataNascimento;
-   private String telefone;
-   private String celular;
-   private String estadoCivil;
-   private Boolean sexo;
-   private String email;
-   private Endereco idEndereco;
 
-    public Endereco getIdEndereco() {
-        return idEndereco;
+    private int idCliente;
+    private String nome;
+    private String cpf;
+    private String rg;
+    private String dataNascimento;
+    private String telefone;
+    private String celular;
+    private String estadoCivil;
+    private Boolean sexo;
+    private String email;
+    private Endereco endereco;
+    private int idEndereco;
+
+    public Cliente(int idCliente, String nome, String cpf, String rg,
+            String dataNascimento, String telefone, String celular, 
+            String estadoCivil, Boolean sexo, String email, Endereco endereco) {
+        this.idCliente = idCliente;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
+        this.celular = celular;
+        this.estadoCivil = estadoCivil;
+        this.sexo = sexo;
+        this.email = email;
+        this.endereco = endereco;
     }
 
-    public void setIdEndereco(Endereco idEndereco) {
-        this.idEndereco = idEndereco;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-   
-    public int getId() {
-        return id;
+    public String getNome() {
+        return nome;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getCpf() {
@@ -102,9 +119,21 @@ public class Cliente {
     public void setEmail(String email) {
         this.email = email;
     }
-   
-   
-   
-   
-    
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public int getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
+    }
+
 }

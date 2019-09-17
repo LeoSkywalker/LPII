@@ -43,8 +43,16 @@ public class AdminDAO {
             return admins;
         }
 
-    private static Admin instaciarAdmin(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static Admin instaciarAdmin(ResultSet rs) throws SQLException {
+       
+       Admin admin = new Admin(rs.getInt("idAdmin"),
+       rs.getString("nome"),
+       rs.getInt("id"),
+       rs.getString("email"),
+       rs.getString("Senha"));
+       
+       return admin;
+       
     }
 }
           

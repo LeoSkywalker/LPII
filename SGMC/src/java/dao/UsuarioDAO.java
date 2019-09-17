@@ -39,7 +39,10 @@ public class UsuarioDAO {
         return usuarios;
     }
 
-    private static Usuario instanciarUsuario(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static Usuario instanciarUsuario(ResultSet rs) throws SQLException {
+        Usuario usuario = new Usuario(rs.getInt("idUsuario"),
+        rs.getString("email"),
+        rs.getString("senha"));
+        return usuario;
     }
 }

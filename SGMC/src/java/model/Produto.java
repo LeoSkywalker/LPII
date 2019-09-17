@@ -10,45 +10,49 @@ package model;
  * @author Lucas Gama
  */
 public class Produto {
-    
-   private int id;
-   private Fornecedor idFornecedor;
-   private Categoria idCategoria;
-   private String nome;
-   private int codInterno;
-   private int codBarra;
-   private String unidadeMedida;
-   private float precoCompra;
-   private float peso;
-   private float altura;
-   private float comprimento;
-   private String validade;
-   private int qtdMinima;
-   private int qtdAtual;
-   private int qtdMaxima;
 
-    public int getId() {
-        return id;
+    private int idProduto;
+    private String nome;
+    private int codInterno;
+    private int codBarra;
+    private String unidadeMedida;
+    private float precoCompra;
+    private float peso;
+    private float altura;
+    private float comprimento;
+    private String validade;
+    private int qtdMinima;
+    private int qtdAtual;
+    private int qtdMaxima;
+    private Fornecedor fornecedor;
+    private Categoria categoria;
+    private int idFornecedor;
+    private int idCategoria;
+
+    public Produto(int idProduto, String nome, int codInterno, int codBarra, String unidadeMedida, float precoCompra, float peso, float altura, float comprimento, String validade, int qtdMinima, int qtdAtual, int qtdMaxima, Fornecedor fornecedor, Categoria categoria) {
+        this.idProduto = idProduto;
+        this.nome = nome;
+        this.codInterno = codInterno;
+        this.codBarra = codBarra;
+        this.unidadeMedida = unidadeMedida;
+        this.precoCompra = precoCompra;
+        this.peso = peso;
+        this.altura = altura;
+        this.comprimento = comprimento;
+        this.validade = validade;
+        this.qtdMinima = qtdMinima;
+        this.qtdAtual = qtdAtual;
+        this.qtdMaxima = qtdMaxima;
+        this.fornecedor = fornecedor;
+        this.categoria = categoria;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdProduto() {
+        return idProduto;
     }
 
-    public Fornecedor getIdFornecedor() {
-        return idFornecedor;
-    }
-
-    public void setIdFornecedor(Fornecedor idFornecedor) {
-        this.idFornecedor = idFornecedor;
-    }
-
-    public Categoria getIdCategoria() {
-        return idCategoria;
-    }
-
-    public void setIdCategoria(Categoria idCategoria) {
-        this.idCategoria = idCategoria;
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
     }
 
     public String getNome() {
@@ -146,18 +150,36 @@ public class Produto {
     public void setQtdMaxima(int qtdMaxima) {
         this.qtdMaxima = qtdMaxima;
     }
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-    
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public int getIdFornecedor() {
+        return idFornecedor;
+    }
+
+    public void setIdFornecedor(int idFornecedor) {
+        this.idFornecedor = idFornecedor;
+    }
+
+    public int getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
+    }
 }

@@ -11,17 +11,26 @@ package model;
  */
 public class PerdaDevolucao {
     
-    private int id;
+    private int idPerdaDevolucao;
     private String tipo;
-    private Venda idVenda;
-    private Produto idProduto;
+    private Produto produto;
+    private Venda venda;
+    private int idProduto;
+    private int idVenda;
 
-    public int getId() {
-        return id;
+    public PerdaDevolucao(int idPerdaDevolucao, String tipo, Produto produto, Venda venda) {
+        this.idPerdaDevolucao = idPerdaDevolucao;
+        this.tipo = tipo;
+        this.produto = produto;
+        this.venda = venda;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdPerdaDevolucao() {
+        return idPerdaDevolucao;
+    }
+
+    public void setIdPerdaDevolucao(int idPerdaDevolucao) {
+        this.idPerdaDevolucao = idPerdaDevolucao;
     }
 
     public String getTipo() {
@@ -32,21 +41,37 @@ public class PerdaDevolucao {
         this.tipo = tipo;
     }
 
-    public Venda getIdVenda() {
-        return idVenda;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setIdVenda(Venda idVenda) {
-        this.idVenda = idVenda;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
-    public Produto getIdProduto() {
+    public Venda getVenda() {
+        return venda;
+    }
+
+    public void setVenda(Venda venda) {
+        this.venda = venda;
+    }
+
+    public int getIdProduto() {
         return idProduto;
     }
 
-    public void setIdProduto(Produto idProduto) {
+    public void setIdProduto(int idProduto) {
         this.idProduto = idProduto;
     }
-    
+
+    public int getIdVenda() {
+        return idVenda;
+    }
+
+    public void setIdVenda(int idVenda) {
+        this.idVenda = idVenda;
+    }
+
     
 }

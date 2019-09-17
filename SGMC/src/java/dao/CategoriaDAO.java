@@ -43,7 +43,9 @@ public class CategoriaDAO {
             return categorias;
     }
 
-    private static Categoria instaciarCategoria(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static Categoria instaciarCategoria(ResultSet rs) throws SQLException {
+       Categoria categoria = new Categoria(rs.getInt("idCategoria"),
+       rs.getString("descricao"));
+       return categoria;
     }
 }

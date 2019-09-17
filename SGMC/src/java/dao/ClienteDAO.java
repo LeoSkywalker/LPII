@@ -42,8 +42,20 @@ public class ClienteDAO {
             return clientes;
         }
 
-    private static Cliente instaciarCliente(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static Cliente instaciarCliente(ResultSet rs) throws SQLException {
+       Cliente cliente = new Cliente (rs.getInt("idCliente"),
+       rs.getString("nome"),
+       rs.getString("cpf"),
+       rs.getString("rg"),
+       rs.getString("dataNascimento"),
+       rs.getString("telefone"),
+       rs.getString("celular"),
+       rs.getString("estadoCivil"),
+       rs.getBoolean("sexo"),
+       rs.getString("email"),
+       null);        
+       cliente.setIdEndereco(rs.getInt("idEndereco"));
+       
+       return cliente;
     }
-
 }

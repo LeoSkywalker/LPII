@@ -40,7 +40,24 @@ public class ProdutoDAO {
         return produtos;
     }
 
-    private static Produto instanciarProduto(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static Produto instanciarProduto(ResultSet rs) throws SQLException {
+        Produto produto = new Produto(rs.getInt("idProduto"),
+        rs.getString("nome"),
+        rs.getInt("codInterno"),
+        rs.getInt("codBarra"),
+        rs.getString("unidadeMedida"),
+        rs.getFloat("precoCompra"),
+        rs.getFloat("peso"),
+        rs.getFloat("altura"),
+        rs.getFloat("comprimento"),
+        rs.getString("validade"),
+        rs.getInt("qtdMinima"),
+        rs.getInt("qtdAtual"),
+        rs.getInt("qtdMaxima"),
+        null,
+        null);
+        produto.setIdFornecedor(rs.getInt("idFornecedor"));
+        produto.setIdCategoria(rs.getInt("idCategoria"));
+        return produto;
     }
 }

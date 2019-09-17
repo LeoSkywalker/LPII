@@ -10,35 +10,30 @@ package model;
  * @author Lucas Gama
  */
 public class OrdemServico {
-    private int id;
-    private Fornecedor idFornecedor;
-    private Produto idProduto;
+    private int idOrdemSrv;
     private int qtd;
     private String dataPedido;
     private String situacao;
+    private Fornecedor fornecedor;
+    private Produto produto;
+    private int idFornecedor;
+    private int idProduto;
 
-    public int getId() {
-        return id;
+    public OrdemServico(int idOrdemSrv, int qtd, String dataPedido, String situacao, Fornecedor fornecedor, Produto produto) {
+        this.idOrdemSrv = idOrdemSrv;
+        this.qtd = qtd;
+        this.dataPedido = dataPedido;
+        this.situacao = situacao;
+        this.fornecedor = fornecedor;
+        this.produto = produto;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdOrdemSrv() {
+        return idOrdemSrv;
     }
 
-    public Fornecedor getIdFornecedor() {
-        return idFornecedor;
-    }
-
-    public void setIdFornecedor(Fornecedor idFornecedor) {
-        this.idFornecedor = idFornecedor;
-    }
-
-    public Produto getIdProduto() {
-        return idProduto;
-    }
-
-    public void setIdProduto(Produto idProduto) {
-        this.idProduto = idProduto;
+    public void setIdOrdemSrv(int idOrdemSrv) {
+        this.idOrdemSrv = idOrdemSrv;
     }
 
     public int getQtd() {
@@ -64,6 +59,39 @@ public class OrdemServico {
     public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
+    public int getIdFornecedor() {
+        return idFornecedor;
+    }
+
+    public void setIdFornecedor(int idFornecedor) {
+        this.idFornecedor = idFornecedor;
+    }
+
+    public int getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
+    }
+
     
     
 }

@@ -9,8 +9,9 @@ package model;
  *
  * @author Lucas Gama
  */
-public class Colaborador extends Usuario{
-    private int id;
+public class Colaborador extends Usuario {
+
+    private int idColaborador;
     private String nome;
     private String cpf;
     private String rg;
@@ -19,14 +20,32 @@ public class Colaborador extends Usuario{
     private String celular;
     private String estadoCivil;
     private boolean sexo;
-    private Endereco idEndereco;
+    private Endereco endereco;
+    private int idEndereco;
 
-    public int getId() {
-        return id;
+    public Colaborador(int idColaborador, String nome, String cpf, String rg, 
+            String dataNascimento, String telefone, String celular, 
+            String estadoCivil, boolean sexo, int id, String email, String Senha,  
+            Endereco endereco) {
+        super(id, email, Senha);
+        this.idColaborador = idColaborador;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
+        this.celular = celular;
+        this.estadoCivil = estadoCivil;
+        this.sexo = sexo;
+        this.endereco = endereco;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdColaborador() {
+        return idColaborador;
+    }
+
+    public void setIdColaborador(int idColaborador) {
+        this.idColaborador = idColaborador;
     }
 
     public String getNome() {
@@ -85,14 +104,28 @@ public class Colaborador extends Usuario{
         this.estadoCivil = estadoCivil;
     }
 
-    public boolean isSexo() {
+    public boolean getSexo() {
         return sexo;
     }
 
     public void setSexo(boolean sexo) {
         this.sexo = sexo;
     }
-    
-    
-    
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public int getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
+    }
+
 }

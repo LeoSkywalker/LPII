@@ -41,7 +41,22 @@ public class ColaboradorDAO {
             return colaboradores;   
 }
 
-    private static Colaborador instaciarColaborador(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static Colaborador instaciarColaborador(ResultSet rs) throws SQLException {
+       Colaborador colaborador = new Colaborador(rs.getInt("idColaborador"),
+       rs.getString("nome"),
+       rs.getString("cpf"),
+       rs.getString("rg"),
+       rs.getString("dataNascimento"),
+       rs.getString("telefone"),
+       rs.getString("celular"),
+       rs.getString("estadoCivil"),
+       rs.getBoolean("sexo"),
+       rs.getInt("id"),
+       rs.getString("email"),
+       rs.getString("Senha"),
+       null);       
+       colaborador.setIdEndereco(rs.getInt("idEndereco"));
+       
+       return colaborador;
     }
 }

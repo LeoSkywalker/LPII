@@ -10,20 +10,32 @@ package model;
  * @author Lucas Gama
  */
 public class Fornecedor {
-    
-    private int id;
+
+    private int idFornecedor;
     private String nomeFantasia;
     private String cnpj;
     private String nomeRepresentante;
     private String email;
     private String telefone;
+    private Endereco endereco;
+    private int idEndereco;
 
-    public int getId() {
-        return id;
+    public Fornecedor(int idFornecedor, String nomeFantasia, String cnpj, String nomeRepresentante, String email, String telefone, Endereco endereco) {
+        this.idFornecedor = idFornecedor;
+        this.nomeFantasia = nomeFantasia;
+        this.cnpj = cnpj;
+        this.nomeRepresentante = nomeRepresentante;
+        this.email = email;
+        this.telefone = telefone;
+        this.endereco = endereco;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdFornecedor() {
+        return idFornecedor;
+    }
+
+    public void setIdFornecedor(int idFornecedor) {
+        this.idFornecedor = idFornecedor;
     }
 
     public String getNomeFantasia() {
@@ -65,11 +77,20 @@ public class Fornecedor {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-   
-   
-   
-   
-   
-   
-    
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public int getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
+    }
 }

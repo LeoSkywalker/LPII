@@ -10,16 +10,14 @@ package model;
  * @author Lucas Gama
  */
 public class Usuario {
-    private int id;
+    private int idUsuario;
     private String email;
     private String Senha;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public Usuario(int idUsuario, String email, String Senha) {
+        this.idUsuario = idUsuario;
+        this.email = email;
+        this.Senha = Senha;
     }
 
     public String getEmail() {
