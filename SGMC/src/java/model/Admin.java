@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.AdminDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Lucas Gama
@@ -34,6 +38,14 @@ public class Admin extends Usuario{
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    
+    public static Admin obterAdmin (int idAdmin) throws SQLException, ClassNotFoundException{
+        return AdminDAO.obterAdmin(idAdmin);
+    }
+    
+    public static List<Admin> obterAdmins() throws ClassNotFoundException, SQLException{
+        return AdminDAO.obterAdmins();
     }
         
 }

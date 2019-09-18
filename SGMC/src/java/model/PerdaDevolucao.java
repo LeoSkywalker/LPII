@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.PerdaDevolucaoDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Lucas Gama
@@ -41,7 +45,10 @@ public class PerdaDevolucao {
         this.tipo = tipo;
     }
 
-    public Produto getProduto() {
+    public Produto getProduto() throws SQLException, ClassNotFoundException {
+        if ((this.idProduto != 0) && (this.produto == null)){
+            this.produto = Produto.obterProduto(this.idProduto);
+        }
         return produto;
     }
 
@@ -49,7 +56,10 @@ public class PerdaDevolucao {
         this.produto = produto;
     }
 
-    public Venda getVenda() {
+    public Venda getVenda() throws SQLException, ClassNotFoundException {
+        if ((this.idVenda != 0) && (this.venda== null)){
+            this.venda = Venda.obterVenda(this.idVenda);
+        }
         return venda;
     }
 
@@ -73,5 +83,11 @@ public class PerdaDevolucao {
         this.idVenda = idVenda;
     }
 
+    public static PerdaDevolucao obterPerdaDevolucao (int idPerdaDevolucao) throws SQLException, ClassNotFoundException{
+        return PerdaDevolucaoDAO.obterPerdaDevolucao(idPerdaDevolucao);
+    }
     
+    public static List<PerdaDevolucao> obterPerdaDevolucoes() throws ClassNotFoundException, SQLException{
+        return PerdaDevolucaoDAO.obterPerdaDevolucoes();
+    }
 }

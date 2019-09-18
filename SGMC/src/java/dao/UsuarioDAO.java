@@ -38,6 +38,23 @@ public class UsuarioDAO {
         }
         return usuarios;
     }
+    
+    public static Usuario obterUsuario(int idUsuario) throws SQLException, ClassNotFoundException{
+     
+            Connection conexao = null;
+            Statement comando = null;
+            Usuario usuario = null;
+            try{
+                conexao = BD.getConexao();
+                comando = conexao.createStatement();
+                ResultSet rs = comando.executeQuery("select * from usuario where idUsuario = " + idUsuario);
+                rs.first();
+                usuario = instanciarUsuario(rs);
+            } finally{
+                fecharConexao(conexao, comando);
+            }
+            return usuario;
+    }
 
     private static Usuario instanciarUsuario(ResultSet rs) throws SQLException {
         Usuario usuario = new Usuario(rs.getInt("idUsuario"),

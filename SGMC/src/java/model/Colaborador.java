@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.ColaboradorDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Lucas Gama
@@ -112,7 +116,10 @@ public class Colaborador extends Usuario {
         this.sexo = sexo;
     }
 
-    public Endereco getEndereco() {
+    public Endereco getEndereco() throws SQLException, ClassNotFoundException {
+        if((this.idEndereco !=0) && (this.endereco == null)){
+            this.endereco = Endereco.obterEndereco(this.idEndereco);
+        }
         return endereco;
     }
 
@@ -128,4 +135,12 @@ public class Colaborador extends Usuario {
         this.idEndereco = idEndereco;
     }
 
+    public static Colaborador obterColaborador (int idColaborador) throws SQLException, ClassNotFoundException{
+        return ColaboradorDAO.obterColaborador(idColaborador);
+    }
+    
+    public static List<Colaborador> obterColaboradores() throws ClassNotFoundException, SQLException{
+        return ColaboradorDAO.obterColaboradores();
+    }
+    
 }

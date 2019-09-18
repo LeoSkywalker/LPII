@@ -18,7 +18,7 @@ import model.Colaborador;
  * @author leonardo
  */
 public class ColaboradorDAO {
-    public static List<Colaborador> obterColaborador() throws ClassNotFoundException, SQLException{
+    public static List<Colaborador> obterColaboradores() throws ClassNotFoundException, SQLException{
         
         Connection conexao =null;
         Statement comando = null;
@@ -40,6 +40,23 @@ public class ColaboradorDAO {
                     }
             return colaboradores;   
 }
+     public static Colaborador obterColaborador(int idColaborador) throws SQLException, ClassNotFoundException{
+     
+            Connection conexao = null;
+            Statement comando = null;
+            Colaborador colaborador = null;
+            try{
+                conexao = BD.getConexao();
+                comando = conexao.createStatement();
+                ResultSet rs = comando.executeQuery("select * from colaborador where idColaborador = " + idColaborador);
+                rs.first();
+                colaborador = instaciarColaborador(rs);
+            } finally{
+                fecharConexao(conexao, comando);
+            }
+            return colaborador;
+    }
+
 
     private static Colaborador instaciarColaborador(ResultSet rs) throws SQLException {
        Colaborador colaborador = new Colaborador(rs.getInt("idColaborador"),

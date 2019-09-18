@@ -42,6 +42,22 @@ public class AdminDAO {
                     }
             return admins;
         }
+    public static Admin obterAdmin(int idAdmin) throws SQLException, ClassNotFoundException{
+     
+            Connection conexao = null;
+            Statement comando = null;
+            Admin admin = null;
+            try{
+                conexao = BD.getConexao();
+                comando = conexao.createStatement();
+                ResultSet rs = comando.executeQuery("select * from admin where idAdmin = " + idAdmin);
+                rs.first();
+                admin = instaciarAdmin(rs);
+            } finally{
+                fecharConexao(conexao, comando);
+            }
+            return admin;
+    }
 
     private static Admin instaciarAdmin(ResultSet rs) throws SQLException {
        

@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
-import model.Admin;
 import model.Cliente;
 
 /**
@@ -41,6 +40,23 @@ public class ClienteDAO {
                     }
             return clientes;
         }
+     public static Cliente obterCliente(int idCliente) throws SQLException, ClassNotFoundException{
+     
+            Connection conexao = null;
+            Statement comando = null;
+            Cliente cliente = null;
+            try{
+                conexao = BD.getConexao();
+                comando = conexao.createStatement();
+                ResultSet rs = comando.executeQuery("select * from cliente where idCliente = " + idCliente);
+                rs.first();
+                cliente = instaciarCliente(rs);
+            } finally{
+                fecharConexao(conexao, comando);
+            }
+            return cliente;
+    }
+
 
     private static Cliente instaciarCliente(ResultSet rs) throws SQLException {
        Cliente cliente = new Cliente (rs.getInt("idCliente"),

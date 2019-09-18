@@ -39,6 +39,23 @@ public class ProdutoDAO {
         }
         return produtos;
     }
+    
+    public static Produto obterProduto(int idProduto) throws SQLException, ClassNotFoundException{
+     
+            Connection conexao = null;
+            Statement comando = null;
+            Produto produto = null;
+            try{
+                conexao = BD.getConexao();
+                comando = conexao.createStatement();
+                ResultSet rs = comando.executeQuery("select * from produto where idProduto = " + idProduto);
+                rs.first();
+                produto = instanciarProduto(rs);
+            } finally{
+                fecharConexao(conexao, comando);
+            }
+            return produto;
+    }
 
     private static Produto instanciarProduto(ResultSet rs) throws SQLException {
         Produto produto = new Produto(rs.getInt("idProduto"),

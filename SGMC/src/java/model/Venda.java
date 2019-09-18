@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.VendaDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Lucas Gama
@@ -107,7 +111,10 @@ public class Venda {
         this.situacao = situacao;
     }
 
-    public Usuario getUsuario() {
+    public Usuario getUsuario() throws SQLException, ClassNotFoundException {
+        if ((this.idUsuario != 0) && (this.usuario == null)){
+            this.usuario = Usuario.obterUsuario(this.idUsuario);
+        }
         return usuario;
     }
 
@@ -115,7 +122,10 @@ public class Venda {
         this.usuario = usuario;
     }
 
-    public FormaPagamento getFormaPagamento() {
+    public FormaPagamento getFormaPagamento() throws SQLException, ClassNotFoundException {
+        if ((this.idFormaPgto != 0) && (this.formaPagamento == null)){
+            this.formaPagamento = FormaPagamento.obterFormaPagamento(this.idFormaPgto);
+        }
         return formaPagamento;
     }
 
@@ -123,7 +133,10 @@ public class Venda {
         this.formaPagamento = formaPagamento;
     }
 
-    public Cliente getCliente() {
+    public Cliente getCliente() throws SQLException, ClassNotFoundException {
+        if ((this.idCliente != 0) && (this.cliente == null)){
+            this.cliente = Cliente.obterCliente(this.idCliente);
+        }
         return cliente;
     }
 
@@ -131,7 +144,10 @@ public class Venda {
         this.cliente = cliente;
     }
 
-    public Produto getProduto() {
+    public Produto getProduto() throws SQLException, ClassNotFoundException {
+        if ((this.idProduto != 0) && (this.produto == null)){
+            this.produto = Produto.obterProduto(this.idProduto);
+        }
         return produto;
     }
 
@@ -171,5 +187,12 @@ public class Venda {
         this.idProduto = idProduto;
     }
 
+    public static Venda obterVenda (int idVenda) throws SQLException, ClassNotFoundException{
+        return VendaDAO.obterVenda(idVenda);
+    }
+    
+    public static List<Venda> obterVendas() throws ClassNotFoundException, SQLException{
+        return VendaDAO.obterVendas();
+    }
     
 }

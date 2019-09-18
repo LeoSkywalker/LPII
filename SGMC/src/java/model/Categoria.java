@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.CategoriaDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Lucas Gama
@@ -35,5 +39,12 @@ public class Categoria {
         this.descricao = descricao;
     }
     
+    public static Categoria obterCategoria (int idCategoria) throws SQLException, ClassNotFoundException{
+        return CategoriaDAO.obterCategoria(idCategoria);
+    }
+    
+    public static List<Categoria> obterCategorias() throws ClassNotFoundException, SQLException{
+        return CategoriaDAO.obterCategorias();
+    }
    
 }

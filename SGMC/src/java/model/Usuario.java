@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.UsuarioDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Lucas Gama
@@ -35,5 +39,11 @@ public class Usuario {
     public void setSenha(String Senha) {
         this.Senha = Senha;
     }
-       
+       public static Usuario obterUsuario (int idUsuario) throws SQLException, ClassNotFoundException{
+        return UsuarioDAO.obterUsuario(idUsuario);
+    }
+    
+    public static List<Usuario> obterUsuarios() throws ClassNotFoundException, SQLException{
+        return UsuarioDAO.obterUsuarios();
+    }
 }

@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.ClienteDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Lucas Gama
@@ -120,8 +124,19 @@ public class Cliente {
         this.email = email;
     }
 
-    public Endereco getEndereco() {
+    public Endereco getEndereco() throws ClassNotFoundException, SQLException{
+        if((this.idEndereco !=0) && (this.endereco == null)){
+            this.endereco = Endereco.obterEndereco(this.idEndereco);
+        }
         return endereco;
+    }
+    
+    public static Cliente obterCliente (int idCliente) throws SQLException, ClassNotFoundException{
+        return ClienteDAO.obterCliente(idCliente);
+    }
+    
+    public static List<Cliente> obterClientes() throws ClassNotFoundException, SQLException{
+        return ClienteDAO.obterClientes();
     }
 
     public void setEndereco(Endereco endereco) {

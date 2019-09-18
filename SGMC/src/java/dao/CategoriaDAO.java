@@ -42,6 +42,24 @@ public class CategoriaDAO {
                     }
             return categorias;
     }
+    
+     public static Categoria obterCategoria(int idCategoria) throws SQLException, ClassNotFoundException{
+     
+            Connection conexao = null;
+            Statement comando = null;
+            Categoria categoria = null;
+            try{
+                conexao = BD.getConexao();
+                comando = conexao.createStatement();
+                ResultSet rs = comando.executeQuery("select * from categoria where idCategoria = " + idCategoria);
+                rs.first();
+                categoria = instaciarCategoria(rs);
+            } finally{
+                fecharConexao(conexao, comando);
+            }
+            return categoria;
+    }
+
 
     private static Categoria instaciarCategoria(ResultSet rs) throws SQLException {
        Categoria categoria = new Categoria(rs.getInt("idCategoria"),

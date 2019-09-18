@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.OrdemServicoDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Lucas Gama
@@ -60,7 +64,10 @@ public class OrdemServico {
         this.situacao = situacao;
     }
 
-    public Fornecedor getFornecedor() {
+    public Fornecedor getFornecedor() throws SQLException, ClassNotFoundException {
+        if ((this.idFornecedor != 0)&& (this.fornecedor == null)){
+            this.fornecedor = Fornecedor.obterFornecedor(this.idFornecedor);
+        }
         return fornecedor;
     }
 
@@ -68,7 +75,10 @@ public class OrdemServico {
         this.fornecedor = fornecedor;
     }
 
-    public Produto getProduto() {
+    public Produto getProduto() throws SQLException, ClassNotFoundException {
+        if ((this.idProduto != 0) && (this.produto == null)){
+            this.produto = Produto.obterProduto(this.idProduto);
+        }
         return produto;
     }
 
@@ -92,6 +102,12 @@ public class OrdemServico {
         this.idProduto = idProduto;
     }
 
+    public static OrdemServico obterOrdemServico (int idOrdemServico) throws SQLException, ClassNotFoundException{
+        return OrdemServicoDAO.obterOrdemServico(idOrdemServico);
+    }
     
+    public static List<OrdemServico> obterOrdemServicos() throws ClassNotFoundException, SQLException{
+        return OrdemServicoDAO.obterOrdemServicos();
+    }
     
 }

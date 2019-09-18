@@ -18,7 +18,7 @@ import model.PerdaDevolucao;
  * @author Lucas Gama
  */
 public class PerdaDevolucaoDAO {
-    public static List<PerdaDevolucao> obterPerdas() throws ClassNotFoundException, SQLException{
+    public static List<PerdaDevolucao> obterPerdaDevolucoes() throws ClassNotFoundException, SQLException{
         
         Connection conexao = null;
         Statement comando = null;
@@ -38,6 +38,23 @@ public class PerdaDevolucaoDAO {
             fecharConexao(conexao, comando);
         }
         return perdas;
+    }
+    
+    public static PerdaDevolucao obterPerdaDevolucao(int idPerdaDevolucao) throws SQLException, ClassNotFoundException{
+     
+            Connection conexao = null;
+            Statement comando = null;
+            PerdaDevolucao perdaDevolucao = null;
+            try{
+                conexao = BD.getConexao();
+                comando = conexao.createStatement();
+                ResultSet rs = comando.executeQuery("select * from perdaDevolucao where idPerdaDevolucao = " + idPerdaDevolucao);
+                rs.first();
+                perdaDevolucao = instanciarPerdaDevolucao(rs);
+            } finally{
+                fecharConexao(conexao, comando);
+            }
+            return perdaDevolucao;
     }
 
     private static PerdaDevolucao instanciarPerdaDevolucao(ResultSet rs) throws SQLException {

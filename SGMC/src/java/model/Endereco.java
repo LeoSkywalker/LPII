@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.EnderecoDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Lucas Gama
@@ -95,6 +99,12 @@ public class Endereco {
         this.cep = cep;
     }
     
+    public static Endereco obterEndereco (int idEndereco) throws SQLException, ClassNotFoundException{
+        return EnderecoDAO.obterEndereco(idEndereco);
+    }
     
+    public static List<Endereco> obterEnderecos() throws ClassNotFoundException, SQLException{
+        return EnderecoDAO.obterEnderecos();
+    }
     
 }

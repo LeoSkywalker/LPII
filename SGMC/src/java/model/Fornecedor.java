@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.FornecedorDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Lucas Gama
@@ -78,7 +82,10 @@ public class Fornecedor {
         this.telefone = telefone;
     }
 
-    public Endereco getEndereco() {
+    public Endereco getEndereco() throws SQLException, ClassNotFoundException {
+        if((this.idEndereco !=0) && (this.endereco == null)){
+            this.endereco = Endereco.obterEndereco(this.idEndereco);
+        }
         return endereco;
     }
 
@@ -92,5 +99,13 @@ public class Fornecedor {
 
     public void setIdEndereco(int idEndereco) {
         this.idEndereco = idEndereco;
+    }
+    
+    public static Fornecedor obterFornecedor (int idFornecedor) throws SQLException, ClassNotFoundException{
+        return FornecedorDAO.obterFornecedor(idFornecedor);
+    }
+    
+    public static List<Fornecedor> obterFornecedores() throws ClassNotFoundException, SQLException{
+        return FornecedorDAO.obterFornecedores();
     }
 }

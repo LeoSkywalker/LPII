@@ -19,7 +19,7 @@ import model.Endereco;
  */
 public class EnderecoDAO {
     
-    public static List<Endereco> obterEndereco() throws ClassNotFoundException, SQLException{
+    public static List<Endereco> obterEnderecos() throws ClassNotFoundException, SQLException{
         
         Connection conexao =null;
         Statement comando = null;
@@ -42,6 +42,23 @@ public class EnderecoDAO {
             return enderecos;
     
 }
+
+     public static Endereco obterEndereco(int idEndereco) throws SQLException, ClassNotFoundException{
+     
+            Connection conexao = null;
+            Statement comando = null;
+            Endereco endereco = null;
+            try{
+                conexao = BD.getConexao();
+                comando = conexao.createStatement();
+                ResultSet rs = comando.executeQuery("select * from endereco where idEndereco = " + idEndereco);
+                rs.first();
+                endereco = instaciarEndereco(rs);
+            } finally{
+                fecharConexao(conexao, comando);
+            }
+            return endereco;
+    }
 
     private static Endereco instaciarEndereco(ResultSet rs) throws SQLException {
         Endereco endereco = new Endereco(rs.getInt("idEndereco"),

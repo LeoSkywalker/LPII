@@ -39,9 +39,27 @@ public class OrdemServicoDAO {
         }
         return ordemServicos;
     }
+    
+     public static OrdemServico obterOrdemServico(int idOrdemServico) throws SQLException, ClassNotFoundException{
+     
+            Connection conexao = null;
+            Statement comando = null;
+            OrdemServico ordemServico = null;
+            try{
+                conexao = BD.getConexao();
+                comando = conexao.createStatement();
+                ResultSet rs = comando.executeQuery("select * from ordemServico where idOrdemServico = " + idOrdemServico);
+                rs.first();
+                ordemServico = instanciarOrdemServico(rs);
+            } finally{
+                fecharConexao(conexao, comando);
+            }
+            return ordemServico;
+    }
+
 
     private static OrdemServico instanciarOrdemServico(ResultSet rs) throws SQLException {
-        OrdemServico ordemServico = new OrdemServico(rs.getInt("idOrdemSrv"),
+        OrdemServico ordemServico = new OrdemServico(rs.getInt("idOrdemServico"),
         rs.getInt("qtd"),
         rs.getString("dataPedido"),
         rs.getString("situacao"),

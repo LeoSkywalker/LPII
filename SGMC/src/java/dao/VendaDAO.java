@@ -39,6 +39,23 @@ public class VendaDAO {
         }
         return vendas;
     }
+    
+    public static Venda obterVenda(int idVenda) throws SQLException, ClassNotFoundException{
+     
+            Connection conexao = null;
+            Statement comando = null;
+            Venda venda = null;
+            try{
+                conexao = BD.getConexao();
+                comando = conexao.createStatement();
+                ResultSet rs = comando.executeQuery("select * from venda where idVenda = " + idVenda);
+                rs.first();
+                venda = instanciarVenda(rs);
+            } finally{
+                fecharConexao(conexao, comando);
+            }
+            return venda;
+    }
 
     private static Venda instanciarVenda(ResultSet rs) throws SQLException {
         Venda venda = new Venda(rs.getInt("idVenda"),

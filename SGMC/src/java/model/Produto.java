@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.ProdutoDAO;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Lucas Gama
@@ -151,7 +155,10 @@ public class Produto {
         this.qtdMaxima = qtdMaxima;
     }
 
-    public Fornecedor getFornecedor() {
+    public Fornecedor getFornecedor() throws SQLException, ClassNotFoundException {
+        if ((this.idFornecedor != 0)&& (this.fornecedor == null)){
+            this.fornecedor = Fornecedor.obterFornecedor(this.idFornecedor);
+        }
         return fornecedor;
     }
 
@@ -159,7 +166,10 @@ public class Produto {
         this.fornecedor = fornecedor;
     }
 
-    public Categoria getCategoria() {
+    public Categoria getCategoria() throws SQLException, ClassNotFoundException {
+        if ((this.idCategoria != 0) && (this.categoria == null)){
+            this.categoria = Categoria.obterCategoria(this.idCategoria);
+        }
         return categoria;
     }
 
@@ -181,5 +191,13 @@ public class Produto {
 
     public void setIdCategoria(int idCategoria) {
         this.idCategoria = idCategoria;
+    }
+    
+    public static Produto obterProduto (int idProduto) throws SQLException, ClassNotFoundException{
+        return ProdutoDAO.obterProduto(idProduto);
+    }
+    
+    public static List<Produto> obterProdutos() throws ClassNotFoundException, SQLException{
+        return ProdutoDAO.obterProdutos();
     }
 }

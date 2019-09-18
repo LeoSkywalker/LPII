@@ -42,6 +42,23 @@ public class FornecedorDAO {
             return fornecedores;
     
 }
+     public static Fornecedor obterFornecedor(int idFornecedor) throws SQLException, ClassNotFoundException{
+     
+            Connection conexao = null;
+            Statement comando = null;
+            Fornecedor fornecedor = null;
+            try{
+                conexao = BD.getConexao();
+                comando = conexao.createStatement();
+                ResultSet rs = comando.executeQuery("select * from fornecedor where idFornecedor = " + idFornecedor);
+                rs.first();
+                fornecedor = instaciarFornecedor(rs);
+            } finally{
+                fecharConexao(conexao, comando);
+            }
+            return fornecedor;
+    }
+
 
     private static Fornecedor instaciarFornecedor(ResultSet rs) throws SQLException {
         Fornecedor fornecedor = new Fornecedor(rs.getInt("idFornecedor"),
