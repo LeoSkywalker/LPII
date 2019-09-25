@@ -60,18 +60,20 @@ public class ClienteDAO {
 
     private static Cliente instaciarCliente(ResultSet rs) throws SQLException {
        Cliente cliente = new Cliente (rs.getInt("idCliente"),
+       rs.getString("cnpj"),
+       rs.getString("razaoSocial"),
+       rs.getString("inscricaoEstadual"),
        rs.getString("nome"),
        rs.getString("cpf"),
        rs.getString("rg"),
-       rs.getString("dataNascimento"),
        rs.getString("telefone"),
        rs.getString("celular"),
+       rs.getString("email"),
+       rs.getString("dataNascimento"),
        rs.getString("estadoCivil"),
        rs.getBoolean("sexo"),
-       rs.getString("email"),
        null);        
-       cliente.setIdEndereco(rs.getInt("idEndereco"));
-       
+       cliente.setIdEndereco(rs.getInt("idEndereco"));     
        return cliente;
     }
 }

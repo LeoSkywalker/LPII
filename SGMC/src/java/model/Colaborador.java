@@ -16,7 +16,6 @@ import java.util.List;
 public class Colaborador extends Usuario {
 
     private int idColaborador;
-    private String nome;
     private String cpf;
     private String rg;
     private String dataNascimento;
@@ -27,13 +26,12 @@ public class Colaborador extends Usuario {
     private Endereco endereco;
     private int idEndereco;
 
-    public Colaborador(int idColaborador, String nome, String cpf, String rg, 
+    public Colaborador(int idColaborador, String cpf, String rg, 
             String dataNascimento, String telefone, String celular, 
-            String estadoCivil, boolean sexo, int id, String email, String Senha,  
-            Endereco endereco) {
-        super(id, email, Senha);
+            String estadoCivil, boolean sexo, int idUsuario, String nome, 
+            String email, String senha, Endereco endereco) {
+        super(idUsuario, nome, email, senha);
         this.idColaborador = idColaborador;
-        this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
         this.dataNascimento = dataNascimento;
@@ -50,14 +48,6 @@ public class Colaborador extends Usuario {
 
     public void setIdColaborador(int idColaborador) {
         this.idColaborador = idColaborador;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getCpf() {

@@ -60,20 +60,20 @@ public class VendaDAO {
     private static Venda instanciarVenda(ResultSet rs) throws SQLException {
         Venda venda = new Venda(rs.getInt("idVenda"),
         rs.getString("dataVenda"),
-        rs.getInt("qtd"),
-        rs.getFloat("precoUnitario"),
+        //rs.getInt("qtd"),
+        //rs.getFloat("precoUnitario"),
         rs.getFloat("subTotal"),
         rs.getString("codBarra"),
         rs.getFloat("valorDesconto"),
         rs.getString("situacao"),
         null,
         null,
-        null,
-        null);
+        null/*,
+        null*/);
         venda.setIdUsuario(rs.getInt("idUsuario"));
         venda.setIdFormaPgto(rs.getInt("idFormaPgto"));
         venda.setIdCliente(rs.getInt("idCliente"));
-        venda.setIdProduto(rs.getInt("idProduto"));
+        //venda.setIdProduto(rs.getInt("idProduto"));
         return venda;
     }
 }

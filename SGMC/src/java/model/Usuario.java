@@ -15,13 +15,23 @@ import java.util.List;
  */
 public class Usuario {
     private int idUsuario;
+    private String nome;
     private String email;
-    private String Senha;
+    private String senha;
 
-    public Usuario(int idUsuario, String email, String Senha) {
+    public Usuario(int idUsuario, String nome, String email, String senha) {
         this.idUsuario = idUsuario;
+        this.nome = nome;
         this.email = email;
-        this.Senha = Senha;
+        this.senha = senha;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEmail() {
@@ -33,11 +43,11 @@ public class Usuario {
     }
 
     public String getSenha() {
-        return Senha;
+        return senha;
     }
 
-    public void setSenha(String Senha) {
-        this.Senha = Senha;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
        public static Usuario obterUsuario (int idUsuario) throws SQLException, ClassNotFoundException{
         return UsuarioDAO.obterUsuario(idUsuario);

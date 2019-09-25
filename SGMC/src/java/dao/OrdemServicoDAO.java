@@ -59,8 +59,7 @@ public class OrdemServicoDAO {
 
 
     private static OrdemServico instanciarOrdemServico(ResultSet rs) throws SQLException {
-        OrdemServico ordemServico = new OrdemServico(rs.getInt("idOrdemServico"),
-        rs.getInt("qtd"),
+        OrdemServico ordemServico = new OrdemServico(rs.getInt("idOrdemSrv"),
         rs.getString("dataPedido"),
         rs.getString("situacao"),
         null,

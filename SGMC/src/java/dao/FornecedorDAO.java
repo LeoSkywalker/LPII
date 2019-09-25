@@ -29,7 +29,7 @@ public class FornecedorDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from fornecedores");
+            ResultSet rs = comando.executeQuery("select * from fornecedor");
             
             while (rs.next()){
                 fornecedor = instaciarFornecedor(rs);

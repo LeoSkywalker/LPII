@@ -28,7 +28,7 @@ public class ColaboradorDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from colaborador");
+            ResultSet rs = comando.executeQuery("select * from colaborador, usuario where colaborador.idColaborador=usuario.idUsuario");
             
             while (rs.next()){
                 colaborador = instaciarColaborador(rs);
@@ -60,7 +60,6 @@ public class ColaboradorDAO {
 
     private static Colaborador instaciarColaborador(ResultSet rs) throws SQLException {
        Colaborador colaborador = new Colaborador(rs.getInt("idColaborador"),
-       rs.getString("nome"),
        rs.getString("cpf"),
        rs.getString("rg"),
        rs.getString("dataNascimento"),
@@ -68,12 +67,12 @@ public class ColaboradorDAO {
        rs.getString("celular"),
        rs.getString("estadoCivil"),
        rs.getBoolean("sexo"),
-       rs.getInt("id"),
+       rs.getInt("idUsuario"),
+       rs.getString("nome"),
        rs.getString("email"),
-       rs.getString("Senha"),
+       rs.getString("senha"),
        null);       
-       colaborador.setIdEndereco(rs.getInt("idEndereco"));
-       
+       colaborador.setIdEndereco(rs.getInt("idEndereco"));  
        return colaborador;
     }
 }

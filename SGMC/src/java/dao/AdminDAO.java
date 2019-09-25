@@ -62,10 +62,10 @@ public class AdminDAO {
     private static Admin instaciarAdmin(ResultSet rs) throws SQLException {
        
        Admin admin = new Admin(rs.getInt("idAdmin"),
+       rs.getInt("idUsuario"),
        rs.getString("nome"),
-       rs.getInt("id"),
        rs.getString("email"),
-       rs.getString("Senha"));
+       rs.getString("senha"));
        
        return admin;
        

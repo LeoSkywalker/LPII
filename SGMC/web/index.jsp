@@ -25,6 +25,8 @@
         <h1></h1>
         <a href="PesquisaVendaController">Manter Venda</a>
         <h1></h1>
+        <a href="PesquisaOrdemServicoController">Manter Ordem de Serviço</a>
+        <h1></h1>
         <a href="GerarRelatorioColaboradorController">Gerar Relatório Colaborador</a>
         <h1></h1>
         <a href="GerarRelatorioFornecedorController">Gerar Relatório Fornecedor</a>

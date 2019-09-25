@@ -16,12 +16,10 @@ import java.util.List;
 public class Admin extends Usuario{
     
     private int idAdmin;
-    private String nome;
 
-    public Admin(int idAdmin, String nome, int id, String email, String Senha) {
-        super(id, email, Senha);
+    public Admin(int idAdmin, int idUsuario, String nome, String email, String senha) {
+        super(idUsuario, nome, email, senha);
         this.idAdmin = idAdmin;
-        this.nome = nome;
     }
 
     public int getIdAdmin() {
@@ -30,14 +28,6 @@ public class Admin extends Usuario{
 
     public void setIdAdmin(int idAdmin) {
         this.idAdmin = idAdmin;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
     
     public static Admin obterAdmin (int idAdmin) throws SQLException, ClassNotFoundException{

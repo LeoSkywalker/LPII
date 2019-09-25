@@ -16,36 +16,68 @@ import java.util.List;
 public class Cliente {
 
     private int idCliente;
+    private String cnpj;
+    private String razaoSocial;
+    private String inscricaoEstadual;
     private String nome;
     private String cpf;
     private String rg;
-    private String dataNascimento;
     private String telefone;
     private String celular;
+    private String email;
+    private String dataNascimento;
     private String estadoCivil;
     private Boolean sexo;
-    private String email;
     private Endereco endereco;
     private int idEndereco;
 
-    public Cliente(int idCliente, String nome, String cpf, String rg,
-            String dataNascimento, String telefone, String celular, 
-            String estadoCivil, Boolean sexo, String email, Endereco endereco) {
+    public Cliente(int idCliente, String cnpj, String razaoSocial, String inscricaoEstadual, String nome, String cpf, String rg, String telefone, String celular, String email, String dataNascimento, String estadoCivil, Boolean sexo, Endereco endereco) {
         this.idCliente = idCliente;
+        this.cnpj = cnpj;
+        this.razaoSocial = razaoSocial;
+        this.inscricaoEstadual = inscricaoEstadual;
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
-        this.dataNascimento = dataNascimento;
         this.telefone = telefone;
         this.celular = celular;
+        this.email = email;
+        this.dataNascimento = dataNascimento;
         this.estadoCivil = estadoCivil;
         this.sexo = sexo;
-        this.email = email;
         this.endereco = endereco;
     }
 
     public int getIdCliente() {
         return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public String getRazaoSocial() {
+        return razaoSocial;
+    }
+
+    public void setRazaoSocial(String razaoSocial) {
+        this.razaoSocial = razaoSocial;
+    }
+
+    public String getInscricaoEstadual() {
+        return inscricaoEstadual;
+    }
+
+    public void setInscricaoEstadual(String inscricaoEstadual) {
+        this.inscricaoEstadual = inscricaoEstadual;
     }
 
     public String getNome() {
@@ -54,10 +86,6 @@ public class Cliente {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
     }
 
     public String getCpf() {
@@ -76,14 +104,6 @@ public class Cliente {
         this.rg = rg;
     }
 
-    public String getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
     public String getTelefone() {
         return telefone;
     }
@@ -98,6 +118,22 @@ public class Cliente {
 
     public void setCelular(String celular) {
         this.celular = celular;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     public String getEstadoCivil() {
@@ -115,15 +151,7 @@ public class Cliente {
     public void setSexo(Boolean sexo) {
         this.sexo = sexo;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
+   
     public Endereco getEndereco() throws ClassNotFoundException, SQLException{
         if((this.idEndereco !=0) && (this.endereco == null)){
             this.endereco = Endereco.obterEndereco(this.idEndereco);
@@ -150,5 +178,4 @@ public class Cliente {
     public void setIdEndereco(int idEndereco) {
         this.idEndereco = idEndereco;
     }
-
 }

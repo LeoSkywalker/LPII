@@ -58,6 +58,7 @@ public class UsuarioDAO {
 
     private static Usuario instanciarUsuario(ResultSet rs) throws SQLException {
         Usuario usuario = new Usuario(rs.getInt("idUsuario"),
+        rs.getString("nome"),
         rs.getString("email"),
         rs.getString("senha"));
         return usuario;

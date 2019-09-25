@@ -15,7 +15,6 @@ import java.util.List;
  */
 public class OrdemServico {
     private int idOrdemSrv;
-    private int qtd;
     private String dataPedido;
     private String situacao;
     private Fornecedor fornecedor;
@@ -23,9 +22,8 @@ public class OrdemServico {
     private int idFornecedor;
     private int idProduto;
 
-    public OrdemServico(int idOrdemSrv, int qtd, String dataPedido, String situacao, Fornecedor fornecedor, Produto produto) {
+    public OrdemServico(int idOrdemSrv, String dataPedido, String situacao, Fornecedor fornecedor, Produto produto) {
         this.idOrdemSrv = idOrdemSrv;
-        this.qtd = qtd;
         this.dataPedido = dataPedido;
         this.situacao = situacao;
         this.fornecedor = fornecedor;
@@ -38,14 +36,6 @@ public class OrdemServico {
 
     public void setIdOrdemSrv(int idOrdemSrv) {
         this.idOrdemSrv = idOrdemSrv;
-    }
-
-    public int getQtd() {
-        return qtd;
-    }
-
-    public void setQtd(int qtd) {
-        this.qtd = qtd;
     }
 
     public String getDataPedido() {
