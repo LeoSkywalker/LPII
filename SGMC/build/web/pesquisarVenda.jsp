@@ -21,8 +21,10 @@
                 <th>Data da Venda:</th>    
             </tr>
             <c:forEach items="${vendas}" var="venda">
-                <tr><c:out value="${venda.idVenda}"/></tr>
-                <tr><c:out value="${venda.dataVenda}"/></tr>
+                <tr>
+                    <td><c:out value="${venda.idVenda}"/></td>
+                    <td><c:out value="${venda.dataVenda}"/></td>
+                </tr>
             </c:forEach>            
         </table>
     </body>

@@ -17,18 +17,37 @@ public class OrdemServico {
     private int idOrdemSrv;
     private String dataPedido;
     private String situacao;
+    private String descricao;
+    private int numOS;
     private Fornecedor fornecedor;
-    private Produto produto;
     private int idFornecedor;
-    private int idProduto;
 
-    public OrdemServico(int idOrdemSrv, String dataPedido, String situacao, Fornecedor fornecedor, Produto produto) {
+    public OrdemServico(int idOrdemSrv, String dataPedido, String situacao, String descricao, int numOS, Fornecedor fornecedor) {
         this.idOrdemSrv = idOrdemSrv;
         this.dataPedido = dataPedido;
         this.situacao = situacao;
+        this.descricao = descricao;
+        this.numOS = numOS;
         this.fornecedor = fornecedor;
-        this.produto = produto;
     }
+    
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public int getNumOS() {
+        return numOS;
+    }
+
+    public void setNumOS(int numOS) {
+        this.numOS = numOS;
+    }
+
+    
 
     public int getIdOrdemSrv() {
         return idOrdemSrv;
@@ -65,31 +84,12 @@ public class OrdemServico {
         this.fornecedor = fornecedor;
     }
 
-    public Produto getProduto() throws SQLException, ClassNotFoundException {
-        if ((this.idProduto != 0) && (this.produto == null)){
-            this.produto = Produto.obterProduto(this.idProduto);
-        }
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
-
     public int getIdFornecedor() {
         return idFornecedor;
     }
 
     public void setIdFornecedor(int idFornecedor) {
         this.idFornecedor = idFornecedor;
-    }
-
-    public int getIdProduto() {
-        return idProduto;
-    }
-
-    public void setIdProduto(int idProduto) {
-        this.idProduto = idProduto;
     }
 
     public static OrdemServico obterOrdemServico (int idOrdemServico) throws SQLException, ClassNotFoundException{

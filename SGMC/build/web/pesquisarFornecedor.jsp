@@ -21,9 +21,15 @@
                 <th>Nome:</th>    
             </tr>
             <c:forEach items="${fornecedores}" var="fornecedor">
-                <tr><c:out value="${fornecedor.idFornecedor}"/></tr>
-                <tr><c:out value="${fornecedor.nomeFantasia}"/></tr>
+                <tr>
+                    <td><c:out value="${fornecedor.idFornecedor}"/></td>
+                    <td><c:out value="${fornecedor.nomeFantasia}"/></td>
+                </tr>
             </c:forEach>            
         </table>
+        <br>
+        <form action="ManterFornecedorController?acao=prepararOperacao&operacao=Incluir" method="post">
+            <input type="submit" name="btnIncluir" value="Incluir">
+        </form>
     </body>
 </html>

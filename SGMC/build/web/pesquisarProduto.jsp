@@ -21,8 +21,10 @@
                 <th>Nome:</th>    
             </tr>
             <c:forEach items="${produtos}" var="produto">
-                <tr><c:out value="${produto.idProduto}"/></tr>
-                <tr><c:out value="${produto.nome}"/></tr>
+                <tr>
+                    <td><c:out value="${produto.idProduto}"/></td>
+                    <td><c:out value="${produto.nome}"/></td>
+                </tr>
             </c:forEach>            
         </table>
     </body>

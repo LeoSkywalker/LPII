@@ -62,10 +62,11 @@ public class OrdemServicoDAO {
         OrdemServico ordemServico = new OrdemServico(rs.getInt("idOrdemSrv"),
         rs.getString("dataPedido"),
         rs.getString("situacao"),
-        null,
+        rs.getString("descricao"),
+        rs.getInt("numOS"),
         null);
         ordemServico.setIdFornecedor(rs.getInt("idFornecedor"));
-        ordemServico.setIdProduto(rs.getInt("idProduto"));
+        
         return ordemServico;
     }
 }

@@ -44,5 +44,9 @@
                 </tr>
             </c:forEach>
         </table>
+        <br>
+        <form action="ManterColaboradorController?acao=prepararOperacao&operacao=Incluir" method="post">
+            <input type="submit" name="btnIncluir" value="Incluir">
+        </form>
     </body>
 </html>

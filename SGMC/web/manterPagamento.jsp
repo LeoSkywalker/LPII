@@ -20,9 +20,10 @@
                 </tr>
                 <tr><td></td></tr>
                 <tr>
+                    <td><label> Nome: </label>
+                        <input type="number" id="contaRecebedora"></td>
                     <td><label> Conta: </label>
                         <input type="number" id="contaRecebedora"></td>
-
                     <td><label> Agência: </label>
                         <input type="number" id="agenciaRecebedora"></td>
                     <td><label> Banco: </label>

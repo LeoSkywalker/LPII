@@ -25,6 +25,8 @@
         <h1></h1>
         <a href="PesquisaVendaController">Manter Venda</a>
         <h1></h1>
+        <a href="PesquisaDevolucaoController">Manter Perda/Devolução</a>
+        <h1></h1>
         <a href="PesquisaOrdemServicoController">Manter Ordem de Serviço</a>
         <h1></h1>
         <a href="GerarRelatorioColaboradorController">Gerar Relatório Colaborador</a>
@@ -36,5 +38,7 @@
         <a href="GerarRelatorioClienteController">Gerar Relatório Cliente</a>
         <h1></h1>
         <a href="GerarRelatorioVendaController">Gerar Relatório Venda</a>
+        <h1></h1>
+        <a href="GerarRelatorioDevolucaoController">Gerar Relatório Perda/Devolução</a>
     </body>
 </html>

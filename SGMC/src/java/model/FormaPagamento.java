@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class FormaPagamento {
     private int idFormaPgto;
+    private String nome;
     private int conta;
     private int agencia;
     private String nomeBanco;
@@ -26,8 +27,9 @@ public class FormaPagamento {
     private double multaAtraso;
     private String situacaoConfirmacao;
 
-    public FormaPagamento(int idFormaPgto, int conta, int agencia, String nomeBanco, String tipoConta, int numMaxParcelas, int intervaloParcelas, double taxaBanco, double taxaOperadora, double multaAtraso, String situacaoConfirmacao) {
+    public FormaPagamento(int idFormaPgto, String nome, int conta, int agencia, String nomeBanco, String tipoConta, int numMaxParcelas, int intervaloParcelas, double taxaBanco, double taxaOperadora, double multaAtraso, String situacaoConfirmacao) {
         this.idFormaPgto = idFormaPgto;
+        this.nome = nome;
         this.conta = conta;
         this.agencia = agencia;
         this.nomeBanco = nomeBanco;
@@ -40,6 +42,14 @@ public class FormaPagamento {
         this.situacaoConfirmacao = situacaoConfirmacao;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
     public int getIdFormaPgto() {
         return idFormaPgto;
     }

@@ -21,8 +21,10 @@
                 <th>Nome do Banco:</th>    
             </tr>
             <c:forEach items="${formasPagamento}" var="formaPagamento">
-                <tr><c:out value="${formaPagamento.idFormaPgto}"/></tr>
-                <tr><c:out value="${formaPagamento.nomeBanco}"/></tr>
+                <tr>
+                    <td><c:out value="${formaPagamento.idFormaPgto}"/></td>
+                    <td><c:out value="${formaPagamento.nomeBanco}"/></td>
+                </tr>
             </c:forEach>            
         </table>
     </body>

@@ -12,47 +12,47 @@
         <title>SGMC</title>
     </head>
     <body>
-        <h1>Manter Fornecedor</h1>
-        <form>
+        <h1>Manter Fornecedor - ${operacao}</h1>
+        <form action="ManterFornecedorController?acao=confirmarOperacao&operacao = ${operacao}" method="post" name="frmManterFornecedor">
             <table>
             <tr>
                 <td><label> ID: </label>
-                    <input type="number" id="idFornecedor"></td>
+                    <input type="number" name="numIdFornecedor" value="${fornecedor.idFornecedor}"></td>
             </tr>
             <tr><td></td></tr> 
             <tr>
                 <td><label> Nome Fantasia: </label>
-                    <input type="text" id="nomeFantasia"></td>
+                    <input type="text" name="txtNomeFantasia" value="${fornecedor.nomeFantasia}"></td>
                 <td><label> CNPJ: </label>
-                    <input type="number" id="cnpj"></td>
+                    <input type="number" name="numCNPJ" value="${fornecedor.cnpj}"></td>
                 <td><label> Nome Representante: </label>
-                    <input type="text" id="nomeRepresentante"></td>
+                    <input type="text" name="txtNomeRepresentante" value="${fornecedor.nomeRepresentante}"></td>
             </tr>           
             <tr><td></td></tr> 
             <tr>
                 <td><label> E-mail: </label>
-                    <input type="email" id="emailFornecedor">
+                    <input type="email" name="txtEmail" value="${fornecedor.email}">
             </td>
                 <td><label> Telefone: </label>
-                    <input type="tel" id="telefoneFornecedor"></td>
+                    <input type="tel" name="numTelefone" value="${fornecedor.telefone}"></td>
             </tr>
             <tr><td></td></tr> 
             <tr>
                 <td><label> CEP: </label>
-                    <input type="number" id="cepFornecedor"></td>
+                    <input type="number" name="numCEP" value="${fornecedor.endereco.cep}"></td>
                 <td><label> UF: </label>
-                    <input type="text" id="ufFornecedor"></td>
+                    <input type="text" name="txtUF" value="${fornecedor.endereco.uf}"></td>
                 <td><label> Cidade: </label>
-                    <input type="text" id="cidadeFornecedor"></td>
+                    <input type="text" name="txtCidade" value="${fornecedor.endereco.cidade}"></td>
             </tr>
             <tr><td></td></tr> 
             <tr>
                 <td><label> Logadouro: </label>
-                    <input type="text" id="logradouroFornecedor"></td>
+                    <input type="text" name="txtLogradouro" value="${fornecedor.endereco.logradouro}"></td>
                 <td><label> Numero: </label>
-                    <input type="number" id="numFornecedor"></td>
+                    <input type="number" name="numNumero" value="${fornecedor.endereco.numero}"></td>
                 <td><label> Complemento: </label>
-                    <input type="text" id="compFornecedor"></td>
+                    <input type="text" name="txtComplemento" value="${fornecedor.endereco.complemento}"></td>
             </tr>
             <tr><td></td></tr> 
             <tr>

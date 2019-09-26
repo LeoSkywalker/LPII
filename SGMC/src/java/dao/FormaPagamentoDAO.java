@@ -62,6 +62,7 @@ public class FormaPagamentoDAO {
 
     private static FormaPagamento instaciarFormaPagamento(ResultSet rs) throws SQLException {
         FormaPagamento pagamento = new FormaPagamento(rs.getInt("idFormaPgto"),
+        rs.getString("nome"),
         rs.getInt("conta"),
         rs.getInt("agencia"),
         rs.getString("nomeBanco"),
