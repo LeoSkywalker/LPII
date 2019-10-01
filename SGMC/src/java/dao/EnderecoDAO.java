@@ -7,6 +7,7 @@ package dao;
 
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -71,5 +72,30 @@ public class EnderecoDAO {
         rs.getString("cep"));
         
         return endereco;
+    }
+    
+    public static void gravar(Endereco endereco) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement("insert into endereco (idEndereco"
+                    + ", logradouro, numero, complemento, cidade, bairro, uf"
+                    + "cep) values (?,?,?,?,?,?,?)");
+            comando.setInt(1, endereco.getIdEndereco());
+            comando.setString(2, endereco.getLogradouro());
+            comando.setInt(3, endereco.getNumero());
+            comando.setString(4, endereco.getComplemento());
+            comando.setString(5, endereco.getCidade());
+            comando.setString(6, endereco.getBairro());
+            comando.setString(7, endereco.getUf());
+            comando.setString(8, endereco.getCep());
+            
+            comando.executeUpdate();
+        }
+        finally{
+            fecharConexao(conexao, comando);
+        }
     }
 }

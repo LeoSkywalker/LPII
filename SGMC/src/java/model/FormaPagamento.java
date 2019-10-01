@@ -147,6 +147,9 @@ public class FormaPagamento {
         return FormaPagamentoDAO.obterFormasPagamentos();
     }
     
+    public void gravar() throws SQLException, ClassNotFoundException {
+        FormaPagamentoDAO.gravar(this);
+    }
     
     
 }

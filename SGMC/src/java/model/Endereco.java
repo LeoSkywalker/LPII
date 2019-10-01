@@ -107,4 +107,8 @@ public class Endereco {
         return EnderecoDAO.obterEnderecos();
     }
     
+    public void gravar() throws SQLException, ClassNotFoundException {
+        EnderecoDAO.gravar(this);
+    }
+    
 }

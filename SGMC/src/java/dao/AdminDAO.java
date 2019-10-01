@@ -7,6 +7,7 @@ package dao;
 
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -69,6 +70,23 @@ public class AdminDAO {
        
        return admin;
        
+    }
+    
+    public static void gravar(Admin admin) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement(
+            "insert into admin (idAdmin, nome, email, senha) values (?,?,?,?)");
+            comando.setInt(1, admin.getIdAdmin());
+            comando.setString(2, admin.getNome());
+            comando.setString(3, admin.getEmail());
+            comando.setString(4, admin.getSenha());
+            comando.executeUpdate();
+            }finally{
+            fecharConexao(conexao, comando);
+        }
     }
 }
           

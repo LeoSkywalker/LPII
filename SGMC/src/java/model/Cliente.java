@@ -181,4 +181,8 @@ public class Cliente {
     public void setIdEndereco(int idEndereco) {
         this.idEndereco = idEndereco;
     }
+    
+    public void gravar() throws SQLException, ClassNotFoundException {
+        ClienteDAO.gravar(this);
+    }
 }

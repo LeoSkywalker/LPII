@@ -7,9 +7,11 @@ package dao;
 
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.List;
 import model.Fornecedor;
 
@@ -73,4 +75,31 @@ public class FornecedorDAO {
         return fornecedor;
     }
     
+    public static void gravar(Fornecedor fornecedor) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement("insert into fornecedor "
+                    + "(idFornecedor, nomeFantasia, cnpj, nomeRepresentante, "
+                    + "email, telefone, idEndereco) values (?,?,?,?,?,?,?)");
+            comando.setInt(1, fornecedor.getIdFornecedor());
+            comando.setString(2, fornecedor.getNomeFantasia());
+            comando.setString(3, fornecedor.getCnpj());
+            comando.setString(4, fornecedor.getNomeRepresentante());
+            comando.setString(5, fornecedor.getEmail());
+            comando.setString(6, fornecedor.getTelefone());
+            
+            if(fornecedor.getEndereco() == null){
+                comando.setNull(7, Types.INTEGER);
+            }else{
+                comando.setInt(7, fornecedor.getEndereco().getIdEndereco());
+            }
+            comando.executeUpdate();
+        }
+        finally{
+            fecharConexao(conexao, comando);
+        }
+    }
 }

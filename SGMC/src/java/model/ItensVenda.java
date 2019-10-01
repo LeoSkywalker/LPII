@@ -5,6 +5,7 @@
  */
 package model;
 
+import dao.ItensVendaDAO;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -101,5 +102,8 @@ public class ItensVenda {
         return ItensVenda.obterItensVendas();
     }
     
+    public void gravar() throws SQLException, ClassNotFoundException {
+        ItensVendaDAO.gravar(this);
+    }
     
 }

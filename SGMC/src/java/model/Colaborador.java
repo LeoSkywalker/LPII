@@ -133,4 +133,7 @@ public class Colaborador extends Usuario {
         return ColaboradorDAO.obterColaboradores();
     }
     
+    public void gravar() throws SQLException, ClassNotFoundException {
+        ColaboradorDAO.gravar(this);
+    }
 }

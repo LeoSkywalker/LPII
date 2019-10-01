@@ -37,5 +37,9 @@ public class Admin extends Usuario{
     public static List<Admin> obterAdmins() throws ClassNotFoundException, SQLException{
         return AdminDAO.obterAdmins();
     }
+    
+    public void gravar() throws SQLException, ClassNotFoundException {
+        AdminDAO.gravar(this);
+    }
         
 }

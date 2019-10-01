@@ -7,9 +7,11 @@ package dao;
 
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.List;
 import model.Cliente;
 
@@ -75,5 +77,40 @@ public class ClienteDAO {
        null);        
        cliente.setIdEndereco(rs.getInt("idEndereco"));     
        return cliente;
+    }
+    
+    public static void gravar(Cliente cliente) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement(
+            "insert into cliente (idCliente, cnpj, razaoSocial, inscricaoEstadual,"
+             +" nome, cpf, rg, telefone, celular, email, dataNascimento, estadoCivil,"
+            + " sexo, idEndereco) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            comando.setInt(1, cliente.getIdCliente());
+            comando.setString(2, cliente.getCnpj());
+            comando.setString(3, cliente.getRazaoSocial());
+            comando.setString(4, cliente.getInscricaoEstadual());
+            comando.setString(5, cliente.getNome());
+            comando.setString(6, cliente.getCpf());
+            comando.setString(7, cliente.getRg());
+            comando.setString(8, cliente.getTelefone());
+            comando.setString(9, cliente.getCelular());
+            comando.setString(10, cliente.getEmail());
+            comando.setString(11, cliente.getDataNascimento());
+            comando.setString(12, cliente.getEstadoCivil());
+            comando.setString(13, cliente.getSexo());
+            //comando.setInt(14, cliente.getIdEndereco());
+            
+            if(cliente.getEndereco()==null){
+                comando.setNull(14, Types.INTEGER);
+            }else{
+                comando.setInt(14, cliente.getEndereco().getIdEndereco());
+            }
+            comando.executeUpdate();
+            }finally{
+            fecharConexao(conexao, comando);
+        }
     }
 }

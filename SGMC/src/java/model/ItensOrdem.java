@@ -14,7 +14,7 @@ import java.util.List;
  * @author leonardo
  */
 public class ItensOrdem {
-    
+
     private int idItensOrdem;
     private int quantidade;
     private Produto produto;
@@ -22,7 +22,7 @@ public class ItensOrdem {
     private OrdemServico ordemServico;
     private int idOrdemSrv;
 
-    public ItensOrdem(int idItensOrdem, int quantidade, Produto produto, 
+    public ItensOrdem(int idItensOrdem, int quantidade, Produto produto,
             OrdemServico ordemServico) {
         this.idItensOrdem = idItensOrdem;
         this.quantidade = quantidade;
@@ -47,9 +47,9 @@ public class ItensOrdem {
     }
 
     public Produto getProduto() throws SQLException, ClassNotFoundException {
-        if ((this.idProduto != 0)&& (this.produto == null)){
+        if ((this.idProduto != 0) && (this.produto == null)) {
             this.produto = Produto.obterProduto(this.idProduto);
-        } 
+        }
         return produto;
     }
 
@@ -66,10 +66,10 @@ public class ItensOrdem {
     }
 
     public OrdemServico getOrdemServico() throws SQLException, ClassNotFoundException {
-        if ((this.idOrdemSrv != 0)&& (this.ordemServico == null)){
+        if ((this.idOrdemSrv != 0) && (this.ordemServico == null)) {
             this.ordemServico = OrdemServico.obterOrdemServico(this.idOrdemSrv);
         }
-       return ordemServico;    
+        return ordemServico;
     }
 
     public void setOrdemServico(OrdemServico ordemServico) {
@@ -83,12 +83,16 @@ public class ItensOrdem {
     public void setIdOrdemSrv(int idOrdemSrv) {
         this.idOrdemSrv = idOrdemSrv;
     }
-    
-    public static ItensOrdem obterItensOrdem (int idItensOrdem) throws SQLException, ClassNotFoundException{
+
+    public static ItensOrdem obterItensOrdem(int idItensOrdem) throws SQLException, ClassNotFoundException {
         return ItensOrdemDAO.obterItensOrdem(idItensOrdem);
     }
-    
-    public static List<ItensOrdem> obterItensOrdens() throws ClassNotFoundException, SQLException{
+
+    public static List<ItensOrdem> obterItensOrdens() throws ClassNotFoundException, SQLException {
         return ItensOrdemDAO.obterItensOrdens();
+    }
+
+    public void gravar() throws SQLException, ClassNotFoundException {
+        ItensOrdemDAO.gravar(this);
     }
 }

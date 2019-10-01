@@ -7,6 +7,7 @@ package dao;
 
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -65,5 +66,20 @@ public class CategoriaDAO {
        Categoria categoria = new Categoria(rs.getInt("idCategoria"),
        rs.getString("descricao"));
        return categoria;
+    }
+    
+    public static void gravar(Categoria categoria) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement(
+            "insert into categoria (idCategoria, descricao) values (?,?)");
+            comando.setInt(1, categoria.getIdCategoria());
+            comando.setString(2, categoria.getDescricao());
+            comando.executeUpdate();
+            }finally{
+            fecharConexao(conexao, comando);
+        }
     }
 }

@@ -7,6 +7,7 @@ package dao;
 
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -74,5 +75,36 @@ public class FormaPagamentoDAO {
         rs.getDouble("multaAtraso"),
         rs.getString("situacaoConfirmacao"));
         return pagamento;
+    }
+    
+    public static void gravar(FormaPagamento formaPagamento) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement("insert into formaPagamento "
+                    + "(idFormaPgto, nome, conta, agencia, nomeBanco, tipoConta"
+                    + "numMaxParcelas, intervaloParcelas, taxaBanco, "
+                    + "taxaOperadora, multaAtraso, situacaoConfirmacao"
+                    + "values (?,?,?,?,?,?,?,?,?,?,?,?)");
+            comando.setInt(1, formaPagamento.getIdFormaPgto());
+            comando.setString(2, formaPagamento.getNome());
+            comando.setInt(3, formaPagamento.getConta());
+            comando.setInt(4, formaPagamento.getAgencia());
+            comando.setString(5, formaPagamento.getNomeBanco());
+            comando.setString(6, formaPagamento.getTipoConta());
+            comando.setInt(7, formaPagamento.getNumMaxParcelas());
+            comando.setInt(8, formaPagamento.getIntervaloParcelas());
+            comando.setDouble(9, formaPagamento.getTaxaBanco());
+            comando.setDouble(9, formaPagamento.getTaxaOperadora());
+            comando.setDouble(9, formaPagamento.getMultaAtraso());
+            comando.setString(10, formaPagamento.getSituacaoConfirmacao());
+            
+            comando.executeUpdate();
+        }
+        finally{
+            fecharConexao(conexao, comando);
+        }
     }
 }

@@ -46,5 +46,9 @@ public class Categoria {
     public static List<Categoria> obterCategorias() throws ClassNotFoundException, SQLException{
         return CategoriaDAO.obterCategorias();
     }
+    
+    public void gravar() throws SQLException, ClassNotFoundException {
+        CategoriaDAO.gravar(this);
+    }
    
 }

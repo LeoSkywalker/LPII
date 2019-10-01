@@ -7,9 +7,11 @@ package dao;
 
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.List;
 import model.ItensVenda;
 
@@ -72,5 +74,35 @@ public class ItensVendaDAO {
         itensVenda.setIdProduto(rs.getInt("idProduto"));
 
         return itensVenda;
+    }
+    
+    public static void gravar(ItensVenda itensVenda) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement(
+            "insert into  (idItensVenda, quantidade, precoUnitario,"
+            +" idVenda, idProduto) values (?,?,?,?,?,)");
+            comando.setInt(1, itensVenda.getIdItensVenda());
+            comando.setInt(2, itensVenda.getQuantidade());
+            comando.setFloat(3, itensVenda.getPrecoUnitario());
+            //comando.setInt(4, itensVenda.getIdVenda());
+            //comando.setInt(5, itensVenda.getIdProduto());
+            
+            if(itensVenda.getVenda()==null){
+                comando.setNull(4, Types.INTEGER);
+            }else{
+                comando.setInt(4, itensVenda.getVenda().getIdVenda());
+            }
+            if(itensVenda.getProduto()==null){
+                comando.setNull(4, Types.INTEGER);
+            }else{
+                comando.setInt(4, itensVenda.getProduto().getIdProduto());
+            }
+            comando.executeUpdate();
+            }finally{
+            fecharConexao(conexao, comando);
+        }
     }
 }
