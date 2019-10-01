@@ -7,9 +7,11 @@ package dao;
 
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.List;
 import model.OrdemServico;
 
@@ -68,5 +70,30 @@ public class OrdemServicoDAO {
         ordemServico.setIdFornecedor(rs.getInt("idFornecedor"));
         
         return ordemServico;
+    }
+    
+    public static void gravar(OrdemServico ordemServico) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement(
+                    "insert into ordemservico (idOrdemSrv, dataPedido, situacao,"
+                    + "descricao, numOS, idFornecedor, idProduto)"
+                    + "values (?,?,?,?,?,?,?)");
+            comando.setInt(1, ordemServico.getIdOrdemSrv());
+            comando.setString(2, ordemServico.getDataPedido());
+            comando.setString(3, ordemServico.getSituacao());
+            comando.setString(4, ordemServico.getDescricao());
+            comando.setInt(5, ordemServico.getNumOS());
+            if (ordemServico.getFornecedor() == null){
+                comando.setNull(6, Types.INTEGER);
+            } else {
+                comando.setInt(6, ordemServico.getFornecedor().getIdFornecedor());
+            }
+            comando.executeUpdate();
+        }finally{
+            fecharConexao(conexao, comando);
+        }
     }
 }

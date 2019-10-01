@@ -26,7 +26,9 @@
                         <input type="number" id="contaRecebedora"></td>
                     <td><label> Agência: </label>
                         <input type="number" id="agenciaRecebedora"></td>
-                    <td><label> Banco: </label>
+                </tr>
+                <tr><td></td></tr>
+                <tr><td><label> Banco: </label>
                         <input type="text" id="banco"></td>
                     <td><label> Tipo da Conta: </label>
                         <input type="text" id="tipoConta"></td>
@@ -52,9 +54,8 @@
                 <tr>
                     <td><label> Situação: </label>
                         <select name="situacao" id="situacaoPagamento">
-                            <option id="#1">-</option>
-                            <option id="#2">-</option>
-                            <option id="#3">-</option>
+                            <option id="#1">Automático</option>
+                            <option id="#2">Manual</option>
                         </select></td>
                 </tr>
                 <tr><td></td></tr>

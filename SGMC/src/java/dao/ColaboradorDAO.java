@@ -66,7 +66,7 @@ public class ColaboradorDAO {
        rs.getString("telefone"),
        rs.getString("celular"),
        rs.getString("estadoCivil"),
-       rs.getBoolean("sexo"),
+       rs.getString("sexo"),
        rs.getInt("idUsuario"),
        rs.getString("nome"),
        rs.getString("email"),

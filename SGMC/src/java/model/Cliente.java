@@ -27,11 +27,14 @@ public class Cliente {
     private String email;
     private String dataNascimento;
     private String estadoCivil;
-    private Boolean sexo;
+    private String sexo;
     private Endereco endereco;
     private int idEndereco;
 
-    public Cliente(int idCliente, String cnpj, String razaoSocial, String inscricaoEstadual, String nome, String cpf, String rg, String telefone, String celular, String email, String dataNascimento, String estadoCivil, Boolean sexo, Endereco endereco) {
+    public Cliente(int idCliente, String cnpj, String razaoSocial, 
+            String inscricaoEstadual, String nome, String cpf, String rg, 
+            String telefone, String celular, String email, String dataNascimento, 
+            String estadoCivil, String sexo, Endereco endereco) {
         this.idCliente = idCliente;
         this.cnpj = cnpj;
         this.razaoSocial = razaoSocial;
@@ -144,11 +147,11 @@ public class Cliente {
         this.estadoCivil = estadoCivil;
     }
 
-    public Boolean getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(Boolean sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
    

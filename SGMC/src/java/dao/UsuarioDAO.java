@@ -7,6 +7,7 @@ package dao;
 
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -62,5 +63,23 @@ public class UsuarioDAO {
         rs.getString("email"),
         rs.getString("senha"));
         return usuario;
+    }
+    
+    public static void gravar(Usuario usuario) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement(
+                    "insert into ordemservico (nome, email, senha)"
+                    + "values (?,?,?)");
+            //sem atributo idUsuario model.Usuario
+            comando.setString(1, usuario.getNome());
+            comando.setString(2, usuario.getEmail());
+            comando.setString(3, usuario.getSenha());
+            comando.executeUpdate();
+        }finally{
+            fecharConexao(conexao, comando);
+        }
     }
 }

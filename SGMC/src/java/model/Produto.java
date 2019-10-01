@@ -200,4 +200,8 @@ public class Produto {
     public static List<Produto> obterProdutos() throws ClassNotFoundException, SQLException{
         return ProdutoDAO.obterProdutos();
     }
+    
+    public void gravar() throws ClassNotFoundException, SQLException{
+        ProdutoDAO.gravar(this);
+    }
 }

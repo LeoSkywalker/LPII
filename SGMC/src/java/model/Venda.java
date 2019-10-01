@@ -17,27 +17,23 @@ public class Venda {
     
     private int idVenda;
     private String dataVenda;
-    //private int qtd;
-    //private float precoUnitario;
     private float subTotal;
-    private String codBarra;
+    private int codBarra;
     private float valorDesconto;
     private String situacao;
     private Usuario usuario;
     private FormaPagamento formaPagamento;
-    private Cliente cliente;
-    //private Produto produto;
+    private Cliente cliente;   
     private int idUsuario;
     private int idFormaPgto;
     private int idCliente;
-    //private int idProduto;
+ 
 
-    public Venda(int idVenda, String dataVenda, /*int qtd, float precoUnitario,*/ 
-            float subTotal, String codBarra, float valorDesconto, String situacao, Usuario usuario, FormaPagamento formaPagamento, Cliente cliente/*, Produto produto*/) {
+    public Venda(int idVenda, String dataVenda, float subTotal, int codBarra, 
+            float valorDesconto, String situacao, Usuario usuario, 
+            FormaPagamento formaPagamento, Cliente cliente) {
         this.idVenda = idVenda;
         this.dataVenda = dataVenda;
-        /*this.qtd = qtd;
-        this.precoUnitario = precoUnitario;*/
         this.subTotal = subTotal;
         this.codBarra = codBarra;
         this.valorDesconto = valorDesconto;
@@ -45,7 +41,6 @@ public class Venda {
         this.usuario = usuario;
         this.formaPagamento = formaPagamento;
         this.cliente = cliente;
-        //this.produto = produto;
     }
 
     public int getIdVenda() {
@@ -64,23 +59,6 @@ public class Venda {
         this.dataVenda = dataVenda;
     }
 
-    /*
-    public int getQtd() {
-        return qtd;
-    }
-
-    public void setQtd(int qtd) {
-        this.qtd = qtd;
-    }
-
-    public float getPrecoUnitario() {
-        return precoUnitario;
-    }
-
-    public void setPrecoUnitario(float precoUnitario) {
-        this.precoUnitario = precoUnitario;
-    }*/
-
     public float getSubTotal() {
         return subTotal;
     }
@@ -89,11 +67,11 @@ public class Venda {
         this.subTotal = subTotal;
     }
 
-    public String getCodBarra() {
+    public int getCodBarra() {
         return codBarra;
     }
 
-    public void setCodBarra(String codBarra) {
+    public void setCodBarra(int codBarra) {
         this.codBarra = codBarra;
     }
 
@@ -146,17 +124,6 @@ public class Venda {
         this.cliente = cliente;
     }
 
-    /*public Produto getProduto() throws SQLException, ClassNotFoundException {
-        if ((this.idProduto != 0) && (this.produto == null)){
-            this.produto = Produto.obterProduto(this.idProduto);
-        }
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }*/
-
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -181,14 +148,6 @@ public class Venda {
         this.idCliente = idCliente;
     }
 
-    /*public int getIdProduto() {
-        return idProduto;
-    }
-
-    public void setIdProduto(int idProduto) {
-        this.idProduto = idProduto;
-    }*/
-
     public static Venda obterVenda (int idVenda) throws SQLException, ClassNotFoundException{
         return VendaDAO.obterVenda(idVenda);
     }
@@ -196,5 +155,4 @@ public class Venda {
     public static List<Venda> obterVendas() throws ClassNotFoundException, SQLException{
         return VendaDAO.obterVendas();
     }
-    
 }

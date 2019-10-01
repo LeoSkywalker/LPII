@@ -7,6 +7,7 @@ package dao;
 
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -65,5 +66,24 @@ public class PerdaDevolucaoDAO {
         perdaDevolucao.setIdProduto(rs.getInt("idProduto"));
         perdaDevolucao.setIdVenda(rs.getInt("idVenda"));
         return perdaDevolucao;
+    }
+    
+    public static void gravar(PerdaDevolucao perdaDevolucao) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement(
+                    "insert into ordemservico (idPerdaDevolucao, tipo, idVenda,"
+                    + "idProduto)"
+                    + "values (?,?,?,?)");
+            comando.setInt(1, perdaDevolucao.getIdPerdaDevolucao());
+            comando.setString(2, perdaDevolucao.getTipo());
+            comando.setInt(3, perdaDevolucao.getIdVenda());
+            comando.setInt(4, perdaDevolucao.getIdProduto());
+            comando.executeUpdate();
+        }finally{
+            fecharConexao(conexao, comando);
+        }
     }
 }

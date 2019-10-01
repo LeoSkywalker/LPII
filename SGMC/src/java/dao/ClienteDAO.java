@@ -71,7 +71,7 @@ public class ClienteDAO {
        rs.getString("email"),
        rs.getString("dataNascimento"),
        rs.getString("estadoCivil"),
-       rs.getBoolean("sexo"),
+       rs.getString("sexo"),
        null);        
        cliente.setIdEndereco(rs.getInt("idEndereco"));     
        return cliente;

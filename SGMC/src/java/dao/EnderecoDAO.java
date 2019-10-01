@@ -69,6 +69,7 @@ public class EnderecoDAO {
         rs.getString("bairro"),
         rs.getString("uf"),
         rs.getString("cep"));
+        
         return endereco;
     }
 }

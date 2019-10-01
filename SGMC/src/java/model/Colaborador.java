@@ -22,13 +22,13 @@ public class Colaborador extends Usuario {
     private String telefone;
     private String celular;
     private String estadoCivil;
-    private boolean sexo;
+    private String sexo;
     private Endereco endereco;
     private int idEndereco;
 
     public Colaborador(int idColaborador, String cpf, String rg, 
             String dataNascimento, String telefone, String celular, 
-            String estadoCivil, boolean sexo, int idUsuario, String nome, 
+            String estadoCivil, String sexo, int idUsuario, String nome, 
             String email, String senha, Endereco endereco) {
         super(idUsuario, nome, email, senha);
         this.idColaborador = idColaborador;
@@ -98,11 +98,11 @@ public class Colaborador extends Usuario {
         this.estadoCivil = estadoCivil;
     }
 
-    public boolean getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(boolean sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 

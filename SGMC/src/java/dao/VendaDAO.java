@@ -7,9 +7,11 @@ package dao;
 
 import static dao.DAO.fecharConexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.List;
 import model.Venda;
 
@@ -60,20 +62,52 @@ public class VendaDAO {
     private static Venda instanciarVenda(ResultSet rs) throws SQLException {
         Venda venda = new Venda(rs.getInt("idVenda"),
         rs.getString("dataVenda"),
-        //rs.getInt("qtd"),
-        //rs.getFloat("precoUnitario"),
         rs.getFloat("subTotal"),
-        rs.getString("codBarra"),
+        rs.getInt("codBarra"),
         rs.getFloat("valorDesconto"),
         rs.getString("situacao"),
         null,
         null,
-        null/*,
-        null*/);
+        null);
         venda.setIdUsuario(rs.getInt("idUsuario"));
         venda.setIdFormaPgto(rs.getInt("idFormaPgto"));
         venda.setIdCliente(rs.getInt("idCliente"));
-        //venda.setIdProduto(rs.getInt("idProduto"));
         return venda;
+    }
+    
+    public static void gravar(Venda venda) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement(
+                    "insert into ordemservico (idVenda, dataVenda, subTotal, codBarra,"
+                    + "valorDesconto, situacao, idCliente, idUsuario, idFormaPgto)"
+                    + "values (?,?,?,?,?,?,?,?,?)");
+            comando.setInt(1, venda.getIdVenda());
+            comando.setString(2, venda.getDataVenda());
+            comando.setFloat(3, venda.getSubTotal());
+            comando.setInt(4, venda.getCodBarra());
+            comando.setFloat(5, venda.getValorDesconto());
+            comando.setString(6, venda.getSituacao());
+            if (venda.getCliente() == null){
+                comando.setNull(7, Types.INTEGER);
+            } else {
+                comando.setInt(7, venda.getCliente().getIdCliente());
+            }
+            if (venda.getUsuario() == null){
+                comando.setNull(8, Types.INTEGER);
+            } else {
+                comando.setInt(8, venda.getIdUsuario());//passei parametro direto | sem atributo idUsuario em model.Usuario
+            }
+            if (venda.getFormaPagamento() == null){
+                comando.setNull(9, Types.INTEGER);
+            } else {
+                comando.setInt(9, venda.getFormaPagamento().getIdFormaPgto());
+            }
+            comando.executeUpdate();
+        }finally{
+            fecharConexao(conexao, comando);
+        }
     }
 }

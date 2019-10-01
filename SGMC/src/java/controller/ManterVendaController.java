@@ -83,7 +83,7 @@ public class ManterVendaController extends HttpServlet {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
             request.setAttribute("pagamentos", FormaPagamento.obterFormasPagamentos());
-            RequestDispatcher view = request.getRequestDispatcher("/manterOrdemServico.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("/manterVenda.jsp");
             view.forward(request, response);
         }catch(ServletException e){
             throw e;

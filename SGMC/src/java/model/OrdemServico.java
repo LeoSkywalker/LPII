@@ -22,7 +22,8 @@ public class OrdemServico {
     private Fornecedor fornecedor;
     private int idFornecedor;
 
-    public OrdemServico(int idOrdemSrv, String dataPedido, String situacao, String descricao, int numOS, Fornecedor fornecedor) {
+    public OrdemServico(int idOrdemSrv, String dataPedido, String situacao, 
+            String descricao, int numOS, Fornecedor fornecedor) {
         this.idOrdemSrv = idOrdemSrv;
         this.dataPedido = dataPedido;
         this.situacao = situacao;
