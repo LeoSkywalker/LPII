@@ -80,9 +80,10 @@ public class AdminDAO {
             comando = conexao.prepareStatement(
             "insert into admin (idAdmin, nome, email, senha) values (?,?,?,?)");
             comando.setInt(1, admin.getIdAdmin());
-            comando.setString(2, admin.getNome());
-            comando.setString(3, admin.getEmail());
-            comando.setString(4, admin.getSenha());
+            comando.setInt(2, admin.getIdAdmin());
+            comando.setString(3, admin.getNome());
+            comando.setString(4, admin.getEmail());
+            comando.setString(5, admin.getSenha());
             comando.executeUpdate();
             }finally{
             fecharConexao(conexao, comando);

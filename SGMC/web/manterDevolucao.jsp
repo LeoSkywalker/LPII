@@ -29,10 +29,24 @@
                 </tr>
                 <tr><td></td></tr>
                 <tr>
-                    <td><label> Venda: </label>
-                        <input type="number" name="numIdVenda" value="${perdaDevolucao.idVenda}"></td>
-                    <td><label> Produto: </label>
-                        <input type="number" name="numIdProduto" value="${perdaDevolucao.idProduto}"></td>
+                    <td>
+                        <label> Venda: </label>
+                        <select name="optVenda">
+                            <option value="0" <c:if test="${perdaDevolucao.venda.idVenda == null}">selected</c:if></option>
+                            <c:forEach items="${vendas}" var="venda">
+                                <option value="${venda.idVenda}" <c:if test="${perdaDevolucao.venda.idVenda == venda.idVenda}">selected</c:if>>${venda.idVenda}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                    <td>
+                        <label> Produto: </label>
+                        <select name="optProduto">
+                            <option value="0" <c:if test="${perdaDevolucao.produto.idProduto == null}">selected</c:if></option>
+                            <c:forEach items="${produtos}" var="produto">
+                                <option value="${produto.idProduto}" <c:if test="${perdaDevolucao.produto.idProduto == produto.idProduto}">selected</c:if>>${produto.nome}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
                 </tr>
                 <tr><td></td></tr> 
                 <tr>

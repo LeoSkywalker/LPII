@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Produto;
 import model.Venda;
 
 /**
@@ -82,6 +83,7 @@ public class ManterDevolucaoController extends HttpServlet {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
             request.setAttribute("vendas", Venda.obterVendas());
+            request.setAttribute("produtos", Produto.obterProdutos());
             RequestDispatcher view = request.getRequestDispatcher("/manterDevolucao.jsp");
             view.forward(request, response);
         }catch(ServletException e){

@@ -13,7 +13,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Cliente;
 import model.FormaPagamento;
+import model.Usuario;
 
 /**
  *
@@ -83,7 +85,9 @@ public class ManterVendaController extends HttpServlet {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
             request.setAttribute("pagamentos", FormaPagamento.obterFormasPagamentos());
-            RequestDispatcher view = request.getRequestDispatcher("/manterOrdemServico.jsp");
+            request.setAttribute("clientes", Cliente.obterClientes());
+            request.setAttribute("usuarios", Usuario.obterUsuarios());
+            RequestDispatcher view = request.getRequestDispatcher("/manterVenda.jsp");
             view.forward(request, response);
         }catch(ServletException e){
             throw e;

@@ -8,11 +8,15 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Usuario;
+import model.Endereco;
 
 /**
  *
@@ -30,7 +34,7 @@ public class ManterColaboradorController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
         if (acao.equals("prepararOperacao")) {
             prepararOperacao(request, response);
@@ -49,7 +53,13 @@ public class ManterColaboradorController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterColaboradorController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterColaboradorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -63,7 +73,13 @@ public class ManterColaboradorController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterColaboradorController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterColaboradorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -76,22 +92,23 @@ public class ManterColaboradorController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
         try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
+            request.setAttribute("usuarios", Usuario.obterUsuarios());
+            request.setAttribute("enderecos", Endereco.obterEnderecos());
             RequestDispatcher view = request.getRequestDispatcher("/manterColaborador.jsp");
             view.forward(request, response);
         } catch (ServletException e) {
             throw e;
         } catch (IOException e) {
             throw new ServletException(e);
-        } 
-//        catch (SQLException e) {
-//            throw new ServletException(e);
-//        } catch (ClassNotFoundException e) {
-//            throw new ServletException(e);
-//        }
+        } catch (SQLException e) {
+            throw new ServletException(e);
+        } catch (ClassNotFoundException e) {
+            throw new ServletException(e);
+        }
     }
 
 }

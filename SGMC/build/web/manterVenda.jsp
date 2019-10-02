@@ -4,6 +4,7 @@
     Author     : Lucas Gama
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,19 +24,29 @@
                 </tr>
                 <tr><td></td></tr>
                 <tr>
-                    <td><label> Usuário: </label>
-                        <input type="text" name="txtIdUsuario" value="${venda.idUsuario}"></td>
-
                     <td><label> Cliente: </label>
-                        <input type="text" name="txtIdCliente" value="${venda.idCliente}"></td>
+                        <select name="optPagamento">
+                            <option value="0" <c:if test="${venda.cliente.idCliente == null}">selected</c:if></option>
+                            <c:forEach items="${clientes}" var="cliente">
+                                <option value="${cliente.idCliente}" <c:if test="${venda.cliente.idCliente == cliente.idCliente}">selected</c:if>>${cliente.nome}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                    <td><label> Usuário: </label>
+                        <select name="optPagamento">
+                            <option value="0" <c:if test="${venda.usuario.idUsuario == null}">selected</c:if></option>
+                            <c:forEach items="${usuarios}" var="usuario">
+                                <option value="${usuario.idUsuario}" <c:if test="${venda.usuario.idUsuario == usuario.idUsuario}">selected</c:if>>${usuario.nome}</option>
+                            </c:forEach>
+                        </select>
+                            
+                    </td><td><label> Produto: </label>
+                        <input type="text" name="txtIdProduto" value="${itensVenda.idProduto}"></td>
 
-                    <td><label> Produto: </label>
-                        <input type="text" name="txtIdProduto" value="${venda.idProduto}"></td>
-
-                    <!--<td>
+                    <td>
                     <label> Quantidade: </label>
-                        <input type="number" id="qtdProduto">
-                    </td>-->
+                        <input type="number" name="qtdProduto" value="${itensVenda.quantidade}">
+                    </td>
                 </tr>
                 <tr><td></td></tr>
                 <tr>
@@ -45,7 +56,7 @@
                     </td>
                     <td>
                         <label> Preço Unitário: </label>
-                        <input type="number" id="precoProduto">
+                        <input type="number" name="precounitario" value="${itensVenda.precoUnitario}">
                     </td>
                     <td>
                         <label> Valor Desconto: </label>
@@ -53,18 +64,19 @@
                     </td>
                     <td><label> Forma de Pagamento: </label>
                         <select name="optPagamento">
-                            <option value="0" <c:if test="${venda.formaPagamento.idFormaPgto == null}">selected</c:if></option>
+                            <option value="0" <c:if test="${venda.pagamento.idFormaPgto == null}">selected</c:if></option>
                             <c:forEach items="${pagamentos}" var="pagamento">
-                                <option value="${pagamento.idFormaPgto}" <c:if test="${venda.formaPagamento.idFormaPgto == pagamento.idFormaPgto}">selected</c:if>>${fornecedor.nomeFantasia}</option>
+                                <option value="${pagamento.idFormaPgto}" <c:if test="${venda.pagamento.idFormaPgto == pagamento.idFormaPgto}">selected</c:if>>${pagamento.nome}</option>
                             </c:forEach>
-                        </select></td>                
+                        </select>
+                    </td>                
                 </tr>
                 <tr><td></td></tr>
                 <tr>
                     <td><label> Situação: </label>
                 <select name="optSituacao">
-                    <option value="aberta"<c:if test="${ordemServico.situacao == 'aberta'}">selected</c:if>>Em Aberto</option>
-                    <option value="efetuada"<c:if test="${ordemServico.situacao == 'efetuada'}">selected</c:if>>Efetuada</option>
+                    <option value="aberta"<c:if test="${venda.situacao == 'aberta'}">selected</c:if>>Em Aberto</option>
+                    <option value="efetuada"<c:if test="${venda.situacao == 'efetuada'}">selected</c:if>>Efetuada</option>
                 </select></td>
                 <td><label> Subtotal: </label>
                     <input type="number" name="numSubTotal" value="${venda.subTotal}"></td>

@@ -4,6 +4,7 @@
     Author     : Lucas Gama
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -41,15 +42,15 @@
                 <tr>
                     <td><label>Estado Civil: </label>
                         <select name="optEstadoCivil">
-                            <option value="Solteiro" <c:if test="${cliente.estadoCivil == 'Solteiro'}" selected</c:if>Solteiro(a)</option>
-                            <option value="Casado" <c:if test="${cliente.estadoCivil == 'Casado'}" selected</c:if>Casado(a)</option>
-                            <option value="Viúvo" <c:if test="${cliente.estadoCivil == 'Viúvo'}" selected</c:if>Viúvo(a)</option>
+                            <option value="Solteiro"><c:if test="${cliente.estadoCivil == 'Solteiro'}">selected</c:if>Solteiro(a)</option>
+                            <option value="Casado"><c:if test="${cliente.estadoCivil == 'Casado'}">selected</c:if>Casado(a)</option>
+                            <option value="Viúvo"><c:if test="${cliente.estadoCivil == 'Viúvo'}">selected</c:if>Viúvo(a)</option>
                         </select></td>      
                     <td><label>Sexo: </label>
-                        <select name="optSSSexo">
-                            <option value="outro" <c:if test="${cliente.sexo == 'Outro'}" selected</c:if>Outro</option>
-                            <option value="masculino" <c:if test="${cliente.sexo == 'Masculino'}" selected</c:if>Masculino</option>
-                            <option value="feminino" <c:if test="${cliente.sexo == 'Feminino'}" selected</c:if>Feminino</option>
+                        <select name="optSexo">
+                            <option value="outro"><c:if test="${cliente.sexo == 'Outro'}">selected</c:if>Outro</option>
+                            <option value="masculino"><c:if test="${cliente.sexo == 'Masculino'}">selected</c:if>Masculino</option>
+                            <option value="feminino"><c:if test="${cliente.sexo == 'Feminino'}">selected</c:if>Feminino</option>
                         </select></td>
                 </tr>
                 <tr><td></td></tr>

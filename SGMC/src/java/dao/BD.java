@@ -20,6 +20,6 @@ public class BD {
         conexao = DriverManager.getConnection
         ("jdbc:mysql://localhost/sgmc", "root", "");
         return conexao;
-}
+    }
     
 }
