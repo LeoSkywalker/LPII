@@ -90,4 +90,8 @@ public class PerdaDevolucao {
     public static List<PerdaDevolucao> obterPerdaDevolucoes() throws ClassNotFoundException, SQLException{
         return PerdaDevolucaoDAO.obterPerdaDevolucoes();
     }
+    
+    public void gravar() throws ClassNotFoundException, SQLException{
+        PerdaDevolucaoDAO.gravar(this);
+    }
 }

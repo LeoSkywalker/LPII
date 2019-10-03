@@ -155,4 +155,8 @@ public class Venda {
     public static List<Venda> obterVendas() throws ClassNotFoundException, SQLException{
         return VendaDAO.obterVendas();
     }
+    
+    public void gravar() throws ClassNotFoundException, SQLException{
+            VendaDAO.gravar(this);
+    }
 }

@@ -101,4 +101,7 @@ public class OrdemServico {
         return OrdemServicoDAO.obterOrdemServicos();
     }
     
+    public void gravar() throws ClassNotFoundException, SQLException{
+        OrdemServicoDAO.gravar(this);
+    }
 }

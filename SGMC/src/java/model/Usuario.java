@@ -64,4 +64,8 @@ public class Usuario {
     public static List<Usuario> obterUsuarios() throws ClassNotFoundException, SQLException{
         return UsuarioDAO.obterUsuarios();
     }
+    
+    public void gravar() throws ClassNotFoundException, SQLException{
+        UsuarioDAO.gravar(this);
+    }
 }
