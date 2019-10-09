@@ -101,7 +101,6 @@ public class ClienteDAO {
             comando.setString(11, cliente.getDataNascimento());
             comando.setString(12, cliente.getEstadoCivil());
             comando.setString(13, cliente.getSexo());
-            //comando.setInt(14, cliente.getIdEndereco());
             
             if(cliente.getEndereco()==null){
                 comando.setNull(14, Types.INTEGER);

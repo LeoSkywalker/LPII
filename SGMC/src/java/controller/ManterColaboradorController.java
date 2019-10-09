@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Colaborador;
 import model.Usuario;
 import model.Endereco;
 
@@ -36,8 +37,12 @@ public class ManterColaboradorController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
-        if (acao.equals("prepararOperacao")) {
-            prepararOperacao(request, response);
+        if(acao.equals("confirmarOperacao")){
+            confirmarOperacao(request, response);
+        }else{
+            if(acao.equals("prepararOperacao")){
+                prepararOperacao(request, response);
+            }
         }
     }
 
@@ -108,6 +113,46 @@ public class ManterColaboradorController extends HttpServlet {
             throw new ServletException(e);
         } catch (ClassNotFoundException e) {
             throw new ServletException(e);
+        }
+    }
+    
+    public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException{
+        String operacao = request.getParameter("operacao");
+        int idColaborador = Integer.parseInt(request.getParameter("numIdColaborador"));
+        int idUsuario = Integer.parseInt(request.getParameter("numIdUsuario"));
+        String nome = request.getParameter("txtNome");
+        String cpf = request.getParameter("numCPF");
+        String rg = request.getParameter("numRg");
+        String telefone = request.getParameter("txtTelefone");
+        String celular = request.getParameter("txtCelular");
+        String email = request.getParameter("txtEmail");
+        String senha = request.getParameter("txtSenha");   
+        String dataNascimento = request.getParameter("txtDataNasc");
+        String estadoCivil = request.getParameter("optEstadoCivil");
+        String sexo = request.getParameter("optSexo");
+        int idEndereco = Integer.parseInt(request.getParameter("optEndereco"));
+        
+        try{
+            Endereco endereco = null;
+            if(idEndereco != 0){
+                endereco = Endereco.obterEndereco(idEndereco);
+            }
+            Colaborador colaborador = new Colaborador(idColaborador, cpf, rg,
+            dataNascimento, telefone, celular, estadoCivil, sexo, idUsuario, 
+                    nome, email, senha, endereco);
+            if(operacao.equals("Incluir")){
+                colaborador.gravar();
+            }
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaColaboradorController");
+            view.forward(request, response);
+        } catch (IOException e){
+            throw new ServletException(e);
+        }
+        catch(SQLException e){
+            throw new ServletException(e);
+        }
+        catch(ClassNotFoundException e){
+           throw new ServletException(e);
         }
     }
 

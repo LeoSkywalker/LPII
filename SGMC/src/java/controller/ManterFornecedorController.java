@@ -7,11 +7,16 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Endereco;
+import model.Fornecedor;
 
 /**
  *
@@ -29,10 +34,14 @@ public class ManterFornecedorController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
-        if(acao.equals("prepararOperacao")){
-            prepararOperacao (request, response);
+        if(acao.equals("confirmarOperacao")){
+            confirmarOperacao(request, response);
+        }else{
+            if(acao.equals("prepararOperacao")){
+                prepararOperacao(request, response);
+            }
         }
     }
 
@@ -48,7 +57,13 @@ public class ManterFornecedorController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterFornecedorController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterFornecedorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -62,7 +77,13 @@ public class ManterFornecedorController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterFornecedorController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterFornecedorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -75,10 +96,11 @@ public class ManterFornecedorController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    private void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, ClassNotFoundException, SQLException {
         try{
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
+            request.setAttribute("enderecos", Endereco.obterEnderecos());
             RequestDispatcher view = request.getRequestDispatcher("/manterFornecedor.jsp");
             view.forward(request, response);
         }
@@ -88,12 +110,44 @@ public class ManterFornecedorController extends HttpServlet {
         catch(IOException e){
             throw new ServletException(e);
         }
-//        catch(SQLException e){
-//            throw new ServletException(e);
-//        }
-//        catch(ClassNotFoundException e){
-//            throw new ServletException(e);
-//        }
+         catch(SQLException e){
+            throw new ServletException(e);
+        }
+        catch(ClassNotFoundException e){
+            throw new ServletException(e);
+        }
     }
-
+    
+    public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException{
+        String operacao = request.getParameter("operacao");
+        int idFornecedor = Integer.parseInt(request.getParameter("numIdFornecedor"));
+        String nomeFantasia = request.getParameter("txtNomeFantasia");
+        String cnpj = request.getParameter("numCnpj");
+        String nomeRepresentante = request.getParameter("txtNomeRepresentante");
+        String email = request.getParameter("txtEmail");
+        String telefone = request.getParameter("txtTelefone");
+        int idEndereco = Integer.parseInt(request.getParameter("optEndereco"));
+        
+        try{
+            Endereco endereco = null;
+            if(idEndereco != 0){
+                endereco = Endereco.obterEndereco(idEndereco);
+            }
+            Fornecedor fornecedor = new Fornecedor(idFornecedor, nomeFantasia, 
+                    cnpj, nomeRepresentante, email, telefone, endereco);
+            if(operacao.equals("Incluir")){
+                fornecedor.gravar();
+            }
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaFornecedorController");
+            view.forward(request, response);
+        } catch (IOException e){
+            throw new ServletException(e);
+        }
+        catch(SQLException e){
+            throw new ServletException(e);
+        }
+        catch(ClassNotFoundException e){
+           throw new ServletException(e);
+        }
+    }
 }

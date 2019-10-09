@@ -3,7 +3,6 @@
     Created on : 05/09/2019, 09:26:44
     Author     : Lucas Gama
 --%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,9 +25,15 @@
                 </tr>
                 <tr><td></td></tr>
                 <tr><td><label>CPF: </label>
-                        <input type="number" name="numCPF" value="${cliente.idCliente}"></td>
+                        <input type="number" name="numCPF" value="${cliente.cpf}"></td>
                     <td><label>RG: </label>
                         <input type="text" name="numRg" value="${cliente.rg}"></td></tr>
+                <td><label>CNPJ: </label>
+                        <input type="text" name="numCnpj" value="${cliente.cnpj}"></td>
+                <td><label>Razão Social: </label>
+                        <input type="text" name="txtRazao" value="${cliente.razaoSocial}"></td>
+                <td><label>Inscrição Estadual: </label>
+                        <input type="text" name="txtInscricao" value="${cliente.inscricaoEstadual}"></td>
                 <tr><td></td></tr>
                 <tr>
                     <td><label>E-mail: </label>
@@ -52,29 +57,19 @@
                             <option value="masculino"><c:if test="${cliente.sexo == 'Masculino'}">selected</c:if>Masculino</option>
                             <option value="feminino"><c:if test="${cliente.sexo == 'Feminino'}">selected</c:if>Feminino</option>
                         </select></td>
+                        <td>
+                        <label> Endereço: </label>
+                        <select name="optEndereco">
+                            <option value="0" <c:if test="${cliente.endereco.idEndereco == null}">selected</c:if></option>
+                            <c:forEach items="${enderecos}" var="endereco">
+                                <option value="${endereco.idEndereco}" <c:if test="${cliente.endereco.idEndereco == endereco.idEndereco}">selected</c:if>>${endereco.idEndereco}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
                 </tr>
-                <tr><td></td></tr>
-                <tr>
-                    <td><label>CEP: </label>
-                        <input type="text" name="txtCep" value="${cliente.endereco.cep}"></td>
-                    <td><label>UF: </label>
-                        <input type="text" name="txtUf" value="${cliente.endereco.uf}"></td>
-                    <td><label>Cidade: </label>
-                        <input type="text" name="txtCidade" value="${cliente.endereco.cidade}"></td>
-                </tr>
-                <tr><td></td></tr>
-                <tr>
-                    <td><label>Logadouro: </label>
-                        <input type="text" name="txtLogradouro" value="${cliente.endereco.logradouro}"></td>
-                    <td><label>Numero: </label>
-                        <input type="number" name="numNumero" value="${cliente.endereco.numero}"></td>
-                    <td><label>Complemento: </label>
-                        <input type="text" name="txtComplemento" value="${cliente.endereco.complemento}"></td></tr>
-                <tr><td></td></tr>
-                <tr>    
+                <tr><td></td></tr>    
                     <td><input type="submit" name="btnIncluir" value="Enviar">
                         <input type="reset" value="Cancelar"></td>    
-                </tr>
             </table>
         </form>
     </body>

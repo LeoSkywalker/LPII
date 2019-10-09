@@ -50,10 +50,8 @@
                 </tr>
                 <tr><td></td></tr> 
                 <tr>
-                    <td>
-                        <input type="reset" value="Cancelar">
-                        <input type="submit" value="Enviar">
-                    </td>
+                    <td><input type="submit" name="btnIncluir" value="Enviar">
+                        <input type="reset" value="Cancelar"></td>  
                 </tr>
             </table>
         </form>

@@ -49,7 +49,6 @@ public class OrdemServico {
     }
 
     
-
     public int getIdOrdemSrv() {
         return idOrdemSrv;
     }

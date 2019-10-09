@@ -19,11 +19,13 @@
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
+                <th>Endereço</th>
             </tr>
             <c:forEach items="${clientes}" var="cliente">
                 <tr>
                     <td><c:out value="${cliente.idCliente}"/></td>
                     <td><c:out value="${cliente.nome}"/></td>
+                    <td><c:out value="${cliente.idEndereco}"/></td>
                 </tr>
             </c:forEach>
         </table>

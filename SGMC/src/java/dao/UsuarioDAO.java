@@ -71,12 +71,12 @@ public class UsuarioDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
-                    "insert into ordemservico (nome, email, senha)"
-                    + "values (?,?,?)");
-            //sem atributo idUsuario model.Usuario
-            comando.setString(1, usuario.getNome());
-            comando.setString(2, usuario.getEmail());
-            comando.setString(3, usuario.getSenha());
+                    "insert into usuario (idUsuario, nome, email, senha)"
+                    + "values (?,?,?,?)");
+            comando.setInt(1, usuario.getIdUsuario());
+            comando.setString(2, usuario.getNome());
+            comando.setString(3, usuario.getEmail());
+            comando.setString(4, usuario.getSenha());
             comando.executeUpdate();
         }finally{
             fecharConexao(conexao, comando);

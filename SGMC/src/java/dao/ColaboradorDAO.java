@@ -93,12 +93,11 @@ public class ColaboradorDAO {
             comando.setString(6, colaborador.getCelular());
             comando.setString(7, colaborador.getEstadoCivil());
             comando.setString(8, colaborador.getSexo());
-            //comando.setInt(9, colaborador.getIdEndereco());
             
             if(colaborador.getEndereco()==null){
-                comando.setNull(8, Types.INTEGER);
+                comando.setNull(9, Types.INTEGER);
             }else{
-                comando.setInt(8, colaborador.getEndereco().getIdEndereco());
+                comando.setInt(9, colaborador.getEndereco().getIdEndereco());
             }
             comando.executeUpdate();
             }finally{

@@ -27,7 +27,8 @@
                 <th>Estado Civil</th>
                 <th>Sexo</th>
                 <th>Nome</th>
-                <th>idEndereço</th>
+                <th>Endereço</th>
+                <th>Usuário</th>
             </tr>
             <c:forEach items="${colaboradores}" var="colaborador">
                 <tr>
@@ -41,6 +42,7 @@
                     <td><c:out value="${colaborador.sexo}"/></td>
                     <td><c:out value="${colaborador.nome}"/></td>
                     <td><c:out value="${colaborador.idEndereco}"/></td>
+                    <td><c:out value="${colaborador.idUsuario}"/></td>
                 </tr>
             </c:forEach>
         </table>
