@@ -155,5 +155,4 @@ public class ManterColaboradorController extends HttpServlet {
            throw new ServletException(e);
         }
     }
-
 }

@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.List;
 import model.Colaborador;
+import model.Usuario;
 
 /**
  *
@@ -33,7 +34,7 @@ public class ColaboradorDAO {
             ResultSet rs = comando.executeQuery("select * from colaborador, usuario where colaborador.idColaborador=usuario.idUsuario");
             
             while (rs.next()){
-                colaborador = instaciarColaborador(rs);
+                colaborador = instanciarColaborador(rs);
                 colaboradores.add(colaborador);
             }
             }finally{
@@ -52,15 +53,14 @@ public class ColaboradorDAO {
                 comando = conexao.createStatement();
                 ResultSet rs = comando.executeQuery("select * from colaborador where idColaborador = " + idColaborador);
                 rs.first();
-                colaborador = instaciarColaborador(rs);
+                colaborador = instanciarColaborador(rs);
             } finally{
                 fecharConexao(conexao, comando);
             }
             return colaborador;
     }
 
-
-    private static Colaborador instaciarColaborador(ResultSet rs) throws SQLException {
+    private static Colaborador instanciarColaborador(ResultSet rs) throws SQLException {
        Colaborador colaborador = new Colaborador(rs.getInt("idColaborador"),
        rs.getString("cpf"),
        rs.getString("rg"),
@@ -77,14 +77,15 @@ public class ColaboradorDAO {
        colaborador.setIdEndereco(rs.getInt("idEndereco"));  
        return colaborador;
     }
-    public static void gravar(Colaborador colaborador) throws ClassNotFoundException, SQLException{
+    
+    public static void gravar(Colaborador colaborador, Usuario usuario) throws ClassNotFoundException, SQLException{
         Connection conexao = null;
         PreparedStatement comando = null;
         try{
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
             "insert into colaborador (idColaborador, cpf, rg, dataNascimento, telefone,"
-            +" celular, estadoCivil, sexo) values (?,?,?,?,?,?,?,?,?)");
+            +" celular, estadoCivil, sexo, idEndereco) values (?,?,?,?,?,?,?,?,?)");
             comando.setInt(1, colaborador.getIdColaborador());
             comando.setString(2, colaborador.getCpf());
             comando.setString(3, colaborador.getRg());
@@ -93,7 +94,6 @@ public class ColaboradorDAO {
             comando.setString(6, colaborador.getCelular());
             comando.setString(7, colaborador.getEstadoCivil());
             comando.setString(8, colaborador.getSexo());
-            
             if(colaborador.getEndereco()==null){
                 comando.setNull(9, Types.INTEGER);
             }else{
@@ -101,6 +101,21 @@ public class ColaboradorDAO {
             }
             comando.executeUpdate();
             }finally{
+            fecharConexao(conexao, comando);
+        }
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement(
+            "insert into usuario (idUsuario, nome, email, senha)"
+                    +" values (?,?,?,?)");
+            comando.setInt(1, usuario.getIdUsuario());
+            comando.setString(2, usuario.getNome());
+            comando.setString(3, usuario.getEmail());
+            comando.setString(4, usuario.getSenha());        
+            
+            comando.executeUpdate();
+        }finally{
             fecharConexao(conexao, comando);
         }
     }

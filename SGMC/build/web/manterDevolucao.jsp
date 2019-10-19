@@ -14,7 +14,7 @@
     </head>
     <body>
         <h1>Manter Perda ou Devolução - ${operacao}</h1>
-        <form action="ManterDevolucaoController?acao=confirmarOperacao&operacao = ${operacao}" method="post" name="frmManterDevolucao">
+        <form action="ManterDevolucaoController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterDevolucao">
             <table>
                 <tr>
                     <td><label> ID: </label>
@@ -22,8 +22,8 @@
                     <td>
                         <label> Tipo: </label>
                         <select name="optTipo">
-                            <option value="perda" <c:if test="${perdaDevolucao.tipo == 'perda'}"> selected</c:if>> Perda</option>
-                            <option value="devolucao" <c:if test="${perdaDevolucao.tipo == 'devolucao'}"> selected</c:if>>Devolução</option>
+                            <option value="Perda" <c:if test="${perdaDevolucao.tipo == 'Perda'}"> selected</c:if>> Perda</option>
+                            <option value="Devolucao" <c:if test="${perdaDevolucao.tipo == 'Devolucao'}"> selected</c:if>>Devolução</option>
                         </select>
                     </td>
                 </tr>

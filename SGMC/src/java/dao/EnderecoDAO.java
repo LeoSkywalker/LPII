@@ -33,7 +33,7 @@ public class EnderecoDAO {
             ResultSet rs = comando.executeQuery("select * from endereco");
             
             while (rs.next()){
-                cliente = instaciarEndereco(rs);
+                cliente = instanciarEndereco(rs);
                 enderecos.add(cliente);
             }
             }finally{
@@ -54,14 +54,14 @@ public class EnderecoDAO {
                 comando = conexao.createStatement();
                 ResultSet rs = comando.executeQuery("select * from endereco where idEndereco = " + idEndereco);
                 rs.first();
-                endereco = instaciarEndereco(rs);
+                endereco = instanciarEndereco(rs);
             } finally{
                 fecharConexao(conexao, comando);
             }
             return endereco;
     }
 
-    private static Endereco instaciarEndereco(ResultSet rs) throws SQLException {
+    private static Endereco instanciarEndereco(ResultSet rs) throws SQLException {
         Endereco endereco = new Endereco(rs.getInt("idEndereco"),
         rs.getString("logradouro"),
         rs.getInt("numero"),

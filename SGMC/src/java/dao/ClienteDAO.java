@@ -33,7 +33,7 @@ public class ClienteDAO {
             ResultSet rs = comando.executeQuery("select * from cliente");
             
             while (rs.next()){
-                cliente = instaciarCliente(rs);
+                cliente = instanciarCliente(rs);
                 clientes.add(cliente);
             }
             }finally{
@@ -52,7 +52,7 @@ public class ClienteDAO {
                 comando = conexao.createStatement();
                 ResultSet rs = comando.executeQuery("select * from cliente where idCliente = " + idCliente);
                 rs.first();
-                cliente = instaciarCliente(rs);
+                cliente = instanciarCliente(rs);
             } finally{
                 fecharConexao(conexao, comando);
             }
@@ -60,7 +60,7 @@ public class ClienteDAO {
     }
 
 
-    private static Cliente instaciarCliente(ResultSet rs) throws SQLException {
+    private static Cliente instanciarCliente(ResultSet rs) throws SQLException {
        Cliente cliente = new Cliente (rs.getInt("idCliente"),
        rs.getString("cnpj"),
        rs.getString("razaoSocial"),

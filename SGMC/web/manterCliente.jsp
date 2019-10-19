@@ -39,7 +39,7 @@
                     <td><label>E-mail: </label>
                         <input type="text" name="txtEmail" value="${cliente.email}"></td>
                     <td><label>Telefone: </label>
-                        <input type="text" name="txtTelefone "value="${cliente.telefone}"></td>
+                        <input type="text" name="txtTelefone" value="${cliente.telefone}"></td>
                     <td><label>Celular: </label>
                         <input type="text" name="txtCelular" value="${cliente.celular}"></td>
                 </tr>

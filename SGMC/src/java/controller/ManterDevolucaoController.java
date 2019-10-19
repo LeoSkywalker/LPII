@@ -125,10 +125,10 @@ public class ManterDevolucaoController extends HttpServlet {
 
         try {
             Produto produto = null;
-            Venda venda = null;
             if (idProduto != 0) {
                 produto = Produto.obterProduto(idProduto);
             }
+            Venda venda = null;
             if (idVenda != 0) {
                 venda = Venda.obterVenda(idVenda);
             }
@@ -147,5 +147,4 @@ public class ManterDevolucaoController extends HttpServlet {
             throw new ServletException(e);
         }
     }
-
 }

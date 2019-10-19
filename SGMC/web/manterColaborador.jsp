@@ -59,9 +59,9 @@
                         <td>
                             <label>Sexo: </label>
                             <select name="optSexo">
-                                <option value="outro"><c:if test="${colaborador.sexo == 'Outro'}">selected</c:if>Outro</option>
-                            <option value="masculino"><c:if test="${colaborador.sexo == 'Masculino'}">selected</c:if>Masculino</option>
-                            <option value="feminino"><c:if test="${colaborador.sexo == 'Feminino'}">selected</c:if>Feminino</option>
+                                <option value="Outro"><c:if test="${colaborador.sexo == 'Outro'}">selected</c:if>Outro</option>
+                            <option value="Masculino"><c:if test="${colaborador.sexo == 'Masculino'}">selected</c:if>Masculino</option>
+                            <option value="Feminino"><c:if test="${colaborador.sexo == 'Feminino'}">selected</c:if>Feminino</option>
                             </select>
                         </td>
                     </tr>

@@ -134,6 +134,6 @@ public class Colaborador extends Usuario {
     }
     
     public void gravar() throws SQLException, ClassNotFoundException {
-        ColaboradorDAO.gravar(this);
+        ColaboradorDAO.gravar(this, this);
     }
 }

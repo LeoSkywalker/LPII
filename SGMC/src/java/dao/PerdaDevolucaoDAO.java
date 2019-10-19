@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.List;
 import model.PerdaDevolucao;
 
@@ -63,8 +64,8 @@ public class PerdaDevolucaoDAO {
         rs.getString("tipo"),
         null,
         null);
-        perdaDevolucao.setIdProduto(rs.getInt("idProduto"));
         perdaDevolucao.setIdVenda(rs.getInt("idVenda"));
+        perdaDevolucao.setIdProduto(rs.getInt("idProduto"));
         return perdaDevolucao;
     }
     
@@ -74,13 +75,21 @@ public class PerdaDevolucaoDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
-                    "insert into ordemservico (idPerdaDevolucao, tipo, idVenda,"
+                    "insert into perdaDevolucao (idPerdaDevolucao, tipo, idVenda,"
                     + "idProduto)"
                     + "values (?,?,?,?)");
             comando.setInt(1, perdaDevolucao.getIdPerdaDevolucao());
             comando.setString(2, perdaDevolucao.getTipo());
-            comando.setInt(3, perdaDevolucao.getIdVenda());
-            comando.setInt(4, perdaDevolucao.getIdProduto());
+            if(perdaDevolucao.getVenda()==null){
+                comando.setNull(3, Types.INTEGER);
+            }else{
+                comando.setInt(3, perdaDevolucao.getVenda().getIdVenda());
+            }
+            if(perdaDevolucao.getVenda()==null){
+                comando.setNull(4, Types.INTEGER);
+            }else{
+                comando.setInt(4, perdaDevolucao.getProduto().getIdProduto());
+            }
             comando.executeUpdate();
         }finally{
             fecharConexao(conexao, comando);

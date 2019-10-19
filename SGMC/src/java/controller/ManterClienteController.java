@@ -158,5 +158,4 @@ public class ManterClienteController extends HttpServlet {
            throw new ServletException(e);
         }
     }
-
 }

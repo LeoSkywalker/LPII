@@ -18,12 +18,15 @@
         <table border=1>
             <tr>
                 <th>ID</th>
-                <th>Nome:</th>    
+                <th>Nome Fantasia:</th>
+                <th>CNPJ:</th>
+                
             </tr>
             <c:forEach items="${fornecedores}" var="fornecedor">
                 <tr>
                     <td><c:out value="${fornecedor.idFornecedor}"/></td>
                     <td><c:out value="${fornecedor.nomeFantasia}"/></td>
+                    <td><c:out value="${fornecedor.cnpj}"/></td>
                 </tr>
             </c:forEach>            
         </table>

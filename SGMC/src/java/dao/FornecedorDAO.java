@@ -34,7 +34,7 @@ public class FornecedorDAO {
             ResultSet rs = comando.executeQuery("select * from fornecedor");
             
             while (rs.next()){
-                fornecedor = instaciarFornecedor(rs);
+                fornecedor = instanciarFornecedor(rs);
                 fornecedores.add(fornecedor);
             }
             }finally{
@@ -54,7 +54,7 @@ public class FornecedorDAO {
                 comando = conexao.createStatement();
                 ResultSet rs = comando.executeQuery("select * from fornecedor where idFornecedor = " + idFornecedor);
                 rs.first();
-                fornecedor = instaciarFornecedor(rs);
+                fornecedor = instanciarFornecedor(rs);
             } finally{
                 fecharConexao(conexao, comando);
             }
@@ -62,7 +62,7 @@ public class FornecedorDAO {
     }
 
 
-    private static Fornecedor instaciarFornecedor(ResultSet rs) throws SQLException {
+    private static Fornecedor instanciarFornecedor(ResultSet rs) throws SQLException {
         Fornecedor fornecedor = new Fornecedor(rs.getInt("idFornecedor"),
         rs.getString("nomeFantasia"),
         rs.getString("cnpj"),
