@@ -86,7 +86,7 @@ public class ProdutoDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
-                    "insert into ordemservico (idProduto, nome, codInterno, codBarra,"
+                    "insert into produto (idProduto, nome, codInterno, codBarra,"
                     + "unidadeMedida, precoCompra, peso, altura, comprimento, validade,"
                     + "qtdMinima, qtdAtual, qtdMaxima, idFornecedor, idCategoria)"
                     + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -100,9 +100,9 @@ public class ProdutoDAO {
             comando.setFloat(8, produto.getAltura());
             comando.setFloat(9, produto.getComprimento());
             comando.setString(10, produto.getValidade());
-            comando.setFloat(11, produto.getQtdMinima());
-            comando.setFloat(12, produto.getQtdAtual());
-            comando.setFloat(13, produto.getQtdMaxima());
+            comando.setInt(11, produto.getQtdMinima());
+            comando.setInt(12, produto.getQtdAtual());
+            comando.setInt(13, produto.getQtdMaxima());
             if (produto.getFornecedor() == null){
                 comando.setNull(14, Types.INTEGER);
             } else {

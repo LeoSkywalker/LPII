@@ -6,8 +6,9 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Cliente;
 import model.FormaPagamento;
 import model.Usuario;
+import model.Venda;
 
 /**
  *
@@ -33,10 +35,14 @@ public class ManterVendaController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
         String acao = request.getParameter("acao");
-        if(acao.equals("prepararOperacao")){
-            prepararOperacao(request, response);
+        if(acao.equals("confirmarOperacao")){
+            confirmarOperacao(request, response);
+        }else{
+            if(acao.equals("prepararOperacao")){
+                prepararOperacao(request, response);
+            }
         }
     }
     
@@ -53,7 +59,13 @@ public class ManterVendaController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterVendaController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterVendaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -67,7 +79,13 @@ public class ManterVendaController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterVendaController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterVendaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -100,4 +118,49 @@ public class ManterVendaController extends HttpServlet {
         }
     }
 
+    public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException, IOException{
+        String operacao = request.getParameter("operacao");
+        int idVenda = Integer.parseInt(request.getParameter("numIdVenda"));
+        String dataVenda = request.getParameter("dtDataVenda");
+        int idCliente = Integer.parseInt(request.getParameter("optCliente"));
+        int idUsuario = Integer.parseInt(request.getParameter("optUsuario"));
+        float subTotal = Float.parseFloat(request.getParameter("numSubTotal"));
+        int codBarra = Integer.parseInt(request.getParameter("numCodBarra"));
+        float valorDesconto = Float.parseFloat(request.getParameter("numValorDesconto"));
+        String situacao = request.getParameter("optSituacao");
+        int idFormaPgto = Integer.parseInt(request.getParameter("optPagamento"));
+        
+        
+        try{
+            Cliente cliente = null;
+            if(idCliente != 0){
+                cliente = Cliente.obterCliente(idCliente);
+            }
+            Usuario usuario = null;
+            if(idUsuario != 0){
+                usuario = Usuario.obterUsuario(idUsuario);
+            }
+            FormaPagamento formaPagamento = null;
+            if(idFormaPgto != 0){
+                formaPagamento = FormaPagamento.obterFormaPagamento(idFormaPgto);
+            }
+            
+            Venda venda = new Venda(idVenda, dataVenda, subTotal, codBarra, 
+            valorDesconto, situacao, usuario, formaPagamento, cliente);
+            if(operacao.equals("Incluir")){
+                venda.gravar();
+            }
+            
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaVendaController");
+            view.forward(request, response);
+        }
+        catch(SQLException e){
+            throw new ServletException(e);
+        }
+        catch(ClassNotFoundException e){
+           throw new ServletException(e);
+        }
+    }
+    
+    
 }

@@ -6,12 +6,15 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.FormaPagamento;
 
 /**
  *
@@ -29,11 +32,15 @@ public class ManterPagamentoController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
         String acao = request.getParameter("acao");
-        if(acao.equals("prepararOperacao")){
-            prepararOperacao(request, response);
+        if(acao.equals("confirmarOperacao")){
+            confirmarOperacao(request, response);
+        }else{
+            if(acao.equals("prepararOperacao")){
+                prepararOperacao(request, response);
             }
+        }
         }
 
     private void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException {
@@ -47,12 +54,8 @@ public class ManterPagamentoController extends HttpServlet {
         }catch(IOException e){
             throw new ServletException(e);
         }
-//        catch(SQLException e){
-//            throw new ServletException(e);
-//        }
-//        catch(ClassNotFoundException e){
-//            throw new ServletException(e);
-//        }
+
+
     }
     
 
@@ -68,7 +71,13 @@ public class ManterPagamentoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterPagamentoController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterPagamentoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -82,7 +91,13 @@ public class ManterPagamentoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManterPagamentoController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterPagamentoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -95,4 +110,38 @@ public class ManterPagamentoController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    
+    public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException, IOException{
+        String operacao = request.getParameter("operacao");
+        int idFormaPgto = Integer.parseInt(request.getParameter("numIdPagamento"));
+        String nome = request.getParameter("nome");
+        int conta = Integer.parseInt(request.getParameter("conta"));
+        int agencia = Integer.parseInt(request.getParameter("agencia"));
+        String nomeBanco = request.getParameter("nomeBanco");
+        String tipoConta = request.getParameter("tipoConta");
+        int numMaxParcelas = Integer.parseInt(request.getParameter("numMaxParcelas"));
+        int intervaloParcelas = Integer.parseInt(request.getParameter("intervaloParcelas"));
+        double taxaBanco = Double.parseDouble(request.getParameter("taxaBanco"));
+        double taxaOperadora = Double.parseDouble(request.getParameter("taxaOperadora"));
+        double multaAtraso = Double.parseDouble(request.getParameter("taxamultaAtraso"));
+        String situacaoConfirmacao = request.getParameter("optSituacao");
+        
+        try{
+            FormaPagamento formaPagamento = new FormaPagamento(idFormaPgto, nome, 
+                    conta, agencia, nomeBanco, tipoConta, numMaxParcelas, 
+            intervaloParcelas, taxaBanco, taxaOperadora, multaAtraso, situacaoConfirmacao);
+            if(operacao.equals("Incluir")){
+                formaPagamento.gravar();
+            }
+            
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaPagamentoController");
+            view.forward(request, response);
+        }
+        catch(SQLException e){
+            throw new ServletException(e);
+        }
+        catch(ClassNotFoundException e){
+           throw new ServletException(e);
+        }
+    }
 }

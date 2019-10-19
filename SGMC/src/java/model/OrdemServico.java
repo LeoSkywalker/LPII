@@ -31,7 +31,7 @@ public class OrdemServico {
         this.numOS = numOS;
         this.fornecedor = fornecedor;
     }
-    
+
     public String getDescricao() {
         return descricao;
     }

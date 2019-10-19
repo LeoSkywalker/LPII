@@ -50,7 +50,7 @@ public class VendaDAO {
             try{
                 conexao = BD.getConexao();
                 comando = conexao.createStatement();
-                ResultSet rs = comando.executeQuery("select * from venda where idVenda = " + idVenda);
+                ResultSet rs = comando.executeQuery("select * from venda");
                 rs.first();
                 venda = instanciarVenda(rs);
             } finally{
@@ -81,7 +81,7 @@ public class VendaDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
-                    "insert into ordemservico (idVenda, dataVenda, subTotal, codBarra,"
+                    "insert into venda (idVenda, dataVenda, subTotal, codBarra,"
                     + "valorDesconto, situacao, idCliente, idUsuario, idFormaPgto)"
                     + "values (?,?,?,?,?,?,?,?,?)");
             comando.setInt(1, venda.getIdVenda());
@@ -98,7 +98,7 @@ public class VendaDAO {
             if (venda.getUsuario() == null){
                 comando.setNull(8, Types.INTEGER);
             } else {
-                comando.setInt(8, venda.getIdUsuario());//passei parametro direto | sem atributo idUsuario em model.Usuario
+                comando.setInt(8, venda.getUsuario().getIdUsuario());
             }
             if (venda.getFormaPagamento() == null){
                 comando.setNull(9, Types.INTEGER);

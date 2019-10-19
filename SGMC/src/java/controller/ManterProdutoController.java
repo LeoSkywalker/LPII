@@ -6,7 +6,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Categoria;
 import model.Fornecedor;
+import model.Produto;
 
 /**
  *
@@ -34,11 +34,15 @@ public class ManterProdutoController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
         String acao = request.getParameter("acao");
-        if(acao.equals("prepararOperacao")){
-            prepararOperacao(request, response);
+        if(acao.equals("confirmarOperacao")){
+            confirmarOperacao(request, response);
+        }else{
+            if(acao.equals("prepararOperacao")){
+                prepararOperacao(request, response);
             }
+        }
     }
 
     private void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException {
@@ -78,6 +82,8 @@ public class ManterProdutoController extends HttpServlet {
             processRequest(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(ManterProdutoController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterProdutoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -96,6 +102,8 @@ public class ManterProdutoController extends HttpServlet {
             processRequest(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(ManterProdutoController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManterProdutoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -109,4 +117,52 @@ public class ManterProdutoController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException, IOException{
+        String operacao = request.getParameter("operacao");
+        int idProduto = Integer.parseInt(request.getParameter("numIdProduto"));
+        String nome = request.getParameter("nomeProduto");
+        int codInterno = Integer.parseInt(request.getParameter("numCodInterno"));
+        int codBarra = Integer.parseInt(request.getParameter("numCodBarra"));
+        String unidadeMedida = request.getParameter("nomeUnidadeMedida");
+        float precoCompra = Float.parseFloat(request.getParameter("precoCompra"));
+        float peso = Float.parseFloat(request.getParameter("peso"));
+        float altura = Float.parseFloat(request.getParameter("altura"));
+        float largura = Float.parseFloat(request.getParameter("largura"));
+        float comprimento = Float.parseFloat(request.getParameter("comprimento"));
+        String validade = request.getParameter("validade");
+        int qtdMinima = Integer.parseInt(request.getParameter("qtdMinima"));
+        int qtdAtual = Integer.parseInt(request.getParameter("qtdAtual"));
+        int qtdMaxima = Integer.parseInt(request.getParameter("qtdMaxima"));
+        int idFornecedor = Integer.parseInt(request.getParameter("optFornecedor"));
+        int idCategoria = Integer.parseInt(request.getParameter("optCategoria"));
+        
+        try{
+            Fornecedor fornecedor = null;
+            if(idFornecedor != 0){
+                fornecedor = Fornecedor.obterFornecedor(idFornecedor);
+            }
+            Categoria categoria = null;
+            if(idCategoria != 0){
+                categoria = Categoria.obterCategoria(idCategoria);
+            }
+            
+            Produto produto = new Produto(idProduto, nome, codInterno, codBarra,
+                    unidadeMedida, precoCompra, peso, altura, comprimento, validade,
+                    qtdMinima, qtdAtual, qtdMaxima, fornecedor, categoria);
+            if(operacao.equals("Incluir")){
+                produto.gravar();
+            }
+            
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaProdutoController");
+            view.forward(request, response);
+        }
+        catch(SQLException e){
+            throw new ServletException(e);
+        }
+        catch(ClassNotFoundException e){
+           throw new ServletException(e);
+        }
+    }
+    
+    
 }

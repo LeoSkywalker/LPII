@@ -43,7 +43,7 @@ public class FormaPagamentoDAO {
             return formasPagamento;
     
 }
-     public static FormaPagamento obterFormaPagamento(int idFormaPagamento) throws SQLException, ClassNotFoundException{
+     public static FormaPagamento obterFormaPagamento(int idFormaPgto) throws SQLException, ClassNotFoundException{
      
             Connection conexao = null;
             Statement comando = null;
@@ -51,7 +51,7 @@ public class FormaPagamentoDAO {
             try{
                 conexao = BD.getConexao();
                 comando = conexao.createStatement();
-                ResultSet rs = comando.executeQuery("select * from formaPagamento where idFormaPagamento = " + idFormaPagamento);
+                ResultSet rs = comando.executeQuery("select * from formaPagamento where idFormaPgto = " + idFormaPgto);
                 rs.first();
                 formaPagamento = instaciarFormaPagamento(rs);
             } finally{
@@ -83,10 +83,10 @@ public class FormaPagamentoDAO {
         
         try{
             conexao = BD.getConexao();
-            comando = conexao.prepareStatement("insert into formaPagamento "
-                    + "(idFormaPgto, nome, conta, agencia, nomeBanco, tipoConta"
-                    + "numMaxParcelas, intervaloParcelas, taxaBanco, "
-                    + "taxaOperadora, multaAtraso, situacaoConfirmacao"
+            comando = conexao.prepareStatement(
+                    "insert into formapagamento (idFormaPgto, nome, conta, agencia, nomeBanco, tipoConta,"
+                    + "numMaxParcelas, intervaloParcelas, taxaBanco,"
+                    + "taxaOperadora, multaAtraso, situacaoConfirmacao)"
                     + "values (?,?,?,?,?,?,?,?,?,?,?,?)");
             comando.setInt(1, formaPagamento.getIdFormaPgto());
             comando.setString(2, formaPagamento.getNome());
@@ -97,9 +97,9 @@ public class FormaPagamentoDAO {
             comando.setInt(7, formaPagamento.getNumMaxParcelas());
             comando.setInt(8, formaPagamento.getIntervaloParcelas());
             comando.setDouble(9, formaPagamento.getTaxaBanco());
-            comando.setDouble(9, formaPagamento.getTaxaOperadora());
-            comando.setDouble(9, formaPagamento.getMultaAtraso());
-            comando.setString(10, formaPagamento.getSituacaoConfirmacao());
+            comando.setDouble(10, formaPagamento.getTaxaOperadora());
+            comando.setDouble(11, formaPagamento.getMultaAtraso());
+            comando.setString(12, formaPagamento.getSituacaoConfirmacao());
             
             comando.executeUpdate();
         }

@@ -139,8 +139,8 @@ public class FormaPagamento {
     }
 
     
-    public static FormaPagamento obterFormaPagamento (int idFormaPagamento) throws SQLException, ClassNotFoundException{
-        return FormaPagamentoDAO.obterFormaPagamento(idFormaPagamento);
+    public static FormaPagamento obterFormaPagamento (int idFormaPgto) throws SQLException, ClassNotFoundException{
+        return FormaPagamentoDAO.obterFormaPagamento(idFormaPgto);
     }
     
     public static List<FormaPagamento> obterFormasPagamentos() throws ClassNotFoundException, SQLException{

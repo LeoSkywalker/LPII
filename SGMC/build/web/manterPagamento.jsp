@@ -14,7 +14,7 @@
     </head>
     <body>
         <h1>Manter Pagamento - ${operacao}</h1>
-        <form action="ManterPagamentoController?acao=confirmarOperacao&operacao = ${operacao}" method="post" name="frmManterPagamento">
+        <form action="ManterPagamentoController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterPagamento">
         <table>
                 <tr>
                     <td><label> ID: </label>
@@ -26,9 +26,9 @@
                     <td><label> Nome da Forma de Pagamento: </label>
                         <input type="text" name="nome" value="${formaPagamento.nome}"></td>
                     <td><label> Conta: </label>
-                        <input type="number" name="numconta" value="${formaPagamento.conta}"></td>
+                        <input type="text" name="conta" value="${formaPagamento.conta}"></td>
                     <td><label> Agência: </label>
-                        <input type="number" name="agencia" value="${formaPagamento.agencia}"></td>
+                        <input type="text" name="agencia" value="${formaPagamento.agencia}"></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr><td><label> Banco: </label>
@@ -39,19 +39,19 @@
                 <tr><td></td></tr>
                 <tr>
                     <td><label> Num. Máximo de Parcelas: </label>
-                        <input type="number" name="numMaxParcelas" value="${formaPagamento.numMaxParcelas}"></td>
+                        <input type="text" name="numMaxParcelas" value="${formaPagamento.numMaxParcelas}"></td>
                     <td><label> Intervalo de Parcelas (dias): </label>
-                        <input type="number" name="intervaloParcelas" value="${formaPagamento.intervaloParcelas}"></td>
+                        <input type="text" name="intervaloParcelas" value="${formaPagamento.intervaloParcelas}"></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr>
                         
                     <td><label> Taxa do Banco: </label>
-                        <input type="number" name="taxaBanco" value="${formaPagamento.taxaBanco}"></td>
+                        <input type="text" name="taxaBanco" value="${formaPagamento.taxaBanco}"></td>
                     <td><label> Taxa da Operadora: </label>
-                        <input type="number" name="taxaOperadora" value="${formaPagamento.taxaOperadora}"></td>
+                        <input type="text" name="taxaOperadora" value="${formaPagamento.taxaOperadora}"></td>
                     <td><label> Taxa da Multa de Atraso: </label>
-                        <input type="number" name="taxamultaAtraso" value="${formaPagamento.multaAtraso}"></td>
+                        <input type="text" name="taxamultaAtraso" value="${formaPagamento.multaAtraso}"></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr>
@@ -66,7 +66,7 @@
                 <tr><td></td></tr>
                 <tr>
                     <td><input type="reset" value="Cancelar">
-                        <input type="submit" value="Enviar"></td>
+                        <input type="submit" name="btnIncluir" value="Enviar"></td>
                 </tr>
             </table>
         </form>

@@ -6,7 +6,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Fornecedor;
+import model.OrdemServico;
 
 /**
  *
@@ -35,8 +35,12 @@ public class ManterOrdemServicoController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         String acao = request.getParameter("acao");
-        if(acao.equals("prepararOperacao")){
-            prepararOperacao(request, response);
+        if(acao.equals("confirmarOperacao")){
+            confirmarOperacao(request, response);
+        }else{
+            if(acao.equals("prepararOperacao")){
+                prepararOperacao(request, response);
+            }
         }
     }
 
@@ -91,7 +95,7 @@ public class ManterOrdemServicoController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, ClassNotFoundException, SQLException {
+    private void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, ClassNotFoundException, SQLException, IOException {
         try{
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
@@ -106,6 +110,38 @@ public class ManterOrdemServicoController extends HttpServlet {
             throw new ServletException(e);
         }catch(ClassNotFoundException e){
             throw new ServletException(e);
+        }
+    }
+    
+    public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException, IOException{
+        String operacao = request.getParameter("operacao");
+        int idOrdemSrv = Integer.parseInt(request.getParameter("numIdOrdemServico"));
+        String dataPedido = request.getParameter("dtDataPedido");
+        String situacao = request.getParameter("optSituacao");
+        String descricao = request.getParameter("");
+        int numOS = Integer.parseInt(request.getParameter("txtNumeroOS"));
+        int idFornecedor = Integer.parseInt(request.getParameter("optFornecedor"));
+        
+        try{
+            Fornecedor fornecedor = null;
+            if(idFornecedor != 0){
+                fornecedor = Fornecedor.obterFornecedor(idFornecedor);
+            }
+            
+            OrdemServico ordemServico = new OrdemServico(idOrdemSrv, dataPedido, 
+                    situacao, descricao, numOS, fornecedor);
+            if(operacao.equals("Incluir")){
+                ordemServico.gravar();
+            }
+            
+            RequestDispatcher view = request.getRequestDispatcher("PesquisaOrdemServicoController");
+            view.forward(request, response);
+        }
+        catch(SQLException e){
+            throw new ServletException(e);
+        }
+        catch(ClassNotFoundException e){
+           throw new ServletException(e);
         }
     }
 

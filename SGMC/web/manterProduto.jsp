@@ -13,11 +13,11 @@
     </head>
     <body>
         <h1>Manter Produto - ${operacao}</h1>
-        <form action="ManterProdutoController?acao=confirmarOperacao&operacao = ${operacao}" method="post" name="frmManterProduto">
+        <form action="ManterProdutoController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterProduto">
             <table>
                 <tr>
                     <td><label> ID: </label>
-                        <input type="number" name="numIdProduto" value="${produto.idProduto}"></td>
+                        <input type="text" name="numIdProduto" value="${produto.idProduto}"></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr>
@@ -45,40 +45,40 @@
                 <tr><td></td></tr>
                 <tr>
                     <td><label> Código Interno: </label>
-                        <input type="number" name="numCodInterno" value="${produto.codInterno}"></td>
+                        <input type="text" name="numCodInterno" value="${produto.codInterno}"></td>
                     <td><label> Código de Barra: </label>
-                        <input type="number" name="numCodBarra" value="${produto.codBarra}"></td>
+                        <input type="text" name="numCodBarra" value="${produto.codBarra}"></td>
                     <td><label> Unidade de Medida: </label>
                         <input type="text" name="nomeUnidadeMedida" value="${produto.unidadeMedida}"></td>
                     <td><label> Preço de Compra: </label>
-                        <input type="number" name="precoCompra" value="${produto.precoCompra}"></td>
+                        <input type="text" name="precoCompra" value="${produto.precoCompra}"></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr>
                     <td><label> Peso(kg): </label>
-                        <input type="number" name="peso" value="${produto.peso}"></td>
+                        <input type="text" name="peso" value="${produto.peso}"></td>
                     <td><label> Altura(cm): </label>
-                        <input type="number" name="altura" value="${produto.altura}"></td>
+                        <input type="text" name="altura" value="${produto.altura}"></td>
                     <td><label> Largura(m): </label>
-                        <input type="number" name="largura" value="${produto.largura}"></td>
+                        <input type="text" name="largura" value="${produto.largura}"></td>
                     <td><label> Comprimento(m): </label>
-                        <input type="number" name="comprimento" value="${produto.comprimento}"></td>
+                        <input type="text" name="comprimento" value="${produto.comprimento}"></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr>
                  <td><label> Validade(meses): </label>
-                        <input type="number" name="validade" value="${produto.validade}"></td>
+                        <input type="text" name="validade" value="${produto.validade}"></td>
                  <td><label> Quantidade Mínima: </label>
-                     <input type="number" name="qtdMinima" value="${produto.qtdMinima}"></td>
+                     <input type="text" name="qtdMinima" value="${produto.qtdMinima}"></td>
                  <td><label> Quantidade Atual: </label>
-                     <input type="number" name="qtdAtual" value="${produto.qtdAtual}"></td>
+                     <input type="text" name="qtdAtual" value="${produto.qtdAtual}"></td>
                  <td><label> Quantidade Máxima: </label>
-                     <input type="number" name="qtdMaxima" value="${produto.qtdMaxima}"></td>
+                     <input type="text" name="qtdMaxima" value="${produto.qtdMaxima}"></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr>
                     <td><input type="reset" value="Cancelar">
-                        <input type="submit" value="Enviar"></td>
+                        <input type="submit" name="btnIncluir" value="Enviar"></td>
                 </tr>
             </table>
         </form>

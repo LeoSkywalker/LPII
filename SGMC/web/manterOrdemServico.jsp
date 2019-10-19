@@ -14,13 +14,13 @@
     </head>
     <body>
         <h1>Manter Ordem de Serviço - ${operacao}</h1>
-        <form action="ManterOrdemServicoController?acao=confirmarOperacao&operacao = ${operacao}" method="post" name="frmManterOrdemServico">
+        <form action="ManterOrdemServicoController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterOrdemServico">
             <table>
                 <tr>
                     <td><label> ID: </label>
-                        <input type="number" name="numIdOrdemServico" value="${ordemServico.idOrdemServico}"></td>
+                        <input type="text" name="numIdOrdemServico" value="${ordemServico.idOrdemServico}"></td>
                     <td><label> Número da Ordem de Serviço: </label>
-                        <input type="number" name="numNumeroOS" value="${ordemServico.numOS}"></td>
+                        <input type="text" name="txtNumeroOS" value="${ordemServico.numOS}"></td>
                 </tr>
                 <tr><td></td></tr> 
                 <tr>
@@ -55,7 +55,7 @@
                 <tr><td></td></tr> 
                 <tr>
                     <td><input type="reset" value="Cancelar">
-                        <input type="submit" value="Enviar"></td>
+                        <input type="submit" name="btnIncluir" value="Enviar"></td>
                 </tr>
             </table>
         </form>
