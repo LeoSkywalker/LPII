@@ -20,12 +20,14 @@
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Endereço</th>
+                <th></th>
             </tr>
             <c:forEach items="${clientes}" var="cliente">
                 <tr>
                     <td><c:out value="${cliente.idCliente}"/></td>
                     <td><c:out value="${cliente.nome}"/></td>
                     <td><c:out value="${cliente.idEndereco}"/></td>
+                    <td><a href="ManterClienteController?acao=prepararOperacao&operacao=Excluir&idCliente=<c:out value="${cliente.idCliente}"/>">Excluir</a></td>
                 </tr>
             </c:forEach>
         </table>

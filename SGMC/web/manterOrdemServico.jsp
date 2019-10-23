@@ -33,13 +33,6 @@
                             </c:forEach>
                         </select>
                     </td>
-                    
-                    <!--<td><label> Produto: </label>
-                        <input type="text"></td>
-                    <td><label> Quantidade (unidade): </label>
-                        <input type="number" id="qtdProduto"></td>
-                    <td><label> Descrição (defeito apresentado): </label>
-                        <input type="number" id="descricao"></td>-->
                 </tr>
                 <tr><td></td></tr> 
                 <tr>

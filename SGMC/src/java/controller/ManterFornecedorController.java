@@ -101,6 +101,11 @@ public class ManterFornecedorController extends HttpServlet {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
             request.setAttribute("enderecos", Endereco.obterEnderecos());
+            if(!operacao.equals("Incluir")){
+                int idFornecedor = Integer.parseInt(request.getParameter("idFornecedor"));
+                Fornecedor fornecedor = Fornecedor.obterFornecedor(idFornecedor);
+                request.setAttribute("fornecedores", fornecedor);
+            }
             RequestDispatcher view = request.getRequestDispatcher("/manterFornecedor.jsp");
             view.forward(request, response);
         }
@@ -137,6 +142,11 @@ public class ManterFornecedorController extends HttpServlet {
                     cnpj, nomeRepresentante, email, telefone, endereco);
             if(operacao.equals("Incluir")){
                 fornecedor.gravar();
+            }
+            else{
+                if(operacao.equals("Excluir")){
+                    fornecedor.excluir();
+                }
             }
             RequestDispatcher view = request.getRequestDispatcher("PesquisaFornecedorController");
             view.forward(request, response);

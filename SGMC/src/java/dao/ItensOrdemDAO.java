@@ -96,13 +96,27 @@ public class ItensOrdemDAO {
                 comando.setNull(4, Types.INTEGER);
             }else{
                 comando.setInt(4, itensOrdem.getOrdemServico().getIdOrdemSrv());
-            }
-            
-            
+            }         
             comando.executeUpdate();
         }
         finally{
             fecharConexao(conexao, comando);
+        }
+    }
+    public static void excluir(ItensOrdem itensOrdem) throws 
+            ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "delete from itensOrdem where idItensOrdem = " 
+                    + itensOrdem.getIdItensOrdem();
+            comando.execute(stringSQL);
+        }finally {
+            fecharConexao(conexao, comando);
+                    
         }
     }
 }

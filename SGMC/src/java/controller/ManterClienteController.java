@@ -101,6 +101,11 @@ public class ManterClienteController extends HttpServlet {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
             request.setAttribute("enderecos", Endereco.obterEnderecos());
+            if(!operacao.equals("Incluir")){
+                int idCliente = Integer.parseInt(request.getParameter("idCliente"));
+                Cliente cliente = Cliente.obterCliente(idCliente);
+                request.setAttribute("cliente", cliente);
+            }
             RequestDispatcher view = request.getRequestDispatcher("/manterCliente.jsp");
             view.forward(request, response);
         }
@@ -145,6 +150,10 @@ public class ManterClienteController extends HttpServlet {
             sexo, endereco);
             if(operacao.equals("Incluir")){
                 cliente.gravar();
+            }else{
+                if(operacao.equals("Excluir")){
+                    cliente.excluir();
+                }
             }
             RequestDispatcher view = request.getRequestDispatcher("PesquisaClienteController");
             view.forward(request, response);

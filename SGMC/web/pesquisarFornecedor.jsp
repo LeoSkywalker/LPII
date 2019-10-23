@@ -27,6 +27,7 @@
                     <td><c:out value="${fornecedor.idFornecedor}"/></td>
                     <td><c:out value="${fornecedor.nomeFantasia}"/></td>
                     <td><c:out value="${fornecedor.cnpj}"/></td>
+                    <td><a href="ManterFornecedorController?acao=prepararOperacao&operacao=Excluir&idCliente="<c:out value="${fornecedor.idFornecedor}"/>">Excluir</a></td>
                 </tr>
             </c:forEach>            
         </table>

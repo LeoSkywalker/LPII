@@ -87,8 +87,6 @@ public class ItensVendaDAO {
             comando.setInt(1, itensVenda.getIdItensVenda());
             comando.setInt(2, itensVenda.getQuantidade());
             comando.setFloat(3, itensVenda.getPrecoUnitario());
-            //comando.setInt(4, itensVenda.getIdVenda());
-            //comando.setInt(5, itensVenda.getIdProduto());
             
             if(itensVenda.getVenda()==null){
                 comando.setNull(4, Types.INTEGER);
@@ -105,4 +103,21 @@ public class ItensVendaDAO {
             fecharConexao(conexao, comando);
         }
     }
+    
+    public static void  excluir(ItensVenda itensVenda) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "delete from itensVenda where idItensVenda ="
+                    + itensVenda.getIdItensVenda();
+            comando.execute(stringSQL);
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+    }
+
 }

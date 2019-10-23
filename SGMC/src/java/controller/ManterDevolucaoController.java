@@ -103,6 +103,11 @@ public class ManterDevolucaoController extends HttpServlet {
             request.setAttribute("operacao", operacao);
             request.setAttribute("vendas", Venda.obterVendas());
             request.setAttribute("produtos", Produto.obterProdutos());
+            if(!operacao.equals("Incluir")){
+                int idDevolucao = Integer.parseInt(request.getParameter("idCliente"));
+                PerdaDevolucao perdaDevolucao = PerdaDevolucao.obterPerdaDevolucao(idDevolucao);
+                request.setAttribute("perdasDevolucoes", perdaDevolucao);
+            }
             RequestDispatcher view = request.getRequestDispatcher("/manterDevolucao.jsp");
             view.forward(request, response);
         } catch (ServletException e) {
@@ -136,6 +141,10 @@ public class ManterDevolucaoController extends HttpServlet {
                     tipo, produto, venda);
             if (operacao.equals("Incluir")) {
                 perdaDevolucao.gravar();
+            }else{
+                if(operacao.equals("Excluir")){
+                    perdaDevolucao.excluir();
+                }
             }
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDevolucaoController");
             view.forward(request, response);

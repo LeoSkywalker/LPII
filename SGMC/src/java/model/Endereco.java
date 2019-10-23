@@ -112,4 +112,8 @@ public class Endereco {
         EnderecoDAO.gravar(this);
     }
     
+    public void excluir() throws ClassNotFoundException, SQLException{
+        EnderecoDAO.excluir(this);
+    }
+    
 }

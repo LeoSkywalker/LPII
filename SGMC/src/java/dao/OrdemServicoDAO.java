@@ -78,7 +78,7 @@ public class OrdemServicoDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
-                    "insert into ordemservico (idOrdemSrv, dataPedido, situacao,"
+                    "insert into ordemServico (idOrdemSrv, dataPedido, situacao,"
                     + "descricao, numOS, idFornecedor)"
                     + "values (?,?,?,?,?,?)");
             comando.setInt(1, ordemServico.getIdOrdemSrv());

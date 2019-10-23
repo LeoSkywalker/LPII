@@ -105,5 +105,7 @@ public class ItensVenda {
     public void gravar() throws SQLException, ClassNotFoundException {
         ItensVendaDAO.gravar(this);
     }
-    
+    public void excluir() throws ClassNotFoundException, SQLException{
+        ItensVendaDAO.excluir(this);
+    }
 }
