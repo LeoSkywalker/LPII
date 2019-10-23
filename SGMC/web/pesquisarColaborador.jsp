@@ -43,6 +43,7 @@
                     <td><c:out value="${colaborador.nome}"/></td>
                     <td><c:out value="${colaborador.idEndereco}"/></td>
                     <td><c:out value="${colaborador.idUsuario}"/></td>
+                    <td><a href="ManterColaboradorController?acao=prepararOperacao&operacao=Excluir&idColaborador=<c:out value="${colaborador.idColaborador}"/>">Excluir</a></td>
                 </tr>
             </c:forEach>
         </table>

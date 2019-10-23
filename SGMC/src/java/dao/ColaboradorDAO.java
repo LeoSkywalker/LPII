@@ -119,4 +119,30 @@ public class ColaboradorDAO {
             fecharConexao(conexao, comando);
         }
     }
+    public static void excluir(Colaborador colaborador, Usuario usuario) throws 
+            ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "delete from colaborador where idColaborador = " 
+                    + colaborador.getIdColaborador();
+            comando.execute(stringSQL);
+        }finally {
+            fecharConexao(conexao, comando);
+                    
+        }
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "delete from usuario where idUsuario = " 
+                    + usuario.getIdUsuario();
+            comando.execute(stringSQL);
+        }finally {
+            fecharConexao(conexao, comando);
+                    
+        }
+    }
 }

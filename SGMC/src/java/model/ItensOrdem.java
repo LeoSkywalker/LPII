@@ -95,4 +95,8 @@ public class ItensOrdem {
     public void gravar() throws SQLException, ClassNotFoundException {
         ItensOrdemDAO.gravar(this);
     }
+    
+    public void excluir() throws ClassNotFoundException, SQLException{
+        ItensOrdemDAO.excluir(this);
+    }
 }

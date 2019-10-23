@@ -50,5 +50,8 @@ public class Categoria {
     public void gravar() throws SQLException, ClassNotFoundException {
         CategoriaDAO.gravar(this);
     }
-   
+    
+    public void excluir() throws ClassNotFoundException, SQLException{
+        CategoriaDAO.excluir(this);
+    }
 }

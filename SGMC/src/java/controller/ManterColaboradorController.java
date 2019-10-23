@@ -103,6 +103,11 @@ public class ManterColaboradorController extends HttpServlet {
             request.setAttribute("operacao", operacao);
             request.setAttribute("usuarios", Usuario.obterUsuarios());
             request.setAttribute("enderecos", Endereco.obterEnderecos());
+            if(!operacao.equals("Incluir")){
+                int idColaborador = Integer.parseInt(request.getParameter("idColaborador"));
+                Colaborador colaborador = Colaborador.obterColaborador(idColaborador);
+                request.setAttribute("colaboradores", colaborador);
+            }
             RequestDispatcher view = request.getRequestDispatcher("/manterColaborador.jsp");
             view.forward(request, response);
         } catch (ServletException e) {
@@ -142,6 +147,10 @@ public class ManterColaboradorController extends HttpServlet {
                     nome, email, senha, endereco);
             if(operacao.equals("Incluir")){
                 colaborador.gravar();
+            }else{
+                if(operacao.equals("Excluir")){
+                    colaborador.excluir();
+                }
             }
             RequestDispatcher view = request.getRequestDispatcher("PesquisaColaboradorController");
             view.forward(request, response);

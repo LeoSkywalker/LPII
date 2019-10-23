@@ -84,7 +84,7 @@ public class FormaPagamentoDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
-                    "insert into formapagamento (idFormaPgto, nome, conta, agencia, nomeBanco, tipoConta,"
+                    "insert into formaPagamento (idFormaPgto, nome, conta, agencia, nomeBanco, tipoConta,"
                     + "numMaxParcelas, intervaloParcelas, taxaBanco,"
                     + "taxaOperadora, multaAtraso, situacaoConfirmacao)"
                     + "values (?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -104,6 +104,22 @@ public class FormaPagamentoDAO {
             comando.executeUpdate();
         }
         finally{
+            fecharConexao(conexao, comando);
+        }
+    }
+    
+        public static void  excluir(FormaPagamento formaPagamento) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "delete from formaPagamento where idFormaPgto ="
+                    + formaPagamento.getIdFormaPgto();
+            comando.execute(stringSQL);
+        }finally{
             fecharConexao(conexao, comando);
         }
     }

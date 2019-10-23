@@ -82,4 +82,20 @@ public class CategoriaDAO {
             fecharConexao(conexao, comando);
         }
     }
+    
+    public static void  excluir(Categoria categoria) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "delete from categoria where idCategoria ="
+                    + categoria.getIdCategoria();
+            comando.execute(stringSQL);
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+    }
 }

@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Admin;
+import model.Usuario;
 
 /**
  *
@@ -72,20 +73,57 @@ public class AdminDAO {
        
     }
     
-    public static void gravar(Admin admin) throws ClassNotFoundException, SQLException{
+    public static void gravar(Admin admin, Usuario usuario) throws ClassNotFoundException, SQLException{
         Connection conexao = null;
         PreparedStatement comando = null;
         try{
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
-            "insert into admin (idAdmin, nome, email, senha) values (?,?,?,?)");
+            "insert into admin (idAdmin, idUsuario) values (?,?)");
             comando.setInt(1, admin.getIdAdmin());
-            comando.setInt(2, admin.getIdAdmin());
-            comando.setString(3, admin.getNome());
-            comando.setString(4, admin.getEmail());
-            comando.setString(5, admin.getSenha());
+            comando.setInt(2, usuario.getIdUsuario());
             comando.executeUpdate();
             }finally{
+            fecharConexao(conexao, comando);
+        }
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement(
+            "insert into usuario (idUsuario, nome, email, senha)"
+                    +" values (?,?,?,?)");
+            comando.setInt(1, usuario.getIdUsuario());
+            comando.setString(2, usuario.getNome());
+            comando.setString(3, usuario.getEmail());
+            comando.setString(4, usuario.getSenha());        
+            
+            comando.executeUpdate();
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+    }
+    
+    public static void  excluir(Admin admin, Usuario usuario) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "delete from admin where idAdmin ="
+                    + admin.getIdAdmin();
+            comando.execute(stringSQL);
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+         try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "delete from usuario where idUsuario ="
+                    + usuario.getIdUsuario();
+            comando.execute(stringSQL);
+        }finally{
             fecharConexao(conexao, comando);
         }
     }

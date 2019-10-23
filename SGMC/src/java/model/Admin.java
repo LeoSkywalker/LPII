@@ -39,7 +39,10 @@ public class Admin extends Usuario{
     }
     
     public void gravar() throws SQLException, ClassNotFoundException {
-        AdminDAO.gravar(this);
+        AdminDAO.gravar(this, this);
     }
-        
+    
+    public void excluir() throws ClassNotFoundException, SQLException{
+        AdminDAO.excluir(this, this);
+    }    
 }

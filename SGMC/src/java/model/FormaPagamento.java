@@ -150,6 +150,7 @@ public class FormaPagamento {
     public void gravar() throws SQLException, ClassNotFoundException {
         FormaPagamentoDAO.gravar(this);
     }
-    
-    
+     public void excluir() throws ClassNotFoundException, SQLException{
+        FormaPagamentoDAO.excluir(this);
+    }
 }
