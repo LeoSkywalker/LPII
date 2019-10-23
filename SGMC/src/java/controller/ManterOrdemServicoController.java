@@ -100,6 +100,11 @@ public class ManterOrdemServicoController extends HttpServlet {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
             request.setAttribute("fornecedores", Fornecedor.obterFornecedores());
+            if (!operacao.equals("Incluir")){
+                int idOrdemSrv  = Integer.parseInt(request.getParameter("idOrdemSrv"));
+                OrdemServico ordemServico = OrdemServico.obterOrdemServico(idOrdemSrv);
+                request.setAttribute("ordemServico", ordemServico);
+            }
             RequestDispatcher view = request.getRequestDispatcher("/manterOrdemServico.jsp");
             view.forward(request, response);
         }catch(ServletException e){
@@ -132,6 +137,10 @@ public class ManterOrdemServicoController extends HttpServlet {
                     situacao, descricao, numOS, fornecedor);
             if(operacao.equals("Incluir")){
                 ordemServico.gravar();
+            }else{
+                if (operacao.equals("Excluir")){
+                    ordemServico.excluir();
+                }
             }
             
             RequestDispatcher view = request.getRequestDispatcher("PesquisaOrdemServicoController");

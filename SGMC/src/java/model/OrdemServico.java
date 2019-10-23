@@ -103,4 +103,8 @@ public class OrdemServico {
     public void gravar() throws ClassNotFoundException, SQLException{
         OrdemServicoDAO.gravar(this);
     }
+    
+    public void excluir() throws ClassNotFoundException, SQLException{
+        OrdemServicoDAO.excluir(this);
+    }
 }

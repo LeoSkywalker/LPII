@@ -96,4 +96,19 @@ public class OrdemServicoDAO {
             fecharConexao(conexao, comando);
         }
     }
+    public static void excluir(OrdemServico ordemServico) throws ClassNotFoundException, 
+            SQLException {
+        Connection conexao = null;
+        Statement comando= null;
+        String stringSQL;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL =  "delete from ordemservico where idOrdemSrv = " + 
+                    ordemServico.getIdOrdemSrv();
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+    }
 }

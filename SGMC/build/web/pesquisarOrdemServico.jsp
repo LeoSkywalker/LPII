@@ -24,6 +24,10 @@
                 <tr>
                     <td><c:out value="${ordemServico.idOrdemSrv}"/></td>
                     <td><c:out value="${ordemServico.dataPedido}"/></td>
+                    <td>
+                        <a href="ManterOrdemServicoController?acao=prepararOperacao&operacao=Excluir&idOrdemSrv=<c:out value="${ordemServico.idOrdemSrv}"/>">
+                        Excluir</a>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

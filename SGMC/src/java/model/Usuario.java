@@ -68,4 +68,8 @@ public class Usuario {
     public void gravar() throws ClassNotFoundException, SQLException{
         UsuarioDAO.gravar(this);
     }
+    
+    public void excluir() throws ClassNotFoundException, SQLException {
+        UsuarioDAO.excluir(this);
+    }
 }

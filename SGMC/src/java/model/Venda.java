@@ -157,6 +157,10 @@ public class Venda {
     }
     
     public void gravar() throws ClassNotFoundException, SQLException{
-            VendaDAO.gravar(this);
+        VendaDAO.gravar(this);
+    }
+    
+    public void excluir() throws ClassNotFoundException, SQLException {
+        VendaDAO.excluir(this);
     }
 }

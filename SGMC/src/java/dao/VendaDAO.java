@@ -110,4 +110,20 @@ public class VendaDAO {
             fecharConexao(conexao, comando);
         }
     }
+    
+    public static void excluir(Venda venda) throws ClassNotFoundException, 
+            SQLException {
+        Connection conexao = null;
+        Statement comando= null;
+        String stringSQL;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL =  "delete from venda where idVenda = " + 
+                    venda.getIdVenda();
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+    }
 }

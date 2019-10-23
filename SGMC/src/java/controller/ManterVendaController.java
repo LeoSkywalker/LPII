@@ -105,6 +105,11 @@ public class ManterVendaController extends HttpServlet {
             request.setAttribute("pagamentos", FormaPagamento.obterFormasPagamentos());
             request.setAttribute("clientes", Cliente.obterClientes());
             request.setAttribute("usuarios", Usuario.obterUsuarios());
+            if(!operacao.equals("Incluir")){
+                int idVenda = Integer.parseInt(request.getParameter("idVenda"));
+                Venda venda = Venda.obterVenda(idVenda);
+                request.setAttribute("vendas", this);
+            }
             RequestDispatcher view = request.getRequestDispatcher("/manterVenda.jsp");
             view.forward(request, response);
         }catch(ServletException e){
@@ -149,6 +154,10 @@ public class ManterVendaController extends HttpServlet {
             valorDesconto, situacao, usuario, formaPagamento, cliente);
             if(operacao.equals("Incluir")){
                 venda.gravar();
+            }else{
+                if (operacao.equals("Excluir")){
+                    venda.excluir();
+                }
             }
             
             RequestDispatcher view = request.getRequestDispatcher("PesquisaVendaController");

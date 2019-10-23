@@ -20,10 +20,14 @@
                 <th>ID</th>
                 <th>Nome do Banco:</th>    
             </tr>
-            <c:forEach items="${formasPagamento}" var="formaPagamento">
+            <c:forEach items="${formaPagamento}" var="formaPagamento">
                 <tr>
                     <td><c:out value="${formaPagamento.idFormaPgto}"/></td>
                     <td><c:out value="${formaPagamento.nomeBanco}"/></td>
+                    <td>
+                        <a href="ManterPagamentoController?acao=prepararOperacao&operacao=Excluir&idFormaPgto=<c:out value="${formaPagamento.idFormaPgto}"/>">
+                           Exclir</a>
+                    </td>
                 </tr>
             </c:forEach>            
         </table>

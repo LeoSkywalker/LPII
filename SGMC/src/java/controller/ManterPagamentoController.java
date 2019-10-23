@@ -47,6 +47,10 @@ public class ManterPagamentoController extends HttpServlet {
         try{
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
+            if (!operacao.equals("Incluir")){
+                int idFormaPgto = Integer.parseInt(request.getParameter("idFormaPgto"));
+                request.setAttribute("formaPagamento", this);
+            }
             RequestDispatcher view = request.getRequestDispatcher("/manterPagamento.jsp");
             view.forward(request, response);
         }catch(ServletException e){
@@ -132,6 +136,10 @@ public class ManterPagamentoController extends HttpServlet {
             intervaloParcelas, taxaBanco, taxaOperadora, multaAtraso, situacaoConfirmacao);
             if(operacao.equals("Incluir")){
                 formaPagamento.gravar();
+            }else{
+                if (operacao.equals("Excluir")){
+                    formaPagamento.excluir();
+                }
             }
             
             RequestDispatcher view = request.getRequestDispatcher("PesquisaPagamentoController");

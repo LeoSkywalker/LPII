@@ -94,4 +94,8 @@ public class PerdaDevolucao {
     public void gravar() throws ClassNotFoundException, SQLException{
         PerdaDevolucaoDAO.gravar(this);
     }
+    
+    public void excluir() throws ClassNotFoundException, SQLException {
+        PerdaDevolucaoDAO.excluir(this);
+    }
 }

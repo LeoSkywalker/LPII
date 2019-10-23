@@ -51,6 +51,11 @@ public class ManterProdutoController extends HttpServlet {
                 request.setAttribute("operacao", operacao);
                 request.setAttribute("fornecedores", Fornecedor.obterFornecedores());
                 request.setAttribute("categorias", Categoria.obterCategorias());
+                if (!operacao.equals("Incluir")){
+                    int idProduto = Integer.parseInt(request.getParameter("idProduto"));
+                    Produto produto = Produto.obterProduto(idProduto);
+                    request.setAttribute("produtos", this);
+                }
                 RequestDispatcher view = request.getRequestDispatcher("/manterProduto.jsp");
                 view.forward(request, response);
             }catch(ServletException e){
@@ -151,6 +156,10 @@ public class ManterProdutoController extends HttpServlet {
                     qtdMinima, qtdAtual, qtdMaxima, fornecedor, categoria);
             if(operacao.equals("Incluir")){
                 produto.gravar();
+            }else{
+                if (operacao.equals("Excluir")){
+                    produto.excluir();
+                }
             }
             
             RequestDispatcher view = request.getRequestDispatcher("PesquisaProdutoController");

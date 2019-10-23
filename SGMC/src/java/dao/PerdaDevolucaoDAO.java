@@ -95,4 +95,20 @@ public class PerdaDevolucaoDAO {
             fecharConexao(conexao, comando);
         }
     }
+    
+    public static void excluir(PerdaDevolucao perdaDevolucao) throws ClassNotFoundException, 
+            SQLException {
+        Connection conexao = null;
+        Statement comando= null;
+        String stringSQL;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL =  "delete from perdadevolucao where idPerdaDevolucao = " + 
+                    perdaDevolucao.getIdPerdaDevolucao();
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+    }
 }
