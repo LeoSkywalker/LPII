@@ -93,6 +93,7 @@ public class UsuarioDAO {
             comando = conexao.createStatement();
             stringSQL =  "delete from usuario where idUsuario = " + 
                     usuario.getIdUsuario();
+            comando.execute(stringSQL);
         }finally{
             fecharConexao(conexao, comando);
         }

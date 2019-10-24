@@ -132,7 +132,6 @@ public class ManterProdutoController extends HttpServlet {
         float precoCompra = Float.parseFloat(request.getParameter("precoCompra"));
         float peso = Float.parseFloat(request.getParameter("peso"));
         float altura = Float.parseFloat(request.getParameter("altura"));
-        float largura = Float.parseFloat(request.getParameter("largura"));
         float comprimento = Float.parseFloat(request.getParameter("comprimento"));
         String validade = request.getParameter("validade");
         int qtdMinima = Integer.parseInt(request.getParameter("qtdMinima"));

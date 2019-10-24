@@ -129,6 +129,7 @@ public class ProdutoDAO {
             comando = conexao.createStatement();
             stringSQL =  "delete from produto where idProduto = " + 
                     produto.getIdProduto();
+            comando.execute(stringSQL);
         }finally{
             fecharConexao(conexao, comando);
         }

@@ -50,7 +50,7 @@ public class VendaDAO {
             try{
                 conexao = BD.getConexao();
                 comando = conexao.createStatement();
-                ResultSet rs = comando.executeQuery("select * from venda");
+                ResultSet rs = comando.executeQuery("select * from venda where idVenda=" + idVenda);
                 rs.first();
                 venda = instanciarVenda(rs);
             } finally{
@@ -120,8 +120,9 @@ public class VendaDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            stringSQL =  "delete from venda where idVenda = " + 
-                    venda.getIdVenda();
+            stringSQL =  "delete from venda where idVenda = "  
+                    + venda.getIdVenda();
+            comando.execute(stringSQL);
         }finally{
             fecharConexao(conexao, comando);
         }

@@ -49,8 +49,7 @@
                 <tr>
                     <td>
                         <input type="reset" value="Cancelar">
-                        <input type="submit" name="btnIncluir" value="Enviar">
-                        <input type="submit" value="Excluir">
+                        <input type="submit" name="btnConfirmar" value="${operacao}">
                     </td>
                 </tr>
             </table>

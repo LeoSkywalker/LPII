@@ -118,6 +118,7 @@ public class FormaPagamentoDAO {
             comando = conexao.createStatement();
             stringSQL = "delete from formaPagamento where idFormaPgto = " +
                      formaPagamento.getIdFormaPgto();
+            comando.execute(stringSQL);
         }finally{
             fecharConexao(conexao, comando);
         }

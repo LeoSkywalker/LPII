@@ -114,6 +114,8 @@ public class ManterVendaController extends HttpServlet {
             view.forward(request, response);
         }catch(ServletException e){
             throw e;
+            
+            
         }catch(IOException e){
             throw new ServletException(e);
         }catch(SQLException e){

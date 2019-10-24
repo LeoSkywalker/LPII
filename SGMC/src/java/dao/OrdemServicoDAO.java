@@ -107,6 +107,7 @@ public class OrdemServicoDAO {
             comando = conexao.createStatement();
             stringSQL =  "delete from ordemServico where idOrdemSrv = " + 
                     ordemServico.getIdOrdemSrv();
+            comando.execute(stringSQL);
         }finally{
             fecharConexao(conexao, comando);
         }

@@ -64,9 +64,9 @@
                     </td>
                     <td><label> Forma de Pagamento: </label>
                         <select name="optPagamento">
-                            <option value="0" <c:if test="${venda.pagamento.idFormaPgto == null}">selected</c:if></option>
+                            <option value="0" <c:if test="${venda.formaPagamento.idFormaPgto == null}">selected</c:if></option>
                             <c:forEach items="${pagamentos}" var="pagamento">
-                                <option value="${pagamento.idFormaPgto}" <c:if test="${venda.pagamento.idFormaPgto == pagamento.idFormaPgto}">selected</c:if>>${pagamento.nome}</option>
+                                <option value="${pagamento.idFormaPgto}" <c:if test="${venda.formaPagamento.idFormaPgto == pagamento.idFormaPgto}">selected</c:if>>${pagamento.nome}</option>
                             </c:forEach>
                         </select>
                     </td>                
@@ -84,7 +84,7 @@
                 <tr><td></td></tr>
                 <tr>
                     <td><input type="reset" value="Cancelar">
-                        <input type="submit" name="btnIncluir" value="Enviar"></td>
+                        <input type="submit" name="btnConfirmar" value="${operacao}"></td>
                 </tr>
             </table>
         </form>
