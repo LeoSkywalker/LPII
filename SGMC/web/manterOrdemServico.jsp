@@ -18,7 +18,7 @@
             <table>
                 <tr>
                     <td><label> ID: </label>
-                        <input type="text" name="numIdOrdemServico" value="${ordemServico.idOrdemServico}"></td>
+                        <input type="text" name="numIdOrdemServico" value="${ordemServico.idOrdemSrv}"></td>
                     <td><label> Número da Ordem de Serviço: </label>
                         <input type="text" name="txtNumeroOS" value="${ordemServico.numOS}"></td>
                 </tr>
@@ -47,8 +47,11 @@
                 </tr>
                 <tr><td></td></tr> 
                 <tr>
-                    <td><input type="reset" value="Cancelar">
-                        <input type="submit" name="btnIncluir" value="Enviar"></td>
+                    <td>
+                        <input type="reset" value="Cancelar">
+                        <input type="submit" name="btnIncluir" value="Enviar">
+                        <input type="submit" value="Excluir">
+                    </td>
                 </tr>
             </table>
         </form>

@@ -108,7 +108,7 @@ public class FormaPagamentoDAO {
         }
     }
     
-        public static void  excluir(FormaPagamento formaPagamento) throws ClassNotFoundException, SQLException{
+        public static void excluir(FormaPagamento formaPagamento) throws ClassNotFoundException, SQLException{
         Connection conexao = null;
         Statement comando = null;
         String stringSQL;
@@ -116,9 +116,8 @@ public class FormaPagamentoDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            stringSQL = "delete from formaPagamento where idFormaPgto ="
-                    + formaPagamento.getIdFormaPgto();
-            comando.execute(stringSQL);
+            stringSQL = "delete from formaPagamento where idFormaPgto = " +
+                     formaPagamento.getIdFormaPgto();
         }finally{
             fecharConexao(conexao, comando);
         }

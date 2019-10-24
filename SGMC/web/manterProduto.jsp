@@ -59,8 +59,6 @@
                         <input type="text" name="peso" value="${produto.peso}"></td>
                     <td><label> Altura(cm): </label>
                         <input type="text" name="altura" value="${produto.altura}"></td>
-                    <td><label> Largura(m): </label>
-                        <input type="text" name="largura" value="${produto.largura}"></td>
                     <td><label> Comprimento(m): </label>
                         <input type="text" name="comprimento" value="${produto.comprimento}"></td>
                 </tr>
@@ -78,7 +76,9 @@
                 <tr><td></td></tr>
                 <tr>
                     <td><input type="reset" value="Cancelar">
-                        <input type="submit" name="btnIncluir" value="Enviar"></td>
+                        <input type="submit" name="btnIncluir" value="Enviar">
+                        <input type="submit" value="Excluir">
+                    </td>
                 </tr>
             </table>
         </form>

@@ -54,7 +54,7 @@ public class ManterProdutoController extends HttpServlet {
                 if (!operacao.equals("Incluir")){
                     int idProduto = Integer.parseInt(request.getParameter("idProduto"));
                     Produto produto = Produto.obterProduto(idProduto);
-                    request.setAttribute("produtos", this);
+                    request.setAttribute("produto", produto);
                 }
                 RequestDispatcher view = request.getRequestDispatcher("/manterProduto.jsp");
                 view.forward(request, response);

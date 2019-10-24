@@ -32,7 +32,7 @@
                 </tr>
                 <tr><td></td></tr>
                 <tr><td><label> Banco: </label>
-                        <input type="text" name="nomeBanco" value="${formaPagamento.banco}"></td>
+                        <input type="text" name="nomeBanco" value="${formaPagamento.nomeBanco}"></td>
                     <td><label> Tipo da Conta: </label>
                         <input type="text" name="tipoConta" value="${formaPagamento.tipoConta}"></td>
                 </tr>
@@ -66,7 +66,9 @@
                 <tr><td></td></tr>
                 <tr>
                     <td><input type="reset" value="Cancelar">
-                        <input type="submit" name="btnIncluir" value="Enviar"></td>
+                        <input type="submit" name="btnIncluir" value="Enviar">
+                        <input type="submit" value="Excluir">
+                    </td>
                 </tr>
             </table>
         </form>

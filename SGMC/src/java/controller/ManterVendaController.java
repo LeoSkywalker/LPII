@@ -108,7 +108,7 @@ public class ManterVendaController extends HttpServlet {
             if(!operacao.equals("Incluir")){
                 int idVenda = Integer.parseInt(request.getParameter("idVenda"));
                 Venda venda = Venda.obterVenda(idVenda);
-                request.setAttribute("vendas", this);
+                request.setAttribute("venda", venda);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterVenda.jsp");
             view.forward(request, response);

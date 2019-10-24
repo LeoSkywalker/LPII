@@ -42,7 +42,7 @@ public class OrdemServicoDAO {
         return ordemServicos;
     }
     
-     public static OrdemServico obterOrdemServico(int idOrdemServico) throws SQLException, ClassNotFoundException{
+     public static OrdemServico obterOrdemServico(int idOrdemSrv) throws SQLException, ClassNotFoundException{
      
             Connection conexao = null;
             Statement comando = null;
@@ -50,7 +50,7 @@ public class OrdemServicoDAO {
             try{
                 conexao = BD.getConexao();
                 comando = conexao.createStatement();
-                ResultSet rs = comando.executeQuery("select * from ordemServico where idOrdemServico = " + idOrdemServico);
+                ResultSet rs = comando.executeQuery("select * from ordemServico where idOrdemSrv = " + idOrdemSrv);
                 rs.first();
                 ordemServico = instanciarOrdemServico(rs);
             } finally{
@@ -105,7 +105,7 @@ public class OrdemServicoDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            stringSQL =  "delete from ordemservico where idOrdemSrv = " + 
+            stringSQL =  "delete from ordemServico where idOrdemSrv = " + 
                     ordemServico.getIdOrdemSrv();
         }finally{
             fecharConexao(conexao, comando);

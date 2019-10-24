@@ -24,6 +24,10 @@
                 <tr>
                     <td><c:out value="${venda.idVenda}"/></td>
                     <td><c:out value="${venda.dataVenda}"/></td>
+                    <td>
+                        <a href="ManterVendaController?acao=prepararOperacao&operacao=Excluir&idVenda=<c:out value="${venda.idVenda}"/>">
+                            Excluir</a>
+                    </td>
                 </tr>
             </c:forEach>            
         </table>
