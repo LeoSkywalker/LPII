@@ -112,7 +112,8 @@ public class ClienteDAO {
             fecharConexao(conexao, comando);
         }
     }
-    public static void excluir(Cliente cliente) throws ClassNotFoundException, SQLException{
+    public static void excluir(Cliente cliente) throws ClassNotFoundException, 
+            SQLException{
         Connection conexao = null;
         Statement comando = null;
         String stringSQL;

@@ -24,7 +24,7 @@
                 <tr>
                     <td><c:out value="${perdaDevolucao.idPerdaDevolucao}"/></td>
                     <td><c:out value="${perdaDevolucao.tipo}"/></td>
-                    <td><a href="ManterDevolucaoController?acao=prepararOperacao&operacao=Excluir&idCliente="<c:out value="${perdaDevolucao.idPerdaDevolucao}"/>">Excluir</a></td>
+                    <td><a href="ManterDevolucaoController?acao=prepararOperacao&operacao=Excluir&idCliente=<c:out value="${perdaDevolucao.idPerdaDevolucao}"/>">Excluir</a></td>
                 </tr>
             </c:forEach>
         </table>

@@ -106,7 +106,7 @@ public class ManterColaboradorController extends HttpServlet {
             if(!operacao.equals("Incluir")){
                 int idColaborador = Integer.parseInt(request.getParameter("idColaborador"));
                 Colaborador colaborador = Colaborador.obterColaborador(idColaborador);
-                request.setAttribute("colaboradores", colaborador);
+                request.setAttribute("colaborador", colaborador);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterColaborador.jsp");
             view.forward(request, response);

@@ -27,8 +27,6 @@
         <h1></h1>
         <a href="PesquisaDevolucaoController">Manter Perda/Devolução</a>
         <h1></h1>
-        <a href="PesquisaEnderecoController">Manter Endereço</a>
-        <h1></h1>
         <a href="PesquisaOrdemServicoController">Manter Ordem de Serviço</a>
         <h1></h1>
         <a href="GerarRelatorioColaboradorController">Gerar Relatório Colaborador</a>

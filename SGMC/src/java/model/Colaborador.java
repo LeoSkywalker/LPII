@@ -138,6 +138,6 @@ public class Colaborador extends Usuario {
     }
     
     public void excluir() throws ClassNotFoundException, SQLException{
-        ColaboradorDAO.excluir(this, this);
+        ColaboradorDAO.excluir(this);
     }
 }

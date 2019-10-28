@@ -50,7 +50,9 @@ public class PerdaDevolucaoDAO {
             try{
                 conexao = BD.getConexao();
                 comando = conexao.createStatement();
-                ResultSet rs = comando.executeQuery("select * from perdaDevolucao where idPerdaDevolucao = " + idPerdaDevolucao);
+                ResultSet rs = comando.executeQuery("select * from "
+                        + "perdaDevolucao where idPerdaDevolucao = " + 
+                        idPerdaDevolucao);
                 rs.first();
                 perdaDevolucao = instanciarPerdaDevolucao(rs);
             } finally{
@@ -75,9 +77,8 @@ public class PerdaDevolucaoDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
-                    "insert into perdaDevolucao (idPerdaDevolucao, tipo, idVenda,"
-                    + "idProduto)"
-                    + "values (?,?,?,?)");
+                    "insert into perdaDevolucao (idPerdaDevolucao, tipo, "
+                            + "idVenda, idProduto) values (?,?,?,?)");
             comando.setInt(1, perdaDevolucao.getIdPerdaDevolucao());
             comando.setString(2, perdaDevolucao.getTipo());
             if(perdaDevolucao.getVenda()==null){
@@ -105,8 +106,9 @@ public class PerdaDevolucaoDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            stringSQL =  "delete from perdadevolucao where idPerdaDevolucao = " + 
-                    perdaDevolucao.getIdPerdaDevolucao();
+            stringSQL =  "delete from perdaDevolucao where idPerdaDevolucao = " 
+                    + perdaDevolucao.getIdPerdaDevolucao();
+            comando.execute(stringSQL);
         }finally{
             fecharConexao(conexao, comando);
         }

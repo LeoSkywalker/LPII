@@ -106,7 +106,7 @@ public class ManterDevolucaoController extends HttpServlet {
             if(!operacao.equals("Incluir")){
                 int idDevolucao = Integer.parseInt(request.getParameter("idCliente"));
                 PerdaDevolucao perdaDevolucao = PerdaDevolucao.obterPerdaDevolucao(idDevolucao);
-                request.setAttribute("perdasDevolucoes", perdaDevolucao);
+                request.setAttribute("perdaDevolucao", perdaDevolucao);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterDevolucao.jsp");
             view.forward(request, response);

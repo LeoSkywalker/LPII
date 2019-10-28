@@ -31,7 +31,9 @@ public class ColaboradorDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from colaborador, usuario where colaborador.idColaborador=usuario.idUsuario");
+            ResultSet rs = comando.executeQuery("select * from colaborador join "
+                    + " usuario on colaborador.idUsuario = usuario.idUsuario"
+                    + " join endereco on colaborador.idEndereco=endereco.idEndereco");
             
             while (rs.next()){
                 colaborador = instanciarColaborador(rs);
@@ -51,7 +53,10 @@ public class ColaboradorDAO {
             try{
                 conexao = BD.getConexao();
                 comando = conexao.createStatement();
-                ResultSet rs = comando.executeQuery("select * from colaborador where idColaborador = " + idColaborador);
+                ResultSet rs = comando.executeQuery("select * from colaborador join" 
+                    + " usuario on colaborador.idUsuario = usuario.idUsuario" 
+                    + " join endereco on colaborador.idEndereco=endereco.idEndereco "
+                        + " where idColaborador = " + idColaborador);
                 rs.first();
                 colaborador = instanciarColaborador(rs);
             } finally{
@@ -81,28 +86,6 @@ public class ColaboradorDAO {
     public static void gravar(Colaborador colaborador, Usuario usuario) throws ClassNotFoundException, SQLException{
         Connection conexao = null;
         PreparedStatement comando = null;
-        try{
-            conexao = BD.getConexao();
-            comando = conexao.prepareStatement(
-            "insert into colaborador (idColaborador, cpf, rg, dataNascimento, telefone,"
-            +" celular, estadoCivil, sexo, idEndereco) values (?,?,?,?,?,?,?,?,?)");
-            comando.setInt(1, colaborador.getIdColaborador());
-            comando.setString(2, colaborador.getCpf());
-            comando.setString(3, colaborador.getRg());
-            comando.setString(4, colaborador.getDataNascimento());
-            comando.setString(5, colaborador.getTelefone());
-            comando.setString(6, colaborador.getCelular());
-            comando.setString(7, colaborador.getEstadoCivil());
-            comando.setString(8, colaborador.getSexo());
-            if(colaborador.getEndereco()==null){
-                comando.setNull(9, Types.INTEGER);
-            }else{
-                comando.setInt(9, colaborador.getEndereco().getIdEndereco());
-            }
-            comando.executeUpdate();
-            }finally{
-            fecharConexao(conexao, comando);
-        }
         
         try{
             conexao = BD.getConexao();
@@ -118,8 +101,34 @@ public class ColaboradorDAO {
         }finally{
             fecharConexao(conexao, comando);
         }
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.prepareStatement(
+            "insert into colaborador (idColaborador, cpf, rg, dataNascimento, telefone,"
+            +" celular, estadoCivil, sexo, idEndereco, idUsuario) values (?,?,?,?,?,?,?,?,?,?)");
+            comando.setInt(1, colaborador.getIdColaborador());
+            comando.setString(2, colaborador.getCpf());
+            comando.setString(3, colaborador.getRg());
+            comando.setString(4, colaborador.getDataNascimento());
+            comando.setString(5, colaborador.getTelefone());
+            comando.setString(6, colaborador.getCelular());
+            comando.setString(7, colaborador.getEstadoCivil());
+            comando.setString(8, colaborador.getSexo());
+            if(colaborador.getEndereco()==null){
+                comando.setNull(9, Types.INTEGER);
+            }else{
+                comando.setInt(9, colaborador.getEndereco().getIdEndereco());
+            }
+            comando.setInt(10, colaborador.getIdUsuario());
+            comando.executeUpdate();
+            }finally{
+            fecharConexao(conexao, comando);
+        }
+        
+        
     }
-    public static void excluir(Colaborador colaborador, Usuario usuario) throws 
+    public static void excluir(Colaborador colaborador) throws 
             ClassNotFoundException, SQLException{
         Connection conexao = null;
         Statement comando = null;
@@ -138,7 +147,7 @@ public class ColaboradorDAO {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             stringSQL = "delete from usuario where idUsuario = " 
-                    + usuario.getIdUsuario();
+                    + colaborador.getIdUsuario();
             comando.execute(stringSQL);
         }finally {
             fecharConexao(conexao, comando);
