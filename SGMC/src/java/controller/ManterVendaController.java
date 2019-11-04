@@ -157,11 +157,15 @@ public class ManterVendaController extends HttpServlet {
             if(operacao.equals("Incluir")){
                 venda.gravar();
             }else{
-                if (operacao.equals("Excluir")){
-                    venda.excluir();
+                if(operacao.equals("Alterar")){
+                    venda.alterar();
+                }else{
+                    if (operacao.equals("Excluir")){
+                        venda.excluir();
+                    }
                 }
             }
-            
+
             RequestDispatcher view = request.getRequestDispatcher("PesquisaVendaController");
             view.forward(request, response);
         }

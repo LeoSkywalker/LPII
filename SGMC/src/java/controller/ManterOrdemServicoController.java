@@ -138,8 +138,12 @@ public class ManterOrdemServicoController extends HttpServlet {
             if(operacao.equals("Incluir")){
                 ordemServico.gravar();
             }else{
-                if (operacao.equals("Excluir")){
-                    ordemServico.excluir();
+                if (operacao.equals("Alterar")){
+                    ordemServico.alterar();                
+                }else{
+                    if (operacao.equals("Excluir")){
+                        ordemServico.excluir();
+                    }
                 }
             }
             

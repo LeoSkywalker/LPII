@@ -112,4 +112,30 @@ public class OrdemServicoDAO {
             fecharConexao(conexao, comando);
         }
     }
+    
+    public static void alterar(OrdemServico ordemServico) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "update ordemServico set "
+                    + "numOS = " + ordemServico.getNumOS() + ","
+                    + "descricao = '" + ordemServico.getDescricao() + "',"
+                    + "dataPedido = '" + ordemServico.getDataPedido() + "',"
+                    + "situacao = '" + ordemServico.getSituacao() + "',"
+                    + "idFornecedor = ";
+            if(ordemServico.getFornecedor() == null){
+                stringSQL = stringSQL + null;
+            } else {
+                stringSQL = stringSQL + ordemServico.getFornecedor().getIdFornecedor();
+            }
+            stringSQL =  stringSQL + " where idOrdemSrv = " + ordemServico.getIdOrdemSrv();
+            comando.execute(stringSQL);
+        }finally{
+            fecharConexao(conexao, comando );
+        }
+    }
 }

@@ -28,6 +28,10 @@
                         <a href="ManterPagamentoController?acao=prepararOperacao&operacao=Excluir&idFormaPgto=<c:out value="${formaPagamento.idFormaPgto}"/>">
                            Excluir</a>
                     </td>
+                    <td>
+                        <a href="ManterPagamentoController?acao=prepararOperacao&operacao=Alterar&idFormaPgto=<c:out value="${formaPagamento.idFormaPgto}"/>">
+                           Alterar</a>
+                    </td>
                 </tr>
             </c:forEach>            
         </table>

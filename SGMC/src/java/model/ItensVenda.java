@@ -95,17 +95,22 @@ public class ItensVenda {
     }
     
      public static ItensVenda obterItensVenda (int idItensVenda) throws SQLException, ClassNotFoundException{
-        return ItensVenda.obterItensVenda(idItensVenda);
+        return ItensVendaDAO.obterItensVenda(idItensVenda);
     }
     
     public static List<ItensVenda> obterItensVendas() throws ClassNotFoundException, SQLException{
-        return ItensVenda.obterItensVendas();
+        return ItensVendaDAO.obterItensVendas();
     }
     
     public void gravar() throws SQLException, ClassNotFoundException {
         ItensVendaDAO.gravar(this);
     }
+    
     public void excluir() throws ClassNotFoundException, SQLException{
         ItensVendaDAO.excluir(this);
+    }
+
+    public void alterar() throws SQLException, ClassNotFoundException {
+        ItensVendaDAO.alterar(this);
     }
 }

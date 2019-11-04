@@ -40,24 +40,18 @@
                             </c:forEach>
                         </select>
                             
-                    </td><td><label> Produto: </label>
-                        <input type="text" name="txtIdProduto" value="${itensVenda.idProduto}"></td>
-
-                    <td>
-                    <label> Quantidade: </label>
-                        <input type="text" name="qtdProduto" value="${itensVenda.quantidade}">
                     </td>
                 </tr>
-                <tr><td></td></tr>
+                <br>
                 <tr>
                     <td>
                         <label> Código de Barra: </label>
                         <input type="text" name="numCodBarra" value="${venda.codBarra}">
                     </td>
-                    <td>
+                    <!--<td>
                         <label> Preço Unitário: </label>
                         <input type="text" name="precounitario" value="${itensVenda.precoUnitario}">
-                    </td>
+                    </td>-->
                     <td>
                         <label> Valor Desconto: </label>
                         <input type="text" name="numValorDesconto" value="${venda.valorDesconto}">
@@ -83,8 +77,10 @@
                 </tr>             
                 <tr><td></td></tr>
                 <tr>
-                    <td><input type="reset" value="Cancelar">
-                        <input type="submit" name="btnConfirmar" value="${operacao}"></td>
+                    <td>
+                        <input type="reset" value="Cancelar">
+                        <input type="submit" name="btnConfirmar" value="${operacao}">
+                    </td>
                 </tr>
             </table>
         </form>

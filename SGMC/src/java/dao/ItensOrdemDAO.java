@@ -32,7 +32,8 @@ public class ItensOrdemDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from itensOrdem");
+            ResultSet rs = comando.executeQuery("select * from itensOrdem "
+                    + "join ordemServico on itensOrdem.idOrdemSrv = ordemServico.idOrdemSrv");
 
             while (rs.next()) {
                 itensOrdem = instaciarItensOrdem(rs);
@@ -54,7 +55,9 @@ public class ItensOrdemDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from itensOrdem where idItensOrdem = " + idItensOrdem);
+            ResultSet rs = comando.executeQuery("select * from itensOrdem "
+                    + "join ordemServico on itensOrdem.idOrdemSrv = ordemServico.idOrdemSrv "
+                    + "where idItensOrdem = " + idItensOrdem);
             rs.first();
             itensOrdem = instaciarItensOrdem(rs);
         } finally {
@@ -117,6 +120,30 @@ public class ItensOrdemDAO {
         }finally {
             fecharConexao(conexao, comando);
                     
+        }
+    }
+    
+    public static void alterar(ItensOrdem itensOrdem) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "update itensOrdem set "
+                    + "quantidade = " + itensOrdem.getQuantidade() + ","
+                    + "idProduto = ";
+            if (itensOrdem.getProduto() == null){
+                stringSQL = stringSQL + null;
+            }else{
+                stringSQL = stringSQL + itensOrdem.getProduto().getIdProduto();
+            }
+            stringSQL = stringSQL + " where idItensOrdem = " + itensOrdem.getIdOrdemSrv()
+                    + " and idOrdemSrv " + itensOrdem.getIdOrdemSrv();
+            comando.execute(stringSQL);
+        }finally{
+            fecharConexao(conexao, comando);
         }
     }
 }

@@ -32,7 +32,8 @@ public class ItensVendaDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from itensVendas");
+            ResultSet rs = comando.executeQuery("select * from itensVenda join"
+                    + " venda on itensVenda.idVenda = venda.idVenda");
 
             while (rs.next()) {
                 itensVenda = instaciarItensVenda(rs);
@@ -54,7 +55,8 @@ public class ItensVendaDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from itensVenda "
+            ResultSet rs = comando.executeQuery("select * from itensVenda join"
+                    + " venda on itensVenda.idVenda = venda.idVenda "
                     + "where idItensVenda = " + idItensVenda);
             rs.first();
             itensVenda = instaciarItensVenda(rs);
@@ -82,21 +84,22 @@ public class ItensVendaDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
-            "insert into  (idItensVenda, quantidade, precoUnitario,"
-            +" idVenda, idProduto) values (?,?,?,?,?,)");
+            "insert into itensVenda (idItensVenda, quantidade, precoUnitario,"
+            +"idVenda, idProduto)"
+            + "values (?,?,?,?,?)");
             comando.setInt(1, itensVenda.getIdItensVenda());
             comando.setInt(2, itensVenda.getQuantidade());
             comando.setFloat(3, itensVenda.getPrecoUnitario());
             
-            if(itensVenda.getVenda()==null){
+            if(itensVenda.getVenda()== null){
                 comando.setNull(4, Types.INTEGER);
             }else{
                 comando.setInt(4, itensVenda.getVenda().getIdVenda());
             }
-            if(itensVenda.getProduto()==null){
-                comando.setNull(4, Types.INTEGER);
+            if(itensVenda.getProduto()== null){
+                comando.setNull(5, Types.INTEGER);
             }else{
-                comando.setInt(4, itensVenda.getProduto().getIdProduto());
+                comando.setInt(5, itensVenda.getProduto().getIdProduto());
             }
             comando.executeUpdate();
             }finally{
@@ -104,7 +107,7 @@ public class ItensVendaDAO {
         }
     }
     
-    public static void  excluir(ItensVenda itensVenda) throws ClassNotFoundException, SQLException{
+    public static void excluir(ItensVenda itensVenda) throws ClassNotFoundException, SQLException{
         Connection conexao = null;
         Statement comando = null;
         String stringSQL;
@@ -112,8 +115,40 @@ public class ItensVendaDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            stringSQL = "delete from itensVenda where idItensVenda ="
+            stringSQL = "delete from itensVenda where idItensVenda = "
                     + itensVenda.getIdItensVenda();
+            comando.execute(stringSQL);
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+    }
+    
+    public static void alterar(ItensVenda itensVenda) throws SQLException, ClassNotFoundException{
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "update itensVenda set "
+                    + "precoUnitario = " + itensVenda.getPrecoUnitario() + ","
+                    + "quantidade = " + itensVenda.getQuantidade() + ","
+                    + "idProduto = ";
+            if (itensVenda.getProduto() == null){
+                stringSQL = stringSQL + null;
+            }else{
+                stringSQL = stringSQL + itensVenda.getProduto().getIdProduto();
+            }
+            
+            /*if(itensVenda.getVenda() == null){
+                stringSQL = stringSQL + null;
+            }else{
+                stringSQL = stringSQL + itensVenda.getVenda().getIdVenda();
+            }*/
+            
+            stringSQL = stringSQL + " where idItensVenda = " + itensVenda.getIdItensVenda()
+                    + " and idVenda " + itensVenda.getIdVenda();
             comando.execute(stringSQL);
         }finally{
             fecharConexao(conexao, comando);

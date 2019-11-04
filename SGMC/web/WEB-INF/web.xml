@@ -64,6 +64,22 @@
         <servlet-name>ManterDevolucaoController</servlet-name>
         <servlet-class>controller.ManterDevolucaoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManterItensVendaController</servlet-name>
+        <servlet-class>controller.ManterItensVendaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PesquisaItensVendaController</servlet-name>
+        <servlet-class>controller.PesquisaItensVendaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManterItensOrdemController</servlet-name>
+        <servlet-class>controller.ManterItensOrdemController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PesquisaItensOrdemController</servlet-name>
+        <servlet-class>controller.PesquisaItensOrdemController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaClienteController</servlet-name>
         <url-pattern>/PesquisaClienteController</url-pattern>
@@ -127,6 +143,22 @@
     <servlet-mapping>
         <servlet-name>ManterDevolucaoController</servlet-name>
         <url-pattern>/ManterDevolucaoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterItensVendaController</servlet-name>
+        <url-pattern>/ManterItensVendaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisaItensVendaController</servlet-name>
+        <url-pattern>/PesquisaItensVendaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterItensOrdemController</servlet-name>
+        <url-pattern>/ManterItensOrdemController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisaItensOrdemController</servlet-name>
+        <url-pattern>/PesquisaItensOrdemController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

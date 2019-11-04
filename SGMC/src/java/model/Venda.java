@@ -160,6 +160,10 @@ public class Venda {
         VendaDAO.gravar(this);
     }
     
+    public void alterar() throws ClassNotFoundException, SQLException{
+        VendaDAO.alterar(this);
+    }
+    
     public void excluir() throws ClassNotFoundException, SQLException {
         VendaDAO.excluir(this);
     }

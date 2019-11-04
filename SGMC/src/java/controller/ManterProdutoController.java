@@ -156,11 +156,14 @@ public class ManterProdutoController extends HttpServlet {
             if(operacao.equals("Incluir")){
                 produto.gravar();
             }else{
-                if (operacao.equals("Excluir")){
-                    produto.excluir();
+                if (operacao.equals("Alterar")){
+                    produto.alterar();
+                }else{
+                    if (operacao.equals("Excluir")){
+                        produto.excluir();
+                    }
                 }
             }
-            
             RequestDispatcher view = request.getRequestDispatcher("PesquisaProdutoController");
             view.forward(request, response);
         }

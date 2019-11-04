@@ -6,6 +6,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,13 +15,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.FormaPagamento;
+import model.ItensVenda;
+import model.Produto;
+import model.Venda;
 
 /**
  *
- * @author leonardo
+ * @author Lucas Gama
  */
-public class ManterPagamentoController extends HttpServlet {
+public class ManterItensVendaController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,28 +44,7 @@ public class ManterPagamentoController extends HttpServlet {
                 prepararOperacao(request, response);
             }
         }
-        }
-
-    private void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ServletException, SQLException, ClassNotFoundException {
-        try{
-            String operacao = request.getParameter("operacao");
-            request.setAttribute("operacao", operacao);
-            if (!operacao.equals("Incluir")){
-                int idFormaPgto = Integer.parseInt(request.getParameter("idFormaPgto"));
-                FormaPagamento formaPagamento = FormaPagamento.obterFormaPagamento(idFormaPgto);
-                request.setAttribute("formaPagamento", formaPagamento);
-            }
-            RequestDispatcher view = request.getRequestDispatcher("/manterPagamento.jsp");
-            view.forward(request, response);
-        }catch(ServletException e){
-            throw e;
-        }catch(IOException e){
-            throw new ServletException(e);
-        }
-
-
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -79,9 +61,9 @@ public class ManterPagamentoController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ManterPagamentoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManterItensVendaController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ManterPagamentoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManterItensVendaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -99,9 +81,9 @@ public class ManterPagamentoController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ManterPagamentoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManterItensVendaController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ManterPagamentoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManterItensVendaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -115,45 +97,68 @@ public class ManterPagamentoController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
-    public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException, IOException{
+    private void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException, IOException {
         String operacao = request.getParameter("operacao");
-        int idFormaPgto = Integer.parseInt(request.getParameter("numIdPagamento"));
-        String nome = request.getParameter("nome");
-        int conta = Integer.parseInt(request.getParameter("conta"));
-        int agencia = Integer.parseInt(request.getParameter("agencia"));
-        String nomeBanco = request.getParameter("nomeBanco");
-        String tipoConta = request.getParameter("tipoConta");
-        int numMaxParcelas = Integer.parseInt(request.getParameter("numMaxParcelas"));
-        int intervaloParcelas = Integer.parseInt(request.getParameter("intervaloParcelas"));
-        double taxaBanco = Double.parseDouble(request.getParameter("taxaBanco"));
-        double taxaOperadora = Double.parseDouble(request.getParameter("taxaOperadora"));
-        double multaAtraso = Double.parseDouble(request.getParameter("taxamultaAtraso"));
-        String situacaoConfirmacao = request.getParameter("optSituacao");
-        
+        int idItensVenda = Integer.parseInt(request.getParameter("numIdItensVenda"));
+        int idVenda = Integer.parseInt(request.getParameter("optVenda"));
+        int idProduto = Integer.parseInt(request.getParameter("optProduto"));
+        int quantidade = Integer.parseInt(request.getParameter("numQuantidade"));
+        float precoUnitario = Float.parseFloat(request.getParameter("numPrecoUnitario"));
+     
         try{
-            FormaPagamento formaPagamento = new FormaPagamento(idFormaPgto, nome, 
-                    conta, agencia, nomeBanco, tipoConta, numMaxParcelas, 
-            intervaloParcelas, taxaBanco, taxaOperadora, multaAtraso, situacaoConfirmacao);
+            Produto produto = null;
+            if(idProduto != 0){
+                produto = Produto.obterProduto(idProduto);
+            }
+            Venda venda = null;
+            if(idVenda != 0){
+                venda = Venda.obterVenda(idVenda);
+            }
+            ItensVenda itensVenda = new ItensVenda(idItensVenda, quantidade, precoUnitario, 
+                    venda, produto);
             if(operacao.equals("Incluir")){
-                formaPagamento.gravar();
+                itensVenda.gravar();
             }else{
-                if (operacao.equals("Alterar")){
-                    formaPagamento.alterar();
+                if(operacao.equals("Alterar")){
+                    itensVenda.alterar();
                 }else{
                     if (operacao.equals("Excluir")){
-                        formaPagamento.excluir();
+                        itensVenda.excluir();
                     }
                 }
             }
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaPagamentoController");
-            view.forward(request, response);
-        }
-        catch(SQLException e){
+        RequestDispatcher view = request.getRequestDispatcher("PesquisaItensVendaController");
+           view.forward(request, response);   
+        }catch(SQLException e){
             throw new ServletException(e);
         }
         catch(ClassNotFoundException e){
            throw new ServletException(e);
         }
     }
+
+    private void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, IOException, ServletException {
+        try{
+            String operacao = request.getParameter("operacao");
+            request.setAttribute("operacao", operacao);
+            request.setAttribute("produtos", Produto.obterProdutos());
+            request.setAttribute("vendas", Venda.obterVendas());
+            if(!operacao.equals("Incluir")){
+                int idIntensVenda = Integer.parseInt(request.getParameter("idItensVenda"));
+                ItensVenda itensVenda = ItensVenda.obterItensVenda(idIntensVenda);
+                request.setAttribute("itensVenda", itensVenda);
+            }
+            RequestDispatcher view = request.getRequestDispatcher("/manterItensVenda.jsp");
+            view.forward(request, response);
+        }catch(ServletException e){
+            throw e;
+        }catch(IOException e){
+            throw new ServletException(e);
+        }catch(SQLException e){
+            throw new ServletException(e);
+        }catch(ClassNotFoundException e){
+            throw new ServletException(e);
+        }
+    }
+
 }

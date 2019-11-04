@@ -123,4 +123,31 @@ public class FormaPagamentoDAO {
             fecharConexao(conexao, comando);
         }
     }
+        
+        public static void alterar(FormaPagamento formaPagamento) throws ClassNotFoundException, SQLException{
+            Connection conexao = null;
+            Statement comando = null;
+            String stringSQL;
+            
+            try{
+                conexao = BD.getConexao();
+                comando = conexao.createStatement();
+                stringSQL = "update formaPagamento set " 
+                        + "nome = '" + formaPagamento.getNome() + "',"
+                        + "conta = '" + formaPagamento.getConta() + "',"
+                        + "agencia = '" + formaPagamento.getAgencia() + "',"
+                        + "nomeBanco = '" + formaPagamento.getNomeBanco() + "',"
+                        + "tipoConta = '" + formaPagamento.getTipoConta() + "',"
+                        + "numMaxParcelas = '" + formaPagamento.getNumMaxParcelas() + "',"
+                        + "intervaloParcelas = '" + formaPagamento.getIntervaloParcelas() + "',"
+                        + "taxaBanco = '" + formaPagamento.getTaxaBanco() + "',"
+                        + "taxaOperadora = '" + formaPagamento.getTaxaOperadora() + "',"
+                        + "multaAtraso = '" + formaPagamento.getMultaAtraso() + "',"
+                        + "situacaoConfirmacao = '" + formaPagamento.getSituacaoConfirmacao() + "'";
+                stringSQL = stringSQL + " where idFormaPgto = " + formaPagamento.getIdFormaPgto();
+                comando.execute(stringSQL);
+            }finally{
+                fecharConexao(conexao, comando);
+            }
+        }
 }

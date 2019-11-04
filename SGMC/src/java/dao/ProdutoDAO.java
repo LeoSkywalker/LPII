@@ -20,70 +20,71 @@ import model.Produto;
  * @author Lucas Gama
  */
 public class ProdutoDAO {
-    public static List<Produto> obterProdutos() throws ClassNotFoundException, SQLException{
-        
+
+    public static List<Produto> obterProdutos() throws ClassNotFoundException, SQLException {
+
         Connection conexao = null;
         Statement comando = null;
         List<Produto> produtos = new java.util.ArrayList<Produto>();
         Produto produto = null;
-        
-        try{
+
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select * from produto");
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 produto = instanciarProduto(rs);
                 produtos.add(produto);
             }
-        }finally{
+        } finally {
             fecharConexao(conexao, comando);
         }
         return produtos;
     }
-    
-    public static Produto obterProduto(int idProduto) throws SQLException, ClassNotFoundException{
-     
-            Connection conexao = null;
-            Statement comando = null;
-            Produto produto = null;
-            try{
-                conexao = BD.getConexao();
-                comando = conexao.createStatement();
-                ResultSet rs = comando.executeQuery("select * from produto where idProduto = " + idProduto);
-                rs.first();
-                produto = instanciarProduto(rs);
-            } finally{
-                fecharConexao(conexao, comando);
-            }
-            return produto;
+
+    public static Produto obterProduto(int idProduto) throws SQLException, ClassNotFoundException {
+
+        Connection conexao = null;
+        Statement comando = null;
+        Produto produto = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from produto where idProduto = " + idProduto);
+            rs.first();
+            produto = instanciarProduto(rs);
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return produto;
     }
 
     private static Produto instanciarProduto(ResultSet rs) throws SQLException {
         Produto produto = new Produto(rs.getInt("idProduto"),
-        rs.getString("nome"),
-        rs.getInt("codInterno"),
-        rs.getInt("codBarra"),
-        rs.getString("unidadeMedida"),
-        rs.getFloat("precoCompra"),
-        rs.getFloat("peso"),
-        rs.getFloat("altura"),
-        rs.getFloat("comprimento"),
-        rs.getString("validade"),
-        rs.getInt("qtdMinima"),
-        rs.getInt("qtdAtual"),
-        rs.getInt("qtdMaxima"),
-        null,
-        null);
+                rs.getString("nome"),
+                rs.getInt("codInterno"),
+                rs.getInt("codBarra"),
+                rs.getString("unidadeMedida"),
+                rs.getFloat("precoCompra"),
+                rs.getFloat("peso"),
+                rs.getFloat("altura"),
+                rs.getFloat("comprimento"),
+                rs.getString("validade"),
+                rs.getInt("qtdMinima"),
+                rs.getInt("qtdAtual"),
+                rs.getInt("qtdMaxima"),
+                null,
+                null);
         produto.setIdFornecedor(rs.getInt("idFornecedor"));
         produto.setIdCategoria(rs.getInt("idCategoria"));
         return produto;
     }
-    
-    public static void gravar(Produto produto) throws ClassNotFoundException, SQLException{
+
+    public static void gravar(Produto produto) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         PreparedStatement comando = null;
-        try{
+        try {
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
                     "insert into produto (idProduto, nome, codInterno, codBarra,"
@@ -103,34 +104,80 @@ public class ProdutoDAO {
             comando.setInt(11, produto.getQtdMinima());
             comando.setInt(12, produto.getQtdAtual());
             comando.setInt(13, produto.getQtdMaxima());
-            if (produto.getFornecedor() == null){
+            if (produto.getFornecedor() == null) {
                 comando.setNull(14, Types.INTEGER);
             } else {
                 comando.setInt(14, produto.getFornecedor().getIdFornecedor());
             }
-            if (produto.getCategoria() == null){
+            if (produto.getCategoria() == null) {
                 comando.setNull(15, Types.INTEGER);
             } else {
                 comando.setInt(15, produto.getCategoria().getIdCategoria());
             }
             comando.executeUpdate();
-        }finally{
+        } finally {
             fecharConexao(conexao, comando);
         }
     }
-    public static void excluir(Produto produto) throws ClassNotFoundException, 
+
+    public static void excluir(Produto produto) throws ClassNotFoundException,
             SQLException {
         Connection conexao = null;
-        Statement comando= null;
+        Statement comando = null;
         String stringSQL;
-        
-        try{
+
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            stringSQL =  "delete from produto where idProduto = " + 
-                    produto.getIdProduto();
+            stringSQL = "delete from produto where idProduto = "
+                    + produto.getIdProduto();
             comando.execute(stringSQL);
-        }finally{
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+    }
+
+    public static void alterar(Produto produto) throws ClassNotFoundException, SQLException {
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "update produto set "
+                    + "nome = '" + produto.getNome() + "',"
+                    + "codInterno = " + produto.getCodInterno() + ","
+                    + "codBarra = " + produto.getCodBarra() + ","
+                    + "unidadeMedida = '" + produto.getUnidadeMedida() + "',"
+                    + "precoCompra = " + produto.getPrecoCompra() + ","
+                    + "peso = " + produto.getPeso() + ","
+                    + "altura = " + produto.getAltura() + ","
+                    + "comprimento = " + produto.getComprimento() + ","
+                    + "validade = '" + produto.getValidade() + "',"
+                    + "qtdMinima = " + produto.getQtdMinima() + ","
+                    + "qtdAtual = " + produto.getQtdAtual() + ","
+                    + "qtdMaxima = " + produto.getQtdMaxima() + ","
+                    + "idFornecedor = ";
+            if (produto.getFornecedor() == null) {
+                stringSQL = stringSQL + null;
+            } else {
+                stringSQL = stringSQL + produto.getFornecedor().getIdFornecedor();
+            }
+            stringSQL = stringSQL + " where idProduto = " + produto.getIdProduto();
+            comando.execute(stringSQL);
+            
+            stringSQL = "update produto set "
+                    + "idCategoria = ";
+            if (produto.getCategoria() == null) {
+                stringSQL = stringSQL + null;
+            } else {
+                stringSQL = stringSQL + produto.getCategoria().getIdCategoria();
+            }
+
+            stringSQL = stringSQL + " where idProduto = " + produto.getIdProduto();
+            comando.execute(stringSQL);
+        } finally {
             fecharConexao(conexao, comando);
         }
     }

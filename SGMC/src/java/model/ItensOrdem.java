@@ -96,6 +96,10 @@ public class ItensOrdem {
         ItensOrdemDAO.gravar(this);
     }
     
+    public void alterar() throws ClassNotFoundException, SQLException{
+        ItensOrdemDAO.alterar(this);
+    }
+    
     public void excluir() throws ClassNotFoundException, SQLException{
         ItensOrdemDAO.excluir(this);
     }

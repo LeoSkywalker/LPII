@@ -205,6 +205,10 @@ public class Produto {
         ProdutoDAO.gravar(this);
     }
     
+    public void alterar() throws ClassNotFoundException, SQLException{
+        ProdutoDAO.alterar(this);
+    }
+    
     public void excluir() throws ClassNotFoundException, SQLException {
         ProdutoDAO.excluir(this);
     }

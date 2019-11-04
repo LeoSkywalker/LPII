@@ -28,6 +28,10 @@
                         <a href="ManterProdutoController?acao=prepararOperacao&operacao=Excluir&idProduto=<c:out value="${produto.idProduto}"/>">
                             Excluir</a>
                     </td>
+                    <td>
+                        <a href="ManterProdutoController?acao=prepararOperacao&operacao=Alterar&idProduto=<c:out value="${produto.idProduto}"/>">
+                            Alterar</a>
+                    </td>
                 </tr>
             </c:forEach>            
         </table>

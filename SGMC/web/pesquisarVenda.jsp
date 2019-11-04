@@ -28,8 +28,17 @@
                         <a href="ManterVendaController?acao=prepararOperacao&operacao=Excluir&idVenda=<c:out value="${venda.idVenda}"/>">
                             Excluir</a>
                     </td>
+                    <td>
+                        <a href="ManterVendaController?acao=prepararOperacao&operacao=Alterar&idVenda=<c:out value="${venda.idVenda}"/>">
+                            Alterar</a>
+                    </td>
                 </tr>
-            </c:forEach>            
+            </c:forEach>
+                <tr>
+                    <td>
+                        <a href="PesquisaItensVendaController"> Manter Itens da Venda </a>
+                    </td>
+                </tr>
         </table>
         <br>
         <form action="ManterVendaController?acao=prepararOperacao&operacao=Incluir" method="post">

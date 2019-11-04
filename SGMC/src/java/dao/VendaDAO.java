@@ -127,4 +127,46 @@ public class VendaDAO {
             fecharConexao(conexao, comando);
         }
     }
+    
+    public static void alterar(Venda venda) throws ClassNotFoundException, SQLException{
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "update venda set "
+                    + "dataVenda = '" + venda.getDataVenda() + "',"
+                    + "subtotal = " + venda.getSubTotal() + ","
+                    + "codBarra = " + venda.getCodBarra() + ","
+                    + "valorDesconto = " + venda.getValorDesconto() + ","
+                    + "situacao = '" + venda.getSituacao() + "',"
+                    + "idCliente = ";
+            if(venda.getCliente() == null){
+                stringSQL = stringSQL + null;
+            }else{
+                stringSQL = stringSQL + venda.getCliente().getIdCliente();
+            }
+            
+            stringSQL = stringSQL + "idUsuario = ";
+            if (venda.getUsuario() == null){
+                stringSQL = stringSQL + null;
+            }else{
+                stringSQL = stringSQL + venda.getUsuario().getIdUsuario();
+            }
+            
+            stringSQL = stringSQL + "idFormaPgto = ";
+            if(venda.getFormaPagamento() == null){
+                stringSQL = stringSQL + null;
+            }else{
+                stringSQL = stringSQL + venda.getFormaPagamento().getIdFormaPgto();
+            }
+           
+        stringSQL = stringSQL + " where venda = " + venda.getIdVenda();
+        comando.execute(stringSQL);
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+    }
 }

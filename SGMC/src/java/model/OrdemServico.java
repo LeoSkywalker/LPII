@@ -104,6 +104,10 @@ public class OrdemServico {
         OrdemServicoDAO.gravar(this);
     }
     
+    public void alterar() throws ClassNotFoundException, SQLException{
+        OrdemServicoDAO.alterar(this);
+    }
+    
     public void excluir() throws ClassNotFoundException, SQLException{
         OrdemServicoDAO.excluir(this);
     }

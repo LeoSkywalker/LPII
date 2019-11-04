@@ -26,10 +26,19 @@
                     <td><c:out value="${ordemServico.dataPedido}"/></td>
                     <td>
                         <a href="ManterOrdemServicoController?acao=prepararOperacao&operacao=Excluir&idOrdemSrv=<c:out value="${ordemServico.idOrdemSrv}"/>">
-                        Excluir</a>
+                            Excluir</a>
+                    </td>
+                    <td>
+                        <a href="ManterOrdemServicoController?acao=prepararOperacao&operacao=Alterar&idOrdemSrv=<c:out value="${ordemServico.idOrdemSrv}"/>">
+                            Alterar</a>
                     </td>
                 </tr>
             </c:forEach>
+        <tr>
+            <td>
+                <a href="PesquisaItensOrdemController"> Manter Itens da Ordem de Serviço </a>
+            </td>
+        </tr>
         </table>
         <br>
         <form action="ManterOrdemServicoController?acao=prepararOperacao&operacao=Incluir" method="post">
