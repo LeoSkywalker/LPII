@@ -140,4 +140,8 @@ public class Colaborador extends Usuario {
     public void excluir() throws ClassNotFoundException, SQLException{
         ColaboradorDAO.excluir(this);
     }
+    
+    public void alterar() throws ClassNotFoundException, SQLException{
+        ColaboradorDAO.alterar(this);
+    }
 }

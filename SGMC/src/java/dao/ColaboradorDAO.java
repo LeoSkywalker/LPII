@@ -21,92 +21,93 @@ import model.Usuario;
  * @author leonardo
  */
 public class ColaboradorDAO {
-    public static List<Colaborador> obterColaboradores() throws ClassNotFoundException, SQLException{
-        
-        Connection conexao =null;
+
+    public static List<Colaborador> obterColaboradores() throws ClassNotFoundException, SQLException {
+
+        Connection conexao = null;
         Statement comando = null;
         List<Colaborador> colaboradores = new java.util.ArrayList<Colaborador>();
         Colaborador colaborador = null;
-        
-        try{
+
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select * from colaborador join "
-                    + " usuario on colaborador.idUsuario = usuario.idUsuario"
+                    + " usuario on colaborador.idUsuario=usuario.idUsuario"
                     + " join endereco on colaborador.idEndereco=endereco.idEndereco");
-            
-            while (rs.next()){
+
+            while (rs.next()) {
                 colaborador = instanciarColaborador(rs);
                 colaboradores.add(colaborador);
             }
-            }finally{
-                    fecharConexao(conexao, comando);
-                    
-                    }
-            return colaboradores;   
-}
-     public static Colaborador obterColaborador(int idColaborador) throws SQLException, ClassNotFoundException{
-     
-            Connection conexao = null;
-            Statement comando = null;
-            Colaborador colaborador = null;
-            try{
-                conexao = BD.getConexao();
-                comando = conexao.createStatement();
-                ResultSet rs = comando.executeQuery("select * from colaborador join" 
-                    + " usuario on colaborador.idUsuario = usuario.idUsuario" 
+        } finally {
+            fecharConexao(conexao, comando);
+
+        }
+        return colaboradores;
+    }
+
+    public static Colaborador obterColaborador(int idColaborador) throws SQLException, ClassNotFoundException {
+
+        Connection conexao = null;
+        Statement comando = null;
+        Colaborador colaborador = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from colaborador join"
+                    + " usuario on colaborador.idUsuario=usuario.idUsuario"
                     + " join endereco on colaborador.idEndereco=endereco.idEndereco "
-                        + " where idColaborador = " + idColaborador);
-                rs.first();
-                colaborador = instanciarColaborador(rs);
-            } finally{
-                fecharConexao(conexao, comando);
-            }
-            return colaborador;
+                    + " where idColaborador = " + idColaborador);
+            rs.first();
+            colaborador = instanciarColaborador(rs);
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return colaborador;
     }
 
     private static Colaborador instanciarColaborador(ResultSet rs) throws SQLException {
-       Colaborador colaborador = new Colaborador(rs.getInt("idColaborador"),
-       rs.getString("cpf"),
-       rs.getString("rg"),
-       rs.getString("dataNascimento"),
-       rs.getString("telefone"),
-       rs.getString("celular"),
-       rs.getString("estadoCivil"),
-       rs.getString("sexo"),
-       rs.getInt("idUsuario"),
-       rs.getString("nome"),
-       rs.getString("email"),
-       rs.getString("senha"),
-       null);       
-       colaborador.setIdEndereco(rs.getInt("idEndereco"));  
-       return colaborador;
+        Colaborador colaborador = new Colaborador(rs.getInt("idColaborador"),
+                rs.getString("cpf"),
+                rs.getString("rg"),
+                rs.getString("dataNascimento"),
+                rs.getString("telefone"),
+                rs.getString("celular"),
+                rs.getString("estadoCivil"),
+                rs.getString("sexo"),
+                rs.getInt("idUsuario"),
+                rs.getString("nome"),
+                rs.getString("email"),
+                rs.getString("senha"),
+                null);
+        colaborador.setIdEndereco(rs.getInt("idEndereco"));    
+        return colaborador;
     }
-    
-    public static void gravar(Colaborador colaborador, Usuario usuario) throws ClassNotFoundException, SQLException{
+
+    public static void gravar(Colaborador colaborador, Usuario usuario) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         PreparedStatement comando = null;
-        
-        try{
+
+        try {
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
-            "insert into usuario (idUsuario, nome, email, senha)"
-                    +" values (?,?,?,?)");
+                    "insert into usuario (idUsuario, nome, email, senha)"
+                    + " values (?,?,?,?)");
             comando.setInt(1, usuario.getIdUsuario());
             comando.setString(2, usuario.getNome());
             comando.setString(3, usuario.getEmail());
-            comando.setString(4, usuario.getSenha());        
-            
+            comando.setString(4, usuario.getSenha());
             comando.executeUpdate();
-        }finally{
+        } finally {
             fecharConexao(conexao, comando);
         }
-        
-        try{
+
+        try {
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
-            "insert into colaborador (idColaborador, cpf, rg, dataNascimento, telefone,"
-            +" celular, estadoCivil, sexo, idEndereco, idUsuario) values (?,?,?,?,?,?,?,?,?,?)");
+                    "insert into colaborador (idColaborador, cpf, rg, dataNascimento, telefone,"
+                    + " celular, estadoCivil, sexo, idEndereco, idUsuario) values (?,?,?,?,?,?,?,?,?,?)");
             comando.setInt(1, colaborador.getIdColaborador());
             comando.setString(2, colaborador.getCpf());
             comando.setString(3, colaborador.getRg());
@@ -115,43 +116,68 @@ public class ColaboradorDAO {
             comando.setString(6, colaborador.getCelular());
             comando.setString(7, colaborador.getEstadoCivil());
             comando.setString(8, colaborador.getSexo());
-            if(colaborador.getEndereco()==null){
+            if (colaborador.getEndereco() == null) {
                 comando.setNull(9, Types.INTEGER);
-            }else{
+            } else {
                 comando.setInt(9, colaborador.getEndereco().getIdEndereco());
             }
             comando.setInt(10, colaborador.getIdUsuario());
             comando.executeUpdate();
-            }finally{
+        } finally {
             fecharConexao(conexao, comando);
         }
-        
-        
+
     }
-    public static void excluir(Colaborador colaborador) throws 
-            ClassNotFoundException, SQLException{
+
+    public static void excluir(Colaborador colaborador) throws
+            ClassNotFoundException, SQLException {
+        
         Connection conexao = null;
         Statement comando = null;
-        String stringSQL;
-        try{
+        String stringSQL;    
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            stringSQL = "delete from colaborador where idColaborador = " 
-                    + colaborador.getIdColaborador();
+            stringSQL = "delete from colaborador where idColaborador = " + colaborador.getIdColaborador();
             comando.execute(stringSQL);
-        }finally {
-            fecharConexao(conexao, comando);
-                    
-        }
-        try{
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            stringSQL = "delete from usuario where idUsuario = " 
-                    + colaborador.getIdUsuario();
+            stringSQL = "delete from usuario where idUsuario = " + colaborador.getIdUsuario();
             comando.execute(stringSQL);
-        }finally {
+        } finally {
             fecharConexao(conexao, comando);
-                    
         }
     }
-}
+
+    public static void alterar(Colaborador colaborador) throws 
+            ClassNotFoundException, SQLException {
+
+        Connection conexao = null;
+        PreparedStatement comando = null;
+        
+        try{
+            conexao = BD.getConexao();
+            
+            Usuario usuario = new Usuario(colaborador.getIdUsuario(),
+                    colaborador.getNome(), colaborador.getEmail(), colaborador.getSenha());       
+            usuario.alterar();
+            
+            comando = conexao.prepareStatement("update colaborador set cpf=?, "
+                    + " rg=?, dataNascimento=?, telefone=?, celular=?, "
+                    + " estadoCivil=?, sexo=?, idEndereco=?, "
+                    + " idUsuario=? where idColaborador=?"); 
+              
+            comando.setString(1, colaborador.getCpf());
+            comando.setString(2, colaborador.getRg());
+            comando.setString(3, colaborador.getDataNascimento());
+            comando.setString(4, colaborador.getTelefone());
+            comando.setString(5, colaborador.getCelular());
+            comando.setString(6, colaborador.getEstadoCivil());
+            comando.setString(7, colaborador.getSexo());
+            comando.setInt(8, colaborador.getIdEndereco());
+            comando.setInt(9, colaborador.getIdUsuario());
+            comando.setInt(10, colaborador.getIdColaborador());    
+            comando.executeUpdate();
+        }finally {
+                fecharConexao(conexao, comando);
+            }
+        }
+    }

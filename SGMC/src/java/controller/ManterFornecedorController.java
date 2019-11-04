@@ -130,8 +130,8 @@ public class ManterFornecedorController extends HttpServlet {
         String cnpj = request.getParameter("numCnpj");
         String nomeRepresentante = request.getParameter("txtNomeRepresentante");
         String email = request.getParameter("txtEmail");
-        String telefone = request.getParameter("txtTelefone");
-        int idEndereco = Integer.parseInt(request.getParameter("optEndereco"));
+        String telefone = request.getParameter("numTelefone");
+        int idEndereco = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optEndereco"));
         
         try{
             Endereco endereco = null;
@@ -146,6 +146,9 @@ public class ManterFornecedorController extends HttpServlet {
             else{
                 if(operacao.equals("Excluir")){
                     fornecedor.excluir();
+                }
+                if(operacao.equals("Alterar")){
+                    fornecedor.alterar();
                 }
             }
             RequestDispatcher view = request.getRequestDispatcher("PesquisaFornecedorController");

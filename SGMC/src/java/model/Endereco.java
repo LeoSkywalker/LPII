@@ -116,4 +116,8 @@ public class Endereco {
         EnderecoDAO.excluir(this);
     }
     
+    public void alterar() throws ClassNotFoundException, SQLException {
+        EnderecoDAO.alterar(this);
+    }
+    
 }

@@ -116,4 +116,8 @@ public class Fornecedor {
     public void excluir() throws ClassNotFoundException, SQLException{
         FornecedorDAO.excluir(this);
     }
+    
+    public void alterar() throws ClassNotFoundException, SQLException{
+        FornecedorDAO.alterar(this);
+    }
 }

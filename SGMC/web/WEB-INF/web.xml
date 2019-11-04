@@ -65,6 +65,7 @@
         <servlet-class>controller.ManterDevolucaoController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< Updated upstream
         <servlet-name>ManterItensVendaController</servlet-name>
         <servlet-class>controller.ManterItensVendaController</servlet-class>
     </servlet>
@@ -79,6 +80,30 @@
     <servlet>
         <servlet-name>PesquisaItensOrdemController</servlet-name>
         <servlet-class>controller.PesquisaItensOrdemController</servlet-class>
+=======
+        <servlet-name>ManterEnderecoController</servlet-name>
+        <servlet-class>controller.ManterEnderecoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManterCategoriaController</servlet-name>
+        <servlet-class>controller.ManterCategoriaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManterAdminController</servlet-name>
+        <servlet-class>controller.ManterAdminController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PesquisaAdminController</servlet-name>
+        <servlet-class>controller.PesquisaAdminController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PesquisaCategoriaController</servlet-name>
+        <servlet-class>controller.PesquisaCategoriaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PesquisaEnderecoController</servlet-name>
+        <servlet-class>controller.PesquisaEnderecoController</servlet-class>
+>>>>>>> Stashed changes
     </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaClienteController</servlet-name>
@@ -145,6 +170,7 @@
         <url-pattern>/ManterDevolucaoController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< Updated upstream
         <servlet-name>ManterItensVendaController</servlet-name>
         <url-pattern>/ManterItensVendaController</url-pattern>
     </servlet-mapping>
@@ -159,6 +185,30 @@
     <servlet-mapping>
         <servlet-name>PesquisaItensOrdemController</servlet-name>
         <url-pattern>/PesquisaItensOrdemController</url-pattern>
+=======
+        <servlet-name>ManterEnderecoController</servlet-name>
+        <url-pattern>/ManterEnderecoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterCategoriaController</servlet-name>
+        <url-pattern>/ManterCategoriaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterAdminController</servlet-name>
+        <url-pattern>/ManterAdminController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisaAdminController</servlet-name>
+        <url-pattern>/PesquisaAdminController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisaCategoriaController</servlet-name>
+        <url-pattern>/PesquisaCategoriaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PesquisaEnderecoController</servlet-name>
+        <url-pattern>/PesquisaEnderecoController</url-pattern>
+>>>>>>> Stashed changes
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -20,7 +20,7 @@
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Endereço</th>
-                <th></th>
+                <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${clientes}" var="cliente">
                 <tr>
@@ -28,12 +28,12 @@
                     <td><c:out value="${cliente.nome}"/></td>
                     <td><c:out value="${cliente.idEndereco}"/></td>
                     <td><a href="ManterClienteController?acao=prepararOperacao&operacao=Excluir&idCliente=<c:out value="${cliente.idCliente}"/>">Excluir</a></td>
+                    <td><a href="ManterClienteController?acao=prepararOperacao&operacao=Alterar&idCliente=<c:out value="${cliente.idCliente}"/>">Alterar</a></td>
                 </tr>
             </c:forEach>
         </table>
         <br>
-        <form action="ManterClienteController?acao=prepararOperacao&operacao=Incluir"
-              method="post">
+        <form action="ManterClienteController?acao=prepararOperacao&operacao=Incluir" method="post">
         <input type="submit" name="btnIncluir" value="Incluir">
         </form>
     </body>

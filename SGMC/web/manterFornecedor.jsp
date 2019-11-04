@@ -18,30 +18,30 @@
             <table>
                 <tr>
                     <td><label> ID: </label>
-                        <input type="number" name="numIdFornecedor" value="${fornecedor.idFornecedor}"></td>
+                        <input type="number" name="numIdFornecedor" value="${fornecedor.idFornecedor}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr><td></td></tr> 
                 <tr>
                     <td><label> Nome Fantasia: </label>
-                        <input type="text" name="txtNomeFantasia" value="${fornecedor.nomeFantasia}"></td>
+                        <input type="text" name="txtNomeFantasia" value="${fornecedor.nomeFantasia}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     <td><label> CNPJ: </label>
-                        <input type="number" name="numCnpj" value="${fornecedor.cnpj}"></td>
+                        <input type="number" name="numCnpj" value="${fornecedor.cnpj}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     <td><label> Nome Representante: </label>
-                        <input type="text" name="txtNomeRepresentante" value="${fornecedor.nomeRepresentante}"></td>
+                        <input type="text" name="txtNomeRepresentante" value="${fornecedor.nomeRepresentante}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>           
                 <tr><td></td></tr> 
                 <tr>
                     <td><label> E-mail: </label>
-                        <input type="email" name="txtEmail" value="${fornecedor.email}">
+                        <input type="email" name="txtEmail" value="${fornecedor.email}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                     </td>
                     <td><label> Telefone: </label>
-                        <input type="tel" name="numTelefone" value="${fornecedor.telefone}"></td>
+                        <input type="tel" name="numTelefone" value="${fornecedor.telefone}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr><td></td></tr> 
                 <tr>
                     <td>
                         <label> Endereço: </label>
-                        <select name="optEndereco">
+                        <select name="optEndereco" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
                             <option value="0" <c:if test="${fornecedor.endereco.idEndereco == null}">selected</c:if></option>
                             <c:forEach items="${enderecos}" var="endereco">
                                 <option value="${endereco.idEndereco}" <c:if test="${fornecedor.endereco.idEndereco == endereco.idEndereco}">selected</c:if>>${endereco.idEndereco}</option>
@@ -51,9 +51,8 @@
                 </tr>
                 <tr><td></td></tr> 
                 <tr>
-                   <td><input type="submit" name="btnIncluir" value="Enviar">
-                        <input type="reset" value="Cancelar">
-                        <input type="submit" value="Excluir"></td>
+                    <td><input type="reset" value="Cancelar">
+                        <input type="submit" name="btnConfirmar" value="${operacao}"></td>
                 </tr>
             </table>
         </form>

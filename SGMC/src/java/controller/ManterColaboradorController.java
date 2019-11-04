@@ -135,7 +135,7 @@ public class ManterColaboradorController extends HttpServlet {
         String dataNascimento = request.getParameter("txtDataNasc");
         String estadoCivil = request.getParameter("optEstadoCivil");
         String sexo = request.getParameter("optSexo");
-        int idEndereco = Integer.parseInt(request.getParameter("optEndereco"));
+        int idEndereco = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optEndereco"));
         
         try{
             Endereco endereco = null;
@@ -150,6 +150,9 @@ public class ManterColaboradorController extends HttpServlet {
             }else{
                 if(operacao.equals("Excluir")){
                     colaborador.excluir();
+                }
+                if(operacao.equals("Alterar")){
+                    colaborador.alterar();
                 }
             }
             RequestDispatcher view = request.getRequestDispatcher("PesquisaColaboradorController");

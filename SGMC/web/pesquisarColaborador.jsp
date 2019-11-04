@@ -29,6 +29,7 @@
                 <th>Nome</th>
                 <th>Endereço</th>
                 <th>Usuário</th>
+                <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${colaboradores}" var="colaborador">
                 <tr>
@@ -44,6 +45,7 @@
                     <td><c:out value="${colaborador.idEndereco}"/></td>
                     <td><c:out value="${colaborador.idUsuario}"/></td>
                     <td><a href="ManterColaboradorController?acao=prepararOperacao&operacao=Excluir&idColaborador=<c:out value="${colaborador.idColaborador}"/>">Excluir</a></td>
+                    <td><a href="ManterColaboradorController?acao=prepararOperacao&operacao=Alterar&idColaborador=<c:out value="${colaborador.idColaborador}"/>">Alterar</a></td>     
                 </tr>
             </c:forEach>
         </table>

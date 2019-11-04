@@ -98,4 +98,8 @@ public class PerdaDevolucao {
     public void excluir() throws ClassNotFoundException, SQLException {
         PerdaDevolucaoDAO.excluir(this);
     }
+    
+    public void alterar() throws ClassNotFoundException, SQLException{
+        PerdaDevolucaoDAO.alterar(this);
+    }
 }

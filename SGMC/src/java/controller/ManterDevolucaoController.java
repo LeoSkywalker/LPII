@@ -104,8 +104,8 @@ public class ManterDevolucaoController extends HttpServlet {
             request.setAttribute("vendas", Venda.obterVendas());
             request.setAttribute("produtos", Produto.obterProdutos());
             if(!operacao.equals("Incluir")){
-                int idDevolucao = Integer.parseInt(request.getParameter("idCliente"));
-                PerdaDevolucao perdaDevolucao = PerdaDevolucao.obterPerdaDevolucao(idDevolucao);
+                int idPerdaDevolucao = Integer.parseInt(request.getParameter("idPerdaDevolucao"));
+                PerdaDevolucao perdaDevolucao = PerdaDevolucao.obterPerdaDevolucao(idPerdaDevolucao);
                 request.setAttribute("perdaDevolucao", perdaDevolucao);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterDevolucao.jsp");
@@ -125,8 +125,8 @@ public class ManterDevolucaoController extends HttpServlet {
         String operacao = request.getParameter("operacao");
         int idPerdaDevolucao = Integer.parseInt(request.getParameter("numIdPerdaDevolucao"));
         String tipo = request.getParameter("optTipo");
-        int idProduto = Integer.parseInt(request.getParameter("optProduto"));
-        int idVenda = Integer.parseInt(request.getParameter("optVenda"));
+        int idProduto = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optProduto"));
+        int idVenda = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optVenda"));
 
         try {
             Produto produto = null;
@@ -144,6 +144,9 @@ public class ManterDevolucaoController extends HttpServlet {
             }else{
                 if(operacao.equals("Excluir")){
                     perdaDevolucao.excluir();
+                }
+                if(operacao.equals("Alterar")){
+                    perdaDevolucao.alterar();
                 }
             }
             RequestDispatcher view = request.getRequestDispatcher("PesquisaDevolucaoController");

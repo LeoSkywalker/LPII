@@ -98,4 +98,26 @@ public class CategoriaDAO {
             fecharConexao(conexao, comando);
         }
     }
+    
+    public static void alterar(Categoria categoria) throws ClassNotFoundException, SQLException{
+        
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "update categoria set "
+                    + "descricao='" + categoria.getDescricao() +"',";
+                   
+                    stringSQL = stringSQL + " where idCategoria = " 
+                            + categoria.getIdCategoria();
+                    comando.execute(stringSQL);
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+    }
+    
+    
 }

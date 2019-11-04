@@ -98,4 +98,27 @@ public class UsuarioDAO {
             fecharConexao(conexao, comando);
         }
     }
+    public static void alterar(Usuario usuario) throws 
+            ClassNotFoundException, SQLException {
+
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+
+            stringSQL = "update usuario set "
+                    + "nome ='" + usuario.getNome() + "',"
+                    + "email='" + usuario.getEmail() + "',"
+                    + "senha='" + usuario.getSenha() + "', ";
+            
+            stringSQL = stringSQL + " where idUsuario = " + usuario.getIdUsuario();
+            comando.execute(stringSQL);
+        }
+        finally {
+                fecharConexao(conexao, comando);
+        }
+    }
 }

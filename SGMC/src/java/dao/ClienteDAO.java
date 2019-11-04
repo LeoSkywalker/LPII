@@ -128,4 +128,40 @@ public class ClienteDAO {
             fecharConexao(conexao, comando);            
         }
     }
+    
+    public static void alterar(Cliente cliente) throws ClassNotFoundException, SQLException{
+        
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "update cliente set "
+                    + "cnpj ='" + cliente.getCnpj() +"',"
+                    + "razaoSocial='" + cliente.getRazaoSocial() +"',"
+                    + "inscricaoEstadual='" + cliente.getInscricaoEstadual() + "'," 
+                    + "nome='" + cliente.getNome() + "',"
+                    + "cpf='" + cliente.getCpf() + "',"
+                    + "rg='" + cliente.getRg() + "',"
+                    + "telefone='" + cliente.getTelefone() + "',"
+                    + "celular='" + cliente.getCelular() + "',"
+                    + "email='" + cliente.getEmail() + "',"
+                    + "dataNascimento='" + cliente.getDataNascimento() + "',"
+                    + "estadoCivil='" + cliente.getEstadoCivil() + "',"
+                    + "sexo='" + cliente.getSexo() + "', " 
+                    + "idEndereco = ";
+                    
+                    if(cliente.getEndereco() == null){
+                        stringSQL = stringSQL + null;
+                    } else {
+                        stringSQL = stringSQL + cliente.getEndereco().getIdEndereco();
+                    }
+                    stringSQL = stringSQL + " where idCliente = " + cliente.getIdCliente();
+                    comando.execute(stringSQL);
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+    }
 }

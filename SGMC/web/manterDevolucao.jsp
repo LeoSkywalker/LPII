@@ -18,10 +18,10 @@
             <table>
                 <tr>
                     <td><label> ID: </label>
-                        <input type="number" name="numIdPerdaDevolucao" value="${perdaDevolucao.idPerdaDevolucao}"></td>
+                        <input type="number" name="numIdPerdaDevolucao" value="${perdaDevolucao.idPerdaDevolucao}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                     <td>
                         <label> Tipo: </label>
-                        <select name="optTipo">
+                        <select name="optTipo" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
                             <option value="Perda" <c:if test="${perdaDevolucao.tipo == 'Perda'}"> selected</c:if>> Perda</option>
                             <option value="Devolucao" <c:if test="${perdaDevolucao.tipo == 'Devolucao'}"> selected</c:if>>Devolução</option>
                         </select>
@@ -31,7 +31,7 @@
                 <tr>
                     <td>
                         <label> Venda: </label>
-                        <select name="optVenda">
+                        <select name="optVenda" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
                             <option value="0" <c:if test="${perdaDevolucao.venda.idVenda == null}">selected</c:if></option>
                             <c:forEach items="${vendas}" var="venda">
                                 <option value="${venda.idVenda}" <c:if test="${perdaDevolucao.venda.idVenda == venda.idVenda}">selected</c:if>>${venda.idVenda}</option>
@@ -40,7 +40,7 @@
                     </td>
                     <td>
                         <label> Produto: </label>
-                        <select name="optProduto">
+                        <select name="optProduto" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
                             <option value="0" <c:if test="${perdaDevolucao.produto.idProduto == null}">selected</c:if></option>
                             <c:forEach items="${produtos}" var="produto">
                                 <option value="${produto.idProduto}" <c:if test="${perdaDevolucao.produto.idProduto == produto.idProduto}">selected</c:if>>${produto.nome}</option>
@@ -50,9 +50,8 @@
                 </tr>
                 <tr><td></td></tr> 
                 <tr>
-                    <td><input type="submit" name="btnIncluir" value="Enviar">
-                        <input type="reset" value="Cancelar">
-                        <input type="submit" value="Excluir"></td>
+                    <td><input type="reset" value="Cancelar">
+                        <input type="submit" name="btnConfirmar" value="${operacao}"></td>
                 </tr>
             </table>
         </form>

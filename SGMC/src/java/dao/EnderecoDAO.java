@@ -80,9 +80,9 @@ public class EnderecoDAO {
         
         try{
             conexao = BD.getConexao();
-            comando = conexao.prepareStatement("insert into endereco (idEndereco"
-                    + ", logradouro, numero, complemento, cidade, bairro, uf"
-                    + "cep) values (?,?,?,?,?,?,?)");
+            comando = conexao.prepareStatement("insert into endereco "
+                    + "(idEndereco, logradouro, numero, complemento, cidade, "
+                    + "bairro, uf, cep) values (?,?,?,?,?,?,?,?)");
             comando.setInt(1, endereco.getIdEndereco());
             comando.setString(2, endereco.getLogradouro());
             comando.setInt(3, endereco.getNumero());
@@ -114,4 +114,30 @@ public class EnderecoDAO {
                     
         }
     }
+    
+    public static void alterar(Endereco endereco) throws ClassNotFoundException, SQLException{
+        
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = " update endereco set "
+                    + "logradouro='" + endereco.getLogradouro() +"',"
+                    + "numero='" + endereco.getNumero() +"',"
+                    + "complemento='" + endereco.getComplemento() +"',"
+                    + "cidade='" + endereco.getCidade() +"',"
+                    + "bairro='" + endereco.getBairro() +"',"
+                    + "uf='" + endereco.getUf() +"',"
+                    + "cep='" + endereco.getCep() + " '";
+              
+                    stringSQL = stringSQL + " where idEndereco = " 
+                            + endereco.getIdEndereco();
+                    comando.execute(stringSQL);
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+    }    
 }

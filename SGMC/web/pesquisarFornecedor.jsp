@@ -20,6 +20,7 @@
                 <th>ID</th>
                 <th>Nome Fantasia:</th>
                 <th>CNPJ:</th>
+                <th colspan="2">Ação</th>
                 
             </tr>
             <c:forEach items="${fornecedores}" var="fornecedor">
@@ -28,6 +29,7 @@
                     <td><c:out value="${fornecedor.nomeFantasia}"/></td>
                     <td><c:out value="${fornecedor.cnpj}"/></td>
                     <td><a href="ManterFornecedorController?acao=prepararOperacao&operacao=Excluir&idFornecedor=<c:out value="${fornecedor.idFornecedor}"/>">Excluir</a></td>
+                    <td><a href="ManterFornecedorController?acao=prepararOperacao&operacao=Alterar&idFornecedor=<c:out value="${fornecedor.idFornecedor}"/>">Alterar</a></td>
                 </tr>
             </c:forEach>            
         </table>

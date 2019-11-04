@@ -54,4 +54,8 @@ public class Categoria {
     public void excluir() throws ClassNotFoundException, SQLException{
         CategoriaDAO.excluir(this);
     }
+    
+    public void alterar() throws ClassNotFoundException, SQLException{
+        CategoriaDAO.alterar(this);
+    }
 }

@@ -119,4 +119,34 @@ public class FornecedorDAO {
                     
         }
     }
+    
+    public static void alterar(Fornecedor fornecedor) throws ClassNotFoundException, SQLException{
+        
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+        
+        try{
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "update fornecedor set "
+                    + "nomeFantasia='" + fornecedor.getNomeFantasia() +"',"
+                    + "cnpj='" + fornecedor.getCnpj() +"',"
+                    + "nomeRepresentante='" + fornecedor.getNomeRepresentante() +"',"
+                    + "email='" + fornecedor.getEmail() +"',"
+                    + "telefone='" + fornecedor.getTelefone() +"',"
+                    + "idEndereco = ";
+                    
+                    if(fornecedor.getEndereco() == null){
+                        stringSQL = stringSQL + null;
+                    } else {
+                        stringSQL = stringSQL + fornecedor.getEndereco().getIdEndereco();
+                    } 
+                    
+                    stringSQL = stringSQL + " where idFornecedor = " + fornecedor.getIdFornecedor();
+                    comando.execute(stringSQL);
+        }finally{
+            fecharConexao(conexao, comando);
+        }
+    }
 }

@@ -19,12 +19,14 @@
             <tr>
                 <th>ID</th>
                 <th>Tipo</th>
+                <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${perdasDevolucoes}" var="perdaDevolucao">
                 <tr>
                     <td><c:out value="${perdaDevolucao.idPerdaDevolucao}"/></td>
                     <td><c:out value="${perdaDevolucao.tipo}"/></td>
-                    <td><a href="ManterDevolucaoController?acao=prepararOperacao&operacao=Excluir&idCliente=<c:out value="${perdaDevolucao.idPerdaDevolucao}"/>">Excluir</a></td>
+                    <td><a href="ManterDevolucaoController?acao=prepararOperacao&operacao=Excluir&idPerdaDevolucao=<c:out value="${perdaDevolucao.idPerdaDevolucao}"/>">Excluir</a></td>
+                    <td><a href="ManterDevolucaoController?acao=prepararOperacao&operacao=Alterar&idPerdaDevolucao=<c:out value="${perdaDevolucao.idPerdaDevolucao}"/>">Alterar</a></td>
                 </tr>
             </c:forEach>
         </table>
