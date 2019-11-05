@@ -30,6 +30,8 @@ public class ManterCategoriaController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.sql.SQLException
+     * @throws java.lang.ClassNotFoundException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
@@ -57,11 +59,7 @@ public class ManterCategoriaController extends HttpServlet {
             view.forward(request, response);
         } catch (ServletException e) {
             throw e;
-        } catch (IOException e) {
-            throw new ServletException(e);
-        } catch (SQLException e) {
-            throw new ServletException(e);
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | SQLException | ClassNotFoundException e) {
             throw new ServletException(e);
         }
     }
@@ -72,21 +70,30 @@ public class ManterCategoriaController extends HttpServlet {
         int idCategoria = Integer.parseInt(request.getParameter("numIdCategoria"));
         String descricao = request.getParameter("txtDescricao");
         
+        try{
         Categoria categoria = new Categoria(idCategoria, descricao);
             if (operacao.equals("Incluir")) {
                 categoria.gravar();
             } else {
                 if (operacao.equals("Excluir")) {
                     categoria.excluir();
+                }else{
+                    if (operacao.equals("Alterar")) {
+                        categoria.alterar();
+                    }
                 }
-//                if (operacao.equals("Alterar")) {
-//                    endereco.alterar();
-//                }
             }
             RequestDispatcher view = request.getRequestDispatcher("PesquisaCategoriaController");
             view.forward(request, response);
+ 
+        }catch (IOException e) {
+            throw new ServletException(e);
+        } catch (SQLException e) {
+            throw new ServletException(e);
+        } catch (ClassNotFoundException e) {
+            throw new ServletException(e);
+        }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : pesquisarItensOrdem
-    Created on : 03/11/2019, 10:19:08
-    Author     : Lucas Gama
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -18,12 +12,15 @@
         <table border=1>
             <tr>
                 <th>ID</th>
+                <th>Quantidade</th>
                 <th>ID Ordem de Serviço</th>  
                 <th>Produtos</th>
+                <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${itensOrdens}" var="itensOrdem">
                 <tr>
                     <td><c:out value="${itensOrdem.idItensOrdem}"/></td>
+                    <td><c:out value="${itensOrdem.quantidade}"/></td>
                     <td><c:out value="${itensOrdem.idOrdemSrv}"/></td>
                     <td><c:out value="${itensOrdem.produto.nome}"/></td>
                     <td>
@@ -38,8 +35,13 @@
             </c:forEach>            
         </table>
         <br>
-        <form action="ManterItensOrdemController?acao=prepararOperacao&operacao=Incluir" method="post">
+        <table>
+        <td><form action="ManterItensOrdemController?acao=prepararOperacao&operacao=Incluir" method="post">
             <input type="submit" name="btnIncluir" value="Incluir">
-        </form>
+        </form></td>
+            <td><form action="PesquisaOrdemServicoController?acao=prepararOperacao&operacao" method="post">
+                <input type="submit" name="btnIncluir" value="Voltar">
+            </form></td>
+        </table>
     </body>
 </html>

@@ -133,14 +133,18 @@ public class Colaborador extends Usuario {
         return ColaboradorDAO.obterColaboradores();
     }
     
+ 
+    @Override
     public void gravar() throws SQLException, ClassNotFoundException {
         ColaboradorDAO.gravar(this, this);
     }
     
+    @Override
     public void excluir() throws ClassNotFoundException, SQLException{
         ColaboradorDAO.excluir(this);
     }
     
+    @Override
     public void alterar() throws ClassNotFoundException, SQLException{
         ColaboradorDAO.alterar(this);
     }

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : ordemServico
-    Created on : 08/09/2019, 00:08:12
-    Author     : Lucas Gama
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,40 +14,42 @@
                     <td>
                         <label> ID: </label>
                         <input type="text" name="numIdOrdemServico" value="${ordemServico.idOrdemSrv}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
-                    </td>
-                    <td>
-                        <label> Número da Ordem de Serviço: </label>
-                        <input type="text" name="txtNumeroOS" value="${ordemServico.numOS}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                    </td>
-                </tr>
-                <tr><td></td></tr> 
-                <tr>
-                    <td>
-                        <label> Fornecedor: </label>
-                        <select name="optFornecedor" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
+                        </td>
+                        <td>
+                            <label> Número da Ordem de Serviço: </label>
+                            <input type="text" name="txtNumeroOS" value="${ordemServico.numOS}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        </td>
+                    </tr>
+                    <tr><td></td></tr> 
+                    <tr>
+                        <td>
+                            <label> Fornecedor: </label>
+                            <select name="optFornecedor" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
                             <option value="0" <c:if test="${ordemServico.fornecedor.idFornecedor == null}">selected</c:if></option>
                             <c:forEach items="${fornecedores}" var="fornecedor">
                                 <option value="${fornecedor.idFornecedor}" <c:if test="${ordemServico.fornecedor.idFornecedor == fornecedor.idFornecedor}">selected</c:if>>${fornecedor.nomeFantasia}</option>
                             </c:forEach>
                         </select>
                     </td>
-                </tr>
-                <tr><td></td></tr> 
-                <tr>
-                    <td><label> Data Pedido: </label>
-                        <input type="date" name="dtDataPedido" value="${ordemServico.dataPedido}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    <td><label> Situação: </label>
-                        <select name="optSituacao" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
-                            <option value="aberta"<c:if test="${ordemServico.situacao == 'aberta'}">selected</c:if>>Em Aberto</option>
-                            <option value="recebida"<c:if test="${ordemServico.situacao == 'recebida'}">selected</c:if>>Recebida</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr><td></td></tr> 
-                <tr>
-                    <td>
-                        <input type="reset" value="Cancelar">
-                        <input type="submit" name="btnConfirmar" value="${operacao}">
+                    <td><label> Descrição: </label>
+                        <input type="text" name="txtDescricao" value="${ordemServico.descricao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    </tr>
+                    <tr><td></td></tr> 
+                    <tr>
+                        <td><label> Data Pedido: </label>
+                            <input type="date" name="dtDataPedido" value="${ordemServico.dataPedido}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        <td><label> Situação: </label>
+                            <select name="optSituacao" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
+                            <option value="Em Aberto"<c:if test="${ordemServico.situacao == 'Em Aberto'}">selected</c:if>>Em Aberto</option>
+                            <option value="Recebida"<c:if test="${ordemServico.situacao == 'Recebida'}">selected</c:if>>Recebida</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr><td></td></tr> 
+                    <tr>
+                        <td>
+                            <input type="reset" value="Cancelar">
+                            <input type="submit" name="btnConfirmar" value="${operacao}">
                     </td>
                 </tr>
             </table>

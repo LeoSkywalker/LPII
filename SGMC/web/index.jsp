@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 03/09/2019, 09:31:23
-    Author     : Lucas Gama
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

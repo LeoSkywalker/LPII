@@ -1,9 +1,3 @@
-<%-- 
-    Document   : pesquisarItensVenda
-    Created on : 03/11/2019, 10:18:10
-    Author     : Lucas Gama
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -20,12 +14,17 @@
                 <th>ID</th>
                 <th>ID Venda</th>  
                 <th>Produtos</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário</th>
+                <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${itensVendas}" var="itensVenda">
                 <tr>
                     <td><c:out value="${itensVenda.idItensVenda}"/></td>
                     <td><c:out value="${itensVenda.idVenda}"/></td>
                     <td><c:out value="${itensVenda.produto.nome}"/></td>
+                    <td><c:out value="${itensVenda.quantidade}"/></td>
+                    <td><c:out value="${itensVenda.precoUnitario}"/></td>
                     <td>
                         <a href="ManterItensVendaController?acao=prepararOperacao&operacao=Excluir&idItensVenda=<c:out value="${itensVenda.idItensVenda}"/>">
                             Excluir</a>
@@ -38,8 +37,13 @@
             </c:forEach>            
         </table>
         <br>
-        <form action="ManterItensVendaController?acao=prepararOperacao&operacao=Incluir" method="post">
+        <table>
+            <td><form action="ManterItensVendaController?acao=prepararOperacao&operacao=Incluir" method="post">
             <input type="submit" name="btnIncluir" value="Incluir">
-        </form>
+                </form></td>
+                <td><form action="PesquisaVendaController?acao=prepararOperacao&operacao" method="post">
+            <input type="submit" name="btnIncluir" value="Voltar">
+                    </form></td>
+        </table>
     </body>
 </html>

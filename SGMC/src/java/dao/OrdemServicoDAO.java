@@ -20,62 +20,62 @@ import model.OrdemServico;
  * @author Lucas Gama
  */
 public class OrdemServicoDAO {
-    public static List<OrdemServico> obterOrdemServicos() throws ClassNotFoundException, SQLException{
-        
+
+    public static List<OrdemServico> obterOrdemServicos() throws ClassNotFoundException, SQLException {
+
         Connection conexao = null;
         Statement comando = null;
         List<OrdemServico> ordemServicos = new java.util.ArrayList<OrdemServico>();
         OrdemServico ordemServico = null;
-        
-        try{
+
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select * from ordemServico");
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 ordemServico = instanciarOrdemServico(rs);
                 ordemServicos.add(ordemServico);
             }
-        }finally{
+        } finally {
             fecharConexao(conexao, comando);
         }
         return ordemServicos;
     }
-    
-     public static OrdemServico obterOrdemServico(int idOrdemSrv) throws SQLException, ClassNotFoundException{
-     
-            Connection conexao = null;
-            Statement comando = null;
-            OrdemServico ordemServico = null;
-            try{
-                conexao = BD.getConexao();
-                comando = conexao.createStatement();
-                ResultSet rs = comando.executeQuery("select * from ordemServico where idOrdemSrv = " + idOrdemSrv);
-                rs.first();
-                ordemServico = instanciarOrdemServico(rs);
-            } finally{
-                fecharConexao(conexao, comando);
-            }
-            return ordemServico;
-    }
 
+    public static OrdemServico obterOrdemServico(int idOrdemSrv) throws SQLException, ClassNotFoundException {
+
+        Connection conexao = null;
+        Statement comando = null;
+        OrdemServico ordemServico = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from ordemServico where idOrdemSrv = " + idOrdemSrv);
+            rs.first();
+            ordemServico = instanciarOrdemServico(rs);
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return ordemServico;
+    }
 
     private static OrdemServico instanciarOrdemServico(ResultSet rs) throws SQLException {
         OrdemServico ordemServico = new OrdemServico(rs.getInt("idOrdemSrv"),
-        rs.getString("dataPedido"),
-        rs.getString("situacao"),
-        rs.getString("descricao"),
-        rs.getInt("numOS"),
-        null);
+                rs.getString("dataPedido"),
+                rs.getString("situacao"),
+                rs.getString("descricao"),
+                rs.getInt("numOS"),
+                null);
         ordemServico.setIdFornecedor(rs.getInt("idFornecedor"));
-        
+
         return ordemServico;
     }
-    
-    public static void gravar(OrdemServico ordemServico) throws ClassNotFoundException, SQLException{
+
+    public static void gravar(OrdemServico ordemServico) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         PreparedStatement comando = null;
-        try{
+        try {
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
                     "insert into ordemServico (idOrdemSrv, dataPedido, situacao,"
@@ -86,39 +86,37 @@ public class OrdemServicoDAO {
             comando.setString(3, ordemServico.getSituacao());
             comando.setString(4, ordemServico.getDescricao());
             comando.setInt(5, ordemServico.getNumOS());
-            if (ordemServico.getFornecedor() == null){
+            if (ordemServico.getFornecedor() == null) {
                 comando.setNull(6, Types.INTEGER);
             } else {
                 comando.setInt(6, ordemServico.getFornecedor().getIdFornecedor());
             }
             comando.executeUpdate();
-        }finally{
+        } finally {
             fecharConexao(conexao, comando);
         }
     }
-    public static void excluir(OrdemServico ordemServico) throws ClassNotFoundException, 
-            SQLException {
-        Connection conexao = null;
-        Statement comando= null;
-        String stringSQL;
-        
-        try{
-            conexao = BD.getConexao();
-            comando = conexao.createStatement();
-            stringSQL =  "delete from ordemServico where idOrdemSrv = " + 
-                    ordemServico.getIdOrdemSrv();
-            comando.execute(stringSQL);
-        }finally{
-            fecharConexao(conexao, comando);
-        }
-    }
-    
-    public static void alterar(OrdemServico ordemServico) throws ClassNotFoundException, SQLException{
+
+    public static void excluir(OrdemServico ordemServico) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         String stringSQL;
-        
-        try{
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "delete from ordemServico where idOrdemSrv = " + ordemServico.getIdOrdemSrv();
+            comando.execute(stringSQL);
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+    }
+
+    public static void alterar(OrdemServico ordemServico) throws ClassNotFoundException, SQLException {
+        Connection conexao = null;
+        Statement comando = null;
+        String stringSQL;
+
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             stringSQL = "update ordemServico set "
@@ -127,15 +125,15 @@ public class OrdemServicoDAO {
                     + "dataPedido = '" + ordemServico.getDataPedido() + "',"
                     + "situacao = '" + ordemServico.getSituacao() + "',"
                     + "idFornecedor = ";
-            if(ordemServico.getFornecedor() == null){
+            if (ordemServico.getFornecedor() == null) {
                 stringSQL = stringSQL + null;
             } else {
                 stringSQL = stringSQL + ordemServico.getFornecedor().getIdFornecedor();
             }
-            stringSQL =  stringSQL + " where idOrdemSrv = " + ordemServico.getIdOrdemSrv();
+            stringSQL = stringSQL + " where idOrdemSrv = " + ordemServico.getIdOrdemSrv();
             comando.execute(stringSQL);
-        }finally{
-            fecharConexao(conexao, comando );
+        } finally {
+            fecharConexao(conexao, comando);
         }
     }
 }

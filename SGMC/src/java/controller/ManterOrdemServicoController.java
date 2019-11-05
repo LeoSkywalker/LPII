@@ -31,6 +31,8 @@ public class ManterOrdemServicoController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
@@ -109,11 +111,7 @@ public class ManterOrdemServicoController extends HttpServlet {
             view.forward(request, response);
         }catch(ServletException e){
             throw e;
-        }catch(IOException e){
-            throw new ServletException(e);
-        }catch(SQLException e){
-            throw new ServletException(e);
-        }catch(ClassNotFoundException e){
+        }catch(IOException | SQLException | ClassNotFoundException e){
             throw new ServletException(e);
         }
     }
@@ -123,27 +121,25 @@ public class ManterOrdemServicoController extends HttpServlet {
         int idOrdemSrv = Integer.parseInt(request.getParameter("numIdOrdemServico"));
         String dataPedido = request.getParameter("dtDataPedido");
         String situacao = request.getParameter("optSituacao");
-        String descricao = request.getParameter("");
+        String descricao = request.getParameter("txtDescricao");
         int numOS = Integer.parseInt(request.getParameter("txtNumeroOS"));
-        int idFornecedor = Integer.parseInt(request.getParameter("optFornecedor"));
+        int idFornecedor = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optFornecedor"));
         
         try{
             Fornecedor fornecedor = null;
             if(idFornecedor != 0){
                 fornecedor = Fornecedor.obterFornecedor(idFornecedor);
             }
-            
             OrdemServico ordemServico = new OrdemServico(idOrdemSrv, dataPedido, 
                     situacao, descricao, numOS, fornecedor);
             if(operacao.equals("Incluir")){
                 ordemServico.gravar();
             }else{
-                if (operacao.equals("Alterar")){
-                    ordemServico.alterar();                
-                }else{
-                    if (operacao.equals("Excluir")){
+                if (operacao.equals("Excluir")){
                         ordemServico.excluir();
-                    }
+                    }                
+                    if (operacao.equals("Alterar")){
+                    ordemServico.alterar();
                 }
             }
             

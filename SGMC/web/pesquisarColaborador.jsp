@@ -1,9 +1,3 @@
-<%-- 
-    Document   : pesquisarColaborador
-    Created on : 19/09/2019, 10:04:54
-    Author     : leonardo
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -21,12 +15,13 @@
                 <th>ID</th>
                 <th>CPF</th>
                 <th>RG</th>
+                <th>Nome</th>
+                <th>Email</th>
                 <th>Data de Nascimento</th>
                 <th>Telefone</th>
                 <th>Celular</th>
                 <th>Estado Civil</th>
                 <th>Sexo</th>
-                <th>Nome</th>
                 <th>Endereço</th>
                 <th>Usuário</th>
                 <th colspan="2">Ação</th>
@@ -36,12 +31,13 @@
                     <td><c:out value="${colaborador.idColaborador}"/></td>
                     <td><c:out value="${colaborador.cpf}"/></td>
                     <td><c:out value="${colaborador.rg}"/></td>
+                    <td><c:out value="${colaborador.nome}"/></td>
+                    <td><c:out value="${colaborador.email}"/></td>
                     <td><c:out value="${colaborador.dataNascimento}"/></td>
                     <td><c:out value="${colaborador.telefone}"/></td>
                     <td><c:out value="${colaborador.celular}"/></td>
                     <td><c:out value="${colaborador.estadoCivil}"/></td>
                     <td><c:out value="${colaborador.sexo}"/></td>
-                    <td><c:out value="${colaborador.nome}"/></td>
                     <td><c:out value="${colaborador.idEndereco}"/></td>
                     <td><c:out value="${colaborador.idUsuario}"/></td>
                     <td><a href="ManterColaboradorController?acao=prepararOperacao&operacao=Excluir&idColaborador=<c:out value="${colaborador.idColaborador}"/>">Excluir</a></td>

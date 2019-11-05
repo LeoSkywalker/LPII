@@ -74,6 +74,7 @@ public class ProdutoDAO {
                 rs.getInt("qtdMinima"),
                 rs.getInt("qtdAtual"),
                 rs.getInt("qtdMaxima"),
+                rs.getFloat("largura"),
                 null,
                 null);
         produto.setIdFornecedor(rs.getInt("idFornecedor"));
@@ -89,8 +90,8 @@ public class ProdutoDAO {
             comando = conexao.prepareStatement(
                     "insert into produto (idProduto, nome, codInterno, codBarra,"
                     + "unidadeMedida, precoCompra, peso, altura, comprimento, validade,"
-                    + "qtdMinima, qtdAtual, qtdMaxima, idFornecedor, idCategoria)"
-                    + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    + "qtdMinima, qtdAtual, qtdMaxima, largura, idFornecedor, idCategoria)"
+                    + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             comando.setInt(1, produto.getIdProduto());
             comando.setString(2, produto.getNome());
             comando.setInt(3, produto.getCodInterno());
@@ -104,15 +105,16 @@ public class ProdutoDAO {
             comando.setInt(11, produto.getQtdMinima());
             comando.setInt(12, produto.getQtdAtual());
             comando.setInt(13, produto.getQtdMaxima());
+            comando.setFloat(14, produto.getLargura());
             if (produto.getFornecedor() == null) {
-                comando.setNull(14, Types.INTEGER);
-            } else {
-                comando.setInt(14, produto.getFornecedor().getIdFornecedor());
-            }
-            if (produto.getCategoria() == null) {
                 comando.setNull(15, Types.INTEGER);
             } else {
-                comando.setInt(15, produto.getCategoria().getIdCategoria());
+                comando.setInt(15, produto.getFornecedor().getIdFornecedor());
+            }
+            if (produto.getCategoria() == null) {
+                comando.setNull(16, Types.INTEGER);
+            } else {
+                comando.setInt(16, produto.getCategoria().getIdCategoria());
             }
             comando.executeUpdate();
         } finally {
@@ -158,23 +160,19 @@ public class ProdutoDAO {
                     + "qtdMinima = " + produto.getQtdMinima() + ","
                     + "qtdAtual = " + produto.getQtdAtual() + ","
                     + "qtdMaxima = " + produto.getQtdMaxima() + ","
+                    + "largura = " + produto.getLargura() + ","
                     + "idFornecedor = ";
             if (produto.getFornecedor() == null) {
                 stringSQL = stringSQL + null;
             } else {
                 stringSQL = stringSQL + produto.getFornecedor().getIdFornecedor();
             }
-            stringSQL = stringSQL + " where idProduto = " + produto.getIdProduto();
-            comando.execute(stringSQL);
-            
-            stringSQL = "update produto set "
-                    + "idCategoria = ";
+            stringSQL = stringSQL + ", idCategoria = ";
             if (produto.getCategoria() == null) {
                 stringSQL = stringSQL + null;
             } else {
                 stringSQL = stringSQL + produto.getCategoria().getIdCategoria();
             }
-
             stringSQL = stringSQL + " where idProduto = " + produto.getIdProduto();
             comando.execute(stringSQL);
         } finally {

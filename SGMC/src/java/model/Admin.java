@@ -43,7 +43,7 @@ public class Admin extends Usuario{
     }
     
     public void excluir() throws ClassNotFoundException, SQLException{
-        AdminDAO.excluir(this, this);
+        AdminDAO.excluir(this);
     }
     
     public void alterar() throws ClassNotFoundException, SQLException{

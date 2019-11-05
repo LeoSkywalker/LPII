@@ -28,12 +28,16 @@ public class Produto {
     private int qtdMinima;
     private int qtdAtual;
     private int qtdMaxima;
+    private float largura;
     private Fornecedor fornecedor;
     private Categoria categoria;
     private int idFornecedor;
     private int idCategoria;
 
-    public Produto(int idProduto, String nome, int codInterno, int codBarra, String unidadeMedida, float precoCompra, float peso, float altura, float comprimento, String validade, int qtdMinima, int qtdAtual, int qtdMaxima, Fornecedor fornecedor, Categoria categoria) {
+    public Produto(int idProduto, String nome, int codInterno, int codBarra, 
+            String unidadeMedida, float precoCompra, float peso, float altura, 
+            float comprimento, String validade, int qtdMinima, int qtdAtual, 
+            int qtdMaxima, float largura, Fornecedor fornecedor, Categoria categoria) {
         this.idProduto = idProduto;
         this.nome = nome;
         this.codInterno = codInterno;
@@ -47,10 +51,19 @@ public class Produto {
         this.qtdMinima = qtdMinima;
         this.qtdAtual = qtdAtual;
         this.qtdMaxima = qtdMaxima;
+        this.largura = largura;
         this.fornecedor = fornecedor;
         this.categoria = categoria;
     }
 
+    public float getLargura() {
+        return largura;
+    }
+
+    public void setLargura(float largura) {
+        this.largura = largura;
+    }
+    
     public int getIdProduto() {
         return idProduto;
     }

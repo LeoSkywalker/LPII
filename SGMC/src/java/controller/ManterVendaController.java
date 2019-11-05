@@ -129,13 +129,13 @@ public class ManterVendaController extends HttpServlet {
         String operacao = request.getParameter("operacao");
         int idVenda = Integer.parseInt(request.getParameter("numIdVenda"));
         String dataVenda = request.getParameter("dtDataVenda");
-        int idCliente = Integer.parseInt(request.getParameter("optCliente"));
-        int idUsuario = Integer.parseInt(request.getParameter("optUsuario"));
+        int idCliente = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optCliente"));
+        int idUsuario = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optUsuario"));
         float subTotal = Float.parseFloat(request.getParameter("numSubTotal"));
         int codBarra = Integer.parseInt(request.getParameter("numCodBarra"));
         float valorDesconto = Float.parseFloat(request.getParameter("numValorDesconto"));
         String situacao = request.getParameter("optSituacao");
-        int idFormaPgto = Integer.parseInt(request.getParameter("optPagamento"));
+        int idFormaPgto = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optPagamento"));
         
         
         try{
@@ -169,11 +169,8 @@ public class ManterVendaController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("PesquisaVendaController");
             view.forward(request, response);
         }
-        catch(SQLException e){
+        catch(SQLException | ClassNotFoundException e){
             throw new ServletException(e);
-        }
-        catch(ClassNotFoundException e){
-           throw new ServletException(e);
         }
     }
     

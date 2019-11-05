@@ -1,9 +1,3 @@
-<%-- 
-    Document   : pesquisarFornecedor
-    Created on : 23/09/2019, 10:48:37
-    Author     : Lucas Gama
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -20,6 +14,10 @@
                 <th>ID</th>
                 <th>Nome Fantasia:</th>
                 <th>CNPJ:</th>
+                <th>Representante:</th>
+                <th>Email:</th>
+                <th>Telefone:</th>
+                <th>Endereço:</th>
                 <th colspan="2">Ação</th>
                 
             </tr>
@@ -28,6 +26,10 @@
                     <td><c:out value="${fornecedor.idFornecedor}"/></td>
                     <td><c:out value="${fornecedor.nomeFantasia}"/></td>
                     <td><c:out value="${fornecedor.cnpj}"/></td>
+                    <td><c:out value="${fornecedor.nomeRepresentante}"/></td>
+                    <td><c:out value="${fornecedor.email}"/></td>
+                    <td><c:out value="${fornecedor.telefone}"/></td>
+                    <td><c:out value="${fornecedor.idEndereco}"/></td>
                     <td><a href="ManterFornecedorController?acao=prepararOperacao&operacao=Excluir&idFornecedor=<c:out value="${fornecedor.idFornecedor}"/>">Excluir</a></td>
                     <td><a href="ManterFornecedorController?acao=prepararOperacao&operacao=Alterar&idFornecedor=<c:out value="${fornecedor.idFornecedor}"/>">Alterar</a></td>
                 </tr>

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : manterPagamento
-    Created on : 05/09/2019, 10:15:18
-    Author     : Lucas Gama
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

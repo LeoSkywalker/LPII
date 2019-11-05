@@ -1,9 +1,3 @@
-<%-- 
-    Document   : pesquisarVenda
-    Created on : 23/09/2019, 11:10:38
-    Author     : Lucas Gama
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -11,19 +5,34 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SGMC</title>
+        <title>SGMC - Pesquisa de Venda</title>
     </head>
     <body>
         <h1>Pesquisa de Venda</h1>
         <table border=1>
             <tr>
                 <th>ID</th>
-                <th>Data da Venda:</th>    
+                <th>Data da Venda:</th> 
+                <th>SubTotal</th>
+                <th>Código Barra</th>
+                <th>Valor do Desconto</th>
+                <th>Situação</th>
+                <th>Cliente</th>
+                <th>Usuário</th>
+                <th>Forma de Pagamento</th>
+                <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${vendas}" var="venda">
                 <tr>
                     <td><c:out value="${venda.idVenda}"/></td>
                     <td><c:out value="${venda.dataVenda}"/></td>
+                    <td><c:out value="${venda.subTotal}"/></td>
+                    <td><c:out value="${venda.codBarra}"/></td>
+                    <td><c:out value="${venda.valorDesconto}"/></td>
+                    <td><c:out value="${venda.situacao}"/></td>
+                    <td><c:out value="${venda.idCliente}"/></td>
+                    <td><c:out value="${venda.idUsuario}"/></td>
+                    <td><c:out value="${venda.idFormaPgto}"/></td>
                     <td>
                         <a href="ManterVendaController?acao=prepararOperacao&operacao=Excluir&idVenda=<c:out value="${venda.idVenda}"/>">
                             Excluir</a>
@@ -35,8 +44,8 @@
                 </tr>
             </c:forEach>
                 <tr>
-                    <td>
-                        <a href="PesquisaItensVendaController"> Manter Itens da Venda </a>
+                    <td colspan="11">
+                <center><a href="PesquisaItensVendaController"> Manter Itens da Venda </a></center>
                     </td>
                 </tr>
         </table>

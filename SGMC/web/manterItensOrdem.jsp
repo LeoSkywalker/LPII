@@ -1,9 +1,3 @@
-<%-- 
-    Document   : manterItensOrdem
-    Created on : 03/11/2019, 10:18:44
-    Author     : Lucas Gama
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,11 +13,11 @@
                 <tr>
                     <td>
                         <label> ID: </label>
-                        <input type="text" name="numIdItensOrdem" value="${itensOrdem.idItensOrdem}">
+                        <input type="text" name="numIdItensOrdem" value="${itensOrdem.idItensOrdem}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                     </td>
                     <td>
                         <label> ID Ordem Serviço: </label>
-                        <select name="optOrdemSrv">
+                        <select name="optOrdemSrv" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
                             <option value="0" <c:if test="${itensOrdem.ordemServico.idOrdemSrv == null}">selected</c:if></option>
                             <c:forEach items="${ordensServico}" var="ordemServico">
                                 <option value="${ordemServico.idOrdemSrv}" <c:if test="${itensOrdem.ordemServico.idOrdemSrv == ordemServico.idOrdemSrv}">selected</c:if>>${ordemServico.idOrdemSrv}</option>
@@ -35,7 +29,7 @@
                 <tr>
                     <td>
                         <label> Produto: </label>
-                        <select name="optProduto">
+                        <select name="optProduto" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
                             <option value="0" <c:if test="${itensOrdem.produto.idProduto == null}">selected</c:if></option>
                             <c:forEach items="${produtos}" var="produto">
                                 <option value="${produto.idProduto}" <c:if test="${itensOrdem.produto.idProduto == produto.idProduto}">selected</c:if>>${produto.nome}</option>
@@ -44,7 +38,7 @@
                     </td>
                     <td>
                         <label> Quantidade: </label>
-                        <input type="number" name="numQuantidade" value="${itensOrdem.quantidade}">
+                        <input type="number" name="numQuantidade" value="${itensOrdem.quantidade}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                     </td>
                 </tr>
                 <tr>

@@ -33,80 +33,76 @@ public class ManterItensOrdemController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.sql.SQLException
+     * @throws java.lang.ClassNotFoundException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         String acao = request.getParameter("acao");
-        if(acao.equals("confirmarOperacao")){
+        if (acao.equals("confirmarOperacao")) {
             confirmarOperacao(request, response);
-        }else{
-            if(acao.equals("prepararOperacao")){
+        } else {
+            if (acao.equals("prepararOperacao")) {
                 prepararOperacao(request, response);
             }
         }
-        }
+    }
 
     private void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException, IOException {
         String operacao = request.getParameter("operacao");
         int idItensOrdem = Integer.parseInt(request.getParameter("numIdItensOrdem"));
-        int idOrdemSrv = Integer.parseInt(request.getParameter("optOrdemSrv"));
+        int idOrdemSrv = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optOrdemSrv"));
         int quantidade = Integer.parseInt(request.getParameter("numQuantidade"));
-        int idProduto = Integer.parseInt(request.getParameter("optProduto"));
-        
-        try{
+        int idProduto = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optProduto"));
+
+        try {
             Produto produto = null;
-            if(idProduto != 0){
+            if (idProduto != 0) {
                 produto = Produto.obterProduto(idProduto);
             }
             OrdemServico ordemServico = null;
-            if(idOrdemSrv != 0){
+            if (idOrdemSrv != 0) {
                 ordemServico = OrdemServico.obterOrdemServico(idOrdemSrv);
             }
             ItensOrdem itensOrdem = new ItensOrdem(idItensOrdem, quantidade, produto, ordemServico);
-                if(operacao.equals("Incluir")){
+            if (operacao.equals("Incluir")) {
                 itensOrdem.gravar();
-            }else{
-                if(operacao.equals("Alterar")){
+            } else {
+                if (operacao.equals("Alterar")) {
                     itensOrdem.alterar();
-                }else{
-                    if (operacao.equals("Excluir")){
+                } else {
+                    if (operacao.equals("Excluir")) {
                         itensOrdem.excluir();
                     }
                 }
-                }
+            }
             RequestDispatcher view = request.getRequestDispatcher("PesquisaItensOrdemController");
             view.forward(request, response);
-        }catch(SQLException e){
+
+        } catch (SQLException | ClassNotFoundException e) {
             throw new ServletException(e);
-        }catch(ClassNotFoundException e){
-           throw new ServletException(e);
         }
     }
 
     private void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
-        try{
+        try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
             request.setAttribute("produtos", Produto.obterProdutos());
             request.setAttribute("ordensServico", OrdemServico.obterOrdemServicos());
-            if(!operacao.equals("Incluir")){
+            if (!operacao.equals("Incluir")) {
                 int idItensOrdem = Integer.parseInt(request.getParameter("idItensOrdem"));
                 ItensOrdem itensOrdem = ItensOrdem.obterItensOrdem(idItensOrdem);
                 request.setAttribute("itensOrdem", itensOrdem);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterItensOrdem.jsp");
             view.forward(request, response);
-        }catch(ServletException e){
+        } catch (ServletException e) {
             throw e;
-        }catch(IOException e){
-            throw new ServletException(e);
-        }catch(SQLException e){
-            throw new ServletException(e);
-        }catch(ClassNotFoundException e){
+        } catch (IOException | SQLException | ClassNotFoundException e) {
             throw new ServletException(e);
         }
     }
- 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

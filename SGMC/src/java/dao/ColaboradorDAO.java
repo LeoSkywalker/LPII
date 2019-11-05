@@ -81,7 +81,7 @@ public class ColaboradorDAO {
                 rs.getString("email"),
                 rs.getString("senha"),
                 null);
-        colaborador.setIdEndereco(rs.getInt("idEndereco"));    
+        colaborador.setIdEndereco(rs.getInt("idEndereco"));
         return colaborador;
     }
 
@@ -129,12 +129,10 @@ public class ColaboradorDAO {
 
     }
 
-    public static void excluir(Colaborador colaborador) throws
-            ClassNotFoundException, SQLException {
-        
+    public static void excluir(Colaborador colaborador) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
-        String stringSQL;    
+        String stringSQL;
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
@@ -147,37 +145,51 @@ public class ColaboradorDAO {
         }
     }
 
-    public static void alterar(Colaborador colaborador) throws 
+    public static void alterar(Colaborador colaborador) throws
             ClassNotFoundException, SQLException {
 
         Connection conexao = null;
-        PreparedStatement comando = null;
-        
-        try{
+        Statement comando = null;
+        String stringSQL;
+
+        try {
             conexao = BD.getConexao();
-            
-            Usuario usuario = new Usuario(colaborador.getIdUsuario(),
-                    colaborador.getNome(), colaborador.getEmail(), colaborador.getSenha());       
-            usuario.alterar();
-            
-            comando = conexao.prepareStatement("update colaborador set cpf=?, "
-                    + " rg=?, dataNascimento=?, telefone=?, celular=?, "
-                    + " estadoCivil=?, sexo=?, idEndereco=?, "
-                    + " idUsuario=? where idColaborador=?"); 
-              
-            comando.setString(1, colaborador.getCpf());
-            comando.setString(2, colaborador.getRg());
-            comando.setString(3, colaborador.getDataNascimento());
-            comando.setString(4, colaborador.getTelefone());
-            comando.setString(5, colaborador.getCelular());
-            comando.setString(6, colaborador.getEstadoCivil());
-            comando.setString(7, colaborador.getSexo());
-            comando.setInt(8, colaborador.getIdEndereco());
-            comando.setInt(9, colaborador.getIdUsuario());
-            comando.setInt(10, colaborador.getIdColaborador());    
-            comando.executeUpdate();
-        }finally {
-                fecharConexao(conexao, comando);
+            comando = conexao.createStatement();
+            stringSQL = "update colaborador set "
+                    + "cpf ='" + colaborador.getCpf() + "',"
+                    + "rg='" + colaborador.getRg() + "',"
+                    + "dataNascimento='" + colaborador.getDataNascimento() + "',"
+                    + "telefone='" + colaborador.getTelefone() + "',"
+                    + "celular='" + colaborador.getCelular() + "',"
+                    + "estadoCivil='" + colaborador.getEstadoCivil() + "',"
+                    + "sexo='" + colaborador.getSexo() + "',"
+                    + "idEndereco = ";
+
+            if (colaborador.getEndereco() == null) {
+                stringSQL = stringSQL + null;
+            } else {
+                stringSQL = stringSQL + colaborador.getEndereco().getIdEndereco();
             }
+            stringSQL = stringSQL + " where idColaborador = " + colaborador.getIdColaborador();
+            comando.execute(stringSQL);
+        } finally {
+            fecharConexao(conexao, comando);
         }
+
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+
+            stringSQL = "update usuario set "
+                    + "nome ='" + colaborador.getNome() + "',"
+                    + "email='" + colaborador.getEmail() + "',"
+                    + "senha='" + colaborador.getSenha() + "' ";
+
+            stringSQL = stringSQL + " where idUsuario = " + colaborador.getIdUsuario();
+            comando.execute(stringSQL);
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+    }
+
     }

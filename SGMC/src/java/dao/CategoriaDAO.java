@@ -20,104 +20,99 @@ import model.Categoria;
  * @author leonardo
  */
 public class CategoriaDAO {
-    
-    public static List<Categoria> obterCategorias() throws ClassNotFoundException, SQLException{
-        
-        Connection conexao =null;
+
+    public static List<Categoria> obterCategorias() throws ClassNotFoundException, SQLException {
+
+        Connection conexao = null;
         Statement comando = null;
         List<Categoria> categorias = new ArrayList<Categoria>();
         Categoria categoria = null;
-        
-        try{
+
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select * from categoria");
-            
-            while (rs.next()){
+
+            while (rs.next()) {
                 categoria = instaciarCategoria(rs);
                 categorias.add(categoria);
             }
-            }finally{
-                    fecharConexao(conexao, comando);
-                    
-                    }
-            return categorias;
-    }
-    
-     public static Categoria obterCategoria(int idCategoria) throws SQLException, ClassNotFoundException{
-     
-            Connection conexao = null;
-            Statement comando = null;
-            Categoria categoria = null;
-            try{
-                conexao = BD.getConexao();
-                comando = conexao.createStatement();
-                ResultSet rs = comando.executeQuery("select * from categoria where idCategoria = " + idCategoria);
-                rs.first();
-                categoria = instaciarCategoria(rs);
-            } finally{
-                fecharConexao(conexao, comando);
-            }
-            return categoria;
+        } finally {
+            fecharConexao(conexao, comando);
+
+        }
+        return categorias;
     }
 
+    public static Categoria obterCategoria(int idCategoria) throws SQLException, ClassNotFoundException {
+
+        Connection conexao = null;
+        Statement comando = null;
+        Categoria categoria = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from categoria where idCategoria = " + idCategoria);
+            rs.first();
+            categoria = instaciarCategoria(rs);
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        return categoria;
+    }
 
     private static Categoria instaciarCategoria(ResultSet rs) throws SQLException {
-       Categoria categoria = new Categoria(rs.getInt("idCategoria"),
-       rs.getString("descricao"));
-       return categoria;
+        Categoria categoria = new Categoria(rs.getInt("idCategoria"),
+                rs.getString("descricao"));
+        return categoria;
     }
-    
-    public static void gravar(Categoria categoria) throws ClassNotFoundException, SQLException{
+
+    public static void gravar(Categoria categoria) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         PreparedStatement comando = null;
-        try{
+        try {
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
-            "insert into categoria (idCategoria, descricao) values (?,?)");
+                    "insert into categoria (idCategoria, descricao) values (?,?)");
             comando.setInt(1, categoria.getIdCategoria());
             comando.setString(2, categoria.getDescricao());
             comando.executeUpdate();
-            }finally{
+        } finally {
             fecharConexao(conexao, comando);
         }
     }
-    
-    public static void  excluir(Categoria categoria) throws ClassNotFoundException, SQLException{
+
+    public static void excluir(Categoria categoria) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         String stringSQL;
-        
-        try{
+
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             stringSQL = "delete from categoria where idCategoria ="
                     + categoria.getIdCategoria();
             comando.execute(stringSQL);
-        }finally{
+        } finally {
             fecharConexao(conexao, comando);
         }
     }
-    
-    public static void alterar(Categoria categoria) throws ClassNotFoundException, SQLException{
-        
+
+    public static void alterar(Categoria categoria) throws ClassNotFoundException, SQLException {
+
         Connection conexao = null;
         Statement comando = null;
         String stringSQL;
-        
-        try{
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             stringSQL = "update categoria set "
-                    + "descricao='" + categoria.getDescricao() +"',";
-                   
-                    stringSQL = stringSQL + " where idCategoria = " 
-                            + categoria.getIdCategoria();
-                    comando.execute(stringSQL);
-        }finally{
+                    + "descricao = '" + categoria.getDescricao()+
+                    "' where idCategoria = " + categoria.getIdCategoria();
+            comando.execute(stringSQL);
+        } finally {
             fecharConexao(conexao, comando);
         }
     }
-    
-    
+
 }

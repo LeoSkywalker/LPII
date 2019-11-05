@@ -100,8 +100,8 @@ public class ManterItensVendaController extends HttpServlet {
     private void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException, IOException {
         String operacao = request.getParameter("operacao");
         int idItensVenda = Integer.parseInt(request.getParameter("numIdItensVenda"));
-        int idVenda = Integer.parseInt(request.getParameter("optVenda"));
-        int idProduto = Integer.parseInt(request.getParameter("optProduto"));
+        int idVenda = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optVenda"));
+        int idProduto = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optProduto"));
         int quantidade = Integer.parseInt(request.getParameter("numQuantidade"));
         float precoUnitario = Float.parseFloat(request.getParameter("numPrecoUnitario"));
      

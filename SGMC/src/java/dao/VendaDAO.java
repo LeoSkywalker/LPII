@@ -149,21 +149,21 @@ public class VendaDAO {
                 stringSQL = stringSQL + venda.getCliente().getIdCliente();
             }
             
-            stringSQL = stringSQL + "idUsuario = ";
+            stringSQL = stringSQL + ", idUsuario = ";
             if (venda.getUsuario() == null){
                 stringSQL = stringSQL + null;
             }else{
                 stringSQL = stringSQL + venda.getUsuario().getIdUsuario();
             }
             
-            stringSQL = stringSQL + "idFormaPgto = ";
+            stringSQL = stringSQL + ", idFormaPgto = ";
             if(venda.getFormaPagamento() == null){
                 stringSQL = stringSQL + null;
             }else{
                 stringSQL = stringSQL + venda.getFormaPagamento().getIdFormaPgto();
             }
            
-        stringSQL = stringSQL + " where venda = " + venda.getIdVenda();
+        stringSQL = stringSQL + " where idVenda = " + venda.getIdVenda();
         comando.execute(stringSQL);
         }finally{
             fecharConexao(conexao, comando);

@@ -1,8 +1,3 @@
-<%-- 
-    Document   : manterProduto
-    Created on : 05/09/2019, 09:57:39
-    Author     : Lucas Gama
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -59,8 +54,10 @@
                         <input type="text" name="peso" value="${produto.peso}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     <td><label> Altura(cm): </label>
                         <input type="text" name="altura" value="${produto.altura}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    <td><label> Comprimento(m): </label>
+                    <td><label> Comprimento(cm): </label>
                         <input type="text" name="comprimento" value="${produto.comprimento}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td><label> Largura(cm): </label>
+                        <input type="text" name="largura" value="${produto.largura}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr>

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : manterDevolucao
-    Created on : 26/09/2019, 16:14:24
-    Author     : Lucas Gama
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

@@ -60,11 +60,7 @@ public class ManterProdutoController extends HttpServlet {
                 view.forward(request, response);
             }catch(ServletException e){
                 throw e;
-            }catch(IOException e){
-                throw new ServletException(e);
-            }catch(SQLException e){
-                throw new ServletException(e);
-            }catch(ClassNotFoundException e){
+            }catch(IOException | SQLException | ClassNotFoundException e){
                 throw new ServletException(e);
             }
         }    
@@ -137,8 +133,9 @@ public class ManterProdutoController extends HttpServlet {
         int qtdMinima = Integer.parseInt(request.getParameter("qtdMinima"));
         int qtdAtual = Integer.parseInt(request.getParameter("qtdAtual"));
         int qtdMaxima = Integer.parseInt(request.getParameter("qtdMaxima"));
-        int idFornecedor = Integer.parseInt(request.getParameter("optFornecedor"));
-        int idCategoria = Integer.parseInt(request.getParameter("optCategoria"));
+        float largura = Float.parseFloat(request.getParameter("largura"));
+        int idFornecedor = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optFornecedor"));
+        int idCategoria = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optCategoria"));
         
         try{
             Fornecedor fornecedor = null;
@@ -152,7 +149,7 @@ public class ManterProdutoController extends HttpServlet {
             
             Produto produto = new Produto(idProduto, nome, codInterno, codBarra,
                     unidadeMedida, precoCompra, peso, altura, comprimento, validade,
-                    qtdMinima, qtdAtual, qtdMaxima, fornecedor, categoria);
+                    qtdMinima, qtdAtual, qtdMaxima, largura, fornecedor, categoria);
             if(operacao.equals("Incluir")){
                 produto.gravar();
             }else{
@@ -167,11 +164,8 @@ public class ManterProdutoController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("PesquisaProdutoController");
             view.forward(request, response);
         }
-        catch(SQLException e){
+        catch(SQLException | ClassNotFoundException e){
             throw new ServletException(e);
-        }
-        catch(ClassNotFoundException e){
-           throw new ServletException(e);
         }
     }
     

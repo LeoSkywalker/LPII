@@ -1,9 +1,3 @@
-<%-- 
-    Document   : manterAdmin
-    Created on : 05/09/2019, 09:39:13
-    Author     : Leonardo Campos
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -39,7 +33,7 @@
                         <input type="password" name="txtSenha" value="${admin.senha}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
 
                     <td><label> Repetir Senha: </label>
-                        <input type="password"></td>
+                        <input type="password" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr>

@@ -139,8 +139,8 @@ public class ItensOrdemDAO {
             }else{
                 stringSQL = stringSQL + itensOrdem.getProduto().getIdProduto();
             }
-            stringSQL = stringSQL + " where idItensOrdem = " + itensOrdem.getIdOrdemSrv()
-                    + " and idOrdemSrv " + itensOrdem.getIdOrdemSrv();
+            stringSQL = stringSQL + " where idItensOrdem = " + itensOrdem.getIdItensOrdem()
+                    + " and idOrdemSrv = " + itensOrdem.getOrdemServico().getIdOrdemSrv();
             comando.execute(stringSQL);
         }finally{
             fecharConexao(conexao, comando);
