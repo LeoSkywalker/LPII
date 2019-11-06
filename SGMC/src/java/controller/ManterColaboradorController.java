@@ -19,10 +19,6 @@ import model.Colaborador;
 import model.Usuario;
 import model.Endereco;
 
-/**
- *
- * @author leonardo
- */
 public class ManterColaboradorController extends HttpServlet {
 
     /**
@@ -135,6 +131,8 @@ public class ManterColaboradorController extends HttpServlet {
         String dataNascimento = request.getParameter("txtDataNasc");
         String estadoCivil = request.getParameter("optEstadoCivil");
         String sexo = request.getParameter("optSexo");
+        int numero = Integer.parseInt(request.getParameter("numEndereco"));
+        String complemento = request.getParameter("txtComplemento");
         int idEndereco = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optEndereco"));
         
         try{
@@ -143,8 +141,8 @@ public class ManterColaboradorController extends HttpServlet {
                 endereco = Endereco.obterEndereco(idEndereco);
             }
             Colaborador colaborador = new Colaborador(idColaborador, cpf, rg,
-            dataNascimento, telefone, celular, estadoCivil, sexo, idUsuario, 
-                    nome, email, senha, endereco);
+            dataNascimento, telefone, celular, estadoCivil, sexo, numero, 
+                    complemento, idUsuario, nome, email, senha, endereco);
             if(operacao.equals("Incluir")){
                 colaborador.gravar();
             }else{

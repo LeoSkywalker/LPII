@@ -9,10 +9,6 @@ import dao.OrdemServicoDAO;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author Lucas Gama
- */
 public class OrdemServico {
     private int idOrdemSrv;
     private String dataPedido;

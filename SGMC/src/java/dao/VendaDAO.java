@@ -15,10 +15,6 @@ import java.sql.Types;
 import java.util.List;
 import model.Venda;
 
-/**
- *
- * @author Lucas Gama
- */
 public class VendaDAO {
     public static List<Venda> obterVendas() throws ClassNotFoundException, SQLException{
         

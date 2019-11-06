@@ -5,6 +5,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
+        <style type="text/css">
+            <!--
+            a:link {text-decoration: none;color: #000000}
+            a:active {text-decoration: none;}
+            a:visited {text-decoration: none;color: #000000}
+            a:hover {text-decoration: underline;color: #000000}-->
+        </style>
     </head>
     <body>
         <h1>Manter Endereco - ${operacao}</h1>
@@ -18,10 +25,6 @@
                 <tr>
                     <td><label> Logradouro: </label>
                         <input type="text" name="txtLogradouro" value="${endereco.logradouro}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    <td><label> Número: </label>
-                        <input type="number" name="numEndereco" value="${endereco.numero}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    <td><label> Complemento: </label>
-                        <input type="text" name="txtComplemento" value="${endereco.complemento}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     <td><label> Cidade: </label>
                         <input type="text" name="txtCidade" value="${endereco.cidade}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>           
@@ -38,8 +41,9 @@
                 </tr>
                 <tr><td></td></tr>  
                 <tr>
-                    <td><input type="reset" value="Cancelar">
-                        <input type="submit" name="btnConfirmar" value="${operacao}"></td>
+                    <td><input type="submit" name="btnConfirmar" value="${operacao}">
+                        <button><a href="PesquisaEnderecoController">Voltar</a></button>
+                    </td>
                 </tr>
             </table>
         </form>

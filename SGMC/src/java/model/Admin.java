@@ -9,10 +9,6 @@ import dao.AdminDAO;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author Lucas Gama
- */
 public class Admin extends Usuario{
     
     private int idAdmin;

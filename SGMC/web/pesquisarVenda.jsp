@@ -30,9 +30,9 @@
                     <td><c:out value="${venda.codBarra}"/></td>
                     <td><c:out value="${venda.valorDesconto}"/></td>
                     <td><c:out value="${venda.situacao}"/></td>
-                    <td><c:out value="${venda.idCliente}"/></td>
-                    <td><c:out value="${venda.idUsuario}"/></td>
-                    <td><c:out value="${venda.idFormaPgto}"/></td>
+                    <td><c:out value="${venda.cliente.nome}"/></td>
+                    <td><c:out value="${venda.usuario.nome}"/></td>
+                    <td><c:out value="${venda.formaPagamento.nome}"/></td>
                     <td>
                         <a href="ManterVendaController?acao=prepararOperacao&operacao=Excluir&idVenda=<c:out value="${venda.idVenda}"/>">
                             Excluir</a>
@@ -51,7 +51,8 @@
         </table>
         <br>
         <form action="ManterVendaController?acao=prepararOperacao&operacao=Incluir" method="post">
-            <input type="submit" name="btnIncluir" value="Incluir">
+            <table><tr><td><input type="submit" name="btnIncluir" value="Incluir"></td></tr></table>
         </form>
+        <table><tr><td><input type="submit" name="btnVoltar" value="Voltar" onclick="window.location.href='http://localhost:8084/SGMC/'"></td></tr></table>
     </body>
 </html>

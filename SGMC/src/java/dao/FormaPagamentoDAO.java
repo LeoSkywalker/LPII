@@ -14,10 +14,6 @@ import java.sql.Statement;
 import java.util.List;
 import model.FormaPagamento;
 
-/**
- *
- * @author leonardo
- */
 public class FormaPagamentoDAO {
     
     public static List<FormaPagamento> obterFormasPagamentos() throws ClassNotFoundException, SQLException{
@@ -84,10 +80,11 @@ public class FormaPagamentoDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
-                    "insert into formaPagamento (idFormaPgto, nome, conta, agencia, nomeBanco, tipoConta,"
-                    + "numMaxParcelas, intervaloParcelas, taxaBanco,"
-                    + "taxaOperadora, multaAtraso, situacaoConfirmacao)"
-                    + "values (?,?,?,?,?,?,?,?,?,?,?,?)");
+                    "insert into formaPagamento (idFormaPgto, nome, conta, "
+                            + "agencia, nomeBanco, tipoConta, numMaxParcelas, "
+                            + "intervaloParcelas, taxaBanco, taxaOperadora, "
+                            + "multaAtraso, situacaoConfirmacao) values "
+                            + "(?,?,?,?,?,?,?,?,?,?,?,?)");
             comando.setInt(1, formaPagamento.getIdFormaPgto());
             comando.setString(2, formaPagamento.getNome());
             comando.setInt(3, formaPagamento.getConta());

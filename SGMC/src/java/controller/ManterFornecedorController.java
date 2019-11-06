@@ -18,10 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import model.Endereco;
 import model.Fornecedor;
 
-/**
- *
- * @author leonardo
- */
 public class ManterFornecedorController extends HttpServlet {
 
     /**
@@ -131,6 +127,8 @@ public class ManterFornecedorController extends HttpServlet {
         String nomeRepresentante = request.getParameter("txtNomeRepresentante");
         String email = request.getParameter("txtEmail");
         String telefone = request.getParameter("numTelefone");
+        int numero = Integer.parseInt(request.getParameter("numEndereco"));
+        String complemento = request.getParameter("txtComplemento");
         int idEndereco = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optEndereco"));
         
         try{
@@ -139,7 +137,8 @@ public class ManterFornecedorController extends HttpServlet {
                 endereco = Endereco.obterEndereco(idEndereco);
             }
             Fornecedor fornecedor = new Fornecedor(idFornecedor, nomeFantasia, 
-                    cnpj, nomeRepresentante, email, telefone, endereco);
+                    cnpj, nomeRepresentante, email, telefone, numero, 
+                    complemento, endereco);
             if(operacao.equals("Incluir")){
                 fornecedor.gravar();
             }

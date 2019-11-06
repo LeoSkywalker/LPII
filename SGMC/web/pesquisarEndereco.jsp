@@ -13,8 +13,6 @@
             <tr>
                 <th>ID</th>
                 <th>Logradouro</th>
-                <th>Número</th>
-                <th>Complemento</th>
                 <th>Cidade</th>
                 <th>Bairro</th>
                 <th>UF</th>
@@ -26,8 +24,6 @@
                 <tr>
                     <td><c:out value="${endereco.idEndereco}"/></td>
                     <td><c:out value="${endereco.logradouro}"/></td>
-                    <td><c:out value="${endereco.numero}"/></td>
-                    <td><c:out value="${endereco.complemento}"/></td>
                     <td><c:out value="${endereco.cidade}"/></td>
                     <td><c:out value="${endereco.bairro}"/></td>
                     <td><c:out value="${endereco.uf}"/></td>
@@ -39,7 +35,8 @@
         </table>
         <br>
         <form action="ManterEnderecoController?acao=prepararOperacao&operacao=Incluir" method="post">
-            <input type="submit" name="btnIncluir" value="Incluir">
+            <table><tr><td><input type="submit" name="btnIncluir" value="Incluir"></td></tr></table>
         </form>
+        <table><tr><td><input type="submit" name="btnVoltar" value="Voltar" onclick="window.location.href='http://localhost:8084/SGMC/'"></td></tr></table>
     </body>
 </html>

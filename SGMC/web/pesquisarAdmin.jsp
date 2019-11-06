@@ -13,8 +13,8 @@
             <tr>
                 <th>ID Admin</th>
                 <th>ID Usuário</th>
-                <th>ID Nome</th>
-                <th>ID E-mail</th>
+                <th>Nome</th>
+                <th>E-mail</th>
                 <th colspan="2">Ação</th>
                 
             </tr>
@@ -31,7 +31,8 @@
         </table>
         <br>
         <form action="ManterAdminController?acao=prepararOperacao&operacao=Incluir" method="post">
-            <input type="submit" name="btnIncluir" value="Incluir">
+            <table><tr><td><input type="submit" name="btnIncluir" value="Incluir"></td></tr></table>
         </form>
+        <table><tr><td><input type="submit" name="btnVoltar" value="Voltar" onclick="window.location.href='http://localhost:8084/SGMC/'"></td></tr></table>
     </body>
 </html>

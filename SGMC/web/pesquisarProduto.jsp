@@ -41,8 +41,8 @@
                     <td><c:out value="${produto.qtdMinima}"/></td>
                     <td><c:out value="${produto.qtdAtual}"/></td>
                     <td><c:out value="${produto.qtdMaxima}"/></td>
-                    <td><c:out value="${produto.idFornecedor}"/></td>
-                    <td><c:out value="${produto.idCategoria}"/></td>       
+                    <td><c:out value="${produto.fornecedor.nomeFantasia}"/></td>
+                    <td><c:out value="${produto.categoria.descricao}"/></td>       
                     <td><a href="ManterProdutoController?acao=prepararOperacao&operacao=Excluir&idProduto=<c:out value="${produto.idProduto}"/>">Excluir</a></td>
                     <td><a href="ManterProdutoController?acao=prepararOperacao&operacao=Alterar&idProduto=<c:out value="${produto.idProduto}"/>">Alterar</a></td>
                 </tr>
@@ -50,7 +50,8 @@
         </table>
         <br>
         <form action="ManterProdutoController?acao=prepararOperacao&operacao=Incluir" method="post">
-            <input type="submit" name="btnIncluir" value="Incluir">
+            <table><tr><td><input type="submit" name="btnIncluir" value="Incluir"></td></tr></table>
         </form>
+        <table><tr><td><input type="submit" name="btnVoltar" value="Voltar" onclick="window.location.href='http://localhost:8084/SGMC/'"></td></tr></table>
     </body>
 </html>

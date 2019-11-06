@@ -17,10 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Produto;
 
-/**
- *
- * @author Lucas Gama
- */
 public class PesquisaProdutoController extends HttpServlet {
 
     /**

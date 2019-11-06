@@ -15,10 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Colaborador;
 
-/**
- *
- * @author leonardo
- */
 public class PesquisaColaboradorController extends HttpServlet {
 
     /**

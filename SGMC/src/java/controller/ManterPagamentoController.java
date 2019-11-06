@@ -16,10 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.FormaPagamento;
 
-/**
- *
- * @author leonardo
- */
 public class ManterPagamentoController extends HttpServlet {
 
     /**
@@ -123,7 +119,7 @@ public class ManterPagamentoController extends HttpServlet {
         int conta = Integer.parseInt(request.getParameter("conta"));
         int agencia = Integer.parseInt(request.getParameter("agencia"));
         String nomeBanco = request.getParameter("nomeBanco");
-        String tipoConta = request.getParameter("tipoConta");
+        String tipoConta = request.getParameter("optTipoConta");
         int numMaxParcelas = Integer.parseInt(request.getParameter("numMaxParcelas"));
         int intervaloParcelas = Integer.parseInt(request.getParameter("intervaloParcelas"));
         double taxaBanco = Double.parseDouble(request.getParameter("taxaBanco"));

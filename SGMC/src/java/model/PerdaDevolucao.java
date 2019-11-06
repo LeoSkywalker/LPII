@@ -9,10 +9,6 @@ import dao.PerdaDevolucaoDAO;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author Lucas Gama
- */
 public class PerdaDevolucao {
     
     private int idPerdaDevolucao;

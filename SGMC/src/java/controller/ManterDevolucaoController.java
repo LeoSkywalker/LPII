@@ -19,10 +19,6 @@ import model.PerdaDevolucao;
 import model.Produto;
 import model.Venda;
 
-/**
- *
- * @author Lucas Gama
- */
 public class ManterDevolucaoController extends HttpServlet {
 
     /**

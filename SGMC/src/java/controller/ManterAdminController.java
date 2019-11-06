@@ -17,10 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import model.Admin;
 import model.Usuario;
 
-/**
- *
- * @author leonardo
- */
 public class ManterAdminController extends HttpServlet {
 
     /**

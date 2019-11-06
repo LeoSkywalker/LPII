@@ -15,10 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Categoria;
 
-/**
- *
- * @author leonardo
- */
 public class CategoriaDAO {
 
     public static List<Categoria> obterCategorias() throws ClassNotFoundException, SQLException {

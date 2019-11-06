@@ -9,10 +9,6 @@ import dao.ItensOrdemDAO;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author leonardo
- */
 public class ItensOrdem {
 
     private int idItensOrdem;

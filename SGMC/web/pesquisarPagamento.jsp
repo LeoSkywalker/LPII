@@ -54,7 +54,8 @@
         </table>
         <br>
         <form action="ManterPagamentoController?acao=prepararOperacao&operacao=Incluir" method="post">
-            <input type="submit" name="btnIncluir" value="Incluir">
+            <table><tr><td><input type="submit" name="btnIncluir" value="Incluir"></td></tr></table>
         </form>
+        <table><tr><td><input type="submit" name="btnVoltar" value="Voltar" onclick="window.location.href='http://localhost:8084/SGMC/'"></td></tr></table>
     </body>
 </html>

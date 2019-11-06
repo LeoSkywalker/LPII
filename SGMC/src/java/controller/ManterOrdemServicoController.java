@@ -17,10 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import model.Fornecedor;
 import model.OrdemServico;
 
-/**
- *
- * @author leonardo
- */
 public class ManterOrdemServicoController extends HttpServlet {
 
     /**

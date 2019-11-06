@@ -5,6 +5,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
+        <style type="text/css">
+            <!--
+            a:link {text-decoration: none;color: #000000}
+            a:active {text-decoration: none;}
+            a:visited {text-decoration: none;color: #000000}
+            a:hover {text-decoration: underline;color: #000000}-->
+        </style>
     </head>
     <body>
         <h1>Manter Fornecedor - ${operacao}</h1>
@@ -42,11 +49,16 @@
                             </c:forEach>
                         </select>
                     </td>
+                    <td><label> Número: </label>
+                        <input type="number" name="numEndereco" value="${fornecedor.numero}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td><label> Complemento: </label>
+                        <input type="text" name="txtComplemento" value="${fornecedor.complemento}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr><td></td></tr> 
                 <tr>
-                    <td><input type="reset" value="Cancelar">
-                        <input type="submit" name="btnConfirmar" value="${operacao}"></td>
+                    <td><input type="submit" name="btnConfirmar" value="${operacao}">
+                        <button><a href="PesquisaFornecedorController">Voltar</a></button>
+                    </td>    
                 </tr>
             </table>
         </form>

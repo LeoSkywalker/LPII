@@ -21,7 +21,7 @@
             <c:forEach items="${itensVendas}" var="itensVenda">
                 <tr>
                     <td><c:out value="${itensVenda.idItensVenda}"/></td>
-                    <td><c:out value="${itensVenda.idVenda}"/></td>
+                    <td><c:out value="${itensVenda.venda.codBarra}"/></td>
                     <td><c:out value="${itensVenda.produto.nome}"/></td>
                     <td><c:out value="${itensVenda.quantidade}"/></td>
                     <td><c:out value="${itensVenda.precoUnitario}"/></td>

@@ -18,10 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.serial.SerialException;
 import model.Fornecedor;
 
-/**
- *
- * @author Lucas Gama
- */
 public class PesquisaFornecedorController extends HttpServlet {
 
     /**

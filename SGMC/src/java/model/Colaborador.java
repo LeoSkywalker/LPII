@@ -9,10 +9,6 @@ import dao.ColaboradorDAO;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author Lucas Gama
- */
 public class Colaborador extends Usuario {
 
     private int idColaborador;
@@ -23,13 +19,16 @@ public class Colaborador extends Usuario {
     private String celular;
     private String estadoCivil;
     private String sexo;
+    private int numero;
+    private String complemento;
     private Endereco endereco;
     private int idEndereco;
 
     public Colaborador(int idColaborador, String cpf, String rg, 
             String dataNascimento, String telefone, String celular, 
-            String estadoCivil, String sexo, int idUsuario, String nome, 
-            String email, String senha, Endereco endereco) {
+            String estadoCivil, String sexo, int numero, String complemento, 
+            int idUsuario, String nome, String email, String senha, 
+            Endereco endereco) {
         super(idUsuario, nome, email, senha);
         this.idColaborador = idColaborador;
         this.cpf = cpf;
@@ -39,8 +38,28 @@ public class Colaborador extends Usuario {
         this.celular = celular;
         this.estadoCivil = estadoCivil;
         this.sexo = sexo;
+        this.numero = numero;
+        this.complemento = complemento;
         this.endereco = endereco;
     }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+    
+    
 
     public int getIdColaborador() {
         return idColaborador;

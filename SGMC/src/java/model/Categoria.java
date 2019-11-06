@@ -9,10 +9,6 @@ import dao.CategoriaDAO;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author Lucas Gama
- */
 public class Categoria {
     
     private int idCategoria;

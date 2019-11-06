@@ -9,10 +9,6 @@ import dao.ProdutoDAO;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author Lucas Gama
- */
 public class Produto {
 
     private int idProduto;

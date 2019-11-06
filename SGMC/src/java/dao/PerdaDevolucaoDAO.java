@@ -15,10 +15,6 @@ import java.sql.Types;
 import java.util.List;
 import model.PerdaDevolucao;
 
-/**
- *
- * @author Lucas Gama
- */
 public class PerdaDevolucaoDAO {
 
     public static List<PerdaDevolucao> obterPerdaDevolucoes() throws ClassNotFoundException, SQLException {

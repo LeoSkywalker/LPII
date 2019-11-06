@@ -16,10 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Endereco;
 
-/**
- *
- * @author leonardo
- */
 public class ManterEnderecoController extends HttpServlet {
 
     /**
@@ -71,16 +67,14 @@ public class ManterEnderecoController extends HttpServlet {
         String operacao = request.getParameter("operacao");
         int idEndereco = Integer.parseInt(request.getParameter("numIdEndereco"));
         String logradouro = request.getParameter("txtLogradouro");
-        int numero = Integer.parseInt(request.getParameter("numEndereco"));
-        String complemento = request.getParameter("txtComplemento");
         String cidade = request.getParameter("txtCidade");
         String bairro = request.getParameter("txtBairro");
         String uf = request.getParameter("txtUf");
         String cep = request.getParameter("txtCep");
         
         try{
-        Endereco endereco = new Endereco(idEndereco, logradouro, numero, complemento,
-                    cidade, bairro, uf, cep);
+        Endereco endereco = new Endereco(idEndereco, logradouro, cidade, bairro, 
+                uf, cep);
             if (operacao.equals("Incluir")) {
                 endereco.gravar();
             } else {

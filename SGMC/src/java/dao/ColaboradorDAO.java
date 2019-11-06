@@ -16,10 +16,6 @@ import java.util.List;
 import model.Colaborador;
 import model.Usuario;
 
-/**
- *
- * @author leonardo
- */
 public class ColaboradorDAO {
 
     public static List<Colaborador> obterColaboradores() throws ClassNotFoundException, SQLException {
@@ -76,6 +72,8 @@ public class ColaboradorDAO {
                 rs.getString("celular"),
                 rs.getString("estadoCivil"),
                 rs.getString("sexo"),
+                rs.getInt("numero"),
+                rs.getString("complemento"),
                 rs.getInt("idUsuario"),
                 rs.getString("nome"),
                 rs.getString("email"),
@@ -107,7 +105,8 @@ public class ColaboradorDAO {
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
                     "insert into colaborador (idColaborador, cpf, rg, dataNascimento, telefone,"
-                    + " celular, estadoCivil, sexo, idEndereco, idUsuario) values (?,?,?,?,?,?,?,?,?,?)");
+                    + " celular, estadoCivil, sexo, numero, complemento, "
+                    + "idEndereco, idUsuario) values (?,?,?,?,?,?,?,?,?,?,?,?)");
             comando.setInt(1, colaborador.getIdColaborador());
             comando.setString(2, colaborador.getCpf());
             comando.setString(3, colaborador.getRg());
@@ -116,12 +115,14 @@ public class ColaboradorDAO {
             comando.setString(6, colaborador.getCelular());
             comando.setString(7, colaborador.getEstadoCivil());
             comando.setString(8, colaborador.getSexo());
+            comando.setInt(9, colaborador.getNumero());
+            comando.setString(10, colaborador.getComplemento());
             if (colaborador.getEndereco() == null) {
-                comando.setNull(9, Types.INTEGER);
+                comando.setNull(11, Types.INTEGER);
             } else {
-                comando.setInt(9, colaborador.getEndereco().getIdEndereco());
+                comando.setInt(11, colaborador.getEndereco().getIdEndereco());
             }
-            comando.setInt(10, colaborador.getIdUsuario());
+            comando.setInt(12, colaborador.getIdUsuario());
             comando.executeUpdate();
         } finally {
             fecharConexao(conexao, comando);
@@ -163,6 +164,8 @@ public class ColaboradorDAO {
                     + "celular='" + colaborador.getCelular() + "',"
                     + "estadoCivil='" + colaborador.getEstadoCivil() + "',"
                     + "sexo='" + colaborador.getSexo() + "',"
+                    + "numero='" + colaborador.getNumero() +"',"
+                    + "complemento='" + colaborador.getComplemento() +"',"
                     + "idEndereco = ";
 
             if (colaborador.getEndereco() == null) {

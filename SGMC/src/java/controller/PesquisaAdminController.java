@@ -16,10 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Admin;
 
-/**
- *
- * @author leonardo
- */
 public class PesquisaAdminController extends HttpServlet {
 
     /**

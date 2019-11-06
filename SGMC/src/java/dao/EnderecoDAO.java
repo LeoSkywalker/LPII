@@ -14,10 +14,6 @@ import java.sql.Statement;
 import java.util.List;
 import model.Endereco;
 
-/**
- *
- * @author leonardo
- */
 public class EnderecoDAO {
     
     public static List<Endereco> obterEnderecos() throws ClassNotFoundException, SQLException{
@@ -64,8 +60,6 @@ public class EnderecoDAO {
     private static Endereco instanciarEndereco(ResultSet rs) throws SQLException {
         Endereco endereco = new Endereco(rs.getInt("idEndereco"),
         rs.getString("logradouro"),
-        rs.getInt("numero"),
-        rs.getString("complemento"),
         rs.getString("cidade"),
         rs.getString("bairro"),
         rs.getString("uf"),
@@ -81,16 +75,14 @@ public class EnderecoDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.prepareStatement("insert into endereco "
-                    + "(idEndereco, logradouro, numero, complemento, cidade, "
-                    + "bairro, uf, cep) values (?,?,?,?,?,?,?,?)");
+                    + "(idEndereco, logradouro, cidade, "
+                    + "bairro, uf, cep) values (?,?,?,?,?,?)");
             comando.setInt(1, endereco.getIdEndereco());
             comando.setString(2, endereco.getLogradouro());
-            comando.setInt(3, endereco.getNumero());
-            comando.setString(4, endereco.getComplemento());
-            comando.setString(5, endereco.getCidade());
-            comando.setString(6, endereco.getBairro());
-            comando.setString(7, endereco.getUf());
-            comando.setString(8, endereco.getCep());
+            comando.setString(3, endereco.getCidade());
+            comando.setString(4, endereco.getBairro());
+            comando.setString(5, endereco.getUf());
+            comando.setString(6, endereco.getCep());
             
             comando.executeUpdate();
         }
@@ -126,8 +118,6 @@ public class EnderecoDAO {
             comando = conexao.createStatement();
             stringSQL = " update endereco set "
                     + "logradouro='" + endereco.getLogradouro() +"',"
-                    + "numero='" + endereco.getNumero() +"',"
-                    + "complemento='" + endereco.getComplemento() +"',"
                     + "cidade='" + endereco.getCidade() +"',"
                     + "bairro='" + endereco.getBairro() +"',"
                     + "uf='" + endereco.getUf() +"',"

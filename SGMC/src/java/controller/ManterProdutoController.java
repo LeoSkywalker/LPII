@@ -18,10 +18,6 @@ import model.Categoria;
 import model.Fornecedor;
 import model.Produto;
 
-/**
- *
- * @author leonardo
- */
 public class ManterProdutoController extends HttpServlet {
 
     /**

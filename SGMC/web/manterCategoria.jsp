@@ -5,6 +5,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
+        <style type="text/css">
+            <!--
+            a:link {text-decoration: none;color: #000000}
+            a:active {text-decoration: none;}
+            a:visited {text-decoration: none;color: #000000}
+            a:hover {text-decoration: underline;color: #000000}-->
+        </style>
     </head>
     <body>
         <h1>Manter Categoria - ${operacao}</h1>
@@ -20,8 +27,10 @@
                         <input type="text" name="txtDescricao" value="${categoria.descricao}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                 <tr><td></td></tr> 
                 <tr>
-                    <td><input type="reset" value="Cancelar">
-                        <input type="submit" name="btnConfirmar" value="${operacao}"></td>
+                    <td>
+                        <input type="submit" name="btnConfirmar" value="${operacao}">
+                        <input type="submit"<a href="PesquisaCategoriaController">Voltar</a>
+                    </td>
                 </tr>
             </table>
         </form>

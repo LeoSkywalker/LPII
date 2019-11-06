@@ -5,6 +5,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
+        <style type="text/css">
+            <!--
+            a:link {text-decoration: none;color: #000000}
+            a:active {text-decoration: none;}
+            a:visited {text-decoration: none;color: #000000}
+            a:hover {text-decoration: underline;color: #000000}-->
+        </style>
     </head>
     <body>
         <h1>Manter Itens Ordem - ${operacao}</h1>
@@ -42,9 +49,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <input type="reset" value="Cancelar">
-                        <input type="submit" name="btnConfirmar" value="${operacao}">
+                    <td><input type="submit" name="btnConfirmar" value="${operacao}">
+                        <button><a href="PesquisaItensOrdemController">Voltar</a></button>
                     </td>
                 </tr>
             </table>

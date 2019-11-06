@@ -5,6 +5,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
+        <style type="text/css">
+            <!--
+            a:link {text-decoration: none;color: #000000}
+            a:active {text-decoration: none;}
+            a:visited {text-decoration: none;color: #000000}
+            a:hover {text-decoration: underline;color: #000000}-->
+        </style>
     </head>
     <body>
         <h1>Manter Pagamento - ${operacao}</h1>
@@ -21,15 +28,18 @@
                     <td><label> Nome da Forma de Pagamento: </label>
                         <input type="text" name="nome" value="${formaPagamento.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     <td><label> Conta: </label>
-                        <input type="text" name="conta" value="${formaPagamento.conta}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        <input type="number" name="conta" value="${formaPagamento.conta}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     <td><label> Agência: </label>
-                        <input type="text" name="agencia" value="${formaPagamento.agencia}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        <input type="number" name="agencia" value="${formaPagamento.agencia}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr><td><label> Banco: </label>
                         <input type="text" name="nomeBanco" value="${formaPagamento.nomeBanco}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    <td><label> Tipo da Conta: </label>
-                        <input type="text" name="tipoConta" value="${formaPagamento.tipoConta}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td><label> Tipo de Conta: </label>
+                        <select name="optTipoConta"  <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
+                            <option value="Conta Poupança"><c:if test="${formaPagamento.tipoConta == 'Conta Poupança'}">selected</c:if>Conta Poupança</option>
+                            <option value="Conta Corrente"><c:if test="${formaPagamento.tipoConta == 'Conta Corrente'}">selected</c:if>Conta Corrente</option>
+                        </select></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr>
@@ -54,14 +64,13 @@
                         <select name="optSituacao"  <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
                             <option value="Automático"><c:if test="${formaPagamento.situacaoConfirmacao == 'Automático'}">selected</c:if>Automático</option>
                             <option value="Manual"><c:if test="${formaPagamento.situacaoConfirmacao == 'Manual'}">selected</c:if>Manual</option>
-                            
                         </select>
                     </td>
                 </tr>
                 <tr><td></td></tr>
                 <tr>
-                    <td><input type="reset" value="Cancelar">
-                        <input type="submit" name="btnConfirmar" value="${operacao}">
+                    <td><input type="submit" name="btnConfirmar" value="${operacao}">
+                        <button><a href="PesquisaPagamentoController">Voltar</a></button>
                     </td>
                 </tr>
             </table>

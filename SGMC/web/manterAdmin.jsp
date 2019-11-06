@@ -13,34 +13,34 @@
                 <tr>
                     <td><label> ID Admin: </label>
                         <input type="number" name="numIdAdmin" value="${admin.idAdmin}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr><td></td></tr> 
-                <tr>
-                    <td><label> ID Usuario: </label>
-                        <input type="number" name="numIdUsuario" value="${admin.idUsuario}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
-                </tr>           
-                <tr><td></td></tr> 
-                <tr>
-                    <td><label> Nome: </label>
-                        <input type="text" name="txtNome" value="${admin.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
-                    </td>
-                    <td><label> Email: </label>
-                        <input type="email" name="txtEmail" value="${admin.email}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr><td></td></tr>
-                <tr>
-                    <td><label> Senha: </label>
-                        <input type="password" name="txtSenha" value="${admin.senha}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    </tr>
+                    <tr><td></td></tr> 
+                    <tr>
+                        <td><label> ID Usuario: </label>
+                            <input type="number" name="numIdUsuario" value="${admin.idUsuario}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
+                    </tr>           
+                    <tr><td></td></tr> 
+                    <tr>
+                        <td><label> Nome: </label>
+                            <input type="text" name="txtNome" value="${admin.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        </td>
+                        <td><label> Email: </label>
+                            <input type="email" name="txtEmail" value="${admin.email}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    </tr>
+                    <tr><td></td></tr>
+                    <tr>
+                        <td><label> Senha: </label>
+                            <input type="password" name="txtSenha" value="${admin.senha}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
 
-                    <td><label> Repetir Senha: </label>
-                        <input type="password" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                </tr>
-                <tr><td></td></tr>
-                <tr>
-                    <td><input type="reset" value="Cancelar">
-                        <input type="submit" name="btnConfirmar" value="${operacao}"></td>
-                </tr>
+                        <td><label> Repetir Senha: </label>
+                            <input type="password" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    </tr>
+                    <tr><td></td></tr>
+                    <tr>
+                    <td><input type="submit" name="btnConfirmar" value="${operacao}"></td>
+                    </tr>
             </table>
-        </form>
+            </form>
+                    <table><tr><td><input type="submit" name="btnVoltar" value="Voltar" onclick="window.location.href='PesquisaVendaController'"></td></tr></table> 
     </body>
 </html>

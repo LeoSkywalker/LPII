@@ -12,12 +12,14 @@
         <table border=1>
             <tr>
                 <th>ID</th>
-                <th>Nome Fantasia:</th>
-                <th>CNPJ:</th>
-                <th>Representante:</th>
-                <th>Email:</th>
-                <th>Telefone:</th>
-                <th>Endereço:</th>
+                <th>Nome Fantasia</th>
+                <th>CNPJ</th>
+                <th>Representante</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Número</th>
+                <th>Complemento</th>
+                <th>Endereço</th>
                 <th colspan="2">Ação</th>
                 
             </tr>
@@ -29,7 +31,9 @@
                     <td><c:out value="${fornecedor.nomeRepresentante}"/></td>
                     <td><c:out value="${fornecedor.email}"/></td>
                     <td><c:out value="${fornecedor.telefone}"/></td>
-                    <td><c:out value="${fornecedor.idEndereco}"/></td>
+                    <td><c:out value="${fornecedor.numero}"/></td>
+                    <td><c:out value="${fornecedor.complemento}"/></td>
+                    <td><c:out value="${fornecedor.endereco.logradouro}"/></td>
                     <td><a href="ManterFornecedorController?acao=prepararOperacao&operacao=Excluir&idFornecedor=<c:out value="${fornecedor.idFornecedor}"/>">Excluir</a></td>
                     <td><a href="ManterFornecedorController?acao=prepararOperacao&operacao=Alterar&idFornecedor=<c:out value="${fornecedor.idFornecedor}"/>">Alterar</a></td>
                 </tr>
@@ -37,7 +41,8 @@
         </table>
         <br>
         <form action="ManterFornecedorController?acao=prepararOperacao&operacao=Incluir" method="post">
-            <input type="submit" name="btnIncluir" value="Incluir">
+            <table><tr><td><input type="submit" name="btnIncluir" value="Incluir"></td></tr></table>
         </form>
+        <table><tr><td><input type="submit" name="btnVoltar" value="Voltar" onclick="window.location.href='http://localhost:8084/SGMC/'"></td></tr></table>
     </body>
 </html>

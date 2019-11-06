@@ -9,10 +9,6 @@ import dao.ClienteDAO;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author Lucas Gama
- */
 public class Cliente {
 
     private int idCliente;
@@ -28,13 +24,12 @@ public class Cliente {
     private String dataNascimento;
     private String estadoCivil;
     private String sexo;
+    private int numero;
+    private String complemento;
     private Endereco endereco;
     private int idEndereco;
 
-    public Cliente(int idCliente, String cnpj, String razaoSocial, 
-            String inscricaoEstadual, String nome, String cpf, String rg, 
-            String telefone, String celular, String email, String dataNascimento, 
-            String estadoCivil, String sexo, Endereco endereco) {
+    public Cliente(int idCliente, String cnpj, String razaoSocial, String inscricaoEstadual, String nome, String cpf, String rg, String telefone, String celular, String email, String dataNascimento, String estadoCivil, String sexo, int numero, String complemento, Endereco endereco) {
         this.idCliente = idCliente;
         this.cnpj = cnpj;
         this.razaoSocial = razaoSocial;
@@ -48,9 +43,27 @@ public class Cliente {
         this.dataNascimento = dataNascimento;
         this.estadoCivil = estadoCivil;
         this.sexo = sexo;
+        this.numero = numero;
+        this.complemento = complemento;
         this.endereco = endereco;
     }
 
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+    
     public int getIdCliente() {
         return idCliente;
     }

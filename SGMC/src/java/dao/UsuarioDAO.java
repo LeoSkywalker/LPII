@@ -14,10 +14,6 @@ import java.sql.Statement;
 import java.util.List;
 import model.Usuario;
 
-/**
- *
- * @author Lucas Gama
- */
 public class UsuarioDAO {
     public static List<Usuario> obterUsuarios() throws ClassNotFoundException, SQLException{
         Connection conexao = null;

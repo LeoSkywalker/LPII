@@ -19,10 +19,6 @@ import model.ItensVenda;
 import model.Produto;
 import model.Venda;
 
-/**
- *
- * @author Lucas Gama
- */
 public class ManterItensVendaController extends HttpServlet {
 
     /**

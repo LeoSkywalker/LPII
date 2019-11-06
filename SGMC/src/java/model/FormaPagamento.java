@@ -9,10 +9,6 @@ import dao.FormaPagamentoDAO;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author Lucas Gama
- */
 public class FormaPagamento {
     private int idFormaPgto;
     private String nome;

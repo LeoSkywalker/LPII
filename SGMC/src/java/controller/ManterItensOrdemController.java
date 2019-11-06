@@ -19,10 +19,6 @@ import model.ItensOrdem;
 import model.OrdemServico;
 import model.Produto;
 
-/**
- *
- * @author Lucas Gama
- */
 public class ManterItensOrdemController extends HttpServlet {
 
     /**

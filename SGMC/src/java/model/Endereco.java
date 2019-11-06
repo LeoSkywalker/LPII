@@ -9,27 +9,18 @@ import dao.EnderecoDAO;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author Lucas Gama
- */
 public class Endereco {
     
     private int idEndereco;
     private String logradouro;
-    private int numero;
-    private String complemento;
     private String cidade;
     private String bairro;
     private String uf;
     private String cep;
 
-    public Endereco(int idEndereco, String logradouro, int numero, String complemento, 
-            String cidade, String bairro, String uf, String cep) {
+    public Endereco(int idEndereco, String logradouro, String cidade, String bairro, String uf, String cep) {
         this.idEndereco = idEndereco;
         this.logradouro = logradouro;
-        this.numero = numero;
-        this.complemento = complemento;
         this.cidade = cidade;
         this.bairro = bairro;
         this.uf = uf;
@@ -50,22 +41,6 @@ public class Endereco {
 
     public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;
-    }
-
-    public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
     }
 
     public String getCidade() {

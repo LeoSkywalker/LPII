@@ -9,10 +9,6 @@ import dao.FornecedorDAO;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author Lucas Gama
- */
 public class Fornecedor {
 
     private int idFornecedor;
@@ -21,17 +17,37 @@ public class Fornecedor {
     private String nomeRepresentante;
     private String email;
     private String telefone;
+    private int numero;
+    private String complemento;
     private Endereco endereco;
     private int idEndereco;
 
-    public Fornecedor(int idFornecedor, String nomeFantasia, String cnpj, String nomeRepresentante, String email, String telefone, Endereco endereco) {
+    public Fornecedor(int idFornecedor, String nomeFantasia, String cnpj, String nomeRepresentante, String email, String telefone, int numero, String complemento, Endereco endereco) {
         this.idFornecedor = idFornecedor;
         this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;
         this.nomeRepresentante = nomeRepresentante;
         this.email = email;
         this.telefone = telefone;
+        this.numero = numero;
+        this.complemento = complemento;
         this.endereco = endereco;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
     public int getIdFornecedor() {

@@ -15,10 +15,6 @@ import java.sql.Types;
 import java.util.List;
 import model.Fornecedor;
 
-/**
- *
- * @author leonardo
- */
 public class FornecedorDAO {
     public static List<Fornecedor> obterFornecedores() 
             throws ClassNotFoundException, SQLException{
@@ -69,6 +65,8 @@ public class FornecedorDAO {
         rs.getString("nomeRepresentante"),
         rs.getString("email"),
         rs.getString("telefone"),
+        rs.getInt("numero"),
+        rs.getString("complemento"),
         null);
         fornecedor.setIdEndereco(rs.getInt("idEndereco"));
         
@@ -83,18 +81,21 @@ public class FornecedorDAO {
             conexao = BD.getConexao();
             comando = conexao.prepareStatement("insert into fornecedor "
                     + "(idFornecedor, nomeFantasia, cnpj, nomeRepresentante, "
-                    + "email, telefone, idEndereco) values (?,?,?,?,?,?,?)");
+                    + "email, telefone, numero, complemento, idEndereco) "
+                    + "values (?,?,?,?,?,?,?,?,?)");
             comando.setInt(1, fornecedor.getIdFornecedor());
             comando.setString(2, fornecedor.getNomeFantasia());
             comando.setString(3, fornecedor.getCnpj());
             comando.setString(4, fornecedor.getNomeRepresentante());
             comando.setString(5, fornecedor.getEmail());
             comando.setString(6, fornecedor.getTelefone());
+            comando.setInt(7, fornecedor.getNumero());
+            comando.setString(8, fornecedor.getComplemento());
             
             if(fornecedor.getEndereco() == null){
-                comando.setNull(7, Types.INTEGER);
+                comando.setNull(9, Types.INTEGER);
             }else{
-                comando.setInt(7, fornecedor.getEndereco().getIdEndereco());
+                comando.setInt(9, fornecedor.getEndereco().getIdEndereco());
             }
             comando.executeUpdate();
         }
@@ -135,6 +136,8 @@ public class FornecedorDAO {
                     + "nomeRepresentante='" + fornecedor.getNomeRepresentante() +"',"
                     + "email='" + fornecedor.getEmail() +"',"
                     + "telefone='" + fornecedor.getTelefone() +"',"
+                    + "numero='" + fornecedor.getNumero() +"',"
+                    + "complemento='" + fornecedor.getComplemento() +"',"
                     + "idEndereco = ";
                     
                     if(fornecedor.getEndereco() == null){

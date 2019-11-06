@@ -19,10 +19,6 @@ import model.FormaPagamento;
 import model.Usuario;
 import model.Venda;
 
-/**
- *
- * @author leonardo
- */
 public class ManterVendaController extends HttpServlet {
 
     /**

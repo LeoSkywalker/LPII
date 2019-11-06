@@ -15,10 +15,6 @@ import java.sql.Types;
 import java.util.List;
 import model.Cliente;
 
-/**
- *
- * @author leonardo
- */
 public class ClienteDAO {
     public static List<Cliente> obterClientes() throws ClassNotFoundException, SQLException{
         
@@ -74,6 +70,8 @@ public class ClienteDAO {
        rs.getString("dataNascimento"),
        rs.getString("estadoCivil"),
        rs.getString("sexo"),
+       rs.getInt("numero"),
+       rs.getString("complemento"),
        null);        
        cliente.setIdEndereco(rs.getInt("idEndereco"));     
        return cliente;
@@ -87,7 +85,8 @@ public class ClienteDAO {
             comando = conexao.prepareStatement(
             "insert into cliente (idCliente, cnpj, razaoSocial, inscricaoEstadual,"
              +" nome, cpf, rg, telefone, celular, email, dataNascimento, estadoCivil,"
-            + " sexo, idEndereco) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            + " sexo, numero, complemento, idEndereco) "
+                    + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             comando.setInt(1, cliente.getIdCliente());
             comando.setString(2, cliente.getCnpj());
             comando.setString(3, cliente.getRazaoSocial());
@@ -101,11 +100,13 @@ public class ClienteDAO {
             comando.setString(11, cliente.getDataNascimento());
             comando.setString(12, cliente.getEstadoCivil());
             comando.setString(13, cliente.getSexo());
+            comando.setInt(14, cliente.getNumero());
+            comando.setString(15, cliente.getComplemento());
             
             if(cliente.getEndereco()==null){
-                comando.setNull(14, Types.INTEGER);
+                comando.setNull(16, Types.INTEGER);
             }else{
-                comando.setInt(14, cliente.getEndereco().getIdEndereco());
+                comando.setInt(16, cliente.getEndereco().getIdEndereco());
             }
             comando.executeUpdate();
             }finally{
@@ -151,6 +152,8 @@ public class ClienteDAO {
                     + "dataNascimento='" + cliente.getDataNascimento() + "',"
                     + "estadoCivil='" + cliente.getEstadoCivil() + "',"
                     + "sexo='" + cliente.getSexo() + "', " 
+                    + "numero='" + cliente.getNumero() +"',"
+                    + "complemento='" + cliente.getComplemento() +"',"
                     + "idEndereco = ";
                     
                     if(cliente.getEndereco() == null){

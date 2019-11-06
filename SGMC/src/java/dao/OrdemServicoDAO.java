@@ -15,10 +15,6 @@ import java.sql.Types;
 import java.util.List;
 import model.OrdemServico;
 
-/**
- *
- * @author Lucas Gama
- */
 public class OrdemServicoDAO {
 
     public static List<OrdemServico> obterOrdemServicos() throws ClassNotFoundException, SQLException {

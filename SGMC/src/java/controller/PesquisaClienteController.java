@@ -17,10 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Cliente;
 
-/**
- *
- * @author leonardo
- */
 public class PesquisaClienteController extends HttpServlet {
 
     /**

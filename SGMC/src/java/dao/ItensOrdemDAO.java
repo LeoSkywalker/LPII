@@ -15,10 +15,6 @@ import java.sql.Types;
 import java.util.List;
 import model.ItensOrdem;
 
-/**
- *
- * @author leonardo
- */
 public class ItensOrdemDAO {
 
     public static List<ItensOrdem> obterItensOrdens()

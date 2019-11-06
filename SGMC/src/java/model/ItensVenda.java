@@ -9,10 +9,6 @@ import dao.ItensVendaDAO;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author leonardo
- */
 public class ItensVenda {
     
     private int idItensVenda;

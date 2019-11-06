@@ -16,10 +16,6 @@ import java.util.List;
 import model.Admin;
 import model.Usuario;
 
-/**
- *
- * @author leonardo
- */
 public class AdminDAO {
 
     public static List<Admin> obterAdmins() throws ClassNotFoundException, SQLException {

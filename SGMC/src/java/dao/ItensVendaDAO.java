@@ -15,10 +15,6 @@ import java.sql.Types;
 import java.util.List;
 import model.ItensVenda;
 
-/**
- *
- * @author leonardo
- */
 public class ItensVendaDAO {
 
     public static List<ItensVenda> obterItensVendas()

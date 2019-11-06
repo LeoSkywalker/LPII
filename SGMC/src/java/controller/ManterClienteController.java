@@ -17,10 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import model.Cliente;
 import model.Endereco;
 
-/**
- *
- * @author leonardo
- */
 public class ManterClienteController extends HttpServlet {
 
     /**
@@ -135,6 +131,8 @@ public class ManterClienteController extends HttpServlet {
         String dataNascimento = request.getParameter("txtDataNasc");
         String estadoCivil = request.getParameter("optEstadoCivil");
         String sexo = request.getParameter("optSexo");
+        int numero = Integer.parseInt(request.getParameter("numEndereco"));
+        String complemento = request.getParameter("txtComplemento");
         int idEndereco = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optEndereco"));
 
         try {
@@ -144,7 +142,7 @@ public class ManterClienteController extends HttpServlet {
             }
             Cliente cliente = new Cliente(idCliente, cnpj, razaoSocial, inscricaoEstadual,
                     nome, cpf, rg, telefone, celular, email, dataNascimento, estadoCivil,
-                    sexo, endereco);
+                    sexo, numero, complemento, endereco);
             if (operacao.equals("Incluir")) {
                 cliente.gravar();
             } else {

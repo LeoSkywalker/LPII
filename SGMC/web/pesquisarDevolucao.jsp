@@ -21,8 +21,8 @@
                 <tr>
                     <td><c:out value="${perdaDevolucao.idPerdaDevolucao}"/></td>
                     <td><c:out value="${perdaDevolucao.tipo}"/></td>
-                    <td><c:out value="${perdaDevolucao.idVenda}"/></td>
-                    <td><c:out value="${perdaDevolucao.idProduto}"/></td>
+                    <td><c:out value="${perdaDevolucao.venda.codBarra}"/></td>
+                    <td><c:out value="${perdaDevolucao.produto.nome}"/></td>
                     <td><a href="ManterDevolucaoController?acao=prepararOperacao&operacao=Excluir&idPerdaDevolucao=<c:out value="${perdaDevolucao.idPerdaDevolucao}"/>">Excluir</a></td>
                     <td><a href="ManterDevolucaoController?acao=prepararOperacao&operacao=Alterar&idPerdaDevolucao=<c:out value="${perdaDevolucao.idPerdaDevolucao}"/>">Alterar</a></td>
                 </tr>
@@ -30,7 +30,8 @@
         </table>
         <br>
         <form action="ManterDevolucaoController?acao=prepararOperacao&operacao=Incluir" method="post">
-            <input type="submit" name="btnIncluir" value="Incluir">
+            <table><tr><td><input type="submit" name="btnIncluir" value="Incluir"></td></tr></table>
         </form>
+        <table><tr><td><input type="submit" name="btnVoltar" value="Voltar" onclick="window.location.href='http://localhost:8084/SGMC/'"></td></tr></table>
     </body>
 </html>

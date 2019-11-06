@@ -8,10 +8,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- *
- * @author leonardo
- */
 public class BD {
     
     public static Connection getConexao() throws ClassNotFoundException, SQLException{

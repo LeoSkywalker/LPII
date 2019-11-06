@@ -16,10 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.FormaPagamento;
 
-/**
- *
- * @author Lucas Gama
- */
 public class PesquisaPagamentoController extends HttpServlet {
 
     /**
