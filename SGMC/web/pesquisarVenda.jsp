@@ -11,20 +11,18 @@
         <h1>Pesquisa de Venda</h1>
         <table border=1>
             <tr>
-                <th>ID</th>
                 <th>Data da Venda:</th> 
                 <th>SubTotal</th>
-                <th>Código Barra</th>
+                <th>Código de Barra</th>
                 <th>Valor do Desconto</th>
                 <th>Situação</th>
                 <th>Cliente</th>
-                <th>Usuário</th>
+                <th>Vendedor</th>
                 <th>Forma de Pagamento</th>
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${vendas}" var="venda">
                 <tr>
-                    <td><c:out value="${venda.idVenda}"/></td>
                     <td><c:out value="${venda.dataVenda}"/></td>
                     <td><c:out value="${venda.subTotal}"/></td>
                     <td><c:out value="${venda.codBarra}"/></td>

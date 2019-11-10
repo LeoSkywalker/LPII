@@ -5,24 +5,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SGMC</title>
+        <title>SGMC - Pesquisa de Itens da Ordem de Serviço</title>
     </head>
     <body>
         <h1>Pesquisa Itens Ordem de Serviço</h1>
         <table border=1>
             <tr>
-                <th>ID</th>
-                <th>Quantidade</th>
-                <th>ID Ordem de Serviço</th>  
+                <th>Número da Ordem de Serviço</th>
                 <th>Produtos</th>
+                <th>Quantidade</th>  
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${itensOrdens}" var="itensOrdem">
                 <tr>
-                    <td><c:out value="${itensOrdem.idItensOrdem}"/></td>
-                    <td><c:out value="${itensOrdem.quantidade}"/></td>
-                    <td><c:out value="${itensOrdem.idOrdemSrv}"/></td>
+                    <td><c:out value="${itensOrdem.ordemServico.numOS}"/></td>
                     <td><c:out value="${itensOrdem.produto.nome}"/></td>
+                    <td><c:out value="${itensOrdem.quantidade}"/></td>
                     <td>
                         <a href="ManterItensOrdemController?acao=prepararOperacao&operacao=Excluir&idItensOrdem=<c:out value="${itensOrdem.idItensOrdem}"/>">
                             Excluir</a>

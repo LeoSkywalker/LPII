@@ -12,16 +12,10 @@
         <h1>Pesquisa de Colaboradores</h1>
         <table border=1>
             <tr>
-                <th>ID</th>
-                <th>CPF</th>
-                <th>RG</th>
                 <th>Nome</th>
+                <th>CPF</th>
                 <th>Email</th>
-                <th>Data de Nascimento</th>
-                <th>Telefone</th>
                 <th>Celular</th>
-                <th>Estado Civil</th>
-                <th>Sexo</th>
                 <th>Número</th>
                 <th>Complemento</th>
                 <th>Endereço</th>                
@@ -29,16 +23,10 @@
             </tr>
             <c:forEach items="${colaboradores}" var="colaborador">
                 <tr>
-                    <td><c:out value="${colaborador.idColaborador}"/></td>
-                    <td><c:out value="${colaborador.cpf}"/></td>
-                    <td><c:out value="${colaborador.rg}"/></td>
                     <td><c:out value="${colaborador.nome}"/></td>
+                    <td><c:out value="${colaborador.cpf}"/></td>
                     <td><c:out value="${colaborador.email}"/></td>
-                    <td><c:out value="${colaborador.dataNascimento}"/></td>
-                    <td><c:out value="${colaborador.telefone}"/></td>
                     <td><c:out value="${colaborador.celular}"/></td>
-                    <td><c:out value="${colaborador.estadoCivil}"/></td>
-                    <td><c:out value="${colaborador.sexo}"/></td>
                     <td><c:out value="${colaborador.numero}"/></td>
                     <td><c:out value="${colaborador.complemento}"/></td>
                     <td><c:out value="${colaborador.endereco.logradouro}"/></td>

@@ -140,9 +140,10 @@ public class ManterClienteController extends HttpServlet {
             if (idEndereco != 0) {
                 endereco = Endereco.obterEndereco(idEndereco);
             }
-            Cliente cliente = new Cliente(idCliente, cnpj, razaoSocial, inscricaoEstadual,
-                    nome, cpf, rg, telefone, celular, email, dataNascimento, estadoCivil,
-                    sexo, numero, complemento, endereco);
+            Cliente cliente = new Cliente(idCliente, cnpj, 
+                    razaoSocial, inscricaoEstadual, nome, cpf, rg, telefone, 
+                    celular, email, dataNascimento, estadoCivil, sexo, numero,
+                    complemento, endereco);
             if (operacao.equals("Incluir")) {
                 cliente.gravar();
             } else {

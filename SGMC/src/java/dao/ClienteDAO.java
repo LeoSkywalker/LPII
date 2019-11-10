@@ -83,10 +83,11 @@ public class ClienteDAO {
         try{
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
-            "insert into cliente (idCliente, cnpj, razaoSocial, inscricaoEstadual,"
-             +" nome, cpf, rg, telefone, celular, email, dataNascimento, estadoCivil,"
-            + " sexo, numero, complemento, idEndereco) "
-                    + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            "insert into cliente (idCliente, cnpj, razaoSocial, "
+                    + "inscricaoEstadual, nome, cpf, rg, telefone, celular, "
+                    + "email, dataNascimento, estadoCivil, sexo, numero, "
+                    + "complemento, idEndereco) values "
+                    + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             comando.setInt(1, cliente.getIdCliente());
             comando.setString(2, cliente.getCnpj());
             comando.setString(3, cliente.getRazaoSocial());
@@ -140,8 +141,8 @@ public class ClienteDAO {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             stringSQL = "update cliente set "
-                    + "cnpj ='" + cliente.getCnpj() +"',"
-                    + "razaoSocial='" + cliente.getRazaoSocial() +"',"
+                    + "cnpj ='" + cliente.getCnpj() + "',"
+                    + "razaoSocial='" + cliente.getRazaoSocial() + "',"
                     + "inscricaoEstadual='" + cliente.getInscricaoEstadual() + "'," 
                     + "nome='" + cliente.getNome() + "',"
                     + "cpf='" + cliente.getCpf() + "',"

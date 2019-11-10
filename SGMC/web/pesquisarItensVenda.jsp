@@ -5,14 +5,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SGMC</title>
+        <title>SGMC - Pesquisa de Itens da Venda</title>
     </head>
     <body>
         <h1>Pesquisar Itens Venda</h1>
         <table border=1>
             <tr>
-                <th>ID</th>
-                <th>ID Venda</th>  
+                <th>Código de Barra</th>  
                 <th>Produtos</th>
                 <th>Quantidade</th>
                 <th>Preço Unitário</th>
@@ -20,7 +19,6 @@
             </tr>
             <c:forEach items="${itensVendas}" var="itensVenda">
                 <tr>
-                    <td><c:out value="${itensVenda.idItensVenda}"/></td>
                     <td><c:out value="${itensVenda.venda.codBarra}"/></td>
                     <td><c:out value="${itensVenda.produto.nome}"/></td>
                     <td><c:out value="${itensVenda.quantidade}"/></td>

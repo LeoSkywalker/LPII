@@ -5,18 +5,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SGMC</title>
+        <title>SGMC - Pesquisa de Fornecedor</title>
     </head>
     <body>
         <h1>Pesquisa de Fornecedor</h1>
         <table border=1>
             <tr>
-                <th>ID</th>
                 <th>Nome Fantasia</th>
                 <th>CNPJ</th>
                 <th>Representante</th>
                 <th>Email</th>
-                <th>Telefone</th>
                 <th>Número</th>
                 <th>Complemento</th>
                 <th>Endereço</th>
@@ -25,12 +23,10 @@
             </tr>
             <c:forEach items="${fornecedores}" var="fornecedor">
                 <tr>
-                    <td><c:out value="${fornecedor.idFornecedor}"/></td>
                     <td><c:out value="${fornecedor.nomeFantasia}"/></td>
                     <td><c:out value="${fornecedor.cnpj}"/></td>
                     <td><c:out value="${fornecedor.nomeRepresentante}"/></td>
                     <td><c:out value="${fornecedor.email}"/></td>
-                    <td><c:out value="${fornecedor.telefone}"/></td>
                     <td><c:out value="${fornecedor.numero}"/></td>
                     <td><c:out value="${fornecedor.complemento}"/></td>
                     <td><c:out value="${fornecedor.endereco.logradouro}"/></td>

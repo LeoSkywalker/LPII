@@ -5,13 +5,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SGMC</title>
+        <title>SGMC - Pesquisa de Endereço</title>
     </head>
     <body>
         <h1>Pesquisa de Endereço</h1>
         <table border=1>
             <tr>
-                <th>ID</th>
                 <th>Logradouro</th>
                 <th>Cidade</th>
                 <th>Bairro</th>
@@ -22,7 +21,6 @@
             </tr>
             <c:forEach items="${enderecos}" var="endereco">
                 <tr>
-                    <td><c:out value="${endereco.idEndereco}"/></td>
                     <td><c:out value="${endereco.logradouro}"/></td>
                     <td><c:out value="${endereco.cidade}"/></td>
                     <td><c:out value="${endereco.bairro}"/></td>

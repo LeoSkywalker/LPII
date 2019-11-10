@@ -5,13 +5,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SGMC</title>
+        <title>SGMC - Pesquisa de Ordem de Serviço</title>
     </head>
     <body>
         <h1>Pesquisa de Ordens de Serviço</h1>
         <table border=1>
             <tr>
-                <th>ID</th>
                 <th>Número da Ordem de Serviço</th>
                 <th>Descrição</th>
                 <th>Data de Pedido</th>
@@ -20,7 +19,6 @@
                 <th colspan="2">Ação</th>
             <c:forEach items="${ordensServico}" var="ordemServico">
                 <tr>
-                    <td><c:out value="${ordemServico.idOrdemSrv}"/></td>
                     <td><c:out value="${ordemServico.numOS}"/></td>
                     <td><c:out value="${ordemServico.descricao}"/></td>
                     <td><c:out value="${ordemServico.dataPedido}"/></td>

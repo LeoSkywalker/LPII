@@ -5,20 +5,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SGMC</title>
+        <title>SGMC - Pesquisa de Categoria</title>
     </head>
     <body>
         <h1>Pesquisa de Categoria</h1>
         <table border=1>
             <tr>
-                <th>ID</th>
                 <th>Descrição:</th>
                 <th colspan="2">Ação</th>
                 
             </tr>
             <c:forEach items="${categorias}" var="categoria">
                 <tr>
-                    <td><c:out value="${categoria.idCategoria}"/></td>
                     <td><c:out value="${categoria.descricao}"/></td>
                     <td><a href="ManterCategoriaController?acao=prepararOperacao&operacao=Excluir&idCategoria=<c:out value="${categoria.idCategoria}"/>">Excluir</a></td>
                     <td><a href="ManterCategoriaController?acao=prepararOperacao&operacao=Alterar&idCategoria=<c:out value="${categoria.idCategoria}"/>">Alterar</a></td>

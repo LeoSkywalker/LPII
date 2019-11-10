@@ -8,11 +8,9 @@
         <title>SGMC - Pesquisa de Administradores</title>
     </head>
     <body>
-        <h1>Pesquisa de Admin</h1>
+        <h1>Pesquisa de Administradores</h1>
         <table border=1>
             <tr>
-                <th>ID Admin</th>
-                <th>ID Usuário</th>
                 <th>Nome</th>
                 <th>E-mail</th>
                 <th colspan="2">Ação</th>
@@ -20,8 +18,6 @@
             </tr>
             <c:forEach items="${admins}" var="admin">
                 <tr>
-                    <td><c:out value="${admin.idAdmin}"/></td>
-                    <td><c:out value="${admin.idUsuario}"/></td>
                     <td><c:out value="${admin.nome}"/></td>
                     <td><c:out value="${admin.email}"/></td>
                     <td><a href="ManterAdminController?acao=prepararOperacao&operacao=Excluir&idAdmin=<c:out value="${admin.idAdmin}"/>">Excluir</a></td>

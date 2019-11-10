@@ -5,13 +5,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
-        <style type="text/css">
-            <!--
-            a:link {text-decoration: none;color: #000000}
-            a:active {text-decoration: none;}
-            a:visited {text-decoration: none;color: #000000}
-            a:hover {text-decoration: underline;color: #000000}-->
-        </style>
     </head>
     <body>
         <h1>Manter Categoria - ${operacao}</h1>
@@ -28,11 +21,11 @@
                 <tr><td></td></tr> 
                 <tr>
                     <td>
-                        <input type="submit" name="btnConfirmar" value="${operacao}">
-                        <input type="submit"<a href="PesquisaCategoriaController">Voltar</a>
+                        <input type="submit" name="btnConfirmar" value="${operacao}">       
                     </td>
                 </tr>
             </table>
         </form>
+        <table><tr><td><input type="submit" name="btnVoltar" value="Voltar" onclick="window.location.href='PesquisaCategoriaController'"></td></tr></table>
     </body>
 </html>

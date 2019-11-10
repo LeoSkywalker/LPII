@@ -41,6 +41,6 @@
                     </tr>
             </table>
             </form>
-                    <table><tr><td><input type="submit" name="btnVoltar" value="Voltar" onclick="window.location.href='PesquisaVendaController'"></td></tr></table> 
+                    <table><tr><td><input type="submit" name="btnVoltar" value="Voltar" onclick="window.location.href='PesquisaAdminController'"></td></tr></table> 
     </body>
 </html>
