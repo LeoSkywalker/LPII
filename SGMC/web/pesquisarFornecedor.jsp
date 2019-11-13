@@ -11,25 +11,24 @@
         <h1>Pesquisa de Fornecedor</h1>
         <table border=1>
             <tr>
-                <th>Nome Fantasia</th>
                 <th>CNPJ</th>
+                <th>Nome Fantasia</th>
                 <th>Representante</th>
                 <th>Email</th>
+                <th>Logradouro</th> 
                 <th>Número</th>
                 <th>Complemento</th>
-                <th>Endereço</th>
-                <th colspan="2">Ação</th>
-                
+                <th colspan="2">Ação</th>           
             </tr>
             <c:forEach items="${fornecedores}" var="fornecedor">
                 <tr>
-                    <td><c:out value="${fornecedor.nomeFantasia}"/></td>
                     <td><c:out value="${fornecedor.cnpj}"/></td>
+                    <td><c:out value="${fornecedor.nomeFantasia}"/></td>
                     <td><c:out value="${fornecedor.nomeRepresentante}"/></td>
                     <td><c:out value="${fornecedor.email}"/></td>
+                    <td><c:out value="${fornecedor.endereco.logradouro}"/></td>
                     <td><c:out value="${fornecedor.numero}"/></td>
                     <td><c:out value="${fornecedor.complemento}"/></td>
-                    <td><c:out value="${fornecedor.endereco.logradouro}"/></td>
                     <td><a href="ManterFornecedorController?acao=prepararOperacao&operacao=Excluir&idFornecedor=<c:out value="${fornecedor.idFornecedor}"/>">Excluir</a></td>
                     <td><a href="ManterFornecedorController?acao=prepararOperacao&operacao=Alterar&idFornecedor=<c:out value="${fornecedor.idFornecedor}"/>">Alterar</a></td>
                 </tr>

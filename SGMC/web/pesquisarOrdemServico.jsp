@@ -16,7 +16,7 @@
                 <th>Data de Pedido</th>
                 <th>Situação</th>
                 <th>Fornecedor</th>
-                <th colspan="2">Ação</th>
+                <th colspan="3">Ação</th>
             <c:forEach items="${ordensServico}" var="ordemServico">
                 <tr>
                     <td><c:out value="${ordemServico.numOS}"/></td>
@@ -32,13 +32,12 @@
                         <a href="ManterOrdemServicoController?acao=prepararOperacao&operacao=Alterar&idOrdemSrv=<c:out value="${ordemServico.idOrdemSrv}"/>">
                             Alterar</a>
                     </td>
+                     <td>
+                        <a href="PesquisaItensOrdemController"> 
+                            Itens</a>
+                    </td>
                 </tr>
             </c:forEach>
-        <tr>
-            <td colspan="11">
-        <center><a href="PesquisaItensOrdemController"> Manter Itens da Ordem de Serviço </a></center>
-            </td>
-        </tr>
         </table>
         <br>
         <form action="ManterOrdemServicoController?acao=prepararOperacao&operacao=Incluir" method="post">

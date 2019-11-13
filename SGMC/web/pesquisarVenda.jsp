@@ -19,7 +19,7 @@
                 <th>Cliente</th>
                 <th>Vendedor</th>
                 <th>Forma de Pagamento</th>
-                <th colspan="2">Ação</th>
+                <th colspan="3">Ação</th>
             </tr>
             <c:forEach items="${vendas}" var="venda">
                 <tr>
@@ -39,18 +39,17 @@
                         <a href="ManterVendaController?acao=prepararOperacao&operacao=Alterar&idVenda=<c:out value="${venda.idVenda}"/>">
                             Alterar</a>
                     </td>
-                </tr>
-            </c:forEach>
-                <tr>
-                    <td colspan="11">
-                <center><a href="PesquisaItensVendaController"> Manter Itens da Venda </a></center>
+                    <td>
+                        <a href="PesquisaItensVendaController"> 
+                            Itens</a>
                     </td>
                 </tr>
+            </c:forEach>
         </table>
         <br>
         <form action="ManterVendaController?acao=prepararOperacao&operacao=Incluir" method="post">
             <table><tr><td><input type="submit" name="btnIncluir" value="Incluir"></td></tr></table>
         </form>
-        <table><tr><td><input type="submit" name="btnVoltar" value="Voltar" onclick="window.location.href='http://localhost:8084/SGMC/'"></td></tr></table>
+        <table><tr><td><input type="submit" name="btnVoltar" value="Voltar" onclick="window.location.href = 'http://localhost:8084/SGMC/'"></td></tr></table>
     </body>
 </html>

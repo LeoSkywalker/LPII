@@ -5,6 +5,33 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
+         <script type="text/javascript">
+            var novo = "";
+            var i;
+            var num = "1234567890";
+            function consertaTel() {
+                var c = "";
+                var str = "";
+                for (i = 0; i < tel.value.length; i++) {
+                    c = tel.value.charAt(i);
+                    if (num.indexOf(c) != -1) {
+                        str += c;
+                    }
+                }
+                if (str.length == 2) {
+                    novo = "(" + str.substr(0, 2) + ") ";
+                    document.getElementById("tel").value = novo;
+                }
+                if (str.length == 6) {
+                    novo = "(" + str.substr(0, 2) + ") " + str.substr(2, 4) + "-";
+                    document.getElementById("tel").value = novo;
+                }
+                if (str.length == 10) {
+                    novo = "(" + str.substr(0, 2) + ") " + str.substr(2, 4) + "-" + str.substr(6, 4);
+                    document.getElementById("tel").value = novo;
+                }
+            }
+        </script>
     </head>
     <body>
         <h1>Manter Fornecedor - ${operacao}</h1>
@@ -29,7 +56,7 @@
                         <input type="email" name="txtEmail" value="${fornecedor.email}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                     </td>
                     <td><label> Telefone: </label>
-                        <input type="tel" name="numTelefone" value="${fornecedor.telefone}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        <input type="tel" name="numTelefone" id="tel"  maxlength="14" onkeypress="consertaTel()" value="${fornecedor.telefone}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr><td></td></tr> 
                 <tr>
@@ -38,7 +65,7 @@
                         <select name="optEndereco" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
                             <option value="0" <c:if test="${fornecedor.endereco.idEndereco == null}">selected</c:if></option>
                             <c:forEach items="${enderecos}" var="endereco">
-                                <option value="${endereco.idEndereco}" <c:if test="${fornecedor.endereco.idEndereco == endereco.idEndereco}">selected</c:if>>${endereco.idEndereco}</option>
+                                <option value="${endereco.idEndereco}" <c:if test="${fornecedor.endereco.idEndereco == endereco.idEndereco}">selected</c:if>>${endereco.logradouro}</option>
                             </c:forEach>
                         </select>
                     </td>
