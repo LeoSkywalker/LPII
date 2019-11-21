@@ -12,17 +12,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 import model.ItensOrdem;
 
 public class ItensOrdemDAO {
 
-    public static List<ItensOrdem> obterItensOrdens()
+    public static ArrayList<ItensOrdem> obterItensOrdens()
             throws ClassNotFoundException, SQLException {
 
         Connection conexao = null;
         Statement comando = null;
-        List<ItensOrdem> itensOrdens = new java.util.ArrayList<ItensOrdem>();
+        ArrayList<ItensOrdem> itensOrdens = new java.util.ArrayList<ItensOrdem>();
         ItensOrdem itensOrdem = null;
 
         try {
@@ -40,26 +41,46 @@ public class ItensOrdemDAO {
 
         }
         return itensOrdens;
-
     }
 
-    public static ItensOrdem obterItensOrdem(int idItensOrdem) throws SQLException, ClassNotFoundException {
+    public static ArrayList<ItensOrdem> obterItensOrdem(int idOrdemSrv) throws SQLException, ClassNotFoundException {
 
         Connection conexao = null;
         Statement comando = null;
+        ArrayList<ItensOrdem> itensOrdens = new java.util.ArrayList<ItensOrdem>();
         ItensOrdem itensOrdem = null;
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery("select * from itensOrdem "
                     + "join ordemServico on itensOrdem.idOrdemSrv = ordemServico.idOrdemSrv "
-                    + "where idItensOrdem = " + idItensOrdem);
-            rs.first();
-            itensOrdem = instaciarItensOrdem(rs);
+                    + "where ordemServico.idOrdemSrv = " + idOrdemSrv);
+            while (rs.next()) {
+                itensOrdem = instaciarItensOrdem(rs);
+                itensOrdens.add(itensOrdem);
+            }
         } finally {
             fecharConexao(conexao, comando);
         }
-        return itensOrdem;
+        return itensOrdens;
+    }
+    
+    public static ItensOrdem obterItemOrdem(int idItensOrdem) throws ClassNotFoundException, SQLException {
+        Connection conexao = null;
+        Statement comando = null;
+        ItensOrdem itemOrdem = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from itensOrdem where"
+                    + " itensOrdem.idItensOrdem = " + idItensOrdem);
+            rs.first();
+            itemOrdem = instaciarItensOrdem(rs);
+        } finally {
+            fecharConexao(conexao, comando);
+
+        }
+        return itemOrdem;
     }
 
     private static ItensOrdem instaciarItensOrdem(ResultSet rs) throws SQLException {

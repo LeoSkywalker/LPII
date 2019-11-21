@@ -47,9 +47,9 @@ public class ManterItensOrdemController extends HttpServlet {
     private void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException, IOException {
         String operacao = request.getParameter("operacao");
         int idItensOrdem = Integer.parseInt(request.getParameter("numIdItensOrdem"));
-        int idOrdemSrv = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optOrdemSrv"));
+        int idOrdemSrv = Integer.parseInt(request.getParameter("optOrdemSrv"));
         int quantidade = Integer.parseInt(request.getParameter("numQuantidade"));
-        int idProduto = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optProduto"));
+        int idProduto = Integer.parseInt(request.getParameter("optProduto"));
 
         try {
             Produto produto = null;
@@ -72,9 +72,9 @@ public class ManterItensOrdemController extends HttpServlet {
                     }
                 }
             }
-            RequestDispatcher view = request.getRequestDispatcher("PesquisaItensOrdemController");
+            RequestDispatcher view = request.getRequestDispatcher("/pesquisarItensOrdem.jsp");
+            request.setAttribute("itensOrdens", ItensOrdem.obterItensOrdem(idOrdemSrv));
             view.forward(request, response);
-
         } catch (SQLException | ClassNotFoundException e) {
             throw new ServletException(e);
         }
@@ -88,7 +88,7 @@ public class ManterItensOrdemController extends HttpServlet {
             request.setAttribute("ordensServico", OrdemServico.obterOrdemServicos());
             if (!operacao.equals("Incluir")) {
                 int idItensOrdem = Integer.parseInt(request.getParameter("idItensOrdem"));
-                ItensOrdem itensOrdem = ItensOrdem.obterItensOrdem(idItensOrdem);
+                ItensOrdem itensOrdem = ItensOrdem.obterItemOrdem(idItensOrdem);
                 request.setAttribute("itensOrdem", itensOrdem);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterItensOrdem.jsp");

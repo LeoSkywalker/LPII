@@ -5,10 +5,33 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
+        <script>
+            function validarFormulario(form) { 
+                
+                var mensagem;
+                mensagem = "";
+                
+                if (form.numIdPerdaDevolucao.value == ""){
+                    mensagem = mensagem + "Informe o Id do Cliente\n";
+                }                             
+                if (frmManterDevolucao.optVenda.selectedIndex == 0) {
+                    mensagem = mensagem + "Informe a venda\n";
+                }
+                if (frmManterDevolucao.optProduto.selectedIndex == 0) {
+                    mensagem = mensagem + "Informe o produto\n";
+                }
+                if (mensagem == ""){
+                    return true;
+                }else{
+                    alert(mensagem);
+                    return false;
+                }                
+            }
+        </script>
     </head>
     <body>
         <h1>Manter Perda ou Devolução - ${operacao}</h1>
-        <form action="ManterDevolucaoController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterDevolucao">
+        <form action="ManterDevolucaoController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterDevolucao" onsubmit="return validarFormulario(this)">
             <table>
                 <tr>
                     <td><label> ID: </label>

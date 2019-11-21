@@ -7,10 +7,11 @@ package model;
 
 import dao.ItensVendaDAO;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItensVenda {
-    
+
     private int idItensVenda;
     private int quantidade;
     private float precoUnitario;
@@ -19,7 +20,7 @@ public class ItensVenda {
     private Produto produto;
     private int idProduto;
 
-    public ItensVenda(int idItensVenda, int quantidade, float precoUnitario, 
+    public ItensVenda(int idItensVenda, int quantidade, float precoUnitario,
             Venda venda, Produto produto) {
         this.idItensVenda = idItensVenda;
         this.quantidade = quantidade;
@@ -52,10 +53,10 @@ public class ItensVenda {
         this.precoUnitario = precoUnitario;
     }
 
-    public Venda getVenda()  throws SQLException, ClassNotFoundException {
-        if ((this.idVenda != 0) && (this.venda == null)){
+    public Venda getVenda() throws SQLException, ClassNotFoundException {
+        if ((this.idVenda != 0) && (this.venda == null)) {
             this.venda = Venda.obterVenda(this.idVenda);
-        } 
+        }
         return venda;
     }
 
@@ -71,10 +72,10 @@ public class ItensVenda {
         this.idVenda = idVenda;
     }
 
-    public Produto getProduto ()  throws SQLException, ClassNotFoundException {
-        if ((this.idProduto != 0) && (this.produto == null)){
+    public Produto getProduto() throws SQLException, ClassNotFoundException {
+        if ((this.idProduto != 0) && (this.produto == null)) {
             this.produto = Produto.obterProduto(this.idProduto);
-        } 
+        }
         return produto;
     }
 
@@ -89,20 +90,24 @@ public class ItensVenda {
     public void setIdProduto(int idProduto) {
         this.idProduto = idProduto;
     }
-    
-     public static ItensVenda obterItensVenda (int idItensVenda) throws SQLException, ClassNotFoundException{
+
+    public static ArrayList<ItensVenda> obterItensVenda(int idItensVenda) throws SQLException, ClassNotFoundException {
         return ItensVendaDAO.obterItensVenda(idItensVenda);
     }
-    
-    public static List<ItensVenda> obterItensVendas() throws ClassNotFoundException, SQLException{
+
+    public static ArrayList<ItensVenda> obterItensVendas() throws ClassNotFoundException, SQLException {
         return ItensVendaDAO.obterItensVendas();
     }
-    
+
+    public static ItensVenda obterItemVenda(int idItensVenda) throws ClassNotFoundException, SQLException {
+        return ItensVendaDAO.obterItemVenda(idItensVenda);
+    }
+
     public void gravar() throws SQLException, ClassNotFoundException {
         ItensVendaDAO.gravar(this);
     }
-    
-    public void excluir() throws ClassNotFoundException, SQLException{
+
+    public void excluir() throws ClassNotFoundException, SQLException {
         ItensVendaDAO.excluir(this);
     }
 

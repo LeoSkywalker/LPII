@@ -12,16 +12,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 import model.OrdemServico;
 
 public class OrdemServicoDAO {
 
-    public static List<OrdemServico> obterOrdemServicos() throws ClassNotFoundException, SQLException {
+    public static ArrayList<OrdemServico> obterOrdemServicos() throws ClassNotFoundException, SQLException {
 
         Connection conexao = null;
         Statement comando = null;
-        List<OrdemServico> ordemServicos = new java.util.ArrayList<OrdemServico>();
+        ArrayList<OrdemServico> ordemServicos = new java.util.ArrayList<OrdemServico>();
         OrdemServico ordemServico = null;
 
         try {

@@ -5,10 +5,25 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
+        <script type="text/javascript">
+            function validarFormulario(form) { 
+                var mensagem;
+                mensagem = "";
+                if (form.numIdCategoria.value == ""){
+                    mensagem = mensagem + "Informe o Id da Categoria\n";
+                }                                          
+                if (mensagem == ""){
+                    return true;
+                }else{
+                    alert(mensagem);
+                    return false;
+                }                
+            } 
+        </script>
     </head>
     <body>
         <h1>Manter Categoria - ${operacao}</h1>
-        <form action="ManterCategoriaController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterCategoria">
+        <form action="ManterCategoriaController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterCategoria" onsubmit="return validarFormulario(this)">
             <table>
                 <tr>
                     <td><label> ID: </label>

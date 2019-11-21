@@ -7,6 +7,7 @@ package model;
 
 import dao.VendaDAO;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Venda {
@@ -148,8 +149,8 @@ public class Venda {
         return VendaDAO.obterVenda(idVenda);
     }
     
-    public static List<Venda> obterVendas() throws ClassNotFoundException, SQLException{
-        return VendaDAO.obterVendas();
+    public static ArrayList<Venda> obterVendas() throws ClassNotFoundException, SQLException{
+        return (ArrayList<Venda>) VendaDAO.obterVendas();
     }
     
     public void gravar() throws ClassNotFoundException, SQLException{

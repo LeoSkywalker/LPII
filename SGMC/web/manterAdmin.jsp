@@ -5,10 +5,28 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
+        <script type="text/javascript">
+            function validarFormulario(form) { 
+                var mensagem;
+                mensagem = "";
+                if (form.numIdAdmin.value == ""){
+                    mensagem = mensagem + "Informe o Id do Admin\n";
+                }                             
+                if (form.numIdUsuario.value == ""){
+                    mensagem = mensagem + "Informe o Id do Usuário\n";
+                }             
+                if (mensagem == ""){
+                    return true;
+                }else{
+                    alert(mensagem);
+                    return false;
+                }                
+            } 
+        </script>
     </head>
     <body>
         <h1>Manter Admin - ${operacao}</h1>
-        <form action="ManterAdminController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterAdmin">
+        <form action="ManterAdminController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterAdmin" onsubmit="return validarFormulario(this)">
             <table>
                 <tr>
                     <td><label> ID Admin: </label>

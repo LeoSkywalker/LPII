@@ -138,7 +138,6 @@ public class ManterOrdemServicoController extends HttpServlet {
                     ordemServico.alterar();
                 }
             }
-            
             RequestDispatcher view = request.getRequestDispatcher("PesquisaOrdemServicoController");
             view.forward(request, response);
         }

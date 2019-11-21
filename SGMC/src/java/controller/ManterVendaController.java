@@ -110,13 +110,7 @@ public class ManterVendaController extends HttpServlet {
             view.forward(request, response);
         }catch(ServletException e){
             throw e;
-            
-            
-        }catch(IOException e){
-            throw new ServletException(e);
-        }catch(SQLException e){
-            throw new ServletException(e);
-        }catch(ClassNotFoundException e){
+        }catch(IOException | SQLException | ClassNotFoundException e){
             throw new ServletException(e);
         }
     }
@@ -132,8 +126,6 @@ public class ManterVendaController extends HttpServlet {
         float valorDesconto = Float.parseFloat(request.getParameter("numValorDesconto"));
         String situacao = request.getParameter("optSituacao");
         int idFormaPgto = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optPagamento"));
-        
-        
         try{
             Cliente cliente = null;
             if(idCliente != 0){
@@ -147,7 +139,6 @@ public class ManterVendaController extends HttpServlet {
             if(idFormaPgto != 0){
                 formaPagamento = FormaPagamento.obterFormaPagamento(idFormaPgto);
             }
-            
             Venda venda = new Venda(idVenda, dataVenda, subTotal, codBarra, 
             valorDesconto, situacao, usuario, formaPagamento, cliente);
             if(operacao.equals("Incluir")){
@@ -161,7 +152,6 @@ public class ManterVendaController extends HttpServlet {
                     }
                 }
             }
-
             RequestDispatcher view = request.getRequestDispatcher("PesquisaVendaController");
             view.forward(request, response);
         }

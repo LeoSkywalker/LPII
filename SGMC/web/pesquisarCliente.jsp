@@ -11,22 +11,24 @@
         <h1>Pesquisa de Cliente</h1>
         <table border=1>
             <tr>
+                <th>CPF/CNPJ</th>
                 <th>Nome</th>
                 <th>Celular</th>
                 <th>Email</th>
+                <th>Endereço</th>
                 <th>Número</th> 
                 <th>Complemento</th> 
-                <th>Endereço</th>
                 <th colspan="2">Ação</th>
             </tr>
             <c:forEach items="${clientes}" var="cliente">
                 <tr>
+                    <td><c:out value="${cliente.cpf}${cliente.cnpj}"/></td>
                     <td><c:out value="${cliente.nome}"/></td>
                     <td><c:out value="${cliente.celular}"/></td>
                     <td><c:out value="${cliente.email}"/></td>
+                    <td><c:out value="${cliente.endereco.logradouro}"/></td>
                     <td><c:out value="${cliente.numero}"/></td>
                     <td><c:out value="${cliente.complemento}"/></td>
-                    <td><c:out value="${cliente.endereco.logradouro}"/></td>
                     <td><a href="ManterClienteController?acao=prepararOperacao&operacao=Excluir&idCliente=<c:out value="${cliente.idCliente}"/>">Excluir</a></td>
                     <td><a href="ManterClienteController?acao=prepararOperacao&operacao=Alterar&idCliente=<c:out value="${cliente.idCliente}"/>">Alterar</a></td>
                 </tr>

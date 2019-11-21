@@ -5,10 +5,28 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
+        <script>
+            function validarFormulario(form) {
+
+                var mensagem;
+                mensagem = "";
+
+                if (form.numIdPagamento.value == "") {
+                    mensagem = mensagem + "Informe o Id do pagamento\n";
+                }
+                
+                if (mensagem == "") {
+                    return true;
+                } else {
+                    alert(mensagem);
+                    return false;
+                }
+            }
+        </script>
     </head>
     <body>
         <h1>Manter Pagamento - ${operacao}</h1>
-        <form action="ManterPagamentoController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterPagamento">
+        <form action="ManterPagamentoController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterPagamento"  onsubmit="return validarFormulario(this)">
         <table>
                 <tr>
                     <td><label> ID: </label>

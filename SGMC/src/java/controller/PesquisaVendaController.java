@@ -27,6 +27,8 @@ public class PesquisaVendaController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
@@ -34,9 +36,7 @@ public class PesquisaVendaController extends HttpServlet {
                 request.setAttribute("vendas", Venda.obterVendas());
                 RequestDispatcher view = request.getRequestDispatcher("/pesquisarVenda.jsp");
                 view.forward(request, response);
-            }catch (ClassNotFoundException e){
-                throw new ServletException(e);
-            }catch (SQLException e){
+            }catch (ClassNotFoundException | SQLException e){
                 throw new ServletException(e);
             }
     }

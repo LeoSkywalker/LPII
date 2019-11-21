@@ -5,10 +5,36 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
+        <script>
+            function validarFormulario(form) {
+
+                var mensagem;
+                mensagem = "";
+
+                if (form.numIdProduto.value == "") {
+                    mensagem = mensagem + "Informe o Id do produto\n";
+                }
+                
+                if (frmManterProduto.optFornecedor.selectedIndex == 0) {
+                    mensagem = mensagem + "Informe o fornecedor\n";
+                }
+                
+                if (frmManterProduto.optCategoria.selectedIndex == 0) {
+                    mensagem = mensagem + "Informe a categoria\n";
+                }
+                
+                if (mensagem == "") {
+                    return true;
+                } else {
+                    alert(mensagem);
+                    return false;
+                }
+            }
+        </script>
     </head>
     <body>
         <h1>Manter Produto - ${operacao}</h1>
-        <form action="ManterProdutoController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterProduto">
+        <form action="ManterProdutoController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterProduto" onsubmit="return validarFormulario(this)">
             <table>
                 <tr>
                     <td><label> ID: </label>

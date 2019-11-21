@@ -7,6 +7,7 @@ package model;
 
 import dao.OrdemServicoDAO;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrdemServico {
@@ -92,8 +93,8 @@ public class OrdemServico {
         return OrdemServicoDAO.obterOrdemServico(idOrdemServico);
     }
     
-    public static List<OrdemServico> obterOrdemServicos() throws ClassNotFoundException, SQLException{
-        return OrdemServicoDAO.obterOrdemServicos();
+    public static ArrayList<OrdemServico> obterOrdemServicos() throws ClassNotFoundException, SQLException{
+        return (ArrayList<OrdemServico>) OrdemServicoDAO.obterOrdemServicos();
     }
     
     public void gravar() throws ClassNotFoundException, SQLException{

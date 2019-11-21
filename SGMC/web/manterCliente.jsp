@@ -6,55 +6,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
         <script type="text/javascript">
-            var novo = "";
-            var i;
-            var num = "1234567890";
-            function consertaCel() {
-                var c = "";
-                var str = "";
-                for (i = 0; i < cel.value.length; i++) {
-                    c = cel.value.charAt(i);
-                    if (num.indexOf(c) != -1) {
-                        str += c;
-                    }
-                }
-                if (str.length == 2) {
-                    novo = "(" + str.substr(0, 2) + ") ";
-                    document.getElementById("cel").value = novo;
-                }
-                if (str.length == 6) {
-                    novo = "(" + str.substr(0, 2) + ") " + str.substr(2, 4) + "-";
-                    document.getElementById("cel").value = novo;
-                }
-                if (str.length == 10) {
-                    novo = "(" + str.substr(0, 2) + ") " + str.substr(2, 5) + "-" + str.substr(7, 4);
-                    document.getElementById("cel").value = novo;
-                }
-            }
-            
-            function consertaTel() {
-                var c = "";
-                var str = "";
-                for (i = 0; i < tel.value.length; i++) {
-                    c = tel.value.charAt(i);
-                    if (num.indexOf(c) != -1) {
-                        str += c;
-                    }
-                }
-                if (str.length == 2) {
-                    novo = "(" + str.substr(0, 2) + ") ";
-                    document.getElementById("tel").value = novo;
-                }
-                if (str.length == 6) {
-                    novo = "(" + str.substr(0, 2) + ") " + str.substr(2, 4) + "-";
-                    document.getElementById("tel").value = novo;
-                }
-                if (str.length == 10) {
-                    novo = "(" + str.substr(0, 2) + ") " + str.substr(2, 4) + "-" + str.substr(6, 4);
-                    document.getElementById("tel").value = novo;
-                }
-            }
-
             function fisica() {
                 document.getElementById("cnpj").disabled = true;
                 document.getElementById("rc").disabled = true;
@@ -85,11 +36,29 @@
                 document.getElementById("rc").disabled = false;
                 document.getElementById("ie").disabled = false;
             }
+            function validarFormulario(form) { 
+                
+                var mensagem;
+                mensagem = "";
+                
+                if (form.numIdCliente.value == ""){
+                    mensagem = mensagem + "Informe o Id do Cliente\n";
+                }                             
+                if (frmManterCliente.optEndereco.selectedIndex == 0) {
+                    mensagem = mensagem + "Informe o endereço\n";
+                }             
+                if (mensagem == ""){
+                    return true;
+                }else{
+                    alert(mensagem);
+                    return false;
+                }                
+            }
         </script>
     </head>
     <body>
         <h1>Manter Cliente - ${operacao}</h1>
-        <form action="ManterClienteController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterCliente" onsubmit="validarFormulario(this)">
+        <form action="ManterClienteController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterCliente" onsubmit="return validarFormulario(this)">
             <table>
                 <tr>
                     <td><label>ID Cliente: </label>

@@ -7,6 +7,7 @@ package model;
 
 import dao.ItensOrdemDAO;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItensOrdem {
@@ -80,12 +81,16 @@ public class ItensOrdem {
         this.idOrdemSrv = idOrdemSrv;
     }
 
-    public static ItensOrdem obterItensOrdem(int idItensOrdem) throws SQLException, ClassNotFoundException {
+    public static ArrayList<ItensOrdem> obterItensOrdem(int idItensOrdem) throws SQLException, ClassNotFoundException {
         return ItensOrdemDAO.obterItensOrdem(idItensOrdem);
     }
 
-    public static List<ItensOrdem> obterItensOrdens() throws ClassNotFoundException, SQLException {
+    public static ArrayList<ItensOrdem> obterItensOrdens() throws ClassNotFoundException, SQLException {
         return ItensOrdemDAO.obterItensOrdens();
+    }
+    
+    public static ItensOrdem obterItemOrdem(int idItensOrdem) throws ClassNotFoundException, SQLException {
+        return ItensOrdemDAO.obterItemOrdem(idItensOrdem);
     }
 
     public void gravar() throws SQLException, ClassNotFoundException {

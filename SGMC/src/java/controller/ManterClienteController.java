@@ -115,8 +115,8 @@ public class ManterClienteController extends HttpServlet {
         }
     }
 
-    public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) 
-            throws SQLException, ClassNotFoundException, ServletException {
+    public boolean confirmarOperacao(HttpServletRequest request, HttpServletResponse response) 
+            throws SQLException, ClassNotFoundException, ServletException, IOException {
         String operacao = request.getParameter("operacao");
         int idCliente = Integer.parseInt(request.getParameter("numIdCliente"));
         String nome = request.getParameter("txtNome");
@@ -135,7 +135,7 @@ public class ManterClienteController extends HttpServlet {
         String complemento = request.getParameter("txtComplemento");
         int idEndereco = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optEndereco"));
 
-        try {
+        try{
             Endereco endereco = null;
             if (idEndereco != 0) {
                 endereco = Endereco.obterEndereco(idEndereco);
@@ -155,13 +155,18 @@ public class ManterClienteController extends HttpServlet {
                 }
             }
             RequestDispatcher view = request.getRequestDispatcher("PesquisaClienteController");
-            view.forward(request, response);
-        } catch (IOException e) {
+            view.forward(request, response);   
+        }catch (IOException e) {
             throw new ServletException(e);
         } catch (SQLException e) {
             throw new ServletException(e);
         } catch (ClassNotFoundException e) {
             throw new ServletException(e);
+        } catch (ServletException e) {
+            throw e;
         }
-    }
+        return true;
+    }     
 }
+
+

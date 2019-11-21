@@ -81,10 +81,10 @@
         <servlet-class>controller.PesquisaItensOrdemController</servlet-class>
     </servlet>
     <servlet>
-    <servlet-name>ManterEnderecoController</servlet-name>
+        <servlet-name>ManterEnderecoController</servlet-name>
         <servlet-class>controller.ManterEnderecoController</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>ManterCategoriaController</servlet-name>
         <servlet-class>controller.ManterCategoriaController</servlet-class>
     </servlet>
@@ -103,6 +103,10 @@
     <servlet>
         <servlet-name>PesquisaEnderecoController</servlet-name>
         <servlet-class>controller.PesquisaEnderecoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TratamentoExcecao</servlet-name>
+        <servlet-class>exception.TratamentoExcecao</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PesquisaClienteController</servlet-name>
@@ -188,7 +192,6 @@
         <servlet-name>ManterEnderecoController</servlet-name>
         <url-pattern>/ManterEnderecoController</url-pattern>
     </servlet-mapping>
-    
     <servlet-mapping>
         <servlet-name>ManterCategoriaController</servlet-name>
         <url-pattern>/ManterCategoriaController</url-pattern>
@@ -208,6 +211,10 @@
     <servlet-mapping>
         <servlet-name>PesquisaEnderecoController</servlet-name>
         <url-pattern>/PesquisaEnderecoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TratamentoExcecao</servlet-name>
+        <url-pattern>/TratamentoExcecao</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

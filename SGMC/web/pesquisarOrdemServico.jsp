@@ -33,7 +33,7 @@
                             Alterar</a>
                     </td>
                      <td>
-                        <a href="PesquisaItensOrdemController"> 
+                        <a href="PesquisaItensOrdemController?idOrdemSrv=${ordemServico.idOrdemSrv}"> 
                             Itens</a>
                     </td>
                 </tr>

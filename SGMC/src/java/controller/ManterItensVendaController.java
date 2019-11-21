@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -33,10 +34,10 @@ public class ManterItensVendaController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         String acao = request.getParameter("acao");
-        if(acao.equals("confirmarOperacao")){
+        if (acao.equals("confirmarOperacao")) {
             confirmarOperacao(request, response);
-        }else{
-            if(acao.equals("prepararOperacao")){
+        } else {
+            if (acao.equals("prepararOperacao")) {
                 prepararOperacao(request, response);
             }
         }
@@ -96,63 +97,59 @@ public class ManterItensVendaController extends HttpServlet {
     private void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException, IOException {
         String operacao = request.getParameter("operacao");
         int idItensVenda = Integer.parseInt(request.getParameter("numIdItensVenda"));
-        int idVenda = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optVenda"));
-        int idProduto = operacao.equals("Excluir") ? 0 : Integer.parseInt(request.getParameter("optProduto"));
+        int idVenda =  Integer.parseInt(request.getParameter("optVenda"));
+        int idProduto =  Integer.parseInt(request.getParameter("optProduto"));
         int quantidade = Integer.parseInt(request.getParameter("numQuantidade"));
         float precoUnitario = Float.parseFloat(request.getParameter("numPrecoUnitario"));
-     
-        try{
+
+        try {
             Produto produto = null;
-            if(idProduto != 0){
+            if (idProduto != 0) {
                 produto = Produto.obterProduto(idProduto);
             }
             Venda venda = null;
-            if(idVenda != 0){
+            if (idVenda != 0) {
                 venda = Venda.obterVenda(idVenda);
             }
-            ItensVenda itensVenda = new ItensVenda(idItensVenda, quantidade, precoUnitario, 
+            ItensVenda itensVenda = new ItensVenda(idItensVenda, quantidade, precoUnitario,
                     venda, produto);
-            if(operacao.equals("Incluir")){
+            itensVenda.setIdVenda(idVenda);
+            itensVenda.setIdProduto(idProduto);
+            if (operacao.equals("Incluir")) {
                 itensVenda.gravar();
-            }else{
-                if(operacao.equals("Alterar")){
+            } else {
+                if (operacao.equals("Alterar")) {
                     itensVenda.alterar();
-                }else{
-                    if (operacao.equals("Excluir")){
+                } else {
+                    if (operacao.equals("Excluir")) {
                         itensVenda.excluir();
                     }
                 }
             }
-        RequestDispatcher view = request.getRequestDispatcher("PesquisaItensVendaController");
-           view.forward(request, response);   
-        }catch(SQLException e){
+            RequestDispatcher view = request.getRequestDispatcher("/pesquisarItensVenda.jsp");
+            request.setAttribute("itensVenda", ItensVenda.obterItensVenda(idVenda));
+            view.forward(request, response);
+        } catch (SQLException | ClassNotFoundException e) {
             throw new ServletException(e);
-        }
-        catch(ClassNotFoundException e){
-           throw new ServletException(e);
         }
     }
 
     private void prepararOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, IOException, ServletException {
-        try{
+        try {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
             request.setAttribute("produtos", Produto.obterProdutos());
             request.setAttribute("vendas", Venda.obterVendas());
-            if(!operacao.equals("Incluir")){
+            if (!operacao.equals("Incluir")) {
                 int idIntensVenda = Integer.parseInt(request.getParameter("idItensVenda"));
-                ItensVenda itensVenda = ItensVenda.obterItensVenda(idIntensVenda);
+                ItensVenda itensVenda = ItensVenda.obterItemVenda(idIntensVenda);
                 request.setAttribute("itensVenda", itensVenda);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterItensVenda.jsp");
             view.forward(request, response);
-        }catch(ServletException e){
+        } catch (ServletException e) {
             throw e;
-        }catch(IOException e){
-            throw new ServletException(e);
-        }catch(SQLException e){
-            throw new ServletException(e);
-        }catch(ClassNotFoundException e){
+        } catch (IOException | SQLException | ClassNotFoundException e) {
             throw new ServletException(e);
         }
     }

@@ -5,10 +5,32 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
+        <script>
+            function validarFormulario(form) {
+
+                var mensagem;
+                mensagem = "";
+
+                if (form.numIdOrdemServico.value == "") {
+                    mensagem = mensagem + "Informe o Id do pagamento\n";
+                }
+                
+                if (frmManterOrdemServico.optFornecedor.selectedIndex == 0) {
+                    mensagem = mensagem + "Informe o fornecedor\n";
+                }
+                
+                if (mensagem == "") {
+                    return true;
+                } else {
+                    alert(mensagem);
+                    return false;
+                }
+            }
+        </script>
     </head>
     <body>
         <h1>Manter Ordem de Serviço - ${operacao}</h1>
-        <form action="ManterOrdemServicoController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterOrdemServico">
+        <form action="ManterOrdemServicoController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterOrdemServico" onsubmit="return validarFormulario(this)">
             <table>
                 <tr>
                     <td>

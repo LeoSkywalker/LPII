@@ -12,25 +12,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 import model.ItensVenda;
 
 public class ItensVendaDAO {
 
-    public static List<ItensVenda> obterItensVendas()
+    public static ArrayList<ItensVenda> obterItensVendas()
             throws ClassNotFoundException, SQLException {
 
         Connection conexao = null;
         Statement comando = null;
-        List<ItensVenda> itensVendas = new java.util.ArrayList<ItensVenda>();
+        ArrayList<ItensVenda> itensVendas = new java.util.ArrayList<ItensVenda>();
         ItensVenda itensVenda = null;
 
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from itensVenda join"
-                    + " venda on itensVenda.idVenda = venda.idVenda");
-
+            ResultSet rs = comando.executeQuery("select * from itensVenda "
+                    + "join venda on itensVenda.idVenda = venda.idVenda");
             while (rs.next()) {
                 itensVenda = instaciarItensVenda(rs);
                 itensVendas.add(itensVenda);
@@ -43,23 +43,46 @@ public class ItensVendaDAO {
 
     }
 
-    public static ItensVenda obterItensVenda(int idItensVenda) throws SQLException, ClassNotFoundException {
+    public static ArrayList<ItensVenda> obterItensVenda(int idVenda) throws SQLException, ClassNotFoundException {
 
         Connection conexao = null;
         Statement comando = null;
+        ArrayList<ItensVenda> itensVendas = new java.util.ArrayList<ItensVenda>();
         ItensVenda itensVenda = null;
+
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
-            ResultSet rs = comando.executeQuery("select * from itensVenda join"
-                    + " venda on itensVenda.idVenda = venda.idVenda "
-                    + "where idItensVenda = " + idItensVenda);
-            rs.first();
-            itensVenda = instaciarItensVenda(rs);
+            ResultSet rs = comando.executeQuery("select * from itensVenda "
+                    + "join venda on itensVenda.idVenda = venda.idVenda "
+                    + "where venda.idVenda = " + idVenda);
+            while (rs.next()) {
+                itensVenda = instaciarItensVenda(rs);
+                itensVendas.add(itensVenda);
+            }
         } finally {
             fecharConexao(conexao, comando);
+
         }
-        return itensVenda;
+        return itensVendas;
+    }
+
+    public static ItensVenda obterItemVenda(int idItensVenda) throws ClassNotFoundException, SQLException {
+        Connection conexao = null;
+        Statement comando = null;
+        ItensVenda itemVenda = null;
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            ResultSet rs = comando.executeQuery("select * from itensVenda where"
+                    + " itensVenda.idItensVenda = " + idItensVenda);
+            rs.first();
+            itemVenda = instaciarItensVenda(rs);
+        } finally {
+            fecharConexao(conexao, comando);
+
+        }
+        return itemVenda;
     }
 
     private static ItensVenda instaciarItensVenda(ResultSet rs) throws SQLException {
@@ -73,80 +96,72 @@ public class ItensVendaDAO {
 
         return itensVenda;
     }
-    
-    public static void gravar(ItensVenda itensVenda) throws ClassNotFoundException, SQLException{
+
+    public static void gravar(ItensVenda itensVenda) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         PreparedStatement comando = null;
-        try{
+        try {
             conexao = BD.getConexao();
             comando = conexao.prepareStatement(
-            "insert into itensVenda (idItensVenda, quantidade, precoUnitario,"
-            +"idVenda, idProduto)"
-            + "values (?,?,?,?,?)");
+                    "insert into itensVenda (idItensVenda, quantidade, precoUnitario,"
+                    + "idVenda, idProduto)"
+                    + "values (?,?,?,?,?)");
             comando.setInt(1, itensVenda.getIdItensVenda());
             comando.setInt(2, itensVenda.getQuantidade());
             comando.setFloat(3, itensVenda.getPrecoUnitario());
-            
-            if(itensVenda.getVenda()== null){
+
+            if (itensVenda.getVenda() == null) {
                 comando.setNull(4, Types.INTEGER);
-            }else{
+            } else {
                 comando.setInt(4, itensVenda.getVenda().getIdVenda());
             }
-            if(itensVenda.getProduto()== null){
+            if (itensVenda.getProduto() == null) {
                 comando.setNull(5, Types.INTEGER);
-            }else{
+            } else {
                 comando.setInt(5, itensVenda.getProduto().getIdProduto());
             }
             comando.executeUpdate();
-            }finally{
+        } finally {
             fecharConexao(conexao, comando);
         }
     }
-    
-    public static void excluir(ItensVenda itensVenda) throws ClassNotFoundException, SQLException{
+
+    public static void excluir(ItensVenda itensVenda) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         String stringSQL;
-        
-        try{
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             stringSQL = "delete from itensVenda where idItensVenda = "
                     + itensVenda.getIdItensVenda();
             comando.execute(stringSQL);
-        }finally{
+        } finally {
             fecharConexao(conexao, comando);
         }
     }
-    
-    public static void alterar(ItensVenda itensVenda) throws SQLException, ClassNotFoundException{
+
+    public static void alterar(ItensVenda itensVenda) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         String stringSQL;
-        
-        try{
+
+        try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             stringSQL = "update itensVenda set "
                     + "precoUnitario = " + itensVenda.getPrecoUnitario() + ","
                     + "quantidade = " + itensVenda.getQuantidade() + ","
                     + "idProduto = ";
-            if (itensVenda.getProduto() == null){
+            if (itensVenda.getProduto() == null) {
                 stringSQL = stringSQL + null;
-            }else{
+            } else {
                 stringSQL = stringSQL + itensVenda.getProduto().getIdProduto();
             }
-            
-            /*if(itensVenda.getVenda() == null){
-                stringSQL = stringSQL + null;
-            }else{
-                stringSQL = stringSQL + itensVenda.getVenda().getIdVenda();
-            }*/
-            
             stringSQL = stringSQL + " where idItensVenda = " + itensVenda.getIdItensVenda()
                     + " and idVenda = " + itensVenda.getVenda().getIdVenda();
             comando.execute(stringSQL);
-        }finally{
+        } finally {
             fecharConexao(conexao, comando);
         }
     }

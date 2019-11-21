@@ -11,26 +11,26 @@
         <h1>Pesquisa de Venda</h1>
         <table border=1>
             <tr>
-                <th>Data da Venda:</th> 
-                <th>SubTotal</th>
                 <th>Código de Barra</th>
+                <th>Data da Venda:</th> 
                 <th>Valor do Desconto</th>
                 <th>Situação</th>
                 <th>Cliente</th>
                 <th>Vendedor</th>
                 <th>Forma de Pagamento</th>
+                <th>SubTotal</th>
                 <th colspan="3">Ação</th>
             </tr>
             <c:forEach items="${vendas}" var="venda">
                 <tr>
-                    <td><c:out value="${venda.dataVenda}"/></td>
-                    <td><c:out value="${venda.subTotal}"/></td>
                     <td><c:out value="${venda.codBarra}"/></td>
+                    <td><c:out value="${venda.dataVenda}"/></td>
                     <td><c:out value="${venda.valorDesconto}"/></td>
                     <td><c:out value="${venda.situacao}"/></td>
                     <td><c:out value="${venda.cliente.nome}"/></td>
                     <td><c:out value="${venda.usuario.nome}"/></td>
                     <td><c:out value="${venda.formaPagamento.nome}"/></td>
+                    <td><c:out value="${venda.subTotal}"/></td>
                     <td>
                         <a href="ManterVendaController?acao=prepararOperacao&operacao=Excluir&idVenda=<c:out value="${venda.idVenda}"/>">
                             Excluir</a>
@@ -40,8 +40,7 @@
                             Alterar</a>
                     </td>
                     <td>
-                        <a href="PesquisaItensVendaController"> 
-                            Itens</a>
+                        <a href="PesquisaItensVendaController?idVenda=${venda.idVenda}">Itens</a>
                     </td>
                 </tr>
             </c:forEach>

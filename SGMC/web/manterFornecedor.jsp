@@ -31,11 +31,30 @@
                     document.getElementById("tel").value = novo;
                 }
             }
+            
+            function validarFormulario(form) {
+
+                var mensagem;
+                mensagem = "";
+
+                if (form.numIdFornecedor.value == "") {
+                    mensagem = mensagem + "Informe o Id do Cliente\n";
+                }
+                if (frmManterFornecedor.optEndereco.selectedIndex == 0) {
+                    mensagem = mensagem + "Informe o endereço\n";
+                }
+                if (mensagem == "") {
+                    return true;
+                } else {
+                    alert(mensagem);
+                    return false;
+                }
+            }
         </script>
     </head>
     <body>
         <h1>Manter Fornecedor - ${operacao}</h1>
-        <form action="ManterFornecedorController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterFornecedor">
+        <form action="ManterFornecedorController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterFornecedor" onsubmit="return validarFormulario(this)">
             <table>
                 <tr>
                     <td><label> ID: </label>

@@ -3,21 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package exception;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.ItensVenda;
 
-public class PesquisaItensVendaController extends HttpServlet {
+/**
+ *
+ * @author leonardo
+ */
+public class TratamentoExcecao extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -27,19 +26,32 @@ public class PesquisaItensVendaController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     * @throws java.lang.ClassNotFoundException
-     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
-        int idVenda = Integer.parseInt(request.getParameter("idVenda"));
-        try {
-            request.setAttribute("itensVenda", ItensVenda.obterItensVenda(idVenda));
-            RequestDispatcher view = request.getRequestDispatcher("/pesquisarItensVenda.jsp");
-            view.forward(request, response);
-        } catch (ClassNotFoundException | SQLException e) {
-            throw new ServletException(e);
-        }
+            throws ServletException, IOException {
+        Exception excecao = (Exception) request.getAttribute
+                ("javax.servlet.error.exception");
+        Integer codigoStatus = (Integer) request.getAttribute
+                ("javax.servlet.error.status_code");
+        String nomeServlet = (String) request.getAttribute
+                ("javax.servlet.error.servlet_name");
+        String uriRequisicao = (String) request.getAttribute
+                ("javax.servlet.error.request_uri");
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        String titulo = "Informação de Exceção";
+        String tipoDocto = 
+             "<!doctype html public \"-//w3c//dtd html 4.0 transitional//en\">\n";
+        out.println(tipoDocto + "<html>\n <head><title>" + titulo + 
+                "</title></head><body>\n");
+        out.println("<h2>Informação sobre a exceção</h2>");
+        out.println("Código do status: " + codigoStatus + "</br></br>");
+        out.println("Nome do servlet: " + nomeServlet + "</br></br>");
+        out.println("Tipo de exceção: " + excecao.getClass().getName() + "</br></br>");
+        out.println("URI da requisição: " + uriRequisicao + "<br><br>");
+        out.println("Mensagem: " + excecao.getMessage());
+        out.println("</body>");
+        out.println("</html>");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -54,13 +66,7 @@ public class PesquisaItensVendaController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PesquisaItensVendaController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(PesquisaItensVendaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -74,13 +80,7 @@ public class PesquisaItensVendaController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PesquisaItensVendaController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(PesquisaItensVendaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

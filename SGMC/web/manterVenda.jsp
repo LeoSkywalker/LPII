@@ -5,10 +5,39 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
+        <script>
+            function validarFormulario(form) {
+
+                var mensagem;
+                mensagem = "";
+
+                if (form.numIdVenda.value == "") {
+                    mensagem = mensagem + "Informe o Id do Cliente\n";
+                }
+                
+                if (frmManterVenda.optCliente.selectedIndex == 0) {
+                    mensagem = mensagem + "Informe o cliente\n";
+                }
+                
+                if (frmManterVenda.optUsuario.selectedIndex == 0) {
+                    mensagem = mensagem + "Informe o vendedor\n";
+                }
+                
+                if (frmManterVenda.optPagamento.selectedIndex == 0) {
+                    mensagem = mensagem + "Informe a forma de pagamento\n";
+                }
+                if (mensagem == "") {
+                    return true;
+                } else {
+                    alert(mensagem);
+                    return false;
+                }
+            }
+        </script>
     </head>
     <body>
         <h1>Manter Venda - ${operacao}</h1>
-        <form action="ManterVendaController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterVenda">
+        <form action="ManterVendaController?acao=confirmarOperacao&operacao=${operacao}" method="post" name="frmManterVenda" onsubmit="return validarFormulario(this)">
             <table>
                 <tr>
                     <td><label> ID: </label>
@@ -26,7 +55,7 @@
                             </c:forEach>
                         </select>
                     </td>
-                    <td><label> Usuário: </label>
+                    <td><label> Vendedor: </label>
                         <select name="optUsuario" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
                             <option value="0" <c:if test="${venda.usuario.idUsuario == null}">selected</c:if></option>
                             <c:forEach items="${usuarios}" var="usuario">

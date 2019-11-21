@@ -17,18 +17,18 @@
                 <th>Preço Unitário</th>
                 <th colspan="2">Ação</th>
             </tr>
-            <c:forEach items="${itensVendas}" var="itensVenda">
+            <c:forEach items="${itensVenda}" var="itemVenda">
                 <tr>
-                    <td><c:out value="${itensVenda.venda.codBarra}"/></td>
-                    <td><c:out value="${itensVenda.produto.nome}"/></td>
-                    <td><c:out value="${itensVenda.quantidade}"/></td>
-                    <td><c:out value="${itensVenda.precoUnitario}"/></td>
+                    <td><c:out value="${itemVenda.venda.codBarra}"/></td>
+                    <td><c:out value="${itemVenda.produto.nome}"/></td>
+                    <td><c:out value="${itemVenda.quantidade}"/></td>
+                    <td><c:out value="${itemVenda.precoUnitario}"/></td>
                     <td>
-                        <a href="ManterItensVendaController?acao=prepararOperacao&operacao=Excluir&idItensVenda=<c:out value="${itensVenda.idItensVenda}"/>">
+                        <a href="ManterItensVendaController?acao=prepararOperacao&operacao=Excluir&idItensVenda=<c:out value="${itemVenda.idItensVenda}"/>">
                             Excluir</a>
                     </td>
                     <td>
-                        <a href="ManterItensVendaController?acao=prepararOperacao&operacao=Alterar&idItensVenda=<c:out value="${itensVenda.idItensVenda}"/>">
+                        <a href="ManterItensVendaController?acao=prepararOperacao&operacao=Alterar&idItensVenda=<c:out value="${itemVenda.idItensVenda}"/>">
                             Alterar</a>
                     </td>
                 </tr>
