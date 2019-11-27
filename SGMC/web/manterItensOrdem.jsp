@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
         <script>
+               
             function validarFormulario(form) {
 
                 var mensagem;
@@ -20,6 +21,9 @@
                 
                 if (frmManterItensOrdem.optProduto.selectedIndex == 0) {
                     mensagem = mensagem + "Informe o produto\n";
+                }
+                if (!campoNumerico(form.numIdItensOrdem.value)){
+                    mensagem = mensagem + "Id dos Itens Ordem deve ser numérico\n";
                 }
                 if (mensagem == "") {
                     return true;

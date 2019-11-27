@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
         <script>
+           
             function validarFormulario(form) {
 
                 var mensagem;
@@ -13,6 +14,12 @@
 
                 if (form.numIdEndereco.value == "") {
                     mensagem = mensagem + "Informe o Id do Endereço\n";
+                }
+                if (!campoNumerico(form.numIdEndereco.value)){
+                    mensagem = mensagem + "Id do Endereço deve ser numérico\n";
+                }
+                if (!campoNumerico(form.txtCep.value)){
+                    mensagem = mensagem + "CEP deve ser numérico\n";
                 }
                 if (mensagem == "") {
                     return true;

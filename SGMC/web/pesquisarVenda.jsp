@@ -11,7 +11,7 @@
         <h1>Pesquisa de Venda</h1>
         <table border=1>
             <tr>
-                <th>Código de Barra</th>
+                <th>ID Venda</th>
                 <th>Data da Venda:</th> 
                 <th>Valor do Desconto</th>
                 <th>Situação</th>
@@ -23,7 +23,7 @@
             </tr>
             <c:forEach items="${vendas}" var="venda">
                 <tr>
-                    <td><c:out value="${venda.codBarra}"/></td>
+                    <td><c:out value="${venda.idVenda}"/></td>
                     <td><c:out value="${venda.dataVenda}"/></td>
                     <td><c:out value="${venda.valorDesconto}"/></td>
                     <td><c:out value="${venda.situacao}"/></td>
@@ -46,7 +46,7 @@
             </c:forEach>
         </table>
         <br>
-        <form action="ManterVendaController?acao=prepararOperacao&operacao=Incluir" method="post">
+        <form action="ManterVendaController?acao=prepararOperacao&operacao=Incluir" method=z"post">
             <table><tr><td><input type="submit" name="btnIncluir" value="Incluir"></td></tr></table>
         </form>
         <table><tr><td><input type="submit" name="btnVoltar" value="Voltar" onclick="window.location.href = 'http://localhost:8084/SGMC/'"></td></tr></table>

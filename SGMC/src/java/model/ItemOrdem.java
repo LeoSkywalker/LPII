@@ -10,29 +10,29 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItensOrdem {
+public class ItemOrdem {
 
-    private int idItensOrdem;
+    private int idItemOrdem;
     private int quantidade;
     private Produto produto;
     private int idProduto;
     private OrdemServico ordemServico;
     private int idOrdemSrv;
 
-    public ItensOrdem(int idItensOrdem, int quantidade, Produto produto,
+    public ItemOrdem(int idItensOrdem, int quantidade, Produto produto,
             OrdemServico ordemServico) {
-        this.idItensOrdem = idItensOrdem;
+        this.idItemOrdem = idItensOrdem;
         this.quantidade = quantidade;
         this.produto = produto;
         this.ordemServico = ordemServico;
     }
 
     public int getIdItensOrdem() {
-        return idItensOrdem;
+        return idItemOrdem;
     }
 
-    public void setIdItensOrdem(int idItensOrdem) {
-        this.idItensOrdem = idItensOrdem;
+    public void setIdItensOrdem(int idItemOrdem) {
+        this.idItemOrdem = idItemOrdem;
     }
 
     public int getQuantidade() {
@@ -81,15 +81,15 @@ public class ItensOrdem {
         this.idOrdemSrv = idOrdemSrv;
     }
 
-    public static ArrayList<ItensOrdem> obterItensOrdem(int idItensOrdem) throws SQLException, ClassNotFoundException {
+    public static ArrayList<ItemOrdem> obterItensOrdem(int idItensOrdem) throws SQLException, ClassNotFoundException {
         return ItensOrdemDAO.obterItensOrdem(idItensOrdem);
     }
 
-    public static ArrayList<ItensOrdem> obterItensOrdens() throws ClassNotFoundException, SQLException {
+    public static ArrayList<ItemOrdem> obterItensOrdens() throws ClassNotFoundException, SQLException {
         return ItensOrdemDAO.obterItensOrdens();
     }
     
-    public static ItensOrdem obterItemOrdem(int idItensOrdem) throws ClassNotFoundException, SQLException {
+    public static ItemOrdem obterItemOrdem(int idItensOrdem) throws ClassNotFoundException, SQLException {
         return ItensOrdemDAO.obterItemOrdem(idItensOrdem);
     }
 

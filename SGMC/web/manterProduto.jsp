@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
         <script>
+            
             function validarFormulario(form) {
 
                 var mensagem;
@@ -22,7 +23,42 @@
                 if (frmManterProduto.optCategoria.selectedIndex == 0) {
                     mensagem = mensagem + "Informe a categoria\n";
                 }
-                
+                if (!campoNumerico(form.numIdProduto.value)){
+                    mensagem = mensagem + "Id do Produto deve ser numérico\n";
+                }
+                if (!campoNumerico(form.numCodInterno.value)){
+                    mensagem = mensagem + "Código Interno deve ser numérico\n";
+                }
+                if (!campoNumerico(form.numCodBarra.value)){
+                    mensagem = mensagem + "Código Barra deve ser numérico\n";
+                }
+                if (!campoNumerico(form.precoCompra.value)){
+                    mensagem = mensagem + "Preço da Compra deve ser numérico\n";
+                }
+                if (!campoNumerico(form.peso.value)){
+                    mensagem = mensagem + "Peso deve ser numérico\n";
+                }
+                if (!campoNumerico(form.altura.value)){
+                    mensagem = mensagem + "Altura deve ser numérico\n";
+                }
+                if (!campoNumerico(form.comprimento.value)){
+                    mensagem = mensagem + "Comprimento deve ser numérico\n";
+                }
+                if (!campoNumerico(form.largura.value)){
+                    mensagem = mensagem + "Largura deve ser numérico\n";
+                }
+                if (!campoNumerico(form.validade.value)){
+                    mensagem = mensagem + "Validade deve ser numérico\n";
+                }
+                if (!campoNumerico(form.qtdMinima.value)){
+                    mensagem = mensagem + "Quatidade Mínima deve ser numérico\n";
+                }
+                if (!campoNumerico(form.qtdAtual.value)){
+                    mensagem = mensagem + "Quatidade Atual deve ser numérico\n";
+                }
+                if (!campoNumerico(form.qtdMaxima.value)){
+                    mensagem = mensagem + "Quatidade Maxima deve ser numérico\n";
+                }    
                 if (mensagem == "") {
                     return true;
                 } else {

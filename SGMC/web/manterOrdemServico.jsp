@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
         <script>
+            
             function validarFormulario(form) {
 
                 var mensagem;
@@ -18,7 +19,12 @@
                 if (frmManterOrdemServico.optFornecedor.selectedIndex == 0) {
                     mensagem = mensagem + "Informe o fornecedor\n";
                 }
-                
+                if (!campoNumerico(form.numIdOrdemServico.value)){
+                    mensagem = mensagem + "Id da Ordem de Serviço deve ser numérico\n";
+                }
+                if (!campoNumerico(form.txtNumeroOS.value)){
+                    mensagem = mensagem + "Número da OS deve ser numérico\n";
+                }
                 if (mensagem == "") {
                     return true;
                 } else {

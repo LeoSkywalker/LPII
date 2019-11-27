@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
         <script>
+            
             function validarFormulario(form) {
 
                 var mensagem;
@@ -25,6 +26,15 @@
                 
                 if (frmManterVenda.optPagamento.selectedIndex == 0) {
                     mensagem = mensagem + "Informe a forma de pagamento\n";
+                }
+                if (!campoNumerico(form.numIdVenda.value)){
+                    mensagem = mensagem + "Id da Venda deve ser numérico\n";
+                }
+                if (!campoNumerico(form.numCodBarra.value)){
+                    mensagem = mensagem + "Código de Barra deve ser numérico\n";
+                }
+                if (!campoNumerico(form.numValorDesconto.value)){
+                    mensagem = mensagem + "Valor do Desconto deve ser numérico\n";
                 }
                 if (mensagem == "") {
                     return true;

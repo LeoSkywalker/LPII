@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
         <script>
+            
             function validarFormulario(form) {
 
                 var mensagem;
@@ -14,7 +15,24 @@
                 if (form.numIdPagamento.value == "") {
                     mensagem = mensagem + "Informe o Id do pagamento\n";
                 }
-                
+                if (!campoNumerico(form.numIdPagamento.value)){
+                    mensagem = mensagem + "Id da Forma de Pagamento deve ser numérico\n";
+                }
+                if (!campoNumerico(form.numMaxParcelas.value)){
+                    mensagem = mensagem + "Número Máximo de Parcelas deve ser numérico\n";
+                }
+                if (!campoNumerico(form.intervaloParcelas.value)){
+                    mensagem = mensagem + "Intervalo de Parcelas deve ser numérico\n";
+                }
+                if (!campoNumerico(form.taxaBanco.value)){
+                    mensagem = mensagem + "Taxa do Banco deve ser numérico\n";
+                }
+                if (!campoNumerico(form.taxaOperadora.value)){
+                    mensagem = mensagem + "Taxa da Operadora deve ser numérico\n";
+                }
+                if (!campoNumerico(form.taxamultaAtraso.value)){
+                    mensagem = mensagem + "Multa por Atraso deve ser numérico\n";
+                }
                 if (mensagem == "") {
                     return true;
                 } else {

@@ -68,14 +68,14 @@ public class ManterAdminController extends HttpServlet {
     public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) 
             throws SQLException, ClassNotFoundException, ServletException, IOException {
         String operacao = request.getParameter("operacao");
+        
         int idAdmin = Integer.parseInt(request.getParameter("numIdAdmin"));
-        int idUsuario = Integer.parseInt(request.getParameter("numIdUsuario"));
         String nome = request.getParameter("txtNome");
         String email = request.getParameter("txtEmail");
         String senha = request.getParameter("txtSenha");
         
         try{
-            Admin admin = new Admin(idAdmin, idUsuario, nome, email,
+            Admin admin = new Admin(idAdmin, idAdmin, nome, email,
                     senha);
             if (operacao.equals("Incluir")) {
                 admin.gravar();

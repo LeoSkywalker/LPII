@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
         <script type="text/javascript">
+                
             function fisica() {
                 document.getElementById("cnpj").disabled = true;
                 document.getElementById("rc").disabled = true;
@@ -46,7 +47,22 @@
                 }                             
                 if (frmManterCliente.optEndereco.selectedIndex == 0) {
                     mensagem = mensagem + "Informe o endereço\n";
-                }             
+                }
+                if (!campoNumerico(form.numIdCliente.value)){
+                    mensagem = mensagem + "Id do Cliente deve ser numérica\n";
+                }
+                if (!campoNumerico(form.numCPF.value)){
+                    mensagem = mensagem + "CPF deve ser numérico\n";
+                }
+                if (!campoNumerico(form.numCnpj.value)){
+                    mensagem = mensagem + "CNPJ deve ser numérico\n";
+                }
+                if (!campoNumerico(form.txtTelefone.value)){
+                    mensagem = mensagem + "Telefone deve ser numérico\n";
+                }
+                if (!campoNumerico(form.txtCelular.value)){
+                    mensagem = mensagem + "Celular deve ser numérico\n";
+                } 
                 if (mensagem == ""){
                     return true;
                 }else{

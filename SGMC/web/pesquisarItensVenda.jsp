@@ -11,6 +11,7 @@
         <h1>Pesquisar Itens Venda</h1>
         <table border=1>
             <tr>
+                <th>ID Venda</th>  
                 <th>Código de Barra</th>  
                 <th>Produtos</th>
                 <th>Quantidade</th>
@@ -19,7 +20,8 @@
             </tr>
             <c:forEach items="${itensVenda}" var="itemVenda">
                 <tr>
-                    <td><c:out value="${itemVenda.venda.codBarra}"/></td>
+                    <td><c:out value="${itemVenda.venda.idVenda}"/></td>
+                    <td><c:out value="${itemVenda.produto.codBarra}"/></td>
                     <td><c:out value="${itemVenda.produto.nome}"/></td>
                     <td><c:out value="${itemVenda.quantidade}"/></td>
                     <td><c:out value="${itemVenda.precoUnitario}"/></td>
@@ -36,7 +38,7 @@
         </table>
         <br>
         <table>
-            <td><form action="ManterItensVendaController?acao=prepararOperacao&operacao=Incluir" method="post">
+            <td><form action="ManterItensVendaControllerz?acao=prepararOperacao&operacao=Incluir" method="post">
             <input type="submit" name="btnIncluir" value="Incluir">
                 </form></td>
                 <td><form action="PesquisaVendaController?acao=prepararOperacao&operacao" method="post">

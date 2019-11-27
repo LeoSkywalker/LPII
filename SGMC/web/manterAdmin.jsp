@@ -5,7 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
-        <script type="text/javascript">
+        <script type="text/javascript">       
             function validarFormulario(form) { 
                 var mensagem;
                 mensagem = "";
@@ -14,7 +14,13 @@
                 }                             
                 if (form.numIdUsuario.value == ""){
                     mensagem = mensagem + "Informe o Id do Usuário\n";
-                }             
+                }
+                if (!campoNumerico(form.numIdAdmin.value)){
+                    mensagem = mensagem + "ID do Admin deve ser numérica\n";
+                }
+                if (!campoNumerico(form.numIdUsuario.value)){
+                    mensagem = mensagem + "ID do Usuario deve ser numérica\n";
+                }
                 if (mensagem == ""){
                     return true;
                 }else{
@@ -32,11 +38,6 @@
                     <td><label> ID Admin: </label>
                         <input type="number" name="numIdAdmin" value="${admin.idAdmin}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                     </tr>
-                    <tr><td></td></tr> 
-                    <tr>
-                        <td><label> ID Usuario: </label>
-                            <input type="number" name="numIdUsuario" value="${admin.idUsuario}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
-                    </tr>           
                     <tr><td></td></tr> 
                     <tr>
                         <td><label> Nome: </label>

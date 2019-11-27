@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
         <script type="text/javascript">
+                 
             var novo = "";
             var i;
             var num = "1234567890";
@@ -70,7 +71,12 @@
                 if (frmManterColaborador.optEndereco.selectedIndex == 0) {
                     mensagem = mensagem + "Informe o endereço\n";
                 }
-
+                if (!campoNumerico(form.numIdColaborador.value)){
+                    mensagem = mensagem + "Id do Colaborador deve ser numérica\n";
+                }
+                if (!campoNumerico(form.numCPF.value)){
+                    mensagem = mensagem + "CPF deve ser numérico\n";
+                }
                 if (mensagem == "") {
                     return true;
                 } else {
@@ -87,8 +93,6 @@
                 <tr>
                     <td><label>ID Colaborador: </label>
                         <input type="number" name="numIdColaborador" value="${colaborador.idColaborador}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
-                        <td><label>ID Usuário: </label>
-                            <input type="number" name="numIdUsuario" value="${colaborador.idUsuario}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                         <td><label>Nome: </label>
                             <input type="text" name="txtNome" value="${colaborador.nome}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         <td><label>Data Nascimento: </label>

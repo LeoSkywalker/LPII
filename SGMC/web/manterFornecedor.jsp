@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
          <script type="text/javascript">
+              
             var novo = "";
             var i;
             var num = "1234567890";
@@ -42,6 +43,12 @@
                 }
                 if (frmManterFornecedor.optEndereco.selectedIndex == 0) {
                     mensagem = mensagem + "Informe o endereço\n";
+                }
+                if (!campoNumerico(form.numIdFornecedor.value)){
+                    mensagem = mensagem + "Id do Fornecedor deve ser numérico\n";
+                }
+                if (!campoNumerico(form.numCnpj.value)){
+                    mensagem = mensagem + "CNPJ deve ser numérico\n";
                 }
                 if (mensagem == "") {
                     return true;

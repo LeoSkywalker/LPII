@@ -15,7 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.ItensOrdem;
+import model.ItemOrdem;
 import model.OrdemServico;
 import model.Produto;
 
@@ -60,7 +60,7 @@ public class ManterItensOrdemController extends HttpServlet {
             if (idOrdemSrv != 0) {
                 ordemServico = OrdemServico.obterOrdemServico(idOrdemSrv);
             }
-            ItensOrdem itensOrdem = new ItensOrdem(idItensOrdem, quantidade, produto, ordemServico);
+            ItemOrdem itensOrdem = new ItemOrdem(idItensOrdem, quantidade, produto, ordemServico);
             if (operacao.equals("Incluir")) {
                 itensOrdem.gravar();
             } else {
@@ -73,7 +73,7 @@ public class ManterItensOrdemController extends HttpServlet {
                 }
             }
             RequestDispatcher view = request.getRequestDispatcher("/pesquisarItensOrdem.jsp");
-            request.setAttribute("itensOrdens", ItensOrdem.obterItensOrdem(idOrdemSrv));
+            request.setAttribute("itensOrdens", ItemOrdem.obterItensOrdem(idOrdemSrv));
             view.forward(request, response);
         } catch (SQLException | ClassNotFoundException e) {
             throw new ServletException(e);
@@ -88,7 +88,7 @@ public class ManterItensOrdemController extends HttpServlet {
             request.setAttribute("ordensServico", OrdemServico.obterOrdemServicos());
             if (!operacao.equals("Incluir")) {
                 int idItensOrdem = Integer.parseInt(request.getParameter("idItensOrdem"));
-                ItensOrdem itensOrdem = ItensOrdem.obterItemOrdem(idItensOrdem);
+                ItemOrdem itensOrdem = ItemOrdem.obterItemOrdem(idItensOrdem);
                 request.setAttribute("itensOrdem", itensOrdem);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterItensOrdem.jsp");

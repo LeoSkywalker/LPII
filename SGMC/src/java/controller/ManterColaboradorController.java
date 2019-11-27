@@ -120,7 +120,6 @@ public class ManterColaboradorController extends HttpServlet {
     public void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException{
         String operacao = request.getParameter("operacao");
         int idColaborador = Integer.parseInt(request.getParameter("numIdColaborador"));
-        int idUsuario = Integer.parseInt(request.getParameter("numIdUsuario"));
         String nome = request.getParameter("txtNome");
         String cpf = request.getParameter("numCPF");
         String rg = request.getParameter("numRg");
@@ -142,7 +141,7 @@ public class ManterColaboradorController extends HttpServlet {
             }
             Colaborador colaborador = new Colaborador(idColaborador, cpf, rg,
             dataNascimento, telefone, celular, estadoCivil, sexo, numero, 
-                    complemento, idUsuario, nome, email, senha, endereco);
+                    complemento, idColaborador, nome, email, senha, endereco);
             if(operacao.equals("Incluir")){
                 colaborador.gravar();
             }else{

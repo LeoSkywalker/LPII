@@ -14,17 +14,17 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
-import model.ItensOrdem;
+import model.ItemOrdem;
 
 public class ItensOrdemDAO {
 
-    public static ArrayList<ItensOrdem> obterItensOrdens()
+    public static ArrayList<ItemOrdem> obterItensOrdens()
             throws ClassNotFoundException, SQLException {
 
         Connection conexao = null;
         Statement comando = null;
-        ArrayList<ItensOrdem> itensOrdens = new java.util.ArrayList<ItensOrdem>();
-        ItensOrdem itensOrdem = null;
+        ArrayList<ItemOrdem> itensOrdens = new java.util.ArrayList<ItemOrdem>();
+        ItemOrdem itensOrdem = null;
 
         try {
             conexao = BD.getConexao();
@@ -43,12 +43,12 @@ public class ItensOrdemDAO {
         return itensOrdens;
     }
 
-    public static ArrayList<ItensOrdem> obterItensOrdem(int idOrdemSrv) throws SQLException, ClassNotFoundException {
+    public static ArrayList<ItemOrdem> obterItensOrdem(int idOrdemSrv) throws SQLException, ClassNotFoundException {
 
         Connection conexao = null;
         Statement comando = null;
-        ArrayList<ItensOrdem> itensOrdens = new java.util.ArrayList<ItensOrdem>();
-        ItensOrdem itensOrdem = null;
+        ArrayList<ItemOrdem> itensOrdens = new java.util.ArrayList<ItemOrdem>();
+        ItemOrdem itensOrdem = null;
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
@@ -65,10 +65,10 @@ public class ItensOrdemDAO {
         return itensOrdens;
     }
     
-    public static ItensOrdem obterItemOrdem(int idItensOrdem) throws ClassNotFoundException, SQLException {
+    public static ItemOrdem obterItemOrdem(int idItensOrdem) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
-        ItensOrdem itemOrdem = null;
+        ItemOrdem itemOrdem = null;
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
@@ -83,8 +83,8 @@ public class ItensOrdemDAO {
         return itemOrdem;
     }
 
-    private static ItensOrdem instaciarItensOrdem(ResultSet rs) throws SQLException {
-        ItensOrdem itensOrdem = new ItensOrdem(rs.getInt("idItensOrdem"),
+    private static ItemOrdem instaciarItensOrdem(ResultSet rs) throws SQLException {
+        ItemOrdem itensOrdem = new ItemOrdem(rs.getInt("idItensOrdem"),
                 rs.getInt("quantidade"),
                 null,
                 null);
@@ -94,7 +94,7 @@ public class ItensOrdemDAO {
         return itensOrdem;
     }
     
-    public static void gravar(ItensOrdem itensOrdem) throws SQLException, ClassNotFoundException{
+    public static void gravar(ItemOrdem itensOrdem) throws SQLException, ClassNotFoundException{
         Connection conexao = null;
         PreparedStatement comando = null;
         
@@ -123,7 +123,7 @@ public class ItensOrdemDAO {
             fecharConexao(conexao, comando);
         }
     }
-    public static void excluir(ItensOrdem itensOrdem) throws 
+    public static void excluir(ItemOrdem itensOrdem) throws 
             ClassNotFoundException, SQLException{
         Connection conexao = null;
         Statement comando = null;
@@ -140,7 +140,7 @@ public class ItensOrdemDAO {
         }
     }
     
-    public static void alterar(ItensOrdem itensOrdem) throws ClassNotFoundException, SQLException{
+    public static void alterar(ItemOrdem itensOrdem) throws ClassNotFoundException, SQLException{
         Connection conexao = null;
         Statement comando = null;
         String stringSQL;

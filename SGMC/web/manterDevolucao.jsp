@@ -20,6 +20,9 @@
                 if (frmManterDevolucao.optProduto.selectedIndex == 0) {
                     mensagem = mensagem + "Informe o produto\n";
                 }
+                if (!campoNumerico(form.numIdPerdaDevolucao.value)){
+                    mensagem = mensagem + "Id da Perda ou Devolução deve ser numérico\n";
+                }
                 if (mensagem == ""){
                     return true;
                 }else{

@@ -10,9 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItensVenda {
+public class ItemVenda {
 
-    private int idItensVenda;
+    private int idItemVenda;
     private int quantidade;
     private float precoUnitario;
     private Venda venda;
@@ -20,9 +20,9 @@ public class ItensVenda {
     private Produto produto;
     private int idProduto;
 
-    public ItensVenda(int idItensVenda, int quantidade, float precoUnitario,
+    public ItemVenda(int idItemVenda, int quantidade, float precoUnitario,
             Venda venda, Produto produto) {
-        this.idItensVenda = idItensVenda;
+        this.idItemVenda = idItemVenda;
         this.quantidade = quantidade;
         this.precoUnitario = precoUnitario;
         this.venda = venda;
@@ -30,11 +30,11 @@ public class ItensVenda {
     }
 
     public int getIdItensVenda() {
-        return idItensVenda;
+        return idItemVenda;
     }
 
-    public void setIdItensVenda(int idItensVenda) {
-        this.idItensVenda = idItensVenda;
+    public void setIdItensVenda(int idItemVenda) {
+        this.idItemVenda = idItemVenda;
     }
 
     public int getQuantidade() {
@@ -91,15 +91,15 @@ public class ItensVenda {
         this.idProduto = idProduto;
     }
 
-    public static ArrayList<ItensVenda> obterItensVenda(int idItensVenda) throws SQLException, ClassNotFoundException {
+    public static ArrayList<ItemVenda> obterItensVenda(int idItensVenda) throws SQLException, ClassNotFoundException {
         return ItensVendaDAO.obterItensVenda(idItensVenda);
     }
 
-    public static ArrayList<ItensVenda> obterItensVendas() throws ClassNotFoundException, SQLException {
+    public static ArrayList<ItemVenda> obterItensVendas() throws ClassNotFoundException, SQLException {
         return ItensVendaDAO.obterItensVendas();
     }
 
-    public static ItensVenda obterItemVenda(int idItensVenda) throws ClassNotFoundException, SQLException {
+    public static ItemVenda obterItemVenda(int idItensVenda) throws ClassNotFoundException, SQLException {
         return ItensVendaDAO.obterItemVenda(idItensVenda);
     }
 

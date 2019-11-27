@@ -15,7 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.ItensVenda;
+import model.ItemVenda;
 
 public class PesquisaItensVendaController extends HttpServlet {
 
@@ -34,7 +34,7 @@ public class PesquisaItensVendaController extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         int idVenda = Integer.parseInt(request.getParameter("idVenda"));
         try {
-            request.setAttribute("itensVenda", ItensVenda.obterItensVenda(idVenda));
+            request.setAttribute("itensVenda", ItemVenda.obterItensVenda(idVenda));
             RequestDispatcher view = request.getRequestDispatcher("/pesquisarItensVenda.jsp");
             view.forward(request, response);
         } catch (ClassNotFoundException | SQLException e) {

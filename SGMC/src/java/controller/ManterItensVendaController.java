@@ -16,7 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.ItensVenda;
+import model.ItemVenda;
 import model.Produto;
 import model.Venda;
 
@@ -111,7 +111,7 @@ public class ManterItensVendaController extends HttpServlet {
             if (idVenda != 0) {
                 venda = Venda.obterVenda(idVenda);
             }
-            ItensVenda itensVenda = new ItensVenda(idItensVenda, quantidade, precoUnitario,
+            ItemVenda itensVenda = new ItemVenda(idItensVenda, quantidade, precoUnitario,
                     venda, produto);
             itensVenda.setIdVenda(idVenda);
             itensVenda.setIdProduto(idProduto);
@@ -127,7 +127,7 @@ public class ManterItensVendaController extends HttpServlet {
                 }
             }
             RequestDispatcher view = request.getRequestDispatcher("/pesquisarItensVenda.jsp");
-            request.setAttribute("itensVenda", ItensVenda.obterItensVenda(idVenda));
+            request.setAttribute("itensVenda", ItemVenda.obterItensVenda(idVenda));
             view.forward(request, response);
         } catch (SQLException | ClassNotFoundException e) {
             throw new ServletException(e);
@@ -142,7 +142,7 @@ public class ManterItensVendaController extends HttpServlet {
             request.setAttribute("vendas", Venda.obterVendas());
             if (!operacao.equals("Incluir")) {
                 int idIntensVenda = Integer.parseInt(request.getParameter("idItensVenda"));
-                ItensVenda itensVenda = ItensVenda.obterItemVenda(idIntensVenda);
+                ItemVenda itensVenda = ItemVenda.obterItemVenda(idIntensVenda);
                 request.setAttribute("itensVenda", itensVenda);
             }
             RequestDispatcher view = request.getRequestDispatcher("/manterItensVenda.jsp");

@@ -14,17 +14,17 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
-import model.ItensVenda;
+import model.ItemVenda;
 
 public class ItensVendaDAO {
 
-    public static ArrayList<ItensVenda> obterItensVendas()
+    public static ArrayList<ItemVenda> obterItensVendas()
             throws ClassNotFoundException, SQLException {
 
         Connection conexao = null;
         Statement comando = null;
-        ArrayList<ItensVenda> itensVendas = new java.util.ArrayList<ItensVenda>();
-        ItensVenda itensVenda = null;
+        ArrayList<ItemVenda> itensVendas = new java.util.ArrayList<ItemVenda>();
+        ItemVenda itensVenda = null;
 
         try {
             conexao = BD.getConexao();
@@ -43,12 +43,12 @@ public class ItensVendaDAO {
 
     }
 
-    public static ArrayList<ItensVenda> obterItensVenda(int idVenda) throws SQLException, ClassNotFoundException {
+    public static ArrayList<ItemVenda> obterItensVenda(int idVenda) throws SQLException, ClassNotFoundException {
 
         Connection conexao = null;
         Statement comando = null;
-        ArrayList<ItensVenda> itensVendas = new java.util.ArrayList<ItensVenda>();
-        ItensVenda itensVenda = null;
+        ArrayList<ItemVenda> itensVendas = new java.util.ArrayList<ItemVenda>();
+        ItemVenda itensVenda = null;
 
         try {
             conexao = BD.getConexao();
@@ -67,10 +67,10 @@ public class ItensVendaDAO {
         return itensVendas;
     }
 
-    public static ItensVenda obterItemVenda(int idItensVenda) throws ClassNotFoundException, SQLException {
+    public static ItemVenda obterItemVenda(int idItensVenda) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
-        ItensVenda itemVenda = null;
+        ItemVenda itemVenda = null;
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
@@ -85,8 +85,8 @@ public class ItensVendaDAO {
         return itemVenda;
     }
 
-    private static ItensVenda instaciarItensVenda(ResultSet rs) throws SQLException {
-        ItensVenda itensVenda = new ItensVenda(rs.getInt("idItensVenda"),
+    private static ItemVenda instaciarItensVenda(ResultSet rs) throws SQLException {
+        ItemVenda itensVenda = new ItemVenda(rs.getInt("idItensVenda"),
                 rs.getInt("quantidade"),
                 rs.getFloat("precoUnitario"),
                 null,
@@ -97,7 +97,7 @@ public class ItensVendaDAO {
         return itensVenda;
     }
 
-    public static void gravar(ItensVenda itensVenda) throws ClassNotFoundException, SQLException {
+    public static void gravar(ItemVenda itensVenda) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         PreparedStatement comando = null;
         try {
@@ -126,7 +126,7 @@ public class ItensVendaDAO {
         }
     }
 
-    public static void excluir(ItensVenda itensVenda) throws ClassNotFoundException, SQLException {
+    public static void excluir(ItemVenda itensVenda) throws ClassNotFoundException, SQLException {
         Connection conexao = null;
         Statement comando = null;
         String stringSQL;
@@ -141,7 +141,7 @@ public class ItensVendaDAO {
         }
     }
 
-    public static void alterar(ItensVenda itensVenda) throws SQLException, ClassNotFoundException {
+    public static void alterar(ItemVenda itensVenda) throws SQLException, ClassNotFoundException {
         Connection conexao = null;
         Statement comando = null;
         String stringSQL;
