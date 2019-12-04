@@ -97,8 +97,8 @@ public class ManterItensVendaController extends HttpServlet {
     private void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException, IOException {
         String operacao = request.getParameter("operacao");
         int idItensVenda = Integer.parseInt(request.getParameter("numIdItensVenda"));
-        int idVenda =  Integer.parseInt(request.getParameter("optVenda"));
-        int idProduto =  Integer.parseInt(request.getParameter("optProduto"));
+        int idVenda = Integer.parseInt(request.getParameter("idVenda"));
+        int idProduto = Integer.parseInt(request.getParameter("optProduto"));
         int quantidade = Integer.parseInt(request.getParameter("numQuantidade"));
         float precoUnitario = Float.parseFloat(request.getParameter("numPrecoUnitario"));
 
@@ -126,6 +126,7 @@ public class ManterItensVendaController extends HttpServlet {
                     }
                 }
             }
+            request.setAttribute("idVenda", idVenda);
             RequestDispatcher view = request.getRequestDispatcher("/pesquisarItensVenda.jsp");
             request.setAttribute("itensVenda", ItemVenda.obterItensVenda(idVenda));
             view.forward(request, response);
@@ -145,6 +146,9 @@ public class ManterItensVendaController extends HttpServlet {
                 ItemVenda itensVenda = ItemVenda.obterItemVenda(idIntensVenda);
                 request.setAttribute("itensVenda", itensVenda);
             }
+            int idVenda = Integer.parseInt(request.getParameter("idVenda"));
+            request.setAttribute("idVenda", idVenda);
+
             RequestDispatcher view = request.getRequestDispatcher("/manterItensVenda.jsp");
             view.forward(request, response);
         } catch (ServletException e) {

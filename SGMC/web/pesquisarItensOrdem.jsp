@@ -22,11 +22,11 @@
                     <td><c:out value="${itensOrdem.produto.nome}"/></td>
                     <td><c:out value="${itensOrdem.quantidade}"/></td>
                     <td>
-                        <a href="ManterItensOrdemController?acao=prepararOperacao&operacao=Excluir&idItensOrdem=<c:out value="${itensOrdem.idItensOrdem}"/>">
+                        <a href="ManterItensOrdemController?acao=prepararOperacao&operacao=Excluir&idOrdemSrv=${idOrdemSrv}&idItensOrdem=<c:out value="${itensOrdem.idItensOrdem}"/>">
                             Excluir</a>
                     </td>
                     <td>
-                        <a href="ManterItensOrdemController?acao=prepararOperacao&operacao=Alterar&idItensOrdem=<c:out value="${itensOrdem.idItensOrdem}"/>">
+                        <a href="ManterItensOrdemController?acao=prepararOperacao&operacao=Alterar&idOrdemSrv=${idOrdemSrv}&idItensOrdem=<c:out value="${itensOrdem.idItensOrdem}"/>">
                             Alterar</a>
                     </td>
                 </tr>
@@ -34,7 +34,7 @@
         </table>
         <br>
         <table>
-        <td><form action="ManterItensOrdemController?acao=prepararOperacao&operacao=Incluir" method="post">
+        <td><form action="ManterItensOrdemController?acao=prepararOperacao&operacao=Incluir&idOrdemSrv=${idOrdemSrv}" method="post">
             <input type="submit" name="btnIncluir" value="Incluir">
         </form></td>
             <td><form action="PesquisaOrdemServicoController?acao=prepararOperacao&operacao" method="post">

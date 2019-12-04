@@ -5,10 +5,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SGMC - Pesquisa de Venda</title>
+        <title>SGMC - Pesquisa de Vendas</title>
     </head>
     <body>
-        <h1>Pesquisa de Venda</h1>
+        <h1>Pesquisa de Vendas</h1>
         <table border=1>
             <tr>
                 <th>ID Venda</th>
@@ -46,7 +46,7 @@
             </c:forEach>
         </table>
         <br>
-        <form action="ManterVendaController?acao=prepararOperacao&operacao=Incluir" method=z"post">
+        <form action="ManterVendaController?acao=prepararOperacao&operacao=Incluir" method="post">
             <table><tr><td><input type="submit" name="btnIncluir" value="Incluir"></td></tr></table>
         </form>
         <table><tr><td><input type="submit" name="btnVoltar" value="Voltar" onclick="window.location.href = 'http://localhost:8084/SGMC/'"></td></tr></table>

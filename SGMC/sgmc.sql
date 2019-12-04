@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 10-Nov-2019 às 19:11
+-- Generation Time: 04-Dez-2019 às 21:22
 -- Versão do servidor: 10.1.37-MariaDB
 -- versão do PHP: 7.3.1
 
@@ -119,7 +119,9 @@ CREATE TABLE `colaborador` (
 --
 
 INSERT INTO `colaborador` (`idColaborador`, `cpf`, `rg`, `dataNascimento`, `telefone`, `celular`, `estadoCivil`, `sexo`, `numero`, `complemento`, `idEndereco`, `idUsuario`) VALUES
-(1, '11100555504', '2270560434', '1988-01-18', '3226655304', '32999755114', 'Solteiro(a)', 'Masculino', 103, 'Proximo a Padaria P', 1, 2);
+(1, '11100555504', '2270560434', '1988-01-18', '3226655304', '32999755114', 'Solteiro(a)', 'Masculino', 103, 'Proximo a Padaria P', 1, 2),
+(3, '1', '1', '0001-01-01', '1', '1', 'Solteiro(a)', 'Masculino', 1, '1', 2, 3),
+(5, '1', '1', '0001-01-01', '1', '1', 'Solteiro(a)', 'Outro', 1, '1', 2, 5);
 
 -- --------------------------------------------------------
 
@@ -197,7 +199,8 @@ CREATE TABLE `fornecedor` (
 --
 
 INSERT INTO `fornecedor` (`idFornecedor`, `nomeFantasia`, `cnpj`, `nomeRepresentante`, `email`, `telefone`, `numero`, `complemento`, `idEndereco`) VALUES
-(1, 'Marangon', '40653743000430', 'Julio B.', 'julio@marangon.com', '3232657504', 104, 'Proximo a Marcenaria M', 2);
+(1, 'Marangon', '40653743000430', 'Julio B.', 'julio@marangon.com', '3232657504', 104, 'Bloco B', 2),
+(2, 'ABC Construcao', '22221218188488', 'Leandro', 'fdsfdfddsgw@dsfsf.com', '2226657405', 105, 'Bloco A', 1);
 
 -- --------------------------------------------------------
 
@@ -217,7 +220,8 @@ CREATE TABLE `itensOrdem` (
 --
 
 INSERT INTO `itensOrdem` (`idItensOrdem`, `quantidade`, `idProduto`, `idOrdemSrv`) VALUES
-(1, 5, 1, 1);
+(1, 1, 1, 1),
+(2, 2, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -260,7 +264,8 @@ CREATE TABLE `ordemServico` (
 --
 
 INSERT INTO `ordemServico` (`idOrdemSrv`, `numOS`, `descricao`, `dataPedido`, `situacao`, `idFornecedor`) VALUES
-(1, 1, 'Reposicao em estoque', '2019-09-25', 'Em aberto', 1);
+(1, 1, 'Reposicao em estoque', '2019-09-25', 'Em aberto', 1),
+(2, 2, 'asdasdas', '1111-11-11', 'Em Aberto', 1);
 
 -- --------------------------------------------------------
 
@@ -313,7 +318,8 @@ CREATE TABLE `produto` (
 
 INSERT INTO `produto` (`idProduto`, `nome`, `codInterno`, `codBarra`, `unidadeMedida`, `precoCompra`, `peso`, `altura`, `comprimento`, `validade`, `qtdMinima`, `qtdAtual`, `qtdMaxima`, `largura`, `idFornecedor`, `idCategoria`) VALUES
 (1, 'Cimento Holcim', 1555, 2147483647, 'Kg', 30, 50, NULL, NULL, '2019-12-25', 10, 15, 20, NULL, 1, 4),
-(2, 'Buchas Tam. 06', 125, 8855476, 'Unidade', 30, 5, 0, 0, '0', 6, 10, 15, 0, 1, 4);
+(2, 'Buchas Tam. 06', 125, 8855476, 'Unidade', 30, 5, 0, 0, '0', 6, 10, 15, 0, 1, 4),
+(3, 'Buchas Tam. 07', 1212212, 1122151, '1', 1, 1, 1, 1, '1', 1, 1, 1, 1, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -334,7 +340,9 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`idUsuario`, `nome`, `email`, `senha`) VALUES
 (1, 'Silvio Romero', 'silvioromero.sr@gmail.com', '12345'),
-(2, 'Luiz Gama', 'luiz.gama@gmail.com', '12345');
+(2, 'Luiz Gama', 'luiz.gama@gmail.com', '12345'),
+(3, '1', '111@11.com', '1'),
+(5, '1', '111@11.com', '');
 
 -- --------------------------------------------------------
 
@@ -492,7 +500,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT for table `colaborador`
 --
 ALTER TABLE `colaborador`
-  MODIFY `idColaborador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idColaborador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `endereco`
@@ -510,49 +518,49 @@ ALTER TABLE `formaPagamento`
 -- AUTO_INCREMENT for table `fornecedor`
 --
 ALTER TABLE `fornecedor`
-  MODIFY `idFornecedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idFornecedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `itensOrdem`
 --
 ALTER TABLE `itensOrdem`
-  MODIFY `idItensOrdem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idItensOrdem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `itensVenda`
 --
 ALTER TABLE `itensVenda`
-  MODIFY `idItensVenda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idItensVenda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `ordemServico`
 --
 ALTER TABLE `ordemServico`
-  MODIFY `idOrdemSrv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idOrdemSrv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `perdaDevolucao`
 --
 ALTER TABLE `perdaDevolucao`
-  MODIFY `idPerdaDevolucao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idPerdaDevolucao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `idProduto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idProduto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `venda`
 --
 ALTER TABLE `venda`
-  MODIFY `idVenda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idVenda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

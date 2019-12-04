@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,9 +31,9 @@ public class TratamentoExcecao extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Exception excecao = (Exception) request.getAttribute
-                ("javax.servlet.error.exception");
+                ("javax.servlet.error.exception");     
         Integer codigoStatus = (Integer) request.getAttribute
-                ("javax.servlet.error.status_code");
+                ("javax.servlet.error.status_code");  
         String nomeServlet = (String) request.getAttribute
                 ("javax.servlet.error.servlet_name");
         String uriRequisicao = (String) request.getAttribute

@@ -11,17 +11,17 @@
         <h1>Pesquisa de Ordens de Serviço</h1>
         <table border=1>
             <tr>
-                <th>Número da Ordem de Serviço</th>
-                <th>Descrição</th>
+                <th>ID da Ordem de Serviço</th>
                 <th>Data de Pedido</th>
+                <th>Descrição</th>
                 <th>Situação</th>
                 <th>Fornecedor</th>
                 <th colspan="3">Ação</th>
             <c:forEach items="${ordensServico}" var="ordemServico">
                 <tr>
-                    <td><c:out value="${ordemServico.numOS}"/></td>
-                    <td><c:out value="${ordemServico.descricao}"/></td>
+                    <td><c:out value="${ordemServico.idOrdemSrv}"/></td>
                     <td><c:out value="${ordemServico.dataPedido}"/></td>
+                    <td><c:out value="${ordemServico.descricao}"/></td>
                     <td><c:out value="${ordemServico.situacao}"/></td>
                     <td><c:out value="${ordemServico.fornecedor.nomeFantasia}"/></td>
                     <td>

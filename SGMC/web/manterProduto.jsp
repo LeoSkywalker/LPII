@@ -15,50 +15,24 @@
                 if (form.numIdProduto.value == "") {
                     mensagem = mensagem + "Informe o Id do produto\n";
                 }
-                
+                if (form.nomeProduto.value == "") {
+                    mensagem = mensagem + "Informe o nome\n";
+                }
                 if (frmManterProduto.optFornecedor.selectedIndex == 0) {
                     mensagem = mensagem + "Informe o fornecedor\n";
                 }
-                
                 if (frmManterProduto.optCategoria.selectedIndex == 0) {
                     mensagem = mensagem + "Informe a categoria\n";
                 }
-                if (!campoNumerico(form.numIdProduto.value)){
-                    mensagem = mensagem + "Id do Produto deve ser numérico\n";
+                if (form.qtdMinima.value == "") {
+                    mensagem = mensagem + "Informe a quantidade mínima\n";
                 }
-                if (!campoNumerico(form.numCodInterno.value)){
-                    mensagem = mensagem + "Código Interno deve ser numérico\n";
+                if (form.qtdAtual.value == "") {
+                    mensagem = mensagem + "Informe a quantidade atual\n";
                 }
-                if (!campoNumerico(form.numCodBarra.value)){
-                    mensagem = mensagem + "Código Barra deve ser numérico\n";
+                if (form.qtdMaxima.value == "") {
+                    mensagem = mensagem + "Informe a quantidade máxima\n";
                 }
-                if (!campoNumerico(form.precoCompra.value)){
-                    mensagem = mensagem + "Preço da Compra deve ser numérico\n";
-                }
-                if (!campoNumerico(form.peso.value)){
-                    mensagem = mensagem + "Peso deve ser numérico\n";
-                }
-                if (!campoNumerico(form.altura.value)){
-                    mensagem = mensagem + "Altura deve ser numérico\n";
-                }
-                if (!campoNumerico(form.comprimento.value)){
-                    mensagem = mensagem + "Comprimento deve ser numérico\n";
-                }
-                if (!campoNumerico(form.largura.value)){
-                    mensagem = mensagem + "Largura deve ser numérico\n";
-                }
-                if (!campoNumerico(form.validade.value)){
-                    mensagem = mensagem + "Validade deve ser numérico\n";
-                }
-                if (!campoNumerico(form.qtdMinima.value)){
-                    mensagem = mensagem + "Quatidade Mínima deve ser numérico\n";
-                }
-                if (!campoNumerico(form.qtdAtual.value)){
-                    mensagem = mensagem + "Quatidade Atual deve ser numérico\n";
-                }
-                if (!campoNumerico(form.qtdMaxima.value)){
-                    mensagem = mensagem + "Quatidade Maxima deve ser numérico\n";
-                }    
                 if (mensagem == "") {
                     return true;
                 } else {
@@ -74,7 +48,7 @@
             <table>
                 <tr>
                     <td><label> ID: </label>
-                        <input type="text" name="numIdProduto" value="${produto.idProduto}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
+                        <input type="number" name="numIdProduto" value="${produto.idProduto}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr>
@@ -108,29 +82,29 @@
                     <td><label> Unidade de Medida: </label>
                         <input type="text" name="nomeUnidadeMedida" value="${produto.unidadeMedida}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     <td><label> Preço de Compra: </label>
-                        <input type="text" name="precoCompra" value="${produto.precoCompra}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        <input type="number" name="precoCompra" value="${produto.precoCompra}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr>
                     <td><label> Peso(kg): </label>
-                        <input type="text" name="peso" value="${produto.peso}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        <input type="number" name="peso" value="${produto.peso}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     <td><label> Altura(cm): </label>
-                        <input type="text" name="altura" value="${produto.altura}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        <input type="number" name="altura" value="${produto.altura}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     <td><label> Comprimento(cm): </label>
-                        <input type="text" name="comprimento" value="${produto.comprimento}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        <input type="number" name="comprimento" value="${produto.comprimento}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     <td><label> Largura(cm): </label>
-                        <input type="text" name="largura" value="${produto.largura}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        <input type="number" name="largura" value="${produto.largura}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr>
                  <td><label> Validade(meses): </label>
-                        <input type="text" name="validade" value="${produto.validade}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        <input type="number" name="validade" value="${produto.validade}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                  <td><label> Quantidade Mínima: </label>
-                     <input type="text" name="qtdMinima" value="${produto.qtdMinima}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                     <input type="number" name="qtdMinima" value="${produto.qtdMinima}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                  <td><label> Quantidade Atual: </label>
-                     <input type="text" name="qtdAtual" value="${produto.qtdAtual}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                     <input type="number" name="qtdAtual" value="${produto.qtdAtual}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                  <td><label> Quantidade Máxima: </label>
-                     <input type="text" name="qtdMaxima" value="${produto.qtdMaxima}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                     <input type="number" name="qtdMaxima" value="${produto.qtdMaxima}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr>

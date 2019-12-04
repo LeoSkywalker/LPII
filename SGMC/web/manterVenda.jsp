@@ -13,28 +13,22 @@
                 mensagem = "";
 
                 if (form.numIdVenda.value == "") {
-                    mensagem = mensagem + "Informe o Id do Cliente\n";
+                    mensagem = mensagem + "Informe o Id da Venda\n";
+                }                
+                if (form.numCodBarra.value == "") {
+                    mensagem = mensagem + "Informe o código de barra\n";
                 }
-                
                 if (frmManterVenda.optCliente.selectedIndex == 0) {
                     mensagem = mensagem + "Informe o cliente\n";
-                }
-                
+                }           
                 if (frmManterVenda.optUsuario.selectedIndex == 0) {
                     mensagem = mensagem + "Informe o vendedor\n";
                 }
-                
                 if (frmManterVenda.optPagamento.selectedIndex == 0) {
                     mensagem = mensagem + "Informe a forma de pagamento\n";
                 }
-                if (!campoNumerico(form.numIdVenda.value)){
-                    mensagem = mensagem + "Id da Venda deve ser numérico\n";
-                }
-                if (!campoNumerico(form.numCodBarra.value)){
-                    mensagem = mensagem + "Código de Barra deve ser numérico\n";
-                }
-                if (!campoNumerico(form.numValorDesconto.value)){
-                    mensagem = mensagem + "Valor do Desconto deve ser numérico\n";
+                if (form.numSubTotal.value == "") {
+                    mensagem = mensagem + "Informe o subtotal da venda\n";
                 }
                 if (mensagem == "") {
                     return true;
@@ -51,7 +45,7 @@
             <table>
                 <tr>
                     <td><label> ID: </label>
-                        <input type="text" name="numIdVenda" value="${venda.idVenda}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
+                        <input type="number" name="numIdVenda" value="${venda.idVenda}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>></td>
                     <td><label> Data da Venda: </label>
                         <input type="date" name="dtDataVenda" value="${venda.dataVenda}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
@@ -83,7 +77,7 @@
                     </td>
                     <td>
                         <label> Valor Desconto: </label>
-                        <input type="text" name="numValorDesconto" value="${venda.valorDesconto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                        <input type="number" name="numValorDesconto" value="${venda.valorDesconto}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                     </td>
                     <td><label> Forma de Pagamento: </label>
                         <select name="optPagamento" <c:if test="${operacao == 'Excluir'}"> disabled</c:if>>
@@ -102,7 +96,7 @@
                     <option value="efetuada"<c:if test="${venda.situacao == 'efetuada'}">selected</c:if>>Efetuada</option>
                 </select></td>
                 <td><label> Subtotal: </label>
-                    <input type="text" name="numSubTotal" value="${venda.subTotal}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <input type="number" name="numSubTotal" value="${venda.subTotal}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>             
                 <tr><td></td></tr>
                 <tr>

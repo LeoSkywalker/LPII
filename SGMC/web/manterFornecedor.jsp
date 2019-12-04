@@ -39,16 +39,31 @@
                 mensagem = "";
 
                 if (form.numIdFornecedor.value == "") {
-                    mensagem = mensagem + "Informe o Id do Cliente\n";
+                    mensagem = mensagem + "Informe o Id do Fornecedor\n";
+                }
+                if (form.txtNomeFantasia.value == "") {
+                    mensagem = mensagem + "Informe o nome fantasia\n";
+                }
+                if (form.numCnpj.value == "") {
+                    mensagem = mensagem + "Informe o CNPJ\n";
+                }
+                if (form.txtNomeRepresentante.value == "") {
+                    mensagem = mensagem + "Informe o nome do representante\n";
+                }
+                if (form.txtEmail.value == "") {
+                    mensagem = mensagem + "Informe o email\n";
+                }
+                if (form.numTelefone.value == "") {
+                    mensagem = mensagem + "Informe o telefone\n";
                 }
                 if (frmManterFornecedor.optEndereco.selectedIndex == 0) {
                     mensagem = mensagem + "Informe o endereço\n";
                 }
-                if (!campoNumerico(form.numIdFornecedor.value)){
-                    mensagem = mensagem + "Id do Fornecedor deve ser numérico\n";
+                if (form.numEndereco.value == "") {
+                    mensagem = mensagem + "Informe o número do endereço\n";
                 }
-                if (!campoNumerico(form.numCnpj.value)){
-                    mensagem = mensagem + "CNPJ deve ser numérico\n";
+                if (form.txtComplemento.value == "") {
+                    mensagem = mensagem + "Informe o complemento do endereço\n";
                 }
                 if (mensagem == "") {
                     return true;
@@ -71,7 +86,7 @@
                 <tr>
                     <td><label> Nome Fantasia: </label>
                         <input type="text" name="txtNomeFantasia" value="${fornecedor.nomeFantasia}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    <td><label> CNPJ: </label>
+                    <td><label> CNPJ (somente números): </label>
                         <input type="number" name="numCnpj" value="${fornecedor.cnpj}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     <td><label> Nome Representante: </label>
                         <input type="text" name="txtNomeRepresentante" value="${fornecedor.nomeRepresentante}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>

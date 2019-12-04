@@ -30,15 +30,13 @@ public class PesquisaOrdemServicoController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
-            try{
-                request.setAttribute("ordensServico", OrdemServico.obterOrdemServicos());
-                RequestDispatcher view = request.getRequestDispatcher("/pesquisarOrdemServico.jsp");
-                view.forward(request, response);
-            }catch(ClassNotFoundException e){
-                throw new ServletException(e);
-            }catch(SQLException e){
-                throw new ServletException(e);
-            }
+        try {
+            request.setAttribute("ordensServico", OrdemServico.obterOrdemServicos());
+            RequestDispatcher view = request.getRequestDispatcher("/pesquisarOrdemServico.jsp");
+            view.forward(request, response);
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new ServletException(e);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -114,13 +114,36 @@ public class VendaDAO {
         Connection conexao = null;
         Statement comando = null;
         String stringSQL;
-
+        
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "delete from perdaDevolucao where idVenda = "
+                    + venda.getIdVenda();
+            comando.execute(stringSQL);
+            
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
+            stringSQL = "delete from itensVenda where idVenda = " + 
+                    venda.getIdVenda();
+            comando.execute(stringSQL);
+            
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
             stringSQL = "delete from venda where idVenda = "
                     + venda.getIdVenda();
             comando.execute(stringSQL);
+            
         } finally {
             fecharConexao(conexao, comando);
         }

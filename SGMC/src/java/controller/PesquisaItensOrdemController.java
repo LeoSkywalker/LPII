@@ -32,12 +32,11 @@ public class PesquisaItensOrdemController extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         int idOrdemSrv = Integer.parseInt(request.getParameter("idOrdemSrv"));
         try{
+            request.setAttribute("idOrdemSrv", idOrdemSrv);
             request.setAttribute("itensOrdens", ItemOrdem.obterItensOrdem(idOrdemSrv));
             RequestDispatcher view = request.getRequestDispatcher("/pesquisarItensOrdem.jsp");
             view.forward(request, response);
-        }catch (ClassNotFoundException e){
-            throw new ServletException(e);
-        }catch (SQLException e){
+        }catch (ClassNotFoundException | SQLException e){
             throw new ServletException(e);
         }
     }

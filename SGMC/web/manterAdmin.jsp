@@ -11,15 +11,15 @@
                 mensagem = "";
                 if (form.numIdAdmin.value == ""){
                     mensagem = mensagem + "Informe o Id do Admin\n";
-                }                             
-                if (form.numIdUsuario.value == ""){
-                    mensagem = mensagem + "Informe o Id do Usuário\n";
                 }
-                if (!campoNumerico(form.numIdAdmin.value)){
-                    mensagem = mensagem + "ID do Admin deve ser numérica\n";
+                if (form.txtNome.value == ""){
+                    mensagem = mensagem + "Informe o nome\n";
                 }
-                if (!campoNumerico(form.numIdUsuario.value)){
-                    mensagem = mensagem + "ID do Usuario deve ser numérica\n";
+                if (form.txtEmail.value == ""){
+                    mensagem = mensagem + "Informe o email\n";
+                }
+                if (form.txtSenha.value == ""){
+                    mensagem = mensagem + "Informe a senha\n";
                 }
                 if (mensagem == ""){
                     return true;

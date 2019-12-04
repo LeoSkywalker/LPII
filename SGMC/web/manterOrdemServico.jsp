@@ -13,17 +13,16 @@
                 mensagem = "";
 
                 if (form.numIdOrdemServico.value == "") {
-                    mensagem = mensagem + "Informe o Id do pagamento\n";
+                    mensagem = mensagem + "Informe o Id da Ordem de Serviço\n";
                 }
-                
+                if (form.txtNumeroOS.value == "") {
+                    mensagem = mensagem + "Informe o número da ordem de serviço\n";
+                }
+                if (form.txtDescricao.value == "") {
+                    mensagem = mensagem + "Informe a descrição\n";
+                }
                 if (frmManterOrdemServico.optFornecedor.selectedIndex == 0) {
                     mensagem = mensagem + "Informe o fornecedor\n";
-                }
-                if (!campoNumerico(form.numIdOrdemServico.value)){
-                    mensagem = mensagem + "Id da Ordem de Serviço deve ser numérico\n";
-                }
-                if (!campoNumerico(form.txtNumeroOS.value)){
-                    mensagem = mensagem + "Número da OS deve ser numérico\n";
                 }
                 if (mensagem == "") {
                     return true;
@@ -41,11 +40,11 @@
                 <tr>
                     <td>
                         <label> ID: </label>
-                        <input type="text" name="numIdOrdemServico" value="${ordemServico.idOrdemSrv}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
+                        <input type="number" name="numIdOrdemServico" value="${ordemServico.idOrdemSrv}" <c:if test="${operacao != 'Incluir'}"> readonly</c:if>>
                         </td>
                         <td>
                             <label> Número da Ordem de Serviço: </label>
-                            <input type="text" name="txtNumeroOS" value="${ordemServico.numOS}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
+                            <input type="number" name="txtNumeroOS" value="${ordemServico.numOS}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                         </td>
                     </tr>
                     <tr><td></td></tr> 

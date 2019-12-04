@@ -47,7 +47,7 @@ public class ManterItensOrdemController extends HttpServlet {
     private void confirmarOperacao(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, ServletException, IOException {
         String operacao = request.getParameter("operacao");
         int idItensOrdem = Integer.parseInt(request.getParameter("numIdItensOrdem"));
-        int idOrdemSrv = Integer.parseInt(request.getParameter("optOrdemSrv"));
+        int idOrdemSrv = Integer.parseInt(request.getParameter("idOrdemSrv"));
         int quantidade = Integer.parseInt(request.getParameter("numQuantidade"));
         int idProduto = Integer.parseInt(request.getParameter("optProduto"));
 
@@ -72,6 +72,7 @@ public class ManterItensOrdemController extends HttpServlet {
                     }
                 }
             }
+            request.setAttribute("idOrdemSrv", idOrdemSrv);
             RequestDispatcher view = request.getRequestDispatcher("/pesquisarItensOrdem.jsp");
             request.setAttribute("itensOrdens", ItemOrdem.obterItensOrdem(idOrdemSrv));
             view.forward(request, response);
@@ -85,12 +86,14 @@ public class ManterItensOrdemController extends HttpServlet {
             String operacao = request.getParameter("operacao");
             request.setAttribute("operacao", operacao);
             request.setAttribute("produtos", Produto.obterProdutos());
-            request.setAttribute("ordensServico", OrdemServico.obterOrdemServicos());
+            request.setAttribute("ordensServicos", OrdemServico.obterOrdemServicos());
             if (!operacao.equals("Incluir")) {
                 int idItensOrdem = Integer.parseInt(request.getParameter("idItensOrdem"));
                 ItemOrdem itensOrdem = ItemOrdem.obterItemOrdem(idItensOrdem);
                 request.setAttribute("itensOrdem", itensOrdem);
             }
+            int idOrdemSrv = Integer.parseInt(request.getParameter("idOrdemSrv"));
+            request.setAttribute("idOrdemSrv", idOrdemSrv);
             RequestDispatcher view = request.getRequestDispatcher("/manterItensOrdem.jsp");
             view.forward(request, response);
         } catch (ServletException e) {

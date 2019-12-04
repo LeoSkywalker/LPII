@@ -5,10 +5,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SGMC - Pesquisa de Fornecedor</title>
+        <title>SGMC - Pesquisa de Fornecedores</title>
     </head>
     <body>
-        <h1>Pesquisa de Fornecedor</h1>
+        <h1>Pesquisa de Fornecedores</h1>
         <table border=1>
             <tr>
                 <th>CNPJ</th>

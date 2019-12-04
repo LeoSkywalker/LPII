@@ -91,8 +91,8 @@ public class ItemVenda {
         this.idProduto = idProduto;
     }
 
-    public static ArrayList<ItemVenda> obterItensVenda(int idItensVenda) throws SQLException, ClassNotFoundException {
-        return ItensVendaDAO.obterItensVenda(idItensVenda);
+    public static ArrayList<ItemVenda> obterItensVenda(int idVenda) throws SQLException, ClassNotFoundException {
+        return ItensVendaDAO.obterItensVenda(idVenda);
     }
 
     public static ArrayList<ItemVenda> obterItensVendas() throws ClassNotFoundException, SQLException {

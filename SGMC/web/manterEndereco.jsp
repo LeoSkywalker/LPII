@@ -15,12 +15,22 @@
                 if (form.numIdEndereco.value == "") {
                     mensagem = mensagem + "Informe o Id do Endereço\n";
                 }
-                if (!campoNumerico(form.numIdEndereco.value)){
-                    mensagem = mensagem + "Id do Endereço deve ser numérico\n";
+                if (form.txtLogradouro.value == "") {
+                    mensagem = mensagem + "Informe o logradouro\n";
                 }
-                if (!campoNumerico(form.txtCep.value)){
-                    mensagem = mensagem + "CEP deve ser numérico\n";
+                if (form.txtCidade.value == "") {
+                    mensagem = mensagem + "Informe a cidade\n";
                 }
+                if (form.txtBairro.value == "") {
+                    mensagem = mensagem + "Informe o bairro\n";
+                }
+                if (form.txtUf.value == "") {
+                    mensagem = mensagem + "Informe a UF(Unidade da Federação)\n";
+                }
+                if (form.txtCep.value == "") {
+                    mensagem = mensagem + "Informe o CEP\n";
+                }
+                
                 if (mensagem == "") {
                     return true;
                 } else {
@@ -54,7 +64,7 @@
                             <input type="text" name="txtUf" value="${endereco.uf}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                         </td>
                         <td><label> CEP: </label>
-                            <input type="text" name="txtCep" value="${endereco.cep}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                            <input type="number" name="txtCep" value="${endereco.cep}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     </tr>
                     <tr><td></td></tr>  
                     <tr>

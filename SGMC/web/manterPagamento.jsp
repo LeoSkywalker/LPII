@@ -15,24 +15,24 @@
                 if (form.numIdPagamento.value == "") {
                     mensagem = mensagem + "Informe o Id do pagamento\n";
                 }
-                if (!campoNumerico(form.numIdPagamento.value)){
-                    mensagem = mensagem + "Id da Forma de Pagamento deve ser numérico\n";
+                if (form.nome.value == "") {
+                    mensagem = mensagem + "Informe o nome da forma de pagamento\n";
                 }
-                if (!campoNumerico(form.numMaxParcelas.value)){
-                    mensagem = mensagem + "Número Máximo de Parcelas deve ser numérico\n";
+                if (form.conta.value == "") {
+                    mensagem = mensagem + "Informe o número da conta\n";
                 }
-                if (!campoNumerico(form.intervaloParcelas.value)){
-                    mensagem = mensagem + "Intervalo de Parcelas deve ser numérico\n";
-                }
-                if (!campoNumerico(form.taxaBanco.value)){
-                    mensagem = mensagem + "Taxa do Banco deve ser numérico\n";
-                }
-                if (!campoNumerico(form.taxaOperadora.value)){
-                    mensagem = mensagem + "Taxa da Operadora deve ser numérico\n";
-                }
-                if (!campoNumerico(form.taxamultaAtraso.value)){
-                    mensagem = mensagem + "Multa por Atraso deve ser numérico\n";
-                }
+                if (form.agencia.value == "") {
+                    mensagem = mensagem + "Informe o número da agência\n";
+                } 
+                if (form.nomeBanco.value == "") {
+                    mensagem = mensagem + "Informe o nome do banco\n";
+                } 
+                if (form.numMaxParcelas.value == "") {
+                    mensagem = mensagem + "Informe o número máximo de parcelas\n";
+                } 
+                if (form.intervaloParcelas.value == "") {
+                    mensagem = mensagem + "Informe o intervalo de parcelas\n";
+                } 
                 if (mensagem == "") {
                     return true;
                 } else {
@@ -73,19 +73,19 @@
                 <tr><td></td></tr>
                 <tr>
                     <td><label> Num. Máximo de Parcelas: </label>
-                        <input type="text" name="numMaxParcelas" value="${formaPagamento.numMaxParcelas}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        <input type="number" name="numMaxParcelas" value="${formaPagamento.numMaxParcelas}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                     <td><label> Intervalo de Parcelas (dias): </label>
-                        <input type="text" name="intervaloParcelas" value="${formaPagamento.intervaloParcelas}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                        <input type="number" name="intervaloParcelas" value="${formaPagamento.intervaloParcelas}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr>
                         
-                    <td><label> Taxa do Banco: </label>
-                        <input type="text" name="taxaBanco" value="${formaPagamento.taxaBanco}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    <td><label> Taxa da Operadora: </label>
-                        <input type="text" name="taxaOperadora" value="${formaPagamento.taxaOperadora}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                    <td><label> Taxa da Multa de Atraso: </label>
-                        <input type="text" name="taxamultaAtraso" value="${formaPagamento.multaAtraso}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td><label> Taxa do Banco (%): </label>
+                        <input type="number" name="taxaBanco" value="${formaPagamento.taxaBanco}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td><label> Taxa da Operadora (%): </label>
+                        <input type="number" name="taxaOperadora" value="${formaPagamento.taxaOperadora}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
+                    <td><label> Taxa da Multa de Atraso (%): </label>
+                        <input type="number" name="taxamultaAtraso" value="${formaPagamento.multaAtraso}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr>

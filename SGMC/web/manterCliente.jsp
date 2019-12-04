@@ -6,7 +6,56 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
         <script type="text/javascript">
-                
+            
+            var novo = "";
+            var i;
+            var num = "1234567890";
+            function consertaCel() {
+                var c = "";
+                var str = "";
+                for (i = 0; i < cel.value.length; i++) {
+                    c = cel.value.charAt(i);
+                    if (num.indexOf(c) != -1) {
+                        str += c;
+                    }
+                }
+                if (str.length == 2) {
+                    novo = "(" + str.substr(0, 2) + ") ";
+                    document.getElementById("cel").value = novo;
+                }
+                if (str.length == 6) {
+                    novo = "(" + str.substr(0, 2) + ") " + str.substr(2, 4) + "-";
+                    document.getElementById("cel").value = novo;
+                }
+                if (str.length == 10) {
+                    novo = "(" + str.substr(0, 2) + ") " + str.substr(2, 5) + "-" + str.substr(7, 4);
+                    document.getElementById("cel").value = novo;
+                }
+            }
+
+            function consertaTel() {
+                var c = "";
+                var str = "";
+                for (i = 0; i < tel.value.length; i++) {
+                    c = tel.value.charAt(i);
+                    if (num.indexOf(c) != -1) {
+                        str += c;
+                    }
+                }
+                if (str.length == 2) {
+                    novo = "(" + str.substr(0, 2) + ") ";
+                    document.getElementById("tel").value = novo;
+                }
+                if (str.length == 6) {
+                    novo = "(" + str.substr(0, 2) + ") " + str.substr(2, 4) + "-";
+                    document.getElementById("tel").value = novo;
+                }
+                if (str.length == 10) {
+                    novo = "(" + str.substr(0, 2) + ") " + str.substr(2, 4) + "-" + str.substr(6, 4);
+                    document.getElementById("tel").value = novo;
+                }
+            }
+
             function fisica() {
                 document.getElementById("cnpj").disabled = true;
                 document.getElementById("rc").disabled = true;
@@ -37,38 +86,29 @@
                 document.getElementById("rc").disabled = false;
                 document.getElementById("ie").disabled = false;
             }
-            function validarFormulario(form) { 
-                
+            function validarFormulario(form) {
+
                 var mensagem;
                 mensagem = "";
-                
-                if (form.numIdCliente.value == ""){
+
+                if (form.numIdCliente.value == "") {
                     mensagem = mensagem + "Informe o Id do Cliente\n";
-                }                             
+                }
                 if (frmManterCliente.optEndereco.selectedIndex == 0) {
                     mensagem = mensagem + "Informe o endereço\n";
                 }
-                if (!campoNumerico(form.numIdCliente.value)){
-                    mensagem = mensagem + "Id do Cliente deve ser numérica\n";
+                if (form.numEndereco.value == "") {
+                    mensagem = mensagem + "Informe o número do endereço\n";
                 }
-                if (!campoNumerico(form.numCPF.value)){
-                    mensagem = mensagem + "CPF deve ser numérico\n";
+                if (form.txtComplemento.value == "") {
+                    mensagem = mensagem + "Informe o complemento do endereço\n";
                 }
-                if (!campoNumerico(form.numCnpj.value)){
-                    mensagem = mensagem + "CNPJ deve ser numérico\n";
-                }
-                if (!campoNumerico(form.txtTelefone.value)){
-                    mensagem = mensagem + "Telefone deve ser numérico\n";
-                }
-                if (!campoNumerico(form.txtCelular.value)){
-                    mensagem = mensagem + "Celular deve ser numérico\n";
-                } 
-                if (mensagem == ""){
+                if (mensagem == "") {
                     return true;
-                }else{
+                } else {
                     alert(mensagem);
                     return false;
-                }                
+                }
             }
         </script>
     </head>
@@ -89,11 +129,15 @@
                     <tr><td></td></tr>
                     <tr>
 
-                        <td><label>CPF: </label>
+                        <td><label>CPF (somente números): </label>
                             <input type="number" name="numCPF" id="cpf" value="${cliente.cpf}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         <td><label>RG: </label>
                             <input type="text" name="numRg" id="rg" value="${cliente.rg}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
-                        <td><label>CNPJ: </label>
+
+                    </tr>
+                    <tr><td></td></tr>
+                    <tr>
+                        <td><label>CNPJ (somente números): </label>
                             <input type="text" name="numCnpj" id="cnpj" value="${cliente.cnpj}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         <td><label>Razão Social: </label>
                             <input type="text" name="txtRazao" id="rc" value="${cliente.razaoSocial}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>

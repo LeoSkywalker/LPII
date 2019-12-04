@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SGMC</title>
         <script type="text/javascript">
-                 
+
             var novo = "";
             var i;
             var num = "1234567890";
@@ -60,23 +60,42 @@
 
                 var mensagem;
                 mensagem = "";
-
                 if (form.numIdColaborador.value == "") {
                     mensagem = mensagem + "Informe o id do colaborador\n";
                 }
-                if (form.numIdUsuario.value == "") {
-                    mensagem = mensagem + "Informe o id do usuário\n";
+                if (form.txtNome.value == "") {
+                    mensagem = mensagem + "Informe o nome\n";
                 }
-
-                if (frmManterColaborador.optEndereco.selectedIndex == 0) {
+                if (form.txtDataNasc.value == "") {
+                    mensagem = mensagem + "Informe a data de nascimento\n";
+                }
+                if (form.txtSenha.value == "") {
+                    mensagem = mensagem + "Informe a senha\n";
+                }
+                if (form.numCPF.value == "") {
+                    mensagem = mensagem + "Informe o CPF\n";
+                }
+                if (form.numRg.value == "") {
+                    mensagem = mensagem + "Informe o RG\n";
+                }
+                if (form.txtEmail.value == "") {
+                    mensagem = mensagem + "Informe o email\n";
+                }
+                if (form.txtTelefone.value == "") {
+                    mensagem = mensagem + "Informe o telefone\n";
+                }
+                if (form.txtCelular.value == "") {
+                    mensagem = mensagem + "Informe o celular\n";
+                }
+                if (frmManterColaborador.optEndereco.selectedIndex == "") {
                     mensagem = mensagem + "Informe o endereço\n";
                 }
-                if (!campoNumerico(form.numIdColaborador.value)){
-                    mensagem = mensagem + "Id do Colaborador deve ser numérica\n";
+                if (form.numEndereco.value == "") {
+                    mensagem = mensagem + "Informe o número do endereço\n";
                 }
-                if (!campoNumerico(form.numCPF.value)){
-                    mensagem = mensagem + "CPF deve ser numérico\n";
-                }
+                if (form.txtComplemento.value == "") {
+                    mensagem = mensagem + "Informe o complemento\n";
+                }      
                 if (mensagem == "") {
                     return true;
                 } else {
@@ -106,7 +125,7 @@
                             <input type="password"></td>
                     </tr>
                     <tr><td></td></tr>
-                    <tr><td><label>CPF: </label>
+                    <tr><td><label>CPF (somente números): </label>
                             <input type="number" name="numCPF" value="${colaborador.cpf}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td>
                         <td><label>RG: </label>
                             <input type="text" name="numRg" value="${colaborador.rg}" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>></td></tr>

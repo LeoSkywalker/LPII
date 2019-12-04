@@ -12,8 +12,8 @@
                 if (form.numIdCategoria.value == ""){
                     mensagem = mensagem + "Informe o Id da Categoria\n";
                 }
-                if (!campoNumerico(form.numIdCategoria.value)){
-                    mensagem = mensagem + "Id da Categoria deve ser numérica\n";
+                if (form.txtDescricao.value == ""){
+                    mensagem = mensagem + "Informe o descrição\n";
                 }
                 if (mensagem == ""){
                     return true;

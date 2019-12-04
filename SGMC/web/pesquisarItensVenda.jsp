@@ -8,7 +8,7 @@
         <title>SGMC - Pesquisa de Itens da Venda</title>
     </head>
     <body>
-        <h1>Pesquisar Itens Venda</h1>
+        <h1>Pesquisar Itens da Venda</h1>
         <table border=1>
             <tr>
                 <th>ID Venda</th>  
@@ -26,11 +26,11 @@
                     <td><c:out value="${itemVenda.quantidade}"/></td>
                     <td><c:out value="${itemVenda.precoUnitario}"/></td>
                     <td>
-                        <a href="ManterItensVendaController?acao=prepararOperacao&operacao=Excluir&idItensVenda=<c:out value="${itemVenda.idItensVenda}"/>">
+                        <a href="ManterItensVendaController?acao=prepararOperacao&operacao=Excluir&idVenda=${idVenda}&idItensVenda=<c:out value="${itemVenda.idItensVenda}"/>">
                             Excluir</a>
                     </td>
                     <td>
-                        <a href="ManterItensVendaController?acao=prepararOperacao&operacao=Alterar&idItensVenda=<c:out value="${itemVenda.idItensVenda}"/>">
+                        <a href="ManterItensVendaController?acao=prepararOperacao&operacao=Alterar&idVenda=${idVenda}&idItensVenda=<c:out value="${itemVenda.idItensVenda}"/>">
                             Alterar</a>
                     </td>
                 </tr>
@@ -38,7 +38,7 @@
         </table>
         <br>
         <table>
-            <td><form action="ManterItensVendaControllerz?acao=prepararOperacao&operacao=Incluir" method="post">
+            <td><form action="ManterItensVendaController?acao=prepararOperacao&operacao=Incluir&idVenda=${idVenda}" method="post">
             <input type="submit" name="btnIncluir" value="Incluir">
                 </form></td>
                 <td><form action="PesquisaVendaController?acao=prepararOperacao&operacao" method="post">

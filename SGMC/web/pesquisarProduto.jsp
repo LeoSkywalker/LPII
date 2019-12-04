@@ -5,10 +5,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SGMC - Pesquisa de Produto</title>
+        <title>SGMC - Pesquisa de Produtos</title>
     </head>
     <body>
-        <h1>Pesquisa de Produto</h1>
+        <h1>Pesquisa de Produtos</h1>
         <table border=1>
             <tr>
                 <th>Nome</th>

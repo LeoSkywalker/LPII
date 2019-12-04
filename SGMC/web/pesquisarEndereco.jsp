@@ -5,10 +5,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SGMC - Pesquisa de Endereço</title>
+        <title>SGMC - Pesquisa de Endereços</title>
     </head>
     <body>
-        <h1>Pesquisa de Endereço</h1>
+        <h1>Pesquisa de Endereços</h1>
         <table border=1>
             <tr>
                 <th>Logradouro</th>

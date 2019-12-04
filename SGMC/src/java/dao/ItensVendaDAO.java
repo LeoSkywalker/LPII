@@ -158,8 +158,7 @@ public class ItensVendaDAO {
             } else {
                 stringSQL = stringSQL + itensVenda.getProduto().getIdProduto();
             }
-            stringSQL = stringSQL + " where idItensVenda = " + itensVenda.getIdItensVenda()
-                    + " and idVenda = " + itensVenda.getVenda().getIdVenda();
+            stringSQL = stringSQL + " where idItensVenda = " + itensVenda.getIdItensVenda();
             comando.execute(stringSQL);
         } finally {
             fecharConexao(conexao, comando);

@@ -5,10 +5,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SGMC - Pesquisa de Perda ou Devolução</title>
+        <title>SGMC - Pesquisa de Perdas ou Devoluções</title>
     </head>
     <body>
-        <h1>Pesquisar Perda ou Devolução</h1>
+        <h1>Pesquisar Perdas ou Devoluções</h1>
         <table border=1>
             <tr>
                 <th>ID</th>

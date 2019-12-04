@@ -101,11 +101,20 @@ public class OrdemServicoDAO {
         try {
             conexao = BD.getConexao();
             comando = conexao.createStatement();
+            stringSQL = "delete from itensOrdem where idOrdemSrv = " + ordemServico.getIdOrdemSrv();
+            comando.execute(stringSQL);
+        } finally {
+            fecharConexao(conexao, comando);
+        }
+        try {
+            conexao = BD.getConexao();
+            comando = conexao.createStatement();
             stringSQL = "delete from ordemServico where idOrdemSrv = " + ordemServico.getIdOrdemSrv();
             comando.execute(stringSQL);
         } finally {
             fecharConexao(conexao, comando);
         }
+        
     }
 
     public static void alterar(OrdemServico ordemServico) throws ClassNotFoundException, SQLException {
